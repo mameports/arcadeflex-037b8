@@ -1,8 +1,9 @@
 /*
- * ported to 0.37b7
+ * ported to v0.37b8
+ * ported to v0.37b7
  * ported to v0.36
  */
-package gr.codebb.arcadeflex.v037b7.vidhrdw;
+package gr.codebb.arcadeflex.v037b8.vidhrdw;
 
 import static gr.codebb.arcadeflex.common.libc.cstring.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;

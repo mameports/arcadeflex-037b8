@@ -1,8 +1,8 @@
 /*
+ * ported to v0.37b8
  * ported to v0.37b7
- * using automatic conversion tool v0.01
  */
-package gr.codebb.arcadeflex.v037b7.vidhrdw;
+package gr.codebb.arcadeflex.v037b8.vidhrdw;
 
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.common.libc.expressions.*;
