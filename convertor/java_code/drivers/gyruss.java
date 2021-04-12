@@ -109,19 +109,19 @@ public class gyruss
 	public static Memory_WriteAddress writemem[]={
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x0000, 0x7fff, MWA_ROM ),                 /* rom space+1        */
-		new Memory_WriteAddress( 0x8000, 0x83ff, colorram_w, &colorram ),
-		new Memory_WriteAddress( 0x8400, 0x87ff, videoram_w, &videoram, &videoram_size ),
+		new Memory_WriteAddress( 0x8000, 0x83ff, colorram_w, colorram ),
+		new Memory_WriteAddress( 0x8400, 0x87ff, videoram_w, videoram, videoram_size ),
 		new Memory_WriteAddress( 0x9000, 0x9fff, MWA_RAM ),
 	#ifdef EMULATE_6809
-		new Memory_WriteAddress( 0xa000, 0xa7ff, gyruss_sharedram_w, &gyruss_sharedram ),
+		new Memory_WriteAddress( 0xa000, 0xa7ff, gyruss_sharedram_w, gyruss_sharedram ),
 	#else
-		new Memory_WriteAddress( 0xa000, 0xa17f, MWA_RAM, &spriteram, &spriteram_size ),     /* odd frame spriteram */
-		new Memory_WriteAddress( 0xa200, 0xa37f, MWA_RAM, &spriteram_2 ),   /* even frame spriteram */
-		new Memory_WriteAddress( 0xa700, 0xa700, MWA_RAM, &gyruss_spritebank ),
+		new Memory_WriteAddress( 0xa000, 0xa17f, MWA_RAM, spriteram, spriteram_size ),     /* odd frame spriteram */
+		new Memory_WriteAddress( 0xa200, 0xa37f, MWA_RAM, spriteram_2 ),   /* even frame spriteram */
+		new Memory_WriteAddress( 0xa700, 0xa700, MWA_RAM, gyruss_spritebank ),
 		new Memory_WriteAddress( 0xa701, 0xa701, MWA_NOP ),        /* semaphore system   */
 		new Memory_WriteAddress( 0xa702, 0xa702, gyruss_queuereg_w ),       /* semaphore system   */
-		new Memory_WriteAddress( 0xa7fc, 0xa7fc, MWA_RAM, &gyruss_6809_drawplanet ),
-		new Memory_WriteAddress( 0xa7fd, 0xa7fd, MWA_RAM, &gyruss_6809_drawship ),
+		new Memory_WriteAddress( 0xa7fc, 0xa7fc, MWA_RAM, gyruss_6809_drawplanet ),
+		new Memory_WriteAddress( 0xa7fd, 0xa7fd, MWA_RAM, gyruss_6809_drawship ),
 	#endif
 		new Memory_WriteAddress( 0xc000, 0xc000, MWA_NOP ),	/* watchdog reset */
 		new Memory_WriteAddress( 0xc080, 0xc080, gyruss_sh_irqtrigger_w ),
@@ -190,7 +190,7 @@ public class gyruss
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x2000, 0x2000, interrupt_enable_w ),
 		new Memory_WriteAddress( 0x4000, 0x47ff, MWA_RAM ),
-		new Memory_WriteAddress( 0x4040, 0x40ff, MWA_RAM, &spriteram, &spriteram_size ),
+		new Memory_WriteAddress( 0x4040, 0x40ff, MWA_RAM, spriteram, spriteram_size ),
 		new Memory_WriteAddress( 0x6000, 0x67ff, gyruss_sharedram_w ),
 		new Memory_WriteAddress( 0xe000, 0xffff, MWA_ROM ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)

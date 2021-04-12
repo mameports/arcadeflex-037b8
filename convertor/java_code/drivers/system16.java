@@ -8598,7 +8598,7 @@ public class system16
 		new Memory_WriteAddress( 0x100000, 0x107fff, MWA_TILERAM ),
 		new Memory_WriteAddress( 0x108000, 0x108fff, MWA_TEXTRAM ),
 		new Memory_WriteAddress( 0x110000, 0x110fff, MWA_PALETTERAM ),
-		new Memory_WriteAddress( 0x124000, 0x127fff, shared_ram_w, &shared_ram ),
+		new Memory_WriteAddress( 0x124000, 0x127fff, shared_ram_w, shared_ram ),
 		new Memory_WriteAddress( 0x130000, 0x130fff, MWA_SPRITERAM ),
 		new Memory_WriteAddress( 0x140000, 0x140001, sound_command_nmi_w ),
 		new Memory_WriteAddress( 0x140002, 0x140003, sys16_3d_coinctrl_w ),
@@ -8619,7 +8619,7 @@ public class system16
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
 		new Memory_WriteAddress( 0xc68000, 0xc68fff, MWA_EXTRAM2 ),
-		new Memory_WriteAddress( 0xc7c000, 0xc7ffff, shared_ram_w, &shared_ram ),
+		new Memory_WriteAddress( 0xc7c000, 0xc7ffff, shared_ram_w, shared_ram ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
@@ -8986,8 +8986,8 @@ public class system16
 		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
 		new Memory_WriteAddress( 0x600000, 0x600fff, MWA_SPRITERAM ),
 		new Memory_WriteAddress( 0xa00000, 0xa00fff, MWA_PALETTERAM ),
-		new Memory_WriteAddress( 0xc68000, 0xc68fff, shared_ram_w, &shared_ram ),
-		new Memory_WriteAddress( 0xc7c000, 0xc7ffff, shared_ram2_w, &shared_ram2 ),
+		new Memory_WriteAddress( 0xc68000, 0xc68fff, shared_ram_w, shared_ram ),
+		new Memory_WriteAddress( 0xc7c000, 0xc7ffff, shared_ram2_w, shared_ram2 ),
 		new Memory_WriteAddress( 0xe00002, 0xe00003, sys16_3d_coinctrl_w ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
@@ -9025,7 +9025,7 @@ public class system16
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x0000, 0x7fff, MWA_ROM ),
 		new Memory_WriteAddress( 0xf000, 0xf7ff, SegaPCM_w ),
-		new Memory_WriteAddress( 0xf800, 0xf807, sound2_shared_ram_w,&sound_shared_ram ),
+		new Memory_WriteAddress( 0xf800, 0xf807, sound2_shared_ram_w,sound_shared_ram ),
 		new Memory_WriteAddress( 0xf808, 0xffff, MWA_RAM ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
@@ -9531,7 +9531,7 @@ public class system16
 		new Memory_WriteAddress( 0x140030, 0x140031, outrun_analog_select_w ),
 	
 		new Memory_WriteAddress( 0x200000, 0x23ffff, MWA_BANK8 ),
-		new Memory_WriteAddress( 0x260000, 0x267fff, shared_ram_w, &shared_ram ),
+		new Memory_WriteAddress( 0x260000, 0x267fff, shared_ram_w, shared_ram ),
 		new Memory_WriteAddress( 0xffff06, 0xffff07, outrun_sound_write_w ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
@@ -9569,7 +9569,7 @@ public class system16
 		new Memory_WriteAddress( 0x0000, 0x7fff, MWA_ROM ),
 		new Memory_WriteAddress( 0xf000, 0xf0ff, SegaPCM_w ),
 		new Memory_WriteAddress( 0xf100, 0xf7ff, MWA_NOP ),
-		new Memory_WriteAddress( 0xf800, 0xf807, sound2_shared_ram_w,&sound_shared_ram ),
+		new Memory_WriteAddress( 0xf800, 0xf807, sound2_shared_ram_w,sound_shared_ram ),
 		new Memory_WriteAddress( 0xf808, 0xffff, MWA_RAM ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
@@ -10195,7 +10195,7 @@ public class system16
 		new Memory_WriteAddress( 0x100000, 0x107fff, MWA_TILERAM ),
 		new Memory_WriteAddress( 0x108000, 0x108fff, MWA_TEXTRAM ),
 		new Memory_WriteAddress( 0x110000, 0x110fff, MWA_PALETTERAM ),
-		new Memory_WriteAddress( 0x124000, 0x127fff, shared_ram_w, &shared_ram ),
+		new Memory_WriteAddress( 0x124000, 0x127fff, shared_ram_w, shared_ram ),
 		new Memory_WriteAddress( 0x130000, 0x130fff, MWA_SPRITERAM ),
 		new Memory_WriteAddress( 0x140000, 0x140001, sound_command_nmi_w ),
 		new Memory_WriteAddress( 0x140002, 0x140003, sys16_3d_coinctrl_w ),
@@ -10215,7 +10215,7 @@ public class system16
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
 		new Memory_WriteAddress( 0xc68000, 0xc68fff, MWA_EXTRAM2 ),
-		new Memory_WriteAddress( 0xc7c000, 0xc7ffff, shared_ram_w, &shared_ram ),
+		new Memory_WriteAddress( 0xc7c000, 0xc7ffff, shared_ram_w, shared_ram ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	

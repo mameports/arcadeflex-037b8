@@ -2702,6 +2702,10 @@ public class convertMame {
                         Convertor.inpos += 1;
                         continue;
                     }
+                    if (type == MEMORY_READ8 || type == MEMORY_WRITE8 || type == PORT_READ8 || type == PORT_WRITE8) {
+                        Convertor.inpos += 1;
+                        continue;
+                    }
                 }
                 break;
                 case '0':

@@ -324,7 +324,7 @@ public class lazercmd
 	public static Memory_WriteAddress lazercmd_writemem[]={
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x0000, 0x0bff, MWA_ROM ),
-		new Memory_WriteAddress( 0x1c20, 0x1eff, videoram_w, &videoram, &videoram_size ),
+		new Memory_WriteAddress( 0x1c20, 0x1eff, videoram_w, videoram, videoram_size ),
 		new Memory_WriteAddress( 0x1f00, 0x1f03, lazercmd_hardware_w ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
@@ -341,7 +341,7 @@ public class lazercmd
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x0000, 0x0bff, MWA_ROM ),
 		new Memory_WriteAddress( 0x1000, 0x1800, MWA_ROM ),
-		new Memory_WriteAddress( 0x1c20, 0x1eff, videoram_w, &videoram, &videoram_size ),
+		new Memory_WriteAddress( 0x1c20, 0x1eff, videoram_w, videoram, videoram_size ),
 		new Memory_WriteAddress( 0x1f00, 0x1f03, medlanes_hardware_w ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};

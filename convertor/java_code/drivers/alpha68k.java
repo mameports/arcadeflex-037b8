@@ -307,9 +307,9 @@ public class alpha68k
 	public static Memory_WriteAddress kouyakyu_writemem[]={
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x000000, 0x01ffff, MWA_ROM ),
-		new Memory_WriteAddress( 0x040000, 0x040fff, MWA_BANK1, &shared_ram ),
-		new Memory_WriteAddress( 0x080000, 0x080fff, kouyakyu_video_w, &videoram ),
-		new Memory_WriteAddress( 0x0c0000, 0x0c0fff, MWA_BANK3, &spriteram ),
+		new Memory_WriteAddress( 0x040000, 0x040fff, MWA_BANK1, shared_ram ),
+		new Memory_WriteAddress( 0x080000, 0x080fff, kouyakyu_video_w, videoram ),
+		new Memory_WriteAddress( 0x0c0000, 0x0c0fff, MWA_BANK3, spriteram ),
 		new Memory_WriteAddress( 0x100000, 0x1007ff, MWA_BANK4 ),
 		new Memory_WriteAddress( 0x140000, 0x1407ff, MWA_BANK5 ),
 		new Memory_WriteAddress( 0x780000, 0x780001, MWA_NOP ), /* Watchdog? */
@@ -331,8 +331,8 @@ public class alpha68k
 	public static Memory_WriteAddress kyros_writemem[]={
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x000000, 0x01ffff, MWA_ROM ),
-		new Memory_WriteAddress( 0x020000, 0x020fff, MWA_BANK1, &shared_ram ),
-		new Memory_WriteAddress( 0x040000, 0x041fff, MWA_BANK2, &spriteram ),
+		new Memory_WriteAddress( 0x020000, 0x020fff, MWA_BANK1, shared_ram ),
+		new Memory_WriteAddress( 0x040000, 0x041fff, MWA_BANK2, spriteram ),
 		new Memory_WriteAddress( 0x060000, 0x060001, alpha68k_II_sound_w ), /* Watchdog? */
 		new Memory_WriteAddress( 0x0e0000, 0x0e0001, kyros_sound_w ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
@@ -352,8 +352,8 @@ public class alpha68k
 	public static Memory_WriteAddress alpha68k_I_writemem[]={
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_NOP ),
-		new Memory_WriteAddress( 0x080000, 0x083fff, MWA_BANK1, &shared_ram ),
-		new Memory_WriteAddress( 0x100000, 0x103fff, MWA_BANK2, &spriteram ),
+		new Memory_WriteAddress( 0x080000, 0x083fff, MWA_BANK1, shared_ram ),
+		new Memory_WriteAddress( 0x100000, 0x103fff, MWA_BANK2, spriteram ),
 		new Memory_WriteAddress( 0x180000, 0x180001, MWA_NOP ), /* Watchdog */
 		new Memory_WriteAddress( 0x380000, 0x380001, alpha68k_II_sound_w ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
@@ -364,9 +364,9 @@ public class alpha68k
 		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
 		new Memory_ReadAddress( 0x040000, 0x040fff, MRA_BANK1 ),
 		new Memory_ReadAddress( 0x080000, 0x080001, control_1_r ), /* Joysticks */
-		new Memory_ReadAddress( 0x0c0000, 0x0c0001, control_2_r ), /* CN1 & Dip 1 */
+		new Memory_ReadAddress( 0x0c0000, 0x0c0001, control_2_r ), /* CN1  Dip 1 */
 		new Memory_ReadAddress( 0x0c8000, 0x0c8001, control_3_r ), /* Bottom of CN2 */
-		new Memory_ReadAddress( 0x0d0000, 0x0d0001, control_4_r ), /* Top of CN1 & CN2 */
+		new Memory_ReadAddress( 0x0d0000, 0x0d0001, control_4_r ), /* Top of CN1  CN2 */
 		new Memory_ReadAddress( 0x0d8000, 0x0d8001, MRA_NOP ), /* IRQ ack? */
 		new Memory_ReadAddress( 0x0e0000, 0x0e0001, MRA_NOP ), /* IRQ ack? */
 		new Memory_ReadAddress( 0x0e8000, 0x0e8001, MRA_NOP ), /* watchdog? */
@@ -381,13 +381,13 @@ public class alpha68k
 	public static Memory_WriteAddress alpha68k_II_writemem[]={
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_NOP ),
-		new Memory_WriteAddress( 0x040000, 0x040fff, MWA_BANK1, &shared_ram ),
+		new Memory_WriteAddress( 0x040000, 0x040fff, MWA_BANK1, shared_ram ),
 		new Memory_WriteAddress( 0x080000, 0x080001, alpha68k_II_sound_w ),
 		new Memory_WriteAddress( 0x0c0000, 0x0c00ff, alpha68k_II_video_bank_w ),
-		new Memory_WriteAddress( 0x100000, 0x100fff, alpha68k_videoram_w, &videoram ),
-		new Memory_WriteAddress( 0x200000, 0x207fff, MWA_BANK2, &spriteram ),
+		new Memory_WriteAddress( 0x100000, 0x100fff, alpha68k_videoram_w, videoram ),
+		new Memory_WriteAddress( 0x200000, 0x207fff, MWA_BANK2, spriteram ),
 		new Memory_WriteAddress( 0x300000, 0x3001ff, alpha_microcontroller_w ),
-		new Memory_WriteAddress( 0x400000, 0x400fff, alpha68k_paletteram_w, &paletteram ),
+		new Memory_WriteAddress( 0x400000, 0x400fff, alpha68k_paletteram_w, paletteram ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
@@ -411,14 +411,14 @@ public class alpha68k
 	public static Memory_WriteAddress alpha68k_V_writemem[]={
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_NOP ),
-		new Memory_WriteAddress( 0x040000, 0x043fff, MWA_BANK1, &shared_ram ),
+		new Memory_WriteAddress( 0x040000, 0x043fff, MWA_BANK1, shared_ram ),
 		new Memory_WriteAddress( 0x080000, 0x080001, alpha68k_V_sound_w ),
 		new Memory_WriteAddress( 0x0c0000, 0x0c00ff, alpha68k_V_video_control_w ),
-		new Memory_WriteAddress( 0x100000, 0x100fff, alpha68k_videoram_w, &videoram ),
-		new Memory_WriteAddress( 0x200000, 0x207fff, MWA_BANK3, &spriteram ),
+		new Memory_WriteAddress( 0x100000, 0x100fff, alpha68k_videoram_w, videoram ),
+		new Memory_WriteAddress( 0x200000, 0x207fff, MWA_BANK3, spriteram ),
 		new Memory_WriteAddress( 0x300000, 0x3001ff, alpha_microcontroller_w ),
 		new Memory_WriteAddress( 0x303e00, 0x303fff, alpha_microcontroller_w ), /* Gang Wars mirror */
-		new Memory_WriteAddress( 0x400000, 0x401fff, alpha68k_paletteram_w, &paletteram ),
+		new Memory_WriteAddress( 0x400000, 0x401fff, alpha68k_paletteram_w, paletteram ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
@@ -481,7 +481,7 @@ public class alpha68k
 	public static Memory_WriteAddress sstingry_sound_writemem[]={
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x0000, 0x7fff, MWA_ROM ),
-		new Memory_WriteAddress( 0x8000, 0x83ff, MWA_RAM, &sound_ram ),
+		new Memory_WriteAddress( 0x8000, 0x83ff, MWA_RAM, sound_ram ),
 	//	new Memory_WriteAddress( 0xc000, 0xc3ff, soundram_mirror_w ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};

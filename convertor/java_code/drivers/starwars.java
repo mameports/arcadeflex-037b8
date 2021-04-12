@@ -229,10 +229,10 @@ public class starwars
 	/* Star Wars WRITE memory map */
 	public static Memory_WriteAddress writemem[]={
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
-		new Memory_WriteAddress( 0x0000, 0x2fff, MWA_RAM, &vectorram, &vectorram_size ), /* vector_ram */
+		new Memory_WriteAddress( 0x0000, 0x2fff, MWA_RAM, vectorram, vectorram_size ), /* vector_ram */
 		new Memory_WriteAddress( 0x3000, 0x3fff, MWA_ROM ),		/* vector_rom */
 		new Memory_WriteAddress( 0x4400, 0x4400, starwars_main_wr_w ),
-		new Memory_WriteAddress( 0x4500, 0x45ff, MWA_RAM, &nvram, &nvram_size ),		/* nov_ram */
+		new Memory_WriteAddress( 0x4500, 0x45ff, MWA_RAM, nvram, nvram_size ),		/* nov_ram */
 		new Memory_WriteAddress( 0x4600, 0x461f, avgdvg_go_w ),
 		new Memory_WriteAddress( 0x4620, 0x463f, avgdvg_reset_w ),
 		new Memory_WriteAddress( 0x4640, 0x465f, MWA_NOP ),		/* (wdclr) Watchdog clear */
@@ -288,7 +288,7 @@ public class starwars
 	
 	public static Memory_WriteAddress esb_writemem[]={
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
-		new Memory_WriteAddress( 0x0000, 0x2fff, MWA_RAM, &vectorram, &vectorram_size ), /* vector_ram */
+		new Memory_WriteAddress( 0x0000, 0x2fff, MWA_RAM, vectorram, vectorram_size ), /* vector_ram */
 		new Memory_WriteAddress( 0x3000, 0x3fff, MWA_ROM ),		/* vector_rom */
 		new Memory_WriteAddress( 0x4400, 0x4400, starwars_main_wr_w ),
 		new Memory_WriteAddress( 0x4500, 0x45ff, MWA_RAM ),		/* nov_ram */
@@ -304,11 +304,11 @@ public class starwars
 	/*	new Memory_WriteAddress( 0x4800, 0x4fff, MWA_RAM ), */		/* cpu_ram */
 	/*	new Memory_WriteAddress( 0x5000, 0x5fff, MWA_RAM ), */		/* (math_ram_w) math_ram */
 		new Memory_WriteAddress( 0x4800, 0x5fff, MWA_RAM ),		/* CPU and Math RAM */
-		new Memory_WriteAddress( 0x8000, 0x9fff, esb_slapstic_w, &slapstic_area ),		/* slapstic write */
+		new Memory_WriteAddress( 0x8000, 0x9fff, esb_slapstic_w, slapstic_area ),		/* slapstic write */
 		new Memory_WriteAddress( 0x6000, 0xffff, MWA_ROM ),		/* main_rom */
 	
 		/* Dummy entry to set up the slapstic */
-		new Memory_WriteAddress( 0x14000, 0x1bfff, MWA_NOP, &slapstic_base ),
+		new Memory_WriteAddress( 0x14000, 0x1bfff, MWA_NOP, slapstic_base ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	

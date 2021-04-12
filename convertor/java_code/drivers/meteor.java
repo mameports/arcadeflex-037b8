@@ -107,9 +107,9 @@ public class meteor
 		new Memory_WriteAddress( 0x7001, 0x7001, meteor_soundtrigger_w ),
 		new Memory_WriteAddress( 0x700e, 0x700e, interrupt_enable_w ),
 		new Memory_WriteAddress( 0x700f, 0x700f, MWA_NOP ),
-		new Memory_WriteAddress( 0x8000, 0x83ff, MWA_RAM, &videoram, &videoram_size ),
-		new Memory_WriteAddress( 0x9000, 0x93ff, MWA_RAM, &colorram ),
-		new Memory_WriteAddress( 0xa000, 0xa3ff, MWA_RAM, &meteor_scrollram ),
+		new Memory_WriteAddress( 0x8000, 0x83ff, MWA_RAM, videoram, videoram_size ),
+		new Memory_WriteAddress( 0x9000, 0x93ff, MWA_RAM, colorram ),
+		new Memory_WriteAddress( 0xa000, 0xa3ff, MWA_RAM, meteor_scrollram ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	

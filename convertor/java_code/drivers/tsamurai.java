@@ -125,11 +125,11 @@ public class tsamurai
 		new Memory_WriteAddress( 0x0000, 0xbfff, MWA_ROM ),
 		new Memory_WriteAddress( 0xc000, 0xcfff, MWA_RAM ),
 	
-		new Memory_WriteAddress( 0xe000, 0xe3ff, tsamurai_fg_videoram_w, &videoram ),
-		new Memory_WriteAddress( 0xe400, 0xe43f, tsamurai_fg_colorram_w, &colorram ),    // nogi
+		new Memory_WriteAddress( 0xe000, 0xe3ff, tsamurai_fg_videoram_w, videoram ),
+		new Memory_WriteAddress( 0xe400, 0xe43f, tsamurai_fg_colorram_w, colorram ),    // nogi
 		new Memory_WriteAddress( 0xe440, 0xe7ff, MWA_RAM ),
-		new Memory_WriteAddress( 0xe800, 0xefff, tsamurai_bg_videoram_w, &tsamurai_videoram ),
-		new Memory_WriteAddress( 0xf000, 0xf3ff, MWA_RAM, &spriteram ),
+		new Memory_WriteAddress( 0xe800, 0xefff, tsamurai_bg_videoram_w, tsamurai_videoram ),
+		new Memory_WriteAddress( 0xf000, 0xf3ff, MWA_RAM, spriteram ),
 	
 		new Memory_WriteAddress( 0xf400, 0xf400, MWA_NOP ),
 		new Memory_WriteAddress( 0xf401, 0xf401, sound_command1_w ),

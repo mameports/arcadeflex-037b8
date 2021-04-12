@@ -50,9 +50,9 @@ public class m97
 	public static Memory_WriteAddress writemem[]={
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x00000, 0x7ffff, MWA_ROM ),
-		new Memory_WriteAddress( 0xd0000, 0xdffff, m90_video_w, &m90_video_data ),
+		new Memory_WriteAddress( 0xd0000, 0xdffff, m90_video_w, m90_video_data ),
 		new Memory_WriteAddress( 0xa0000, 0xa3fff, MWA_RAM ),
-		new Memory_WriteAddress( 0xe0000, 0xe03ff, paletteram_xBBBBBGGGGGRRRRR_w, &paletteram ),
+		new Memory_WriteAddress( 0xe0000, 0xe03ff, paletteram_xBBBBBGGGGGRRRRR_w, paletteram ),
 		new Memory_WriteAddress( 0xffff0, 0xfffff, MWA_ROM ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};

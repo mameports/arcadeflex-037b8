@@ -298,7 +298,7 @@ public class pstadium
 		new Memory_WriteAddress( 0x0000, 0xefff, MWA_ROM ),
 		new Memory_WriteAddress( 0xf000, 0xf00f, pstadium_paltbl_w ),
 		new Memory_WriteAddress( 0xf400, 0xf5ff, galkaika_palette_w ),
-		new Memory_WriteAddress( 0xf800, 0xffff, MWA_RAM, &nb1413m3_nvram, &nb1413m3_nvram_size ),	// tokimbsj
+		new Memory_WriteAddress( 0xf800, 0xffff, MWA_RAM, nb1413m3_nvram, nb1413m3_nvram_size ),	// tokimbsj
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	

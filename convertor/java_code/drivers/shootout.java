@@ -92,10 +92,10 @@ public class shootout
 		new Memory_WriteAddress( 0x1002, 0x1002, shootout_coin_counter_w ),
 		new Memory_WriteAddress( 0x1003, 0x1003, sound_cpu_command_w ),
 		new Memory_WriteAddress( 0x1004, 0x17ff, MWA_RAM ),
-		new Memory_WriteAddress( 0x1800, 0x19ff, MWA_RAM, &spriteram, &spriteram_size ),
-		new Memory_WriteAddress( 0x2000, 0x27ff, MWA_RAM, &shootout_textram ),
-		new Memory_WriteAddress( 0x2800, 0x2bff, videoram_w, &videoram, &videoram_size ),
-		new Memory_WriteAddress( 0x2c00, 0x2fff, colorram_w, &colorram ),
+		new Memory_WriteAddress( 0x1800, 0x19ff, MWA_RAM, spriteram, spriteram_size ),
+		new Memory_WriteAddress( 0x2000, 0x27ff, MWA_RAM, shootout_textram ),
+		new Memory_WriteAddress( 0x2800, 0x2bff, videoram_w, videoram, videoram_size ),
+		new Memory_WriteAddress( 0x2c00, 0x2fff, colorram_w, colorram ),
 		new Memory_WriteAddress( 0x4000, 0xffff, MWA_ROM ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
@@ -118,12 +118,12 @@ public class shootout
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x0000, 0x0fff, MWA_RAM ),
 		new Memory_WriteAddress( 0x1800, 0x1800, shootout_coin_counter_w ),
-		new Memory_WriteAddress( 0x2000, 0x21ff, MWA_RAM, &spriteram, &spriteram_size ),
+		new Memory_WriteAddress( 0x2000, 0x21ff, MWA_RAM, spriteram, spriteram_size ),
 		new Memory_WriteAddress( 0x2800, 0x2800, YM2203_control_port_0_w ),
 		new Memory_WriteAddress( 0x2801, 0x2801, YM2203_write_port_0_w ),
-		new Memory_WriteAddress( 0x3000, 0x37ff, MWA_RAM, &shootout_textram ),
-		new Memory_WriteAddress( 0x3800, 0x3bff, videoram_w, &videoram, &videoram_size ),
-		new Memory_WriteAddress( 0x3c00, 0x3fff, colorram_w, &colorram ),
+		new Memory_WriteAddress( 0x3000, 0x37ff, MWA_RAM, shootout_textram ),
+		new Memory_WriteAddress( 0x3800, 0x3bff, videoram_w, videoram, videoram_size ),
+		new Memory_WriteAddress( 0x3c00, 0x3fff, colorram_w, colorram ),
 		new Memory_WriteAddress( 0x4000, 0xffff, MWA_ROM ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};

@@ -360,16 +360,16 @@ public class twin16
 		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
 		new Memory_WriteAddress( 0x040000, 0x043fff, COMRAM_w ),
 		new Memory_WriteAddress( 0x060000, 0x063fff, WORKRAM_CPUA_w ),
-		new Memory_WriteAddress( 0x080000, 0x080fff, twin16_paletteram_w, &paletteram ),
+		new Memory_WriteAddress( 0x080000, 0x080fff, twin16_paletteram_w, paletteram ),
 		new Memory_WriteAddress( 0x081000, 0x081fff, MWA_NOP ),
 		new Memory_WriteAddress( 0x0a0000, 0x0a0001, twin16_CPUA_register_w ),
 		new Memory_WriteAddress( 0x0a0008, 0x0a0009, sound_command_w ),
 		new Memory_WriteAddress( 0x0a0010, 0x0a0011, MWA_NOP ), /* watchdog */
-		new Memory_WriteAddress( 0x0b0000, 0x0b3fff, battery_backed_ram_w, &battery_backed_ram ), /* cuebrick only */
+		new Memory_WriteAddress( 0x0b0000, 0x0b3fff, battery_backed_ram_w, battery_backed_ram ), /* cuebrick only */
 		new Memory_WriteAddress( 0x0c0000, 0x0c000f, twin16_video_register_w ),
 		new Memory_WriteAddress( 0x100000, 0x103fff, FIXRAM_w ),
-		new Memory_WriteAddress( 0x120000, 0x123fff, VIDRAM_w, &videoram ),
-		new Memory_WriteAddress( 0x140000, 0x143fff, OBJRAM_w, &spriteram ),
+		new Memory_WriteAddress( 0x120000, 0x123fff, VIDRAM_w, videoram ),
+		new Memory_WriteAddress( 0x140000, 0x143fff, OBJRAM_w, spriteram ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
@@ -423,15 +423,15 @@ public class twin16
 		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
 		new Memory_WriteAddress( 0x040000, 0x043fff, COMRAM_w ),
 		new Memory_WriteAddress( 0x060000, 0x063fff, WORKRAM_CPUA_w ),
-		new Memory_WriteAddress( 0x080000, 0x080fff, twin16_paletteram_w, &paletteram ),
+		new Memory_WriteAddress( 0x080000, 0x080fff, twin16_paletteram_w, paletteram ),
 		new Memory_WriteAddress( 0x0a0000, 0x0a0001, fround_CPU_register_w ),
 		new Memory_WriteAddress( 0x0a0008, 0x0a0009, sound_command_w ),
 		new Memory_WriteAddress( 0x0a0010, 0x0a0011, MWA_NOP ), /* watchdog */
 		new Memory_WriteAddress( 0x0c0000, 0x0c000f, twin16_video_register_w ),
 		new Memory_WriteAddress( 0x0e0000, 0x0e0001, fround_gfx_bank_w ),
 		new Memory_WriteAddress( 0x100000, 0x103fff, FIXRAM_w ),
-		new Memory_WriteAddress( 0x120000, 0x123fff, VIDRAM_w, &videoram ),
-		new Memory_WriteAddress( 0x140000, 0x143fff, OBJRAM_w, &spriteram ),
+		new Memory_WriteAddress( 0x120000, 0x123fff, VIDRAM_w, videoram ),
+		new Memory_WriteAddress( 0x140000, 0x143fff, OBJRAM_w, spriteram ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	

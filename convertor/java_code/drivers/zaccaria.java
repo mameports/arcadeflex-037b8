@@ -166,11 +166,11 @@ public class zaccaria
 	public static Memory_WriteAddress writemem[]={
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x0000, 0x5fff, MWA_ROM ),
-		new Memory_WriteAddress( 0x6000, 0x63ff, videoram_w, &videoram, &videoram_size ),
-		new Memory_WriteAddress( 0x6400, 0x67ff, colorram_w, &colorram ),
-		new Memory_WriteAddress( 0x6800, 0x683f, zaccaria_attributes_w, &zaccaria_attributesram ),
-		new Memory_WriteAddress( 0x6840, 0x685f, MWA_RAM, &spriteram, &spriteram_size ),
-		new Memory_WriteAddress( 0x6881, 0x68bc, MWA_RAM, &spriteram_2, &spriteram_2_size ),
+		new Memory_WriteAddress( 0x6000, 0x63ff, videoram_w, videoram, videoram_size ),
+		new Memory_WriteAddress( 0x6400, 0x67ff, colorram_w, colorram ),
+		new Memory_WriteAddress( 0x6800, 0x683f, zaccaria_attributes_w, zaccaria_attributesram ),
+		new Memory_WriteAddress( 0x6840, 0x685f, MWA_RAM, spriteram, spriteram_size ),
+		new Memory_WriteAddress( 0x6881, 0x68bc, MWA_RAM, spriteram_2, spriteram_2_size ),
 	new Memory_WriteAddress( 0x6c02, 0x6c02, MWA_NOP ),    /* ??? */
 		new Memory_WriteAddress( 0x6c07, 0x6c07, interrupt_enable_w ),
 		new Memory_WriteAddress( 0x7000, 0x77ff, MWA_RAM ),

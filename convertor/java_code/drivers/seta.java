@@ -220,13 +220,13 @@ public class seta
 		new Memory_WriteAddress( 0x200000, 0x200fff, MWA_BANK2								),	// NVRAM
 		new Memory_WriteAddress( 0x300000, 0x300001, MWA_NOP								),	// ? (random value)
 		new Memory_WriteAddress( 0x500000, 0x500001, MWA_NOP								),	// ?
-		new Memory_WriteAddress( 0x700000, 0x7003ff, paletteram_xRRRRRGGGGGBBBBB_word_w, &paletteram	),	// Palette
-		new Memory_WriteAddress( 0x800000, 0x800005, MWA_BANK4, &seta_vctrl_0				),	// VRAM Ctrl
-		new Memory_WriteAddress( 0x900000, 0x901fff, seta_vram_0_w, &seta_vram_0			),	// VRAM
-		new Memory_WriteAddress( 0x902000, 0x903fff, seta_vram_1_w, &seta_vram_1			),	// VRAM
+		new Memory_WriteAddress( 0x700000, 0x7003ff, paletteram_xRRRRRGGGGGBBBBB_word_w, paletteram	),	// Palette
+		new Memory_WriteAddress( 0x800000, 0x800005, MWA_BANK4, seta_vctrl_0				),	// VRAM Ctrl
+		new Memory_WriteAddress( 0x900000, 0x901fff, seta_vram_0_w, seta_vram_0			),	// VRAM
+		new Memory_WriteAddress( 0x902000, 0x903fff, seta_vram_1_w, seta_vram_1			),	// VRAM
 		new Memory_WriteAddress( 0x904000, 0x904fff, MWA_BANK7								),	//
-		new Memory_WriteAddress( 0xd00000, 0xd00607, MWA_BANK8, &spriteram					),	// Sprites Y
-		new Memory_WriteAddress( 0xe00000, 0xe03fff, MWA_BANK9, &spriteram_2				),	// Sprites Code + X + Attr
+		new Memory_WriteAddress( 0xd00000, 0xd00607, MWA_BANK8, spriteram					),	// Sprites Y
+		new Memory_WriteAddress( 0xe00000, 0xe03fff, MWA_BANK9, spriteram_2				),	// Sprites Code + X + Attr
 		new Memory_WriteAddress( 0xb00000, 0xb00001, calibr50_soundlatch_w					),	// To Sub CPU
 		new Memory_WriteAddress( 0xc00000, 0xc00001, MWA_BANK10							),	// ? $4000
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
@@ -259,17 +259,17 @@ public class seta
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x000000, 0x09ffff, MWA_ROM								),	// ROM
 		new Memory_WriteAddress( 0xf00000, 0xffffff, MWA_BANK1								),	// RAM
-		new Memory_WriteAddress( 0x100000, 0x103fff, seta_sound_word_w, &seta_sound_ram	),	// Sound
+		new Memory_WriteAddress( 0x100000, 0x103fff, seta_sound_word_w, seta_sound_ram	),	// Sound
 		new Memory_WriteAddress( 0x500000, 0x500001, MWA_NOP								),	// ?
-		new Memory_WriteAddress( 0x700000, 0x7003ff, paletteram_xRRRRRGGGGGBBBBB_word_w, &paletteram	),	// Palette
-		new Memory_WriteAddress( 0x800000, 0x800005, MWA_BANK4, &seta_vctrl_0				),	// VRAM Ctrl
-		new Memory_WriteAddress( 0x900000, 0x901fff, seta_vram_0_w, &seta_vram_0			),	// VRAM
-		new Memory_WriteAddress( 0x902000, 0x903fff, seta_vram_1_w, &seta_vram_1			),	// VRAM
+		new Memory_WriteAddress( 0x700000, 0x7003ff, paletteram_xRRRRRGGGGGBBBBB_word_w, paletteram	),	// Palette
+		new Memory_WriteAddress( 0x800000, 0x800005, MWA_BANK4, seta_vctrl_0				),	// VRAM Ctrl
+		new Memory_WriteAddress( 0x900000, 0x901fff, seta_vram_0_w, seta_vram_0			),	// VRAM
+		new Memory_WriteAddress( 0x902000, 0x903fff, seta_vram_1_w, seta_vram_1			),	// VRAM
 		new Memory_WriteAddress( 0xa00000, 0xa00007, sub_ctrl_w							),	// Sub CPU Control?
 		new Memory_WriteAddress( 0xb00000, 0xb00fff, sharedram_68000_w						),	// Shared RAM
 		new Memory_WriteAddress( 0xc00000, 0xc00001, MWA_BANK7								),	// ? $4000
-		new Memory_WriteAddress( 0xd00000, 0xd00607, MWA_BANK8, &spriteram					),	// Sprites Y
-		new Memory_WriteAddress( 0xe00000, 0xe03fff, MWA_BANK9, &spriteram_2				),	// Sprites Code + X + Attr
+		new Memory_WriteAddress( 0xd00000, 0xd00607, MWA_BANK8, spriteram					),	// Sprites Y
+		new Memory_WriteAddress( 0xe00000, 0xe03fff, MWA_BANK9, spriteram_2				),	// Sprites Code + X + Attr
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
@@ -295,10 +295,10 @@ public class seta
 		new Memory_ReadAddress( 0x800000, 0x800607, MRA_BANK6				),	// Sprites Y
 	/**/new Memory_ReadAddress( 0x880000, 0x880001, MRA_BANK7				),	// ? 0x4000
 		new Memory_ReadAddress( 0x900000, 0x903fff, MRA_BANK8				),	// Sprites Code + X + Attr
-		new Memory_ReadAddress( 0xa00000, 0xa03fff, MRA_BANK9				),	// VRAM 0&1
-		new Memory_ReadAddress( 0xa80000, 0xa83fff, MRA_BANK10			),	// VRAM 2&3
-		new Memory_ReadAddress( 0xb00000, 0xb00005, MRA_BANK11			),	// VRAM 0&1 Ctrl
-		new Memory_ReadAddress( 0xb80000, 0xb80005, MRA_BANK12			),	// VRAM 1&2 Ctrl
+		new Memory_ReadAddress( 0xa00000, 0xa03fff, MRA_BANK9				),	// VRAM 01
+		new Memory_ReadAddress( 0xa80000, 0xa83fff, MRA_BANK10			),	// VRAM 23
+		new Memory_ReadAddress( 0xb00000, 0xb00005, MRA_BANK11			),	// VRAM 01 Ctrl
+		new Memory_ReadAddress( 0xb80000, 0xb80005, MRA_BANK12			),	// VRAM 12 Ctrl
 		new Memory_ReadAddress( 0xc00000, 0xc03fff, seta_sound_word_r		),	// Sound
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
@@ -309,18 +309,18 @@ public class seta
 		new Memory_WriteAddress( 0x200000, 0x24ffff, MWA_BANK1								),	// RAM
 		new Memory_WriteAddress( 0x400000, 0x400001, MWA_NOP								),	// ? 0
 		new Memory_WriteAddress( 0x400004, 0x400005, MWA_NOP								),	// ? 0
-		new Memory_WriteAddress( 0x500000, 0x500005, seta_vregs_w, &seta_vregs				),	// Coin Lockout + Video Registers
-		new Memory_WriteAddress( 0x700400, 0x700fff, paletteram_xRRRRRGGGGGBBBBB_word_w, &paletteram	),	// Palette
-		new Memory_WriteAddress( 0x800000, 0x800607, MWA_BANK6 , &spriteram				),	// Sprites Y
+		new Memory_WriteAddress( 0x500000, 0x500005, seta_vregs_w, seta_vregs				),	// Coin Lockout + Video Registers
+		new Memory_WriteAddress( 0x700400, 0x700fff, paletteram_xRRRRRGGGGGBBBBB_word_w, paletteram	),	// Palette
+		new Memory_WriteAddress( 0x800000, 0x800607, MWA_BANK6 , spriteram				),	// Sprites Y
 		new Memory_WriteAddress( 0x880000, 0x880001, MWA_BANK7								),	// ? 0x4000
-		new Memory_WriteAddress( 0x900000, 0x903fff, MWA_BANK8 , &spriteram_2				),	// Sprites Code + X + Attr
-		new Memory_WriteAddress( 0xa00000, 0xa01fff, seta_vram_0_w, &seta_vram_0			),	// VRAM 0
-		new Memory_WriteAddress( 0xa02000, 0xa03fff, seta_vram_1_w, &seta_vram_1			),	// VRAM 1
-		new Memory_WriteAddress( 0xa80000, 0xa81fff, seta_vram_2_w, &seta_vram_2			),	// VRAM 2
-		new Memory_WriteAddress( 0xa82000, 0xa83fff, seta_vram_3_w, &seta_vram_3			),	// VRAM 3
-		new Memory_WriteAddress( 0xb00000, 0xb00005, MWA_BANK11, &seta_vctrl_0				),	// VRAM 0&1 Ctrl
-		new Memory_WriteAddress( 0xb80000, 0xb80005, MWA_BANK12, &seta_vctrl_2				),	// VRAM 2&3 Ctrl
-		new Memory_WriteAddress( 0xc00000, 0xc03fff, seta_sound_word_w, &seta_sound_ram	),	// Sound
+		new Memory_WriteAddress( 0x900000, 0x903fff, MWA_BANK8 , spriteram_2				),	// Sprites Code + X + Attr
+		new Memory_WriteAddress( 0xa00000, 0xa01fff, seta_vram_0_w, seta_vram_0			),	// VRAM 0
+		new Memory_WriteAddress( 0xa02000, 0xa03fff, seta_vram_1_w, seta_vram_1			),	// VRAM 1
+		new Memory_WriteAddress( 0xa80000, 0xa81fff, seta_vram_2_w, seta_vram_2			),	// VRAM 2
+		new Memory_WriteAddress( 0xa82000, 0xa83fff, seta_vram_3_w, seta_vram_3			),	// VRAM 3
+		new Memory_WriteAddress( 0xb00000, 0xb00005, MWA_BANK11, seta_vctrl_0				),	// VRAM 01 Ctrl
+		new Memory_WriteAddress( 0xb80000, 0xb80005, MWA_BANK12, seta_vctrl_2				),	// VRAM 23 Ctrl
+		new Memory_WriteAddress( 0xc00000, 0xc03fff, seta_sound_word_w, seta_sound_ram	),	// Sound
 	//	new Memory_WriteAddress( 0xd00000, 0xd00007, MWA_NOP								),	// ?
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
@@ -373,13 +373,13 @@ public class seta
 		new Memory_WriteAddress( 0x200000, 0x200001, MWA_NOP							),	// ? 0
 		new Memory_WriteAddress( 0x280000, 0x280001, MWA_NOP							),	// ? 0 / 1 (sub cpu related?)
 		new Memory_WriteAddress( 0x300000, 0x300001, MWA_NOP							),	// ? 0 / 1
-		new Memory_WriteAddress( 0x380000, 0x3803ff, paletteram_xRRRRRGGGGGBBBBB_word_w, &paletteram	),	// Palette
+		new Memory_WriteAddress( 0x380000, 0x3803ff, paletteram_xRRRRRGGGGGBBBBB_word_w, paletteram	),	// Palette
 		new Memory_WriteAddress( 0x400000, 0x400001, MWA_BANK2							),	// ? $4000
-		new Memory_WriteAddress( 0x600000, 0x600607, MWA_BANK3, &spriteram				),	// Sprites Y
+		new Memory_WriteAddress( 0x600000, 0x600607, MWA_BANK3, spriteram				),	// Sprites Y
 		new Memory_WriteAddress( 0x800000, 0x800007, sub_ctrl_w						),	// Sub CPU Control?
 		new Memory_WriteAddress( 0xa00000, 0xa00fff, sharedram_68000_w					),	// Shared RAM
-		new Memory_WriteAddress( 0xc00000, 0xc03fff, MWA_BANK4, &spriteram_2			),	// Sprites Code + X + Attr
-		new Memory_WriteAddress( 0xe00000, 0xe03fff, MWA_BANK5, &mirror_ram			),	// RAM (Mirrored?)
+		new Memory_WriteAddress( 0xc00000, 0xc03fff, MWA_BANK4, spriteram_2			),	// Sprites Code + X + Attr
+		new Memory_WriteAddress( 0xe00000, 0xe03fff, MWA_BANK5, mirror_ram			),	// RAM (Mirrored?)
 		new Memory_WriteAddress( 0xffc000, 0xffffff, mirror_ram_w						),	// RAM (Mirrored?)
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
@@ -462,17 +462,17 @@ public class seta
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x000000, 0x07ffff, MWA_ROM							),	// ROM
 		new Memory_WriteAddress( 0xff0000, 0xffffff, MWA_BANK1							),	// RAM
-		new Memory_WriteAddress( 0x800000, 0x800607, MWA_BANK2 , &spriteram			),	// Sprites Y
+		new Memory_WriteAddress( 0x800000, 0x800607, MWA_BANK2 , spriteram			),	// Sprites Y
 		new Memory_WriteAddress( 0x900000, 0x900001, MWA_BANK3							),	// ? $4000
-		new Memory_WriteAddress( 0xa00000, 0xa00005, MWA_BANK4, &seta_vctrl_0			),	// VRAM Ctrl
-		new Memory_WriteAddress( 0xb00000, 0xb003ff, paletteram_xRRRRRGGGGGBBBBB_word_w, &paletteram	),	// Palette
+		new Memory_WriteAddress( 0xa00000, 0xa00005, MWA_BANK4, seta_vctrl_0			),	// VRAM Ctrl
+		new Memory_WriteAddress( 0xb00000, 0xb003ff, paletteram_xRRRRRGGGGGBBBBB_word_w, paletteram	),	// Palette
 		new Memory_WriteAddress( 0xb40000, 0xb40001, usclssic_lockout_w				),	// Coin Lockout + Tiles Banking
 		new Memory_WriteAddress( 0xb40010, 0xb40011, calibr50_soundlatch_w				),	// To Sub CPU
 		new Memory_WriteAddress( 0xb40018, 0xb40019, watchdog_reset_w					),	// Watchdog
-		new Memory_WriteAddress( 0xb4000a, 0xb4000b, MWA_NOP							),	// ? (value's not important. In lev2&6)
-		new Memory_WriteAddress( 0xc00000, 0xc03fff, MWA_BANK6 , &spriteram_2			),	// Sprites Code + X + Attr
-		new Memory_WriteAddress( 0xd00000, 0xd01fff, seta_vram_0_w, &seta_vram_0		),	// VRAM
-		new Memory_WriteAddress( 0xd02000, 0xd03fff, seta_vram_1_w, &seta_vram_1		),	// VRAM
+		new Memory_WriteAddress( 0xb4000a, 0xb4000b, MWA_NOP							),	// ? (value's not important. In lev26)
+		new Memory_WriteAddress( 0xc00000, 0xc03fff, MWA_BANK6 , spriteram_2			),	// Sprites Code + X + Attr
+		new Memory_WriteAddress( 0xd00000, 0xd01fff, seta_vram_0_w, seta_vram_0		),	// VRAM
+		new Memory_WriteAddress( 0xd02000, 0xd03fff, seta_vram_1_w, seta_vram_1		),	// VRAM
 		new Memory_WriteAddress( 0xd04000, 0xd04fff, MWA_BANK9							),	//
 		new Memory_WriteAddress( 0xe00000, 0xe00fff, MWA_BANK10						),	// NVRAM? (odd bytes)
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
@@ -496,10 +496,10 @@ public class seta
 		new Memory_ReadAddress( 0x600000, 0x600003, seta_dsw_r			),	// DSW
 		new Memory_ReadAddress( 0x700400, 0x700fff, MRA_BANK3				),	// Palette
 		new Memory_ReadAddress( 0x701000, 0x7013ff, MRA_BANK13			),	// ? Palette ?
-		new Memory_ReadAddress( 0x800000, 0x803fff, MRA_BANK4				),	// VRAM 0&1
-		new Memory_ReadAddress( 0x880000, 0x883fff, MRA_BANK5				),	// VRAM 2&3
-	/**/new Memory_ReadAddress( 0x900000, 0x900005, MRA_BANK6				),	// VRAM 0&1 Ctrl
-	/**/new Memory_ReadAddress( 0x980000, 0x980005, MRA_BANK7				),	// VRAM 2&3 Ctrl
+		new Memory_ReadAddress( 0x800000, 0x803fff, MRA_BANK4				),	// VRAM 01
+		new Memory_ReadAddress( 0x880000, 0x883fff, MRA_BANK5				),	// VRAM 23
+	/**/new Memory_ReadAddress( 0x900000, 0x900005, MRA_BANK6				),	// VRAM 01 Ctrl
+	/**/new Memory_ReadAddress( 0x980000, 0x980005, MRA_BANK7				),	// VRAM 23 Ctrl
 	/**/new Memory_ReadAddress( 0xa00000, 0xa00607, MRA_BANK8				),	// Sprites Y
 	/**/new Memory_ReadAddress( 0xa80000, 0xa80001, MRA_BANK9				),	// ? 0x4000
 		new Memory_ReadAddress( 0xb00000, 0xb03fff, MRA_BANK10			),	// Sprites Code + X + Attr
@@ -512,19 +512,19 @@ public class seta
 		new Memory_WriteAddress( 0x100000, 0x1fffff, MWA_ROM								),	// ROM (for blandia)
 		new Memory_WriteAddress( 0x200000, 0x20ffff, MWA_BANK1								),	// RAM
 		new Memory_WriteAddress( 0x300000, 0x30ffff, MWA_BANK2								),	// RAM (wrofaero only?)
-		new Memory_WriteAddress( 0x500000, 0x500005, seta_vregs_w, &seta_vregs				),	// Coin Lockout + Video Registers
-		new Memory_WriteAddress( 0x700400, 0x700fff, paletteram_xRRRRRGGGGGBBBBB_word_w, &paletteram	),	// Palette
+		new Memory_WriteAddress( 0x500000, 0x500005, seta_vregs_w, seta_vregs				),	// Coin Lockout + Video Registers
+		new Memory_WriteAddress( 0x700400, 0x700fff, paletteram_xRRRRRGGGGGBBBBB_word_w, paletteram	),	// Palette
 		new Memory_WriteAddress( 0x701000, 0x7013ff, MWA_BANK13							),	// ? Palette ?
-		new Memory_WriteAddress( 0x800000, 0x801fff, seta_vram_0_w, &seta_vram_0			),	// VRAM 0
-		new Memory_WriteAddress( 0x802000, 0x803fff, seta_vram_1_w, &seta_vram_1			),	// VRAM 1
-		new Memory_WriteAddress( 0x880000, 0x881fff, seta_vram_2_w, &seta_vram_2			),	// VRAM 2
-		new Memory_WriteAddress( 0x882000, 0x883fff, seta_vram_3_w, &seta_vram_3			),	// VRAM 3
-		new Memory_WriteAddress( 0x900000, 0x900005, MWA_BANK6, &seta_vctrl_0				),	// VRAM 0&1 Ctrl
-		new Memory_WriteAddress( 0x980000, 0x980005, MWA_BANK7, &seta_vctrl_2				),	// VRAM 2&3 Ctrl
-		new Memory_WriteAddress( 0xa00000, 0xa00607, MWA_BANK8, &spriteram					),	// Sprites Y
+		new Memory_WriteAddress( 0x800000, 0x801fff, seta_vram_0_w, seta_vram_0			),	// VRAM 0
+		new Memory_WriteAddress( 0x802000, 0x803fff, seta_vram_1_w, seta_vram_1			),	// VRAM 1
+		new Memory_WriteAddress( 0x880000, 0x881fff, seta_vram_2_w, seta_vram_2			),	// VRAM 2
+		new Memory_WriteAddress( 0x882000, 0x883fff, seta_vram_3_w, seta_vram_3			),	// VRAM 3
+		new Memory_WriteAddress( 0x900000, 0x900005, MWA_BANK6, seta_vctrl_0				),	// VRAM 01 Ctrl
+		new Memory_WriteAddress( 0x980000, 0x980005, MWA_BANK7, seta_vctrl_2				),	// VRAM 23 Ctrl
+		new Memory_WriteAddress( 0xa00000, 0xa00607, MWA_BANK8, spriteram					),	// Sprites Y
 		new Memory_WriteAddress( 0xa80000, 0xa80001, MWA_BANK9								),	// ? 0x4000
-		new Memory_WriteAddress( 0xb00000, 0xb03fff, MWA_BANK10, &spriteram_2				),	// Sprites Code + X + Attr
-		new Memory_WriteAddress( 0xc00000, 0xc03fff, seta_sound_word_w, &seta_sound_ram	),	// Sound
+		new Memory_WriteAddress( 0xb00000, 0xb03fff, MWA_BANK10, spriteram_2				),	// Sprites Code + X + Attr
+		new Memory_WriteAddress( 0xc00000, 0xc03fff, seta_sound_word_w, seta_sound_ram	),	// Sound
 	//	new Memory_WriteAddress( 0xd00000, 0xd00007, MWA_NOP								),	// ?
 		new Memory_WriteAddress( 0xe00000, 0xe00001, MWA_NOP								),	// ?
 		new Memory_WriteAddress( 0xf00000, 0xf00001, MWA_NOP								),	// ?
@@ -583,7 +583,7 @@ public class seta
 	public static Memory_WriteAddress calibr50_sub_writemem[]={
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x0000, 0x0fff, MWA_RAM							),	// RAM
-		new Memory_WriteAddress( 0x1000, 0x107f, seta_sound_w, &seta_sound_ram		),	// Sound
+		new Memory_WriteAddress( 0x1000, 0x107f, seta_sound_w, seta_sound_ram		),	// Sound
 		new Memory_WriteAddress( 0x1080, 0x1fff, MWA_RAM							),	// RAM
 		new Memory_WriteAddress( 0x4000, 0x4000, sub_bankswitch_w					),	// Bankswitching
 		new Memory_WriteAddress( 0x8000, 0xbfff, MWA_ROM							),	// Banked ROM
@@ -638,7 +638,7 @@ public class seta
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x0000, 0x01ff, MWA_RAM				),	// RAM
 		new Memory_WriteAddress( 0x1000, 0x1000, sub_bankswitch_w		),	// ROM Bank + Coin Lockout
-		new Memory_WriteAddress( 0x5000, 0x57ff, MWA_RAM, &sharedram	),	// Shared RAM
+		new Memory_WriteAddress( 0x5000, 0x57ff, MWA_RAM, sharedram	),	// Shared RAM
 		new Memory_WriteAddress( 0x7000, 0xffff, MWA_ROM				),	// ROM
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
@@ -669,7 +669,7 @@ public class seta
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x0000, 0x01ff, MWA_RAM				),	// RAM
 		new Memory_WriteAddress( 0x1000, 0x1000, sub_bankswitch_w		),	// ROM Bank + Coin Lockout
-		new Memory_WriteAddress( 0x5000, 0x57ff, MWA_RAM, &sharedram	),	// Shared RAM
+		new Memory_WriteAddress( 0x5000, 0x57ff, MWA_RAM, sharedram	),	// Shared RAM
 		new Memory_WriteAddress( 0x7000, 0x7fff, MWA_ROM				),	// ROM
 		new Memory_WriteAddress( 0x8000, 0xbfff, MWA_ROM				),	// ROM
 		new Memory_WriteAddress( 0xc000, 0xffff, MWA_ROM				),	// ROM
@@ -700,7 +700,7 @@ public class seta
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x0000, 0x01ff, MWA_RAM				),	// RAM
 		new Memory_WriteAddress( 0x1000, 0x1000, sub_bankswitch_w		),	// ROM Bank + Coin Lockout
-		new Memory_WriteAddress( 0x5000, 0x57ff, MWA_RAM, &sharedram	),	// Shared RAM
+		new Memory_WriteAddress( 0x5000, 0x57ff, MWA_RAM, sharedram	),	// Shared RAM
 		new Memory_WriteAddress( 0x7000, 0x7fff, MWA_ROM				),	// ROM
 		new Memory_WriteAddress( 0xc000, 0xffff, MWA_ROM				),	// ROM
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
@@ -739,7 +739,7 @@ public class seta
 		new Memory_WriteAddress( 0x2001, 0x2001, YM2203_write_port_0_w		),
 		new Memory_WriteAddress( 0x3000, 0x3000, YM3812_control_port_0_w	),
 		new Memory_WriteAddress( 0x3001, 0x3001, YM3812_write_port_0_w		),
-		new Memory_WriteAddress( 0x5000, 0x57ff, MWA_RAM, &sharedram		),	// Shared RAM
+		new Memory_WriteAddress( 0x5000, 0x57ff, MWA_RAM, sharedram		),	// Shared RAM
 		new Memory_WriteAddress( 0x6000, 0xffff, MWA_ROM					),	// ROM
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};

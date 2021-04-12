@@ -41,8 +41,8 @@ public class scregg
 	public static Memory_WriteAddress eggs_writemem[]={
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x0000, 0x07ff, MWA_RAM ),
-		new Memory_WriteAddress( 0x1000, 0x13ff, videoram_w, &videoram, &videoram_size ),
-		new Memory_WriteAddress( 0x1400, 0x17ff, colorram_w, &colorram ),
+		new Memory_WriteAddress( 0x1000, 0x13ff, videoram_w, videoram, videoram_size ),
+		new Memory_WriteAddress( 0x1400, 0x17ff, colorram_w, colorram ),
 		new Memory_WriteAddress( 0x1800, 0x1bff, btime_mirrorvideoram_w ),
 		new Memory_WriteAddress( 0x1c00, 0x1fff, btime_mirrorcolorram_w ),
 		new Memory_WriteAddress( 0x2000, 0x2000, btime_video_control_w ),

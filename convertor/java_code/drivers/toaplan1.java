@@ -85,15 +85,15 @@ public class toaplan1
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x000000, 0x07ffff, MWA_ROM ),
 		new Memory_WriteAddress( 0x080000, 0x083fff, MWA_BANK1 ),
-		new Memory_WriteAddress( 0x0c0000, 0x0c0fff, MWA_BANK2, &spriteram, &spriteram_size ),	/* sprite ram data */
+		new Memory_WriteAddress( 0x0c0000, 0x0c0fff, MWA_BANK2, spriteram, spriteram_size ),	/* sprite ram data */
 		new Memory_WriteAddress( 0x100002, 0x100003, video_ofs3_w ),
 		new Memory_WriteAddress( 0x100004, 0x100007, toaplan1_videoram3_w ),	/* tile layers */
 		new Memory_WriteAddress( 0x100010, 0x10001f, scrollregs_w ),
 		new Memory_WriteAddress( 0x140000, 0x140001, toaplan1_int_enable_w ),
 		new Memory_WriteAddress( 0x140008, 0x14000f, layers_offset_w ),
-		new Memory_WriteAddress( 0x144000, 0x1447ff, toaplan1_colorram1_w, &toaplan1_colorram1, &colorram1_size ),
-		new Memory_WriteAddress( 0x146000, 0x1467ff, toaplan1_colorram2_w, &toaplan1_colorram2, &colorram2_size ),
-		new Memory_WriteAddress( 0x180000, 0x180fff, toaplan1_shared_w, &toaplan1_sharedram ),
+		new Memory_WriteAddress( 0x144000, 0x1447ff, toaplan1_colorram1_w, toaplan1_colorram1, colorram1_size ),
+		new Memory_WriteAddress( 0x146000, 0x1467ff, toaplan1_colorram2_w, toaplan1_colorram2, colorram2_size ),
+		new Memory_WriteAddress( 0x180000, 0x180fff, toaplan1_shared_w, toaplan1_sharedram ),
 		new Memory_WriteAddress( 0x1c0000, 0x1c0003, offsetregs_w ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
@@ -126,9 +126,9 @@ public class toaplan1
 		new Memory_WriteAddress( 0x100010, 0x10001f, scrollregs_w ),
 		new Memory_WriteAddress( 0x140000, 0x140001, toaplan1_int_enable_w ),
 		new Memory_WriteAddress( 0x140008, 0x14000f, layers_offset_w ),
-		new Memory_WriteAddress( 0x144000, 0x1447ff, toaplan1_colorram1_w, &toaplan1_colorram1, &colorram1_size ),
-		new Memory_WriteAddress( 0x146000, 0x1467ff, toaplan1_colorram2_w, &toaplan1_colorram2, &colorram2_size ),
-		new Memory_WriteAddress( 0x180000, 0x180fff, toaplan1_shared_w, &toaplan1_sharedram ),
+		new Memory_WriteAddress( 0x144000, 0x1447ff, toaplan1_colorram1_w, toaplan1_colorram1, colorram1_size ),
+		new Memory_WriteAddress( 0x146000, 0x1467ff, toaplan1_colorram2_w, toaplan1_colorram2, colorram2_size ),
+		new Memory_WriteAddress( 0x180000, 0x180fff, toaplan1_shared_w, toaplan1_sharedram ),
 		new Memory_WriteAddress( 0x1c0000, 0x1c0003, offsetregs_w ),
 		new Memory_WriteAddress( 0x1c0006, 0x1c0007, toaplan1_flipscreen_w ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
@@ -156,9 +156,9 @@ public class toaplan1
 		new Memory_WriteAddress( 0x040000, 0x047fff, MWA_BANK1 ),
 		new Memory_WriteAddress( 0x080002, 0x080003, toaplan1_int_enable_w ),
 		new Memory_WriteAddress( 0x080008, 0x08000f, layers_offset_w ),
-		new Memory_WriteAddress( 0x084000, 0x0847ff, toaplan1_colorram1_w, &toaplan1_colorram1, &colorram1_size ),
-		new Memory_WriteAddress( 0x086000, 0x0867ff, toaplan1_colorram2_w, &toaplan1_colorram2, &colorram2_size ),
-		new Memory_WriteAddress( 0x0c0000, 0x0c0fff, toaplan1_shared_w, &toaplan1_sharedram ),
+		new Memory_WriteAddress( 0x084000, 0x0847ff, toaplan1_colorram1_w, toaplan1_colorram1, colorram1_size ),
+		new Memory_WriteAddress( 0x086000, 0x0867ff, toaplan1_colorram2_w, toaplan1_colorram2, colorram2_size ),
+		new Memory_WriteAddress( 0x0c0000, 0x0c0fff, toaplan1_shared_w, toaplan1_sharedram ),
 		new Memory_WriteAddress( 0x100002, 0x100003, video_ofs3_w ),
 		new Memory_WriteAddress( 0x100004, 0x100007, toaplan1_videoram3_w ),	/* tile layers */
 		new Memory_WriteAddress( 0x100010, 0x10001f, scrollregs_w ),
@@ -195,9 +195,9 @@ public class toaplan1
 		new Memory_WriteAddress( 0x0c0006, 0x0c0007, toaplan1_flipscreen_w ),
 		new Memory_WriteAddress( 0x400002, 0x400003, toaplan1_int_enable_w ),
 		new Memory_WriteAddress( 0x400008, 0x40000f, layers_offset_w ),
-		new Memory_WriteAddress( 0x404000, 0x4047ff, toaplan1_colorram1_w, &toaplan1_colorram1, &colorram1_size ),
-		new Memory_WriteAddress( 0x406000, 0x4067ff, toaplan1_colorram2_w, &toaplan1_colorram2, &colorram2_size ),
-		new Memory_WriteAddress( 0x440000, 0x440fff, toaplan1_shared_w, &toaplan1_sharedram ),
+		new Memory_WriteAddress( 0x404000, 0x4047ff, toaplan1_colorram1_w, toaplan1_colorram1, colorram1_size ),
+		new Memory_WriteAddress( 0x406000, 0x4067ff, toaplan1_colorram2_w, toaplan1_colorram2, colorram2_size ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, toaplan1_shared_w, toaplan1_sharedram ),
 		new Memory_WriteAddress( 0x480002, 0x480003, video_ofs3_w ),
 		new Memory_WriteAddress( 0x480004, 0x480007, toaplan1_videoram3_w ),	/* tile layers */
 		new Memory_WriteAddress( 0x480010, 0x48001f, scrollregs_w ),
@@ -228,9 +228,9 @@ public class toaplan1
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
 		new Memory_WriteAddress( 0x340006, 0x340007, toaplan1_flipscreen_w ),
-		new Memory_WriteAddress( 0x404000, 0x4047ff, toaplan1_colorram1_w, &toaplan1_colorram1, &colorram1_size ),
-		new Memory_WriteAddress( 0x406000, 0x4067ff, toaplan1_colorram2_w, &toaplan1_colorram2, &colorram2_size ),
-		new Memory_WriteAddress( 0x600000, 0x600fff, toaplan1_shared_w, &toaplan1_sharedram ),
+		new Memory_WriteAddress( 0x404000, 0x4047ff, toaplan1_colorram1_w, toaplan1_colorram1, colorram1_size ),
+		new Memory_WriteAddress( 0x406000, 0x4067ff, toaplan1_colorram2_w, toaplan1_colorram2, colorram2_size ),
+		new Memory_WriteAddress( 0x600000, 0x600fff, toaplan1_shared_w, toaplan1_sharedram ),
 		new Memory_WriteAddress( 0x800002, 0x800003, video_ofs3_w ),
 		new Memory_WriteAddress( 0x800004, 0x800007, toaplan1_videoram3_w ),	/* tile layers */
 		new Memory_WriteAddress( 0x800010, 0x80001f, scrollregs_w ),
@@ -278,8 +278,8 @@ public class toaplan1
 	/*	new Memory_WriteAddress( 0x100000, 0x100001, ??? ),				disable palette refresh ? */
 		new Memory_WriteAddress( 0x100002, 0x100003, toaplan1_int_enable_w ),
 		new Memory_WriteAddress( 0x100008, 0x10000f, layers_offset_w ),
-		new Memory_WriteAddress( 0x104000, 0x1047ff, toaplan1_colorram1_w, &toaplan1_colorram1, &colorram1_size ),
-		new Memory_WriteAddress( 0x106000, 0x1067ff, toaplan1_colorram2_w, &toaplan1_colorram2, &colorram2_size ),
+		new Memory_WriteAddress( 0x104000, 0x1047ff, toaplan1_colorram1_w, toaplan1_colorram1, colorram1_size ),
+		new Memory_WriteAddress( 0x106000, 0x1067ff, toaplan1_colorram2_w, toaplan1_colorram2, colorram2_size ),
 		new Memory_WriteAddress( 0x14000c, 0x14000d, toaplan1_coin_w ),	/* Coin counter/lockout */
 	//	new Memory_WriteAddress( 0x14000e, 0x14000f, samesame_mcu_w ),		/* Commands sent to HD647180 */
 		new Memory_WriteAddress( 0x180002, 0x180003, video_ofs3_w ),
@@ -315,15 +315,15 @@ public class toaplan1
 		new Memory_WriteAddress( 0x100002, 0x100003, video_ofs_w ),
 		new Memory_WriteAddress( 0x100004, 0x100005, toaplan1_videoram1_w ),	/* sprites info */
 		new Memory_WriteAddress( 0x100006, 0x100007, toaplan1_videoram2_w ),
-		new Memory_WriteAddress( 0x140000, 0x140fff, toaplan1_shared_w, &toaplan1_sharedram ),
+		new Memory_WriteAddress( 0x140000, 0x140fff, toaplan1_shared_w, toaplan1_sharedram ),
 		new Memory_WriteAddress( 0x200002, 0x200003, video_ofs3_w ),
 		new Memory_WriteAddress( 0x200004, 0x200007, toaplan1_videoram3_w ),	/* tile layers */
 		new Memory_WriteAddress( 0x200010, 0x20001f, scrollregs_w ),
 		new Memory_WriteAddress( 0x240000, 0x243fff, MWA_BANK1 ),
 		new Memory_WriteAddress( 0x300000, 0x300001, toaplan1_int_enable_w ),
 		new Memory_WriteAddress( 0x300008, 0x30000f, layers_offset_w ),
-		new Memory_WriteAddress( 0x304000, 0x3047ff, toaplan1_colorram1_w, &toaplan1_colorram1, &colorram1_size ),
-		new Memory_WriteAddress( 0x306000, 0x3067ff, toaplan1_colorram2_w, &toaplan1_colorram2, &colorram2_size ),
+		new Memory_WriteAddress( 0x304000, 0x3047ff, toaplan1_colorram1_w, toaplan1_colorram1, colorram1_size ),
+		new Memory_WriteAddress( 0x306000, 0x3067ff, toaplan1_colorram2_w, toaplan1_colorram2, colorram2_size ),
 		new Memory_WriteAddress( 0x340000, 0x340003, offsetregs_w ),
 		new Memory_WriteAddress( 0x340006, 0x340007, toaplan1_flipscreen_w ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
@@ -363,8 +363,8 @@ public class toaplan1
 		new Memory_WriteAddress( 0x0c0006, 0x0c0007, toaplan1_videoram2_w ),	/* sprite size ? */
 		new Memory_WriteAddress( 0x400002, 0x400003, toaplan1_int_enable_w ),	/* IRQACK? */
 		new Memory_WriteAddress( 0x400008, 0x40000f, layers_offset_w ),
-		new Memory_WriteAddress( 0x404000, 0x4047ff, toaplan1_colorram1_w, &toaplan1_colorram1, &colorram1_size ),
-		new Memory_WriteAddress( 0x406000, 0x4067ff, toaplan1_colorram2_w, &toaplan1_colorram2, &colorram2_size ),
+		new Memory_WriteAddress( 0x404000, 0x4047ff, toaplan1_colorram1_w, toaplan1_colorram1, colorram1_size ),
+		new Memory_WriteAddress( 0x406000, 0x4067ff, toaplan1_colorram2_w, toaplan1_colorram2, colorram2_size ),
 		new Memory_WriteAddress( 0x440000, 0x440005, vimana_mcu_w ),
 		new Memory_WriteAddress( 0x480000, 0x487fff, MWA_BANK1 ),
 		new Memory_WriteAddress( 0x4c0002, 0x4c0003, video_ofs3_w ),
@@ -384,7 +384,7 @@ public class toaplan1
 	public static Memory_WriteAddress sound_writemem[]={
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x0000, 0x7fff, MWA_ROM ),
-		new Memory_WriteAddress( 0x8000, 0xffff, MWA_RAM, &toaplan1_sharedram ),
+		new Memory_WriteAddress( 0x8000, 0xffff, MWA_RAM, toaplan1_sharedram ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	

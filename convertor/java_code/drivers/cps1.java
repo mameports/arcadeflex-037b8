@@ -376,12 +376,12 @@ public class cps1
 	public static Memory_WriteAddress qsound_writemem[]={
 		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		new Memory_WriteAddress( 0x0000, 0xbfff, MWA_ROM ),
-		new Memory_WriteAddress( 0xc000, 0xcfff, MWA_RAM, &qsound_sharedram1 ),
+		new Memory_WriteAddress( 0xc000, 0xcfff, MWA_RAM, qsound_sharedram1 ),
 		new Memory_WriteAddress( 0xd000, 0xd000, qsound_data_h_w ),
 		new Memory_WriteAddress( 0xd001, 0xd001, qsound_data_l_w ),
 		new Memory_WriteAddress( 0xd002, 0xd002, qsound_cmd_w ),
 		new Memory_WriteAddress( 0xd003, 0xd003, qsound_banksw_w ),
-		new Memory_WriteAddress( 0xf000, 0xffff, MWA_RAM, &qsound_sharedram2 ),
+		new Memory_WriteAddress( 0xf000, 0xffff, MWA_RAM, qsound_sharedram2 ),
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
