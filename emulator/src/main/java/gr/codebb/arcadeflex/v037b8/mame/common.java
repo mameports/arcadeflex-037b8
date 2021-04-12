@@ -3,6 +3,10 @@
  */
 package gr.codebb.arcadeflex.v037b8.mame;
 
+import static gr.codebb.arcadeflex.WIP.v037b7.mame.common.flip_screen_x;
+import static gr.codebb.arcadeflex.WIP.v037b7.mame.common.flip_screen_y;
+import static gr.codebb.arcadeflex.WIP.v037b7.mame.common.set_vh_global_attribute;
+import static gr.codebb.arcadeflex.WIP.v037b7.mame.common.updateflip;
 import static gr.codebb.arcadeflex.WIP.v037b7.mame.commonH.COIN_COUNTERS;
 import static gr.codebb.arcadeflex.old.mame.common.coinlockedout;
 import static gr.codebb.arcadeflex.old.mame.common.coins;
@@ -756,7 +760,7 @@ public class common {
             return;
         }
         /* Count it only if the data has changed from 0 to non-zero */
-        if (on!=0 && (lastcoin[num] == 0)) {
+        if (on != 0 && (lastcoin[num] == 0)) {
             coins[num]++;
         }
         lastcoin[num] = on;
@@ -811,35 +815,33 @@ public class common {
 /*TODO*///
 /*TODO*///	set_visible_area(min_x,max_x,min_y,max_y);
 /*TODO*///}
-/*TODO*///
-/*TODO*///void flip_screen_set(int on)
-/*TODO*///{
-/*TODO*///	flip_screen_x_set(on);
-/*TODO*///	flip_screen_y_set(on);
-/*TODO*///}
-/*TODO*///
-/*TODO*///void flip_screen_x_set(int on)
-/*TODO*///{
-/*TODO*///	if (on) on = ~0;
-/*TODO*///	if (flip_screen_x != on)
-/*TODO*///	{
-/*TODO*///		set_vh_global_attribute(&flip_screen_x,on);
-/*TODO*///		updateflip();
-/*TODO*///	}
-/*TODO*///}
-/*TODO*///
-/*TODO*///void flip_screen_y_set(int on)
-/*TODO*///{
-/*TODO*///	if (on) on = ~0;
-/*TODO*///	if (flip_screen_y != on)
-/*TODO*///	{
-/*TODO*///		set_vh_global_attribute(&flip_screen_y,on);
-/*TODO*///		updateflip();
-/*TODO*///	}
-/*TODO*///}
-/*TODO*///
-/*TODO*///
-/*TODO*///void set_vh_global_attribute( int *addr, int data )
+    public static void flip_screen_set(int on) {
+        flip_screen_x_set(on);
+        flip_screen_y_set(on);
+    }
+
+    public static void flip_screen_x_set(int on) {
+        if (on != 0) {
+            on = ~0;
+        }
+        if (flip_screen_x[0] != on) {
+            set_vh_global_attribute(flip_screen_x, on);
+            updateflip();
+        }
+    }
+
+    public static void flip_screen_y_set(int on) {
+        if (on != 0) {
+            on = ~0;
+        }
+        if (flip_screen_y[0] != on) {
+            set_vh_global_attribute(flip_screen_y, on);
+            updateflip();
+        }
+    }
+
+
+    /*TODO*///void set_vh_global_attribute( int *addr, int data )
 /*TODO*///{
 /*TODO*///	if (*addr != data)
 /*TODO*///	{
