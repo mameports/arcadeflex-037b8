@@ -62,7 +62,7 @@ IO ports and memory map changes. Dip switches differ too.
 
 ***************************************************************************/
 /*
- * ported to v0.37b7
+ * ported to v0.37b8
  * using automatic conversion tool v0.01
  */ 
 package drivers;

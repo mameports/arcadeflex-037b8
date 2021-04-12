@@ -5,7 +5,7 @@ Knuckle Joe - (c) 1985 Taito Corporation
 ***************************************************************************/
 
 /*
- * ported to v0.37b7
+ * ported to v0.37b8
  * using automatic conversion tool v0.01
  */ 
 package vidhrdw;

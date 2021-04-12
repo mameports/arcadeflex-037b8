@@ -61,7 +61,7 @@ Who knows, it's protected. The bootleg doesn't have it.
 ***************************************************************************/
 
 /*
- * ported to v0.37b7
+ * ported to v0.37b8
  * using automatic conversion tool v0.01
  */ 
 package drivers;

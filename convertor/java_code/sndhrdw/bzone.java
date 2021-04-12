@@ -18,7 +18,7 @@ D0	explosion enable		gates a noise generator
 */
 
 /*
- * ported to v0.37b7
+ * ported to v0.37b8
  * using automatic conversion tool v0.01
  */ 
 package sndhrdw;

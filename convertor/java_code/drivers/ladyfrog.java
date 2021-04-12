@@ -12,7 +12,7 @@ VIDEO COMPUTER SYSTEM  (C)1989 DYNAX INC  NAGOYA JAPAN  DRAGON PUNCH  VER. 1.30
 ***************************************************************************/
 
 /*
- * ported to v0.37b7
+ * ported to v0.37b8
  * using automatic conversion tool v0.01
  */ 
 package drivers;

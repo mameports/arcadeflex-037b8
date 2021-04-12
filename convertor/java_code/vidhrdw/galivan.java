@@ -30,7 +30,7 @@ background:	0x4000 bytes of ROM:	76543210	tile code low bits
 ***************************************************************************/
 
 /*
- * ported to v0.37b7
+ * ported to v0.37b8
  * using automatic conversion tool v0.01
  */ 
 package vidhrdw;

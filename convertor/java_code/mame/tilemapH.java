@@ -79,7 +79,7 @@ extern struct tile_info {
 #if 0
 #ifndef OSD_CPU_H
 /*
- * ported to v0.37b7
+ * ported to v0.37b8
  * using automatic conversion tool v0.01
  */ 
 package mame;

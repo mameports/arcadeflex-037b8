@@ -432,7 +432,7 @@ $a00000 checks have been seen on the Final Lap boards.
 #define NAMCOS2_CREDITS "Keith Wilkins\nPhil Stroffolino"
 
 /*
- * ported to v0.37b7
+ * ported to v0.37b8
  * using automatic conversion tool v0.01
  */ 
 package drivers;

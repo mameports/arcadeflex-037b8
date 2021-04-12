@@ -82,7 +82,7 @@ Scores should be reset to 0 on I/O controller command C1h.
 ***************************************************************************/
 
 /*
- * ported to v0.37b7
+ * ported to v0.37b8
  * using automatic conversion tool v0.01
  */ 
 package machine;

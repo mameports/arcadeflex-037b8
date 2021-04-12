@@ -91,7 +91,7 @@ Did the original hardware really use the high-end tms9900 ? */
 #define COSMICG_USES_TMS9980 1
 
 /*
- * ported to v0.37b7
+ * ported to v0.37b8
  * using automatic conversion tool v0.01
  */ 
 package drivers;

@@ -67,7 +67,7 @@ CPU #3 NMI (@120Hz)
 ***************************************************************************/
 
 /*
- * ported to v0.37b7
+ * ported to v0.37b8
  * using automatic conversion tool v0.01
  */ 
 package drivers;

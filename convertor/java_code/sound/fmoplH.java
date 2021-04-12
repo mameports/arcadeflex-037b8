@@ -30,7 +30,7 @@ typedef unsigned char  OPLSAMPLE;
 
 #if BUILD_Y8950
 /*
- * ported to v0.37b7
+ * ported to v0.37b8
  * using automatic conversion tool v0.01
  */ 
 package sound;

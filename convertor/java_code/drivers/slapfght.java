@@ -178,7 +178,7 @@ b73	checks lives. If zero, writes 0 to port 04 then jp 0000h.
 ***************************************************************************/
 
 /*
- * ported to v0.37b7
+ * ported to v0.37b8
  * using automatic conversion tool v0.01
  */ 
 package drivers;
