@@ -89,17 +89,19 @@ public class lwings
 	
 	
 	
-	static MEMORY_READ_START( readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0x8000, 0xbfff, MRA_BANK1 },
-		{ 0xc000, 0xf7ff, MRA_RAM },
-		{ 0xf808, 0xf808, input_port_0_r },
-		{ 0xf809, 0xf809, input_port_1_r },
-		{ 0xf80a, 0xf80a, input_port_2_r },
-		{ 0xf80b, 0xf80b, input_port_3_r },
-		{ 0xf80c, 0xf80c, input_port_4_r },
-		{ 0xf80d, 0xf80d, avengers_protection_r },
-	MEMORY_END
+	public static Memory_ReadAddress readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0xbfff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0xc000, 0xf7ff, MRA_RAM ),
+		new Memory_ReadAddress( 0xf808, 0xf808, input_port_0_r ),
+		new Memory_ReadAddress( 0xf809, 0xf809, input_port_1_r ),
+		new Memory_ReadAddress( 0xf80a, 0xf80a, input_port_2_r ),
+		new Memory_ReadAddress( 0xf80b, 0xf80b, input_port_3_r ),
+		new Memory_ReadAddress( 0xf80c, 0xf80c, input_port_4_r ),
+		new Memory_ReadAddress( 0xf80d, 0xf80d, avengers_protection_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem )
 		{ 0x0000, 0xbfff, MWA_ROM },
@@ -136,12 +138,14 @@ public class lwings
 	MEMORY_END
 	
 	
-	static MEMORY_READ_START( sound_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0xc000, 0xc7ff, MRA_RAM },
-		{ 0xc800, 0xc800, soundlatch_r },
-		{ 0xe006, 0xe006, MRA_RAM },    /* Avengers - ADPCM status?? */
-	MEMORY_END
+	public static Memory_ReadAddress sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0xc000, 0xc7ff, MRA_RAM ),
+		new Memory_ReadAddress( 0xc800, 0xc800, soundlatch_r ),
+		new Memory_ReadAddress( 0xe006, 0xe006, MRA_RAM ),    /* Avengers - ADPCM status?? */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( sound_writemem )
 		{ 0x0000, 0x7fff, MWA_ROM },
@@ -154,9 +158,11 @@ public class lwings
 	MEMORY_END
 	
 	
-	static MEMORY_READ_START( adpcm_readmem )
-		{ 0x0000, 0xffff, MRA_ROM },
-	MEMORY_END
+	public static Memory_ReadAddress adpcm_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0xffff, MRA_ROM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/* Yes, _no_ ram */
 	static MEMORY_WRITE_START( adpcm_writemem )

@@ -313,15 +313,17 @@ public class twin16
 		UPD7759_start_w(offset, (!(data & 0x01)));
 	} };
 	
-	static MEMORY_READ_START( readmem_sound )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0x8000, 0x8fff, MRA_RAM },
-		{ 0x9000, 0x9000, twin16_sres_r },
-		{ 0xa000, 0xa000, soundlatch_r },
-		{ 0xb000, 0xb00d, K007232_read_port_0_r },
-		{ 0xc001, 0xc001, YM2151_status_port_0_r },
-		{ 0xf000, 0xf000, UPD7759_0_busy_r },
-	MEMORY_END
+	public static Memory_ReadAddress readmem_sound[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0x8fff, MRA_RAM ),
+		new Memory_ReadAddress( 0x9000, 0x9000, twin16_sres_r ),
+		new Memory_ReadAddress( 0xa000, 0xa000, soundlatch_r ),
+		new Memory_ReadAddress( 0xb000, 0xb00d, K007232_read_port_0_r ),
+		new Memory_ReadAddress( 0xc001, 0xc001, YM2151_status_port_0_r ),
+		new Memory_ReadAddress( 0xf000, 0xf000, UPD7759_0_busy_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem_sound )
 		{ 0x0000, 0x7fff, MWA_ROM },
@@ -336,18 +338,20 @@ public class twin16
 	
 	/******************************************************************************************/
 	
-	static MEMORY_READ_START( readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x040000, 0x043fff, COMRAM_r },
-		{ 0x060000, 0x063fff, WORKRAM_CPUA_r },
-		{ 0x080000, 0x080fff, paletteram_word_r },
-		{ 0x0a0000, 0x0a001b, twin16_input_r },
-		{ 0x0b0000, 0x0b3fff, battery_backed_ram_r }, /* cuebrick only */
-		{ 0x0c000e, 0x0c000f, twin16_sprite_status_r },
-		{ 0x100000, 0x103fff, FIXRAM_r },
-		{ 0x120000, 0x123fff, VIDRAM_r },
-		{ 0x140000, 0x143fff, OBJRAM_r },
-	MEMORY_END
+	public static Memory_ReadAddress readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x040000, 0x043fff, COMRAM_r ),
+		new Memory_ReadAddress( 0x060000, 0x063fff, WORKRAM_CPUA_r ),
+		new Memory_ReadAddress( 0x080000, 0x080fff, paletteram_word_r ),
+		new Memory_ReadAddress( 0x0a0000, 0x0a001b, twin16_input_r ),
+		new Memory_ReadAddress( 0x0b0000, 0x0b3fff, battery_backed_ram_r ), /* cuebrick only */
+		new Memory_ReadAddress( 0x0c000e, 0x0c000f, twin16_sprite_status_r ),
+		new Memory_ReadAddress( 0x100000, 0x103fff, FIXRAM_r ),
+		new Memory_ReadAddress( 0x120000, 0x123fff, VIDRAM_r ),
+		new Memory_ReadAddress( 0x140000, 0x143fff, OBJRAM_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -365,18 +369,20 @@ public class twin16
 		{ 0x140000, 0x143fff, OBJRAM_w, &spriteram },
 	MEMORY_END
 	
-	static MEMORY_READ_START( readmem_sub )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x040000, 0x043fff, COMRAM_r },
-		{ 0x060000, 0x063fff, WORKRAM_CPUB_r },
-		{ 0x080000, 0x09ffff, extra_rom_r },
-		{ 0x400000, 0x403fff, OBJRAM_r },
-		{ 0x480000, 0x483fff, VIDRAM_r },
-		{ 0x500000, 0x53ffff, twin16_tile_gfx_ram_r },
-		{ 0x600000, 0x6fffff, twin16_gfx_rom1_r },
-		{ 0x700000, 0x77ffff, twin16_gfx_rom2_r },
-		{ 0x780000, 0x79ffff, twin16_sprite_gfx_ram_r },
-	MEMORY_END
+	public static Memory_ReadAddress readmem_sub[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x040000, 0x043fff, COMRAM_r ),
+		new Memory_ReadAddress( 0x060000, 0x063fff, WORKRAM_CPUB_r ),
+		new Memory_ReadAddress( 0x080000, 0x09ffff, extra_rom_r ),
+		new Memory_ReadAddress( 0x400000, 0x403fff, OBJRAM_r ),
+		new Memory_ReadAddress( 0x480000, 0x483fff, VIDRAM_r ),
+		new Memory_ReadAddress( 0x500000, 0x53ffff, twin16_tile_gfx_ram_r ),
+		new Memory_ReadAddress( 0x600000, 0x6fffff, twin16_gfx_rom1_r ),
+		new Memory_ReadAddress( 0x700000, 0x77ffff, twin16_gfx_rom2_r ),
+		new Memory_ReadAddress( 0x780000, 0x79ffff, twin16_sprite_gfx_ram_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem_sub )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -391,18 +397,20 @@ public class twin16
 	
 	/******************************************************************************************/
 	
-	static MEMORY_READ_START( fround_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x040000, 0x043fff, COMRAM_r },
-		{ 0x060000, 0x063fff, WORKRAM_CPUA_r },
-		{ 0x080000, 0x080fff, paletteram_word_r },
-		{ 0x0a0000, 0x0a001b, twin16_input_r },
-		{ 0x0c000e, 0x0c000f, twin16_sprite_status_r },
-		{ 0x100000, 0x103fff, FIXRAM_r },
-		{ 0x120000, 0x123fff, VIDRAM_r },
-		{ 0x140000, 0x143fff, OBJRAM_r },
-		{ 0x500000, 0x6fffff, twin16_gfx_rom1_r },
-	MEMORY_END
+	public static Memory_ReadAddress fround_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x040000, 0x043fff, COMRAM_r ),
+		new Memory_ReadAddress( 0x060000, 0x063fff, WORKRAM_CPUA_r ),
+		new Memory_ReadAddress( 0x080000, 0x080fff, paletteram_word_r ),
+		new Memory_ReadAddress( 0x0a0000, 0x0a001b, twin16_input_r ),
+		new Memory_ReadAddress( 0x0c000e, 0x0c000f, twin16_sprite_status_r ),
+		new Memory_ReadAddress( 0x100000, 0x103fff, FIXRAM_r ),
+		new Memory_ReadAddress( 0x120000, 0x123fff, VIDRAM_r ),
+		new Memory_ReadAddress( 0x140000, 0x143fff, OBJRAM_r ),
+		new Memory_ReadAddress( 0x500000, 0x6fffff, twin16_gfx_rom1_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( fround_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },

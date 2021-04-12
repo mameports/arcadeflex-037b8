@@ -68,15 +68,17 @@ public class m107
 	
 	/*****************************************************************************/
 	
-	static MEMORY_READ_START( readmem )
-		{ 0x00000, 0x9ffff, MRA_ROM },
-		{ 0xa0000, 0xbffff, MRA_BANK1 },
-		{ 0xd0000, 0xdffff, m107_vram_r },
-		{ 0xe0000, 0xeffff, MRA_RAM },
-		{ 0xf8000, 0xf8fff, MRA_RAM },
-		{ 0xf9000, 0xf9fff, paletteram_r },
-		{ 0xffff0, 0xfffff, MRA_ROM },
-	MEMORY_END
+	public static Memory_ReadAddress readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x00000, 0x9ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0xa0000, 0xbffff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0xd0000, 0xdffff, m107_vram_r ),
+		new Memory_ReadAddress( 0xe0000, 0xeffff, MRA_RAM ),
+		new Memory_ReadAddress( 0xf8000, 0xf8fff, MRA_RAM ),
+		new Memory_ReadAddress( 0xf9000, 0xf9fff, paletteram_r ),
+		new Memory_ReadAddress( 0xffff0, 0xfffff, MRA_ROM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem )
 		{ 0x00000, 0xbffff, MWA_ROM },
@@ -110,10 +112,12 @@ public class m107
 	/******************************************************************************/
 	
 	#if 0
-	static MEMORY_READ_START( sound_readmem )
-		{ 0x00000, 0x1ffff, MRA_ROM },
-		{ 0xffff0, 0xfffff, MRA_ROM },
-	MEMORY_END
+	public static Memory_ReadAddress sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x00000, 0x1ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0xffff0, 0xfffff, MRA_ROM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( sound_writemem )
 		{ 0x00000, 0x1ffff, MWA_ROM },

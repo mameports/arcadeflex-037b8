@@ -231,14 +231,16 @@ public class pipedrm
 	 *
 	 *************************************/
 	
-	static MEMORY_READ_START( readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0x8000, 0x9fff, MRA_RAM },
-		{ 0xa000, 0xbfff, MRA_BANK1 },
-		{ 0xc000, 0xcbff, paletteram_r },
-		{ 0xcc00, 0xcfff, MRA_RAM },
-		{ 0xd000, 0xffff, pipedrm_videoram_r },
-	MEMORY_END
+	public static Memory_ReadAddress readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0x9fff, MRA_RAM ),
+		new Memory_ReadAddress( 0xa000, 0xbfff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0xc000, 0xcbff, paletteram_r ),
+		new Memory_ReadAddress( 0xcc00, 0xcfff, MRA_RAM ),
+		new Memory_ReadAddress( 0xd000, 0xffff, pipedrm_videoram_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	static MEMORY_WRITE_START( writemem )
@@ -251,13 +253,15 @@ public class pipedrm
 	MEMORY_END
 	
 	
-	static MEMORY_READ_START( hatris_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0x8000, 0x9fff, MRA_RAM },
-		{ 0xa000, 0xbfff, MRA_BANK1 },
-		{ 0xc000, 0xcfff, paletteram_r },
-		{ 0xd000, 0xffff, hatris_videoram_r },
-	MEMORY_END
+	public static Memory_ReadAddress hatris_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0x9fff, MRA_RAM ),
+		new Memory_ReadAddress( 0xa000, 0xbfff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0xc000, 0xcfff, paletteram_r ),
+		new Memory_ReadAddress( 0xd000, 0xffff, hatris_videoram_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	static MEMORY_WRITE_START( hatris_writemem )
@@ -293,11 +297,13 @@ public class pipedrm
 	 *
 	 *************************************/
 	
-	static MEMORY_READ_START( sound_readmem )
-		{ 0x0000, 0x77ff, MRA_ROM },
-		{ 0x7800, 0x7fff, MRA_RAM },
-		{ 0x8000, 0xffff, MRA_BANK2 },
-	MEMORY_END
+	public static Memory_ReadAddress sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x77ff, MRA_ROM ),
+		new Memory_ReadAddress( 0x7800, 0x7fff, MRA_RAM ),
+		new Memory_ReadAddress( 0x8000, 0xffff, MRA_BANK2 ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	static MEMORY_WRITE_START( sound_writemem )

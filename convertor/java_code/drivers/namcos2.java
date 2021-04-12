@@ -530,14 +530,16 @@ public class namcos2
 	/* MASTER 68000 CPU Memory declarations 					 */
 	/*************************************************************/
 	
-	static MEMORY_READ_START( readmem_master_default )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x100000, 0x10ffff, NAMCOS2_68K_MASTER_RAM_R },
-		{ 0x180000, 0x183fff, NAMCOS2_68K_EEPROM_R },
-		{ 0x1c0000, 0x1fffff, namcos2_68k_master_C148_r },
+	public static Memory_ReadAddress readmem_master_default[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x100000, 0x10ffff, NAMCOS2_68K_MASTER_RAM_R ),
+		new Memory_ReadAddress( 0x180000, 0x183fff, NAMCOS2_68K_EEPROM_R ),
+		new Memory_ReadAddress( 0x1c0000, 0x1fffff, namcos2_68k_master_C148_r ),
 		NAMCOS2_68K_DEFAULT_CPU_BOARD_READ
 		NAMCOS2_68K_DEFAULT_GFX_BOARD_READ
-	MEMORY_END
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem_master_default )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -548,14 +550,16 @@ public class namcos2
 		NAMCOS2_68K_DEFAULT_GFX_BOARD_WRITE
 	MEMORY_END
 	
-	static MEMORY_READ_START( readmem_master_finallap )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x100000, 0x10ffff, NAMCOS2_68K_MASTER_RAM_R },
-		{ 0x180000, 0x183fff, NAMCOS2_68K_EEPROM_R },
-		{ 0x1c0000, 0x1fffff, namcos2_68k_master_C148_r },
+	public static Memory_ReadAddress readmem_master_finallap[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x100000, 0x10ffff, NAMCOS2_68K_MASTER_RAM_R ),
+		new Memory_ReadAddress( 0x180000, 0x183fff, NAMCOS2_68K_EEPROM_R ),
+		new Memory_ReadAddress( 0x1c0000, 0x1fffff, namcos2_68k_master_C148_r ),
 		NAMCOS2_68K_DEFAULT_CPU_BOARD_READ
 		NAMCOS2_68K_FINALLAP_GFX_BOARD_READ
-	MEMORY_END
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem_master_finallap )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -566,14 +570,16 @@ public class namcos2
 		NAMCOS2_68K_FINALLAP_GFX_BOARD_WRITE
 	MEMORY_END
 	
-	static MEMORY_READ_START( readmem_master_metlhawk )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x100000, 0x10ffff, NAMCOS2_68K_MASTER_RAM_R },
-		{ 0x180000, 0x183fff, NAMCOS2_68K_EEPROM_R },
-		{ 0x1c0000, 0x1fffff, namcos2_68k_master_C148_r },
+	public static Memory_ReadAddress readmem_master_metlhawk[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x100000, 0x10ffff, NAMCOS2_68K_MASTER_RAM_R ),
+		new Memory_ReadAddress( 0x180000, 0x183fff, NAMCOS2_68K_EEPROM_R ),
+		new Memory_ReadAddress( 0x1c0000, 0x1fffff, namcos2_68k_master_C148_r ),
 		NAMCOS2_68K_DEFAULT_CPU_BOARD_READ
 		NAMCOS2_68K_METLHAWK_GFX_BOARD_READ
-	MEMORY_END
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem_master_metlhawk )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -588,13 +594,15 @@ public class namcos2
 	/* SLAVE 68000 CPU Memory declarations						 */
 	/*************************************************************/
 	
-	static MEMORY_READ_START( readmem_slave_default )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x100000, 0x13ffff, NAMCOS2_68K_SLAVE_RAM_R },
-		{ 0x1c0000, 0x1fffff, namcos2_68k_slave_C148_r },
+	public static Memory_ReadAddress readmem_slave_default[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x100000, 0x13ffff, NAMCOS2_68K_SLAVE_RAM_R ),
+		new Memory_ReadAddress( 0x1c0000, 0x1fffff, namcos2_68k_slave_C148_r ),
 		NAMCOS2_68K_DEFAULT_CPU_BOARD_READ
 		NAMCOS2_68K_DEFAULT_GFX_BOARD_READ
-	MEMORY_END
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem_slave_default )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -604,13 +612,15 @@ public class namcos2
 		NAMCOS2_68K_DEFAULT_GFX_BOARD_WRITE
 	MEMORY_END
 	
-	static MEMORY_READ_START( readmem_slave_finallap )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x100000, 0x13ffff, NAMCOS2_68K_SLAVE_RAM_R },
-		{ 0x1c0000, 0x1fffff, namcos2_68k_slave_C148_r },
+	public static Memory_ReadAddress readmem_slave_finallap[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x100000, 0x13ffff, NAMCOS2_68K_SLAVE_RAM_R ),
+		new Memory_ReadAddress( 0x1c0000, 0x1fffff, namcos2_68k_slave_C148_r ),
 		NAMCOS2_68K_DEFAULT_CPU_BOARD_READ
 		NAMCOS2_68K_FINALLAP_GFX_BOARD_READ
-	MEMORY_END
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem_slave_finallap )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -620,13 +630,15 @@ public class namcos2
 		NAMCOS2_68K_FINALLAP_GFX_BOARD_WRITE
 	MEMORY_END
 	
-	static MEMORY_READ_START( readmem_slave_metlhawk )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x100000, 0x13ffff, NAMCOS2_68K_SLAVE_RAM_R },
-		{ 0x1c0000, 0x1fffff, namcos2_68k_slave_C148_r },
+	public static Memory_ReadAddress readmem_slave_metlhawk[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x100000, 0x13ffff, NAMCOS2_68K_SLAVE_RAM_R ),
+		new Memory_ReadAddress( 0x1c0000, 0x1fffff, namcos2_68k_slave_C148_r ),
 		NAMCOS2_68K_DEFAULT_CPU_BOARD_READ
 		NAMCOS2_68K_METLHAWK_GFX_BOARD_READ
-	MEMORY_END
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem_slave_metlhawk )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -641,14 +653,16 @@ public class namcos2
 	/* 6809 SOUND CPU Memory declarations						 */
 	/*************************************************************/
 	
-	static MEMORY_READ_START( readmem_sound )
-		{ 0x0000, 0x3fff, BANKED_SOUND_ROM_R }, /* banked */
-		{ 0x4000, 0x4001, YM2151_status_port_0_r },
-		{ 0x5000, 0x6fff, C140_r },
-		{ 0x7000, 0x7fff, namcos2_dpram_byte_r },		/* 991112.CAB  ($5800-5fff=image of $5000-$57ff) */
-		{ 0x8000, 0x9fff, MRA_RAM },
-		{ 0xd000, 0xffff, MRA_ROM },
-	MEMORY_END
+	public static Memory_ReadAddress readmem_sound[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x3fff, BANKED_SOUND_ROM_R ), /* banked */
+		new Memory_ReadAddress( 0x4000, 0x4001, YM2151_status_port_0_r ),
+		new Memory_ReadAddress( 0x5000, 0x6fff, C140_r ),
+		new Memory_ReadAddress( 0x7000, 0x7fff, namcos2_dpram_byte_r ),		/* 991112.CAB  ($5800-5fff=image of $5000-$57ff) */
+		new Memory_ReadAddress( 0x8000, 0x9fff, MRA_RAM ),
+		new Memory_ReadAddress( 0xd000, 0xffff, MRA_ROM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem_sound )
 		{ 0x0000, 0x3fff, MWA_ROM },
@@ -668,28 +682,30 @@ public class namcos2
 	/* 68705 IO CPU Memory declarations 						 */
 	/*************************************************************/
 	
-	static MEMORY_READ_START( readmem_mcu )
+	public static Memory_ReadAddress readmem_mcu[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
 		/* input ports and dips are mapped here */
 	
-		{ 0x0000, 0x0000, MRA_NOP },			// Keep logging quiet
-		{ 0x0001, 0x0001, namcos2_input_port_0_r },
-		{ 0x0002, 0x0002, input_port_1_r },
-		{ 0x0003, 0x0003, namcos2_mcu_port_d_r },
-		{ 0x0007, 0x0007, namcos2_input_port_10_r },
-		{ 0x0010, 0x0010, namcos2_mcu_analog_ctrl_r },
-		{ 0x0011, 0x0011, namcos2_mcu_analog_port_r },
-		{ 0x0008, 0x003f, MRA_RAM },			// Fill in register to stop logging
-		{ 0x0040, 0x01bf, MRA_RAM },
-		{ 0x01c0, 0x1fff, MRA_ROM },
-		{ 0x2000, 0x2000, input_port_11_r },
-		{ 0x3000, 0x3000, namcos2_input_port_12_r },
-		{ 0x3001, 0x3001, input_port_13_r },
-		{ 0x3002, 0x3002, input_port_14_r },
-		{ 0x3003, 0x3003, input_port_15_r },
-		{ 0x5000, 0x57ff, namcos2_dpram_byte_r },
-		{ 0x6000, 0x6fff, MRA_NOP },				/* watchdog */
-		{ 0x8000, 0xffff, MRA_ROM },
-	MEMORY_END
+		new Memory_ReadAddress( 0x0000, 0x0000, MRA_NOP ),			// Keep logging quiet
+		new Memory_ReadAddress( 0x0001, 0x0001, namcos2_input_port_0_r ),
+		new Memory_ReadAddress( 0x0002, 0x0002, input_port_1_r ),
+		new Memory_ReadAddress( 0x0003, 0x0003, namcos2_mcu_port_d_r ),
+		new Memory_ReadAddress( 0x0007, 0x0007, namcos2_input_port_10_r ),
+		new Memory_ReadAddress( 0x0010, 0x0010, namcos2_mcu_analog_ctrl_r ),
+		new Memory_ReadAddress( 0x0011, 0x0011, namcos2_mcu_analog_port_r ),
+		new Memory_ReadAddress( 0x0008, 0x003f, MRA_RAM ),			// Fill in register to stop logging
+		new Memory_ReadAddress( 0x0040, 0x01bf, MRA_RAM ),
+		new Memory_ReadAddress( 0x01c0, 0x1fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x2000, 0x2000, input_port_11_r ),
+		new Memory_ReadAddress( 0x3000, 0x3000, namcos2_input_port_12_r ),
+		new Memory_ReadAddress( 0x3001, 0x3001, input_port_13_r ),
+		new Memory_ReadAddress( 0x3002, 0x3002, input_port_14_r ),
+		new Memory_ReadAddress( 0x3003, 0x3003, input_port_15_r ),
+		new Memory_ReadAddress( 0x5000, 0x57ff, namcos2_dpram_byte_r ),
+		new Memory_ReadAddress( 0x6000, 0x6fff, MRA_NOP ),				/* watchdog */
+		new Memory_ReadAddress( 0x8000, 0xffff, MRA_ROM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem_mcu )
 		{ 0x0003, 0x0003, namcos2_mcu_port_d_w },

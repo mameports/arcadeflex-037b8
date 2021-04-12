@@ -101,35 +101,39 @@ public class wc90
 		cpu_cause_interrupt(2,Z80_NMI_INT);
 	} };
 	
-	static MEMORY_READ_START( wc90_readmem1 )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0x8000, 0x9fff, MRA_RAM }, /* Main RAM */
-		{ 0xa000, 0xa7ff, wc90_tile_colorram_r }, /* bg 1 color ram */
-		{ 0xa800, 0xafff, wc90_tile_videoram_r }, /* bg 1 tile ram */
-		{ 0xb000, 0xbfff, MRA_RAM },
-		{ 0xc000, 0xc7ff, wc90_tile_colorram2_r }, /* bg 2 color ram */
-		{ 0xc800, 0xcfff, wc90_tile_videoram2_r }, /* bg 2 tile ram */
-		{ 0xd000, 0xdfff, MRA_RAM },
-		{ 0xe000, 0xe7ff, colorram_r }, /* fg color ram */
-		{ 0xe800, 0xefff, videoram_r }, /* fg tile ram */
-		{ 0xf000, 0xf7ff, MRA_BANK1 },
-		{ 0xf800, 0xfbff, wc90_shared_r },
-		{ 0xfc00, 0xfc00, input_port_0_r }, /* Stick 1 */
-		{ 0xfc02, 0xfc02, input_port_1_r }, /* Stick 2 */
-		{ 0xfc05, 0xfc05, input_port_4_r }, /* Start & Coin */
-		{ 0xfc06, 0xfc06, input_port_2_r }, /* DIP Switch A */
-		{ 0xfc07, 0xfc07, input_port_3_r }, /* DIP Switch B */
-	MEMORY_END
+	public static Memory_ReadAddress wc90_readmem1[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0x9fff, MRA_RAM ), /* Main RAM */
+		new Memory_ReadAddress( 0xa000, 0xa7ff, wc90_tile_colorram_r ), /* bg 1 color ram */
+		new Memory_ReadAddress( 0xa800, 0xafff, wc90_tile_videoram_r ), /* bg 1 tile ram */
+		new Memory_ReadAddress( 0xb000, 0xbfff, MRA_RAM ),
+		new Memory_ReadAddress( 0xc000, 0xc7ff, wc90_tile_colorram2_r ), /* bg 2 color ram */
+		new Memory_ReadAddress( 0xc800, 0xcfff, wc90_tile_videoram2_r ), /* bg 2 tile ram */
+		new Memory_ReadAddress( 0xd000, 0xdfff, MRA_RAM ),
+		new Memory_ReadAddress( 0xe000, 0xe7ff, colorram_r ), /* fg color ram */
+		new Memory_ReadAddress( 0xe800, 0xefff, videoram_r ), /* fg tile ram */
+		new Memory_ReadAddress( 0xf000, 0xf7ff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0xf800, 0xfbff, wc90_shared_r ),
+		new Memory_ReadAddress( 0xfc00, 0xfc00, input_port_0_r ), /* Stick 1 */
+		new Memory_ReadAddress( 0xfc02, 0xfc02, input_port_1_r ), /* Stick 2 */
+		new Memory_ReadAddress( 0xfc05, 0xfc05, input_port_4_r ), /* Start & Coin */
+		new Memory_ReadAddress( 0xfc06, 0xfc06, input_port_2_r ), /* DIP Switch A */
+		new Memory_ReadAddress( 0xfc07, 0xfc07, input_port_3_r ), /* DIP Switch B */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
-	static MEMORY_READ_START( wc90_readmem2 )
-		{ 0x0000, 0xbfff, MRA_ROM },
-		{ 0xc000, 0xcfff, MRA_RAM },
-		{ 0xd000, 0xd7ff, MRA_RAM },
-		{ 0xd800, 0xdfff, MRA_RAM },
-		{ 0xe000, 0xe7ff, MRA_RAM },
-		{ 0xf000, 0xf7ff, MRA_BANK2 },
-		{ 0xf800, 0xfbff, wc90_shared_r },
-	MEMORY_END
+	public static Memory_ReadAddress wc90_readmem2[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0xbfff, MRA_ROM ),
+		new Memory_ReadAddress( 0xc000, 0xcfff, MRA_RAM ),
+		new Memory_ReadAddress( 0xd000, 0xd7ff, MRA_RAM ),
+		new Memory_ReadAddress( 0xd800, 0xdfff, MRA_RAM ),
+		new Memory_ReadAddress( 0xe000, 0xe7ff, MRA_RAM ),
+		new Memory_ReadAddress( 0xf000, 0xf7ff, MRA_BANK2 ),
+		new Memory_ReadAddress( 0xf800, 0xfbff, wc90_shared_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( wc90_writemem1 )
 		{ 0x0000, 0x7fff, MWA_ROM },
@@ -173,16 +177,18 @@ public class wc90
 		{ 0xfc01, 0xfc01, MWA_NOP },	/* ??? */
 	MEMORY_END
 	
-	static MEMORY_READ_START( sound_readmem )
-		{ 0x0000, 0xbfff, MRA_ROM },
-		{ 0xf000, 0xf7ff, MRA_RAM },
-		{ 0xf800, 0xf800, YM2203_status_port_0_r },
-		{ 0xf801, 0xf801, YM2203_read_port_0_r },
-		{ 0xf802, 0xf802, YM2203_status_port_1_r },
-		{ 0xf803, 0xf803, YM2203_read_port_1_r },
-		{ 0xfc00, 0xfc00, MRA_NOP }, /* ??? adpcm ??? */
-		{ 0xfc10, 0xfc10, soundlatch_r },
-	MEMORY_END
+	public static Memory_ReadAddress sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0xbfff, MRA_ROM ),
+		new Memory_ReadAddress( 0xf000, 0xf7ff, MRA_RAM ),
+		new Memory_ReadAddress( 0xf800, 0xf800, YM2203_status_port_0_r ),
+		new Memory_ReadAddress( 0xf801, 0xf801, YM2203_read_port_0_r ),
+		new Memory_ReadAddress( 0xf802, 0xf802, YM2203_status_port_1_r ),
+		new Memory_ReadAddress( 0xf803, 0xf803, YM2203_read_port_1_r ),
+		new Memory_ReadAddress( 0xfc00, 0xfc00, MRA_NOP ), /* ??? adpcm ??? */
+		new Memory_ReadAddress( 0xfc10, 0xfc10, soundlatch_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( sound_writemem )
 		{ 0x0000, 0xbfff, MWA_ROM },

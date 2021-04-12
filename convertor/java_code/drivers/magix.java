@@ -84,12 +84,14 @@ public class magix
 		d000-dfff	Tiles	""
 	*/
 	
-	static MEMORY_READ_START( magix_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM				},	// ROM
-		{ 0x8000, 0xbfff, MRA_BANK1				},	// Banked ROM
-		{ 0xc000, 0xdfff, magix_videoram_r		},	// Video RAM (Banked)
-		{ 0xe000, 0xffff, MRA_RAM				},	// RAM
-	MEMORY_END
+	public static Memory_ReadAddress magix_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM				),	// ROM
+		new Memory_ReadAddress( 0x8000, 0xbfff, MRA_BANK1				),	// Banked ROM
+		new Memory_ReadAddress( 0xc000, 0xdfff, magix_videoram_r		),	// Video RAM (Banked)
+		new Memory_ReadAddress( 0xe000, 0xffff, MRA_RAM				),	// RAM
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( magix_writemem )
 		{ 0x0000, 0x0000, MWA_ROM				},	// ROM
@@ -161,12 +163,14 @@ public class magix
 	
 	
 	
-	static MEMORY_READ_START( magix_sound_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM			},	// ROM
-		{ 0x8000, 0xbfff, MRA_BANK3			},	// Banked ROM
-		{ 0xf000, 0xf7ff, MRA_RAM			},	// RAM
-		{ 0xf800, 0xf800, soundlatch_r		},	// From Main CPU
-	MEMORY_END
+	public static Memory_ReadAddress magix_sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM			),	// ROM
+		new Memory_ReadAddress( 0x8000, 0xbfff, MRA_BANK3			),	// Banked ROM
+		new Memory_ReadAddress( 0xf000, 0xf7ff, MRA_RAM			),	// RAM
+		new Memory_ReadAddress( 0xf800, 0xf800, soundlatch_r		),	// From Main CPU
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( magix_sound_writemem )
 		{ 0x0000, 0x7fff, MWA_ROM					},	// ROM

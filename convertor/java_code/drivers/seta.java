@@ -191,25 +191,27 @@ public class seta
 		cpu_spinuntil_time(TIME_IN_USEC(50));	// Allow the sound cpu to acknowledge
 	} };
 	
-	static MEMORY_READ_START( calibr50_readmem )
-		{ 0x000000, 0x09ffff, MRA_ROM					},	// ROM
-		{ 0xff0000, 0xffffff, MRA_BANK1					},	// RAM
-		{ 0x100000, 0x100007, MRA_NOP					},	// ? (same as a00010-a00017?)
-		{ 0x200000, 0x200fff, MRA_BANK2					},	// NVRAM
-		{ 0x300000, 0x300001, MRA_NOP					},	// ? (value's read but not used)
-		{ 0x400000, 0x400001, watchdog_reset_r			},	// Watchdog
-		{ 0x600000, 0x600003, seta_dsw_r				},	// DSW
-		{ 0x700000, 0x7003ff, MRA_BANK3					},	// Palette
-	/**/{ 0x800000, 0x800005, MRA_BANK4					},	// VRAM Ctrl
-		{ 0x900000, 0x901fff, MRA_BANK5					},	// VRAM
-		{ 0x902000, 0x903fff, MRA_BANK6					},	// VRAM
-		{ 0x904000, 0x904fff, MRA_BANK7					},	//
-		{ 0xa00000, 0xa00019, calibr50_ip_r				},	// Input Ports
-	/**/{ 0xd00000, 0xd00607, MRA_BANK8					},	// Sprites Y
-		{ 0xe00000, 0xe03fff, MRA_BANK9					},	// Sprites Code + X + Attr
-		{ 0xb00000, 0xb00001, soundlatch2_r				},	// From Sub CPU
-	/**/{ 0xc00000, 0xc00001, MRA_BANK10				},	// ? $4000
-	MEMORY_END
+	public static Memory_ReadAddress calibr50_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x09ffff, MRA_ROM					),	// ROM
+		new Memory_ReadAddress( 0xff0000, 0xffffff, MRA_BANK1					),	// RAM
+		new Memory_ReadAddress( 0x100000, 0x100007, MRA_NOP					),	// ? (same as a00010-a00017?)
+		new Memory_ReadAddress( 0x200000, 0x200fff, MRA_BANK2					),	// NVRAM
+		new Memory_ReadAddress( 0x300000, 0x300001, MRA_NOP					),	// ? (value's read but not used)
+		new Memory_ReadAddress( 0x400000, 0x400001, watchdog_reset_r			),	// Watchdog
+		new Memory_ReadAddress( 0x600000, 0x600003, seta_dsw_r				),	// DSW
+		new Memory_ReadAddress( 0x700000, 0x7003ff, MRA_BANK3					),	// Palette
+	/**/new Memory_ReadAddress( 0x800000, 0x800005, MRA_BANK4					),	// VRAM Ctrl
+		new Memory_ReadAddress( 0x900000, 0x901fff, MRA_BANK5					),	// VRAM
+		new Memory_ReadAddress( 0x902000, 0x903fff, MRA_BANK6					),	// VRAM
+		new Memory_ReadAddress( 0x904000, 0x904fff, MRA_BANK7					),	//
+		new Memory_ReadAddress( 0xa00000, 0xa00019, calibr50_ip_r				),	// Input Ports
+	/**/new Memory_ReadAddress( 0xd00000, 0xd00607, MRA_BANK8					),	// Sprites Y
+		new Memory_ReadAddress( 0xe00000, 0xe03fff, MRA_BANK9					),	// Sprites Code + X + Attr
+		new Memory_ReadAddress( 0xb00000, 0xb00001, soundlatch2_r				),	// From Sub CPU
+	/**/new Memory_ReadAddress( 0xc00000, 0xc00001, MRA_BANK10				),	// ? $4000
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( calibr50_writemem )
 		{ 0x000000, 0x09ffff, MWA_ROM								},	// ROM
@@ -234,20 +236,22 @@ public class seta
 				(with slight variations, and protections hooked in)
 	***************************************************************************/
 	
-	static MEMORY_READ_START( downtown_readmem )
-		{ 0x000000, 0x09ffff, MRA_ROM					},	// ROM
-		{ 0xf00000, 0xffffff, MRA_BANK1					},	// RAM
-		{ 0x100000, 0x103fff, seta_sound_word_r			},	// Sound
-		{ 0x600000, 0x600003, seta_dsw_r				},	// DSW
-		{ 0x700000, 0x7003ff, MRA_BANK3					},	// Palette
-	/**/{ 0x800000, 0x800005, MRA_BANK4					},	// VRAM Ctrl
-		{ 0x900000, 0x901fff, MRA_BANK5					},	// VRAM
-		{ 0x902000, 0x903fff, MRA_BANK6					},	// VRAM
-		{ 0xb00000, 0xb00fff, sharedram_68000_r			},	// Shared RAM
-	/**/{ 0xc00000, 0xc00001, MRA_BANK7					},	// ? $4000
-	/**/{ 0xd00000, 0xd00607, MRA_BANK8					},	// Sprites Y
-		{ 0xe00000, 0xe03fff, MRA_BANK9					},	// Sprites Code + X + Attr
-	MEMORY_END
+	public static Memory_ReadAddress downtown_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x09ffff, MRA_ROM					),	// ROM
+		new Memory_ReadAddress( 0xf00000, 0xffffff, MRA_BANK1					),	// RAM
+		new Memory_ReadAddress( 0x100000, 0x103fff, seta_sound_word_r			),	// Sound
+		new Memory_ReadAddress( 0x600000, 0x600003, seta_dsw_r				),	// DSW
+		new Memory_ReadAddress( 0x700000, 0x7003ff, MRA_BANK3					),	// Palette
+	/**/new Memory_ReadAddress( 0x800000, 0x800005, MRA_BANK4					),	// VRAM Ctrl
+		new Memory_ReadAddress( 0x900000, 0x901fff, MRA_BANK5					),	// VRAM
+		new Memory_ReadAddress( 0x902000, 0x903fff, MRA_BANK6					),	// VRAM
+		new Memory_ReadAddress( 0xb00000, 0xb00fff, sharedram_68000_r			),	// Shared RAM
+	/**/new Memory_ReadAddress( 0xc00000, 0xc00001, MRA_BANK7					),	// ? $4000
+	/**/new Memory_ReadAddress( 0xd00000, 0xd00607, MRA_BANK8					),	// Sprites Y
+		new Memory_ReadAddress( 0xe00000, 0xe03fff, MRA_BANK9					),	// Sprites Code + X + Attr
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( downtown_writemem )
 		{ 0x000000, 0x09ffff, MWA_ROM								},	// ROM
@@ -273,25 +277,27 @@ public class seta
 	***************************************************************************/
 	
 	
-	static MEMORY_READ_START( msgundam_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM				},	// ROM
-		{ 0x100000, 0x1fffff, MRA_ROM				},	// ROM
-		{ 0x200000, 0x24ffff, MRA_BANK1				},	// RAM
-		{ 0x400000, 0x400001, input_port_0_r		},	// P1
-		{ 0x400002, 0x400003, input_port_1_r		},	// P2
-		{ 0x400004, 0x400005, input_port_2_r		},	// Coins
-		{ 0x500000, 0x500005, MRA_BANK4				},	// Coin Lockout + Video Registers
-		{ 0x600000, 0x600003, seta_dsw_r			},	// DSW
-		{ 0x700400, 0x700fff, MRA_BANK5				},	// Palette
-		{ 0x800000, 0x800607, MRA_BANK6				},	// Sprites Y
-	/**/{ 0x880000, 0x880001, MRA_BANK7				},	// ? 0x4000
-		{ 0x900000, 0x903fff, MRA_BANK8				},	// Sprites Code + X + Attr
-		{ 0xa00000, 0xa03fff, MRA_BANK9				},	// VRAM 0&1
-		{ 0xa80000, 0xa83fff, MRA_BANK10			},	// VRAM 2&3
-		{ 0xb00000, 0xb00005, MRA_BANK11			},	// VRAM 0&1 Ctrl
-		{ 0xb80000, 0xb80005, MRA_BANK12			},	// VRAM 1&2 Ctrl
-		{ 0xc00000, 0xc03fff, seta_sound_word_r		},	// Sound
-	MEMORY_END
+	public static Memory_ReadAddress msgundam_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM				),	// ROM
+		new Memory_ReadAddress( 0x100000, 0x1fffff, MRA_ROM				),	// ROM
+		new Memory_ReadAddress( 0x200000, 0x24ffff, MRA_BANK1				),	// RAM
+		new Memory_ReadAddress( 0x400000, 0x400001, input_port_0_r		),	// P1
+		new Memory_ReadAddress( 0x400002, 0x400003, input_port_1_r		),	// P2
+		new Memory_ReadAddress( 0x400004, 0x400005, input_port_2_r		),	// Coins
+		new Memory_ReadAddress( 0x500000, 0x500005, MRA_BANK4				),	// Coin Lockout + Video Registers
+		new Memory_ReadAddress( 0x600000, 0x600003, seta_dsw_r			),	// DSW
+		new Memory_ReadAddress( 0x700400, 0x700fff, MRA_BANK5				),	// Palette
+		new Memory_ReadAddress( 0x800000, 0x800607, MRA_BANK6				),	// Sprites Y
+	/**/new Memory_ReadAddress( 0x880000, 0x880001, MRA_BANK7				),	// ? 0x4000
+		new Memory_ReadAddress( 0x900000, 0x903fff, MRA_BANK8				),	// Sprites Code + X + Attr
+		new Memory_ReadAddress( 0xa00000, 0xa03fff, MRA_BANK9				),	// VRAM 0&1
+		new Memory_ReadAddress( 0xa80000, 0xa83fff, MRA_BANK10			),	// VRAM 2&3
+		new Memory_ReadAddress( 0xb00000, 0xb00005, MRA_BANK11			),	// VRAM 0&1 Ctrl
+		new Memory_ReadAddress( 0xb80000, 0xb80005, MRA_BANK12			),	// VRAM 1&2 Ctrl
+		new Memory_ReadAddress( 0xc00000, 0xc03fff, seta_sound_word_r		),	// Sound
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	static MEMORY_WRITE_START( msgundam_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM								},	// ROM
 		{ 0x100000, 0x1fffff, MWA_ROM								},	// ROM
@@ -342,16 +348,18 @@ public class seta
 	} };
 	
 	
-	static MEMORY_READ_START( tndrcade_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM					},	// ROM
-		{ 0x380000, 0x3803ff, MRA_BANK1					},	// Palette
-	/**/{ 0x400000, 0x400001, MRA_BANK2					},	// ? $4000
-	/**/{ 0x600000, 0x600607, MRA_BANK3					},	// Sprites Y
-		{ 0xa00000, 0xa00fff, sharedram_68000_r			},	// Shared RAM
-		{ 0xc00000, 0xc03fff, MRA_BANK4					},	// Sprites Code + X + Attr
-		{ 0xe00000, 0xe03fff, MRA_BANK5					},	// RAM (Mirrored?)
-		{ 0xffc000, 0xffffff, mirror_ram_r				},	// RAM (Mirrored?)
-	MEMORY_END
+	public static Memory_ReadAddress tndrcade_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM					),	// ROM
+		new Memory_ReadAddress( 0x380000, 0x3803ff, MRA_BANK1					),	// Palette
+	/**/new Memory_ReadAddress( 0x400000, 0x400001, MRA_BANK2					),	// ? $4000
+	/**/new Memory_ReadAddress( 0x600000, 0x600607, MRA_BANK3					),	// Sprites Y
+		new Memory_ReadAddress( 0xa00000, 0xa00fff, sharedram_68000_r			),	// Shared RAM
+		new Memory_ReadAddress( 0xc00000, 0xc03fff, MRA_BANK4					),	// Sprites Code + X + Attr
+		new Memory_ReadAddress( 0xe00000, 0xe03fff, MRA_BANK5					),	// RAM (Mirrored?)
+		new Memory_ReadAddress( 0xffc000, 0xffffff, mirror_ram_r				),	// RAM (Mirrored?)
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( tndrcade_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM							},	// ROM
@@ -421,24 +429,26 @@ public class seta
 	} };
 	
 	
-	static MEMORY_READ_START( usclssic_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM					},	// ROM
-		{ 0xff0000, 0xffffff, MRA_BANK1					},	// RAM
-		{ 0x800000, 0x800607, MRA_BANK2					},	// Sprites Y
-	/**/{ 0x900000, 0x900001, MRA_BANK3					},	// ?
-		{ 0xa00000, 0xa00005, MRA_BANK4					},	// VRAM Ctrl
-	/**/{ 0xb00000, 0xb003ff, MRA_BANK5					},	// Palette
-		{ 0xb40000, 0xb40003, usclssic_trackball_x_r	},	// TrackBall X
-		{ 0xb40004, 0xb40007, usclssic_trackball_y_r	},	// TrackBall Y + Buttons
-		{ 0xb40010, 0xb40011, input_port_2_r			},	// Coins
-		{ 0xb40018, 0xb4001f, usclssic_dsw_r			},	// 2 DSWs
-		{ 0xb80000, 0xb80001, MRA_NOP					},	// watchdog (value is discarded)?
-		{ 0xc00000, 0xc03fff, MRA_BANK6					},	// Sprites Code + X + Attr
-		{ 0xd00000, 0xd01fff, MRA_BANK7					},	// VRAM
-		{ 0xd02000, 0xd03fff, MRA_BANK8					},	// VRAM
-		{ 0xd04000, 0xd04fff, MRA_BANK9					},	//
-		{ 0xe00000, 0xe00fff, MRA_BANK10				},	// NVRAM? (odd bytes)
-	MEMORY_END
+	public static Memory_ReadAddress usclssic_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM					),	// ROM
+		new Memory_ReadAddress( 0xff0000, 0xffffff, MRA_BANK1					),	// RAM
+		new Memory_ReadAddress( 0x800000, 0x800607, MRA_BANK2					),	// Sprites Y
+	/**/new Memory_ReadAddress( 0x900000, 0x900001, MRA_BANK3					),	// ?
+		new Memory_ReadAddress( 0xa00000, 0xa00005, MRA_BANK4					),	// VRAM Ctrl
+	/**/new Memory_ReadAddress( 0xb00000, 0xb003ff, MRA_BANK5					),	// Palette
+		new Memory_ReadAddress( 0xb40000, 0xb40003, usclssic_trackball_x_r	),	// TrackBall X
+		new Memory_ReadAddress( 0xb40004, 0xb40007, usclssic_trackball_y_r	),	// TrackBall Y + Buttons
+		new Memory_ReadAddress( 0xb40010, 0xb40011, input_port_2_r			),	// Coins
+		new Memory_ReadAddress( 0xb40018, 0xb4001f, usclssic_dsw_r			),	// 2 DSWs
+		new Memory_ReadAddress( 0xb80000, 0xb80001, MRA_NOP					),	// watchdog (value is discarded)?
+		new Memory_ReadAddress( 0xc00000, 0xc03fff, MRA_BANK6					),	// Sprites Code + X + Attr
+		new Memory_ReadAddress( 0xd00000, 0xd01fff, MRA_BANK7					),	// VRAM
+		new Memory_ReadAddress( 0xd02000, 0xd03fff, MRA_BANK8					),	// VRAM
+		new Memory_ReadAddress( 0xd04000, 0xd04fff, MRA_BANK9					),	//
+		new Memory_ReadAddress( 0xe00000, 0xe00fff, MRA_BANK10				),	// NVRAM? (odd bytes)
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( usclssic_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM							},	// ROM
@@ -464,26 +474,28 @@ public class seta
 						Blandia / War of Aero / Zing Zing Zip
 	***************************************************************************/
 	
-	static MEMORY_READ_START( wrofaero_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM				},	// ROM
-		{ 0x100000, 0x1fffff, MRA_ROM				},	// ROM (for blandia)
-		{ 0x200000, 0x20ffff, MRA_BANK1				},	// RAM (main ram for zingzip, wrofaero writes to 20f000-20ffff)
-		{ 0x300000, 0x30ffff, MRA_BANK2				},	// RAM (wrofaero only?)
-		{ 0x400000, 0x400001, input_port_0_r		},	// P1
-		{ 0x400002, 0x400003, input_port_1_r		},	// P2
-		{ 0x400004, 0x400005, input_port_2_r		},	// Coins
-		{ 0x600000, 0x600003, seta_dsw_r			},	// DSW
-		{ 0x700400, 0x700fff, MRA_BANK3				},	// Palette
-		{ 0x701000, 0x7013ff, MRA_BANK13			},	// ? Palette ?
-		{ 0x800000, 0x803fff, MRA_BANK4				},	// VRAM 0&1
-		{ 0x880000, 0x883fff, MRA_BANK5				},	// VRAM 2&3
-	/**/{ 0x900000, 0x900005, MRA_BANK6				},	// VRAM 0&1 Ctrl
-	/**/{ 0x980000, 0x980005, MRA_BANK7				},	// VRAM 2&3 Ctrl
-	/**/{ 0xa00000, 0xa00607, MRA_BANK8				},	// Sprites Y
-	/**/{ 0xa80000, 0xa80001, MRA_BANK9				},	// ? 0x4000
-		{ 0xb00000, 0xb03fff, MRA_BANK10			},	// Sprites Code + X + Attr
-	/**/{ 0xc00000, 0xc03fff, seta_sound_word_r		},	// Sound
-	MEMORY_END
+	public static Memory_ReadAddress wrofaero_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM				),	// ROM
+		new Memory_ReadAddress( 0x100000, 0x1fffff, MRA_ROM				),	// ROM (for blandia)
+		new Memory_ReadAddress( 0x200000, 0x20ffff, MRA_BANK1				),	// RAM (main ram for zingzip, wrofaero writes to 20f000-20ffff)
+		new Memory_ReadAddress( 0x300000, 0x30ffff, MRA_BANK2				),	// RAM (wrofaero only?)
+		new Memory_ReadAddress( 0x400000, 0x400001, input_port_0_r		),	// P1
+		new Memory_ReadAddress( 0x400002, 0x400003, input_port_1_r		),	// P2
+		new Memory_ReadAddress( 0x400004, 0x400005, input_port_2_r		),	// Coins
+		new Memory_ReadAddress( 0x600000, 0x600003, seta_dsw_r			),	// DSW
+		new Memory_ReadAddress( 0x700400, 0x700fff, MRA_BANK3				),	// Palette
+		new Memory_ReadAddress( 0x701000, 0x7013ff, MRA_BANK13			),	// ? Palette ?
+		new Memory_ReadAddress( 0x800000, 0x803fff, MRA_BANK4				),	// VRAM 0&1
+		new Memory_ReadAddress( 0x880000, 0x883fff, MRA_BANK5				),	// VRAM 2&3
+	/**/new Memory_ReadAddress( 0x900000, 0x900005, MRA_BANK6				),	// VRAM 0&1 Ctrl
+	/**/new Memory_ReadAddress( 0x980000, 0x980005, MRA_BANK7				),	// VRAM 2&3 Ctrl
+	/**/new Memory_ReadAddress( 0xa00000, 0xa00607, MRA_BANK8				),	// Sprites Y
+	/**/new Memory_ReadAddress( 0xa80000, 0xa80001, MRA_BANK9				),	// ? 0x4000
+		new Memory_ReadAddress( 0xb00000, 0xb03fff, MRA_BANK10			),	// Sprites Code + X + Attr
+	/**/new Memory_ReadAddress( 0xc00000, 0xc03fff, seta_sound_word_r		),	// Sound
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	static MEMORY_WRITE_START( wrofaero_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM								},	// ROM
 		{ 0x100000, 0x1fffff, MWA_ROM								},	// ROM (for blandia)
@@ -545,14 +557,16 @@ public class seta
 									Caliber 50
 	***************************************************************************/
 	
-	static MEMORY_READ_START( calibr50_sub_readmem )
-		{ 0x0000, 0x0fff, MRA_RAM			},	// RAM
-		{ 0x1000, 0x107f, seta_sound_r		},	// Sound
-		{ 0x1080, 0x1fff, MRA_RAM			},	// RAM
-		{ 0x4000, 0x4000, soundlatch_r		},	// From Main CPU
-		{ 0x8000, 0xbfff, MRA_BANK15		},	// Banked ROM
-		{ 0xc000, 0xffff, MRA_ROM			},	// ROM
-	MEMORY_END
+	public static Memory_ReadAddress calibr50_sub_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x0fff, MRA_RAM			),	// RAM
+		new Memory_ReadAddress( 0x1000, 0x107f, seta_sound_r		),	// Sound
+		new Memory_ReadAddress( 0x1080, 0x1fff, MRA_RAM			),	// RAM
+		new Memory_ReadAddress( 0x4000, 0x4000, soundlatch_r		),	// From Main CPU
+		new Memory_ReadAddress( 0x8000, 0xbfff, MRA_BANK15		),	// Banked ROM
+		new Memory_ReadAddress( 0xc000, 0xffff, MRA_ROM			),	// ROM
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( calibr50_sub_writemem )
 		{ 0x0000, 0x0fff, MWA_RAM							},	// RAM
@@ -593,16 +607,18 @@ public class seta
 		return 0;
 	} };
 	
-	static MEMORY_READ_START( downtown_sub_readmem )
-		{ 0x0000, 0x01ff, MRA_RAM			},	// RAM
-		{ 0x0800, 0x0800, soundlatch_r		},	//
-		{ 0x0801, 0x0801, soundlatch2_r		},	//
-		{ 0x1000, 0x1007, downtown_ip_r		},	// Input Ports
-		{ 0x5000, 0x57ff, MRA_RAM			},	// Shared RAM
-		{ 0x7000, 0x7fff, MRA_ROM			},	// ROM
-		{ 0x8000, 0xbfff, MRA_BANK15		},	// Banked ROM
-		{ 0xc000, 0xffff, MRA_ROM			},	// ROM
-	MEMORY_END
+	public static Memory_ReadAddress downtown_sub_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x01ff, MRA_RAM			),	// RAM
+		new Memory_ReadAddress( 0x0800, 0x0800, soundlatch_r		),	//
+		new Memory_ReadAddress( 0x0801, 0x0801, soundlatch2_r		),	//
+		new Memory_ReadAddress( 0x1000, 0x1007, downtown_ip_r		),	// Input Ports
+		new Memory_ReadAddress( 0x5000, 0x57ff, MRA_RAM			),	// Shared RAM
+		new Memory_ReadAddress( 0x7000, 0x7fff, MRA_ROM			),	// ROM
+		new Memory_ReadAddress( 0x8000, 0xbfff, MRA_BANK15		),	// Banked ROM
+		new Memory_ReadAddress( 0xc000, 0xffff, MRA_ROM			),	// ROM
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( downtown_sub_writemem )
 		{ 0x0000, 0x01ff, MWA_RAM				},	// RAM
@@ -618,18 +634,20 @@ public class seta
 									Meta Fox
 	***************************************************************************/
 	
-	static MEMORY_READ_START( metafox_sub_readmem )
-		{ 0x0000, 0x01ff, MRA_RAM			},	// RAM
-		{ 0x0800, 0x0800, soundlatch_r		},	//
-		{ 0x0801, 0x0801, soundlatch2_r		},	//
-		{ 0x1000, 0x1000, input_port_2_r	},	// Coins
-		{ 0x1002, 0x1002, input_port_0_r	},	// P1
-	//	{ 0x1004, 0x1004, MRA_NOP			},	// ?
-		{ 0x1006, 0x1006, input_port_1_r	},	// P2
-		{ 0x5000, 0x57ff, MRA_RAM			},	// Shared RAM
-		{ 0x7000, 0x7fff, MRA_ROM			},	// ROM
-		{ 0xc000, 0xffff, MRA_ROM			},	// ROM
-	MEMORY_END
+	public static Memory_ReadAddress metafox_sub_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x01ff, MRA_RAM			),	// RAM
+		new Memory_ReadAddress( 0x0800, 0x0800, soundlatch_r		),	//
+		new Memory_ReadAddress( 0x0801, 0x0801, soundlatch2_r		),	//
+		new Memory_ReadAddress( 0x1000, 0x1000, input_port_2_r	),	// Coins
+		new Memory_ReadAddress( 0x1002, 0x1002, input_port_0_r	),	// P1
+	//	new Memory_ReadAddress( 0x1004, 0x1004, MRA_NOP			),	// ?
+		new Memory_ReadAddress( 0x1006, 0x1006, input_port_1_r	),	// P2
+		new Memory_ReadAddress( 0x5000, 0x57ff, MRA_RAM			),	// Shared RAM
+		new Memory_ReadAddress( 0x7000, 0x7fff, MRA_ROM			),	// ROM
+		new Memory_ReadAddress( 0xc000, 0xffff, MRA_ROM			),	// ROM
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( metafox_sub_writemem )
 		{ 0x0000, 0x01ff, MWA_RAM				},	// RAM
@@ -645,18 +663,20 @@ public class seta
 									Twin Eagle
 	***************************************************************************/
 	
-	static MEMORY_READ_START( twineagl_sub_readmem )
-		{ 0x0000, 0x01ff, MRA_RAM			},	// RAM
-		{ 0x0800, 0x0800, soundlatch_r		},	//
-		{ 0x0801, 0x0801, soundlatch2_r		},	//
-		{ 0x1000, 0x1000, input_port_0_r	},	// P1
-		{ 0x1001, 0x1001, input_port_1_r	},	// P2
-		{ 0x1002, 0x1002, input_port_2_r	},	// Coins
-		{ 0x5000, 0x57ff, MRA_RAM			},	// Shared RAM
-		{ 0x7000, 0x7fff, MRA_ROM			},	// ROM
-		{ 0x8000, 0xbfff, MRA_BANK15		},	// ROM
-		{ 0xc000, 0xffff, MRA_ROM			},	// ROM
-	MEMORY_END
+	public static Memory_ReadAddress twineagl_sub_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x01ff, MRA_RAM			),	// RAM
+		new Memory_ReadAddress( 0x0800, 0x0800, soundlatch_r		),	//
+		new Memory_ReadAddress( 0x0801, 0x0801, soundlatch2_r		),	//
+		new Memory_ReadAddress( 0x1000, 0x1000, input_port_0_r	),	// P1
+		new Memory_ReadAddress( 0x1001, 0x1001, input_port_1_r	),	// P2
+		new Memory_ReadAddress( 0x1002, 0x1002, input_port_2_r	),	// Coins
+		new Memory_ReadAddress( 0x5000, 0x57ff, MRA_RAM			),	// Shared RAM
+		new Memory_ReadAddress( 0x7000, 0x7fff, MRA_ROM			),	// ROM
+		new Memory_ReadAddress( 0x8000, 0xbfff, MRA_BANK15		),	// ROM
+		new Memory_ReadAddress( 0xc000, 0xffff, MRA_ROM			),	// ROM
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( twineagl_sub_writemem )
 		{ 0x0000, 0x01ff, MWA_RAM				},	// RAM
@@ -674,20 +694,22 @@ public class seta
 	
 	public static ReadHandlerPtr ff_r  = new ReadHandlerPtr() { public int handler(int offset)	{return 0xff;} };
 	
-	static MEMORY_READ_START( tndrcade_sub_readmem )
-		{ 0x0000, 0x01ff, MRA_RAM					},	// RAM
-		{ 0x0800, 0x0800, ff_r						},	// ? (bits 0/1/2/3: 1 . do test 0-ff/100-1e0/5001-57ff/banked rom)
-	//	{ 0x0800, 0x0800, soundlatch_r				},	//
-	//	{ 0x0801, 0x0801, soundlatch2_r				},	//
-		{ 0x1000, 0x1000, input_port_0_r			},	// P1
-		{ 0x1001, 0x1001, input_port_1_r			},	// P2
-		{ 0x1002, 0x1002, input_port_2_r			},	// Coins
-		{ 0x2001, 0x2001, YM2203_read_port_0_r		},
-		{ 0x5000, 0x57ff, MRA_RAM					},	// Shared RAM
-		{ 0x6000, 0x7fff, MRA_ROM					},	// ROM
-		{ 0x8000, 0xbfff, MRA_BANK15				},	// Banked ROM
-		{ 0xc000, 0xffff, MRA_ROM					},	// ROM
-	MEMORY_END
+	public static Memory_ReadAddress tndrcade_sub_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x01ff, MRA_RAM					),	// RAM
+		new Memory_ReadAddress( 0x0800, 0x0800, ff_r						),	// ? (bits 0/1/2/3: 1 . do test 0-ff/100-1e0/5001-57ff/banked rom)
+	//	new Memory_ReadAddress( 0x0800, 0x0800, soundlatch_r				),	//
+	//	new Memory_ReadAddress( 0x0801, 0x0801, soundlatch2_r				),	//
+		new Memory_ReadAddress( 0x1000, 0x1000, input_port_0_r			),	// P1
+		new Memory_ReadAddress( 0x1001, 0x1001, input_port_1_r			),	// P2
+		new Memory_ReadAddress( 0x1002, 0x1002, input_port_2_r			),	// Coins
+		new Memory_ReadAddress( 0x2001, 0x2001, YM2203_read_port_0_r		),
+		new Memory_ReadAddress( 0x5000, 0x57ff, MRA_RAM					),	// Shared RAM
+		new Memory_ReadAddress( 0x6000, 0x7fff, MRA_ROM					),	// ROM
+		new Memory_ReadAddress( 0x8000, 0xbfff, MRA_BANK15				),	// Banked ROM
+		new Memory_ReadAddress( 0xc000, 0xffff, MRA_ROM					),	// ROM
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( tndrcade_sub_writemem )
 		{ 0x0000, 0x01ff, MWA_RAM					},	// RAM

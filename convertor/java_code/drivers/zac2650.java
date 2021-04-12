@@ -19,15 +19,17 @@ public class zac2650
 	
 	
 	
-	static MEMORY_READ_START( readmem )
-		{ 0x0000, 0x17ff, MRA_ROM },
-	    { 0x1800, 0x1bff, MRA_RAM },
-	    { 0x1E80, 0x1E80, tinvader_port_0_r },
-	    { 0x1E81, 0x1E81, input_port_1_r },
-	    { 0x1E82, 0x1E82, input_port_2_r },
-	    { 0x1D00, 0x1Dff, MRA_RAM },
-	    { 0x1F00, 0x1FFF, s2636_r },			/* S2636 Chip */
-	MEMORY_END
+	public static Memory_ReadAddress readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x17ff, MRA_ROM ),
+	    new Memory_ReadAddress( 0x1800, 0x1bff, MRA_RAM ),
+	    new Memory_ReadAddress( 0x1E80, 0x1E80, tinvader_port_0_r ),
+	    new Memory_ReadAddress( 0x1E81, 0x1E81, input_port_1_r ),
+	    new Memory_ReadAddress( 0x1E82, 0x1E82, input_port_2_r ),
+	    new Memory_ReadAddress( 0x1D00, 0x1Dff, MRA_RAM ),
+	    new Memory_ReadAddress( 0x1F00, 0x1FFF, s2636_r ),			/* S2636 Chip */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem )
 		{ 0x0000, 0x17FF, MWA_ROM },

@@ -586,10 +586,12 @@ public class shanghai
 		coin_counter_w.handler(1,data & 2);
 	} };
 	
-	static MEMORY_READ_START( readmem )
-		{ 0x00000, 0x03fff, MRA_RAM },
-		{ 0xa0000, 0xfffff, MRA_ROM },
-	MEMORY_END
+	public static Memory_ReadAddress readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x00000, 0x03fff, MRA_RAM ),
+		new Memory_ReadAddress( 0xa0000, 0xfffff, MRA_ROM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem )
 		{ 0x00000, 0x03fff, MWA_RAM },

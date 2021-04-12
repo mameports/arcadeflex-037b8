@@ -28,15 +28,17 @@ public class pingpong
 	
 	
 	
-	static MEMORY_READ_START( readmem )
-		{ 0x0000, 0x7FFF, MRA_ROM },
-		{ 0x8000, 0x87FF, MRA_RAM },
-		{ 0x9000, 0x97FF, MRA_RAM },
-		{ 0xA800, 0xA800, input_port_0_r },
-		{ 0xA880, 0xA880, input_port_1_r },
-		{ 0xA900, 0xA900, input_port_2_r },
-		{ 0xA980, 0xA980, input_port_3_r },
-	MEMORY_END
+	public static Memory_ReadAddress readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7FFF, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0x87FF, MRA_RAM ),
+		new Memory_ReadAddress( 0x9000, 0x97FF, MRA_RAM ),
+		new Memory_ReadAddress( 0xA800, 0xA800, input_port_0_r ),
+		new Memory_ReadAddress( 0xA880, 0xA880, input_port_1_r ),
+		new Memory_ReadAddress( 0xA900, 0xA900, input_port_2_r ),
+		new Memory_ReadAddress( 0xA980, 0xA980, input_port_3_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem )
 		{ 0x0000, 0x7FFF, MWA_ROM },

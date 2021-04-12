@@ -67,18 +67,20 @@ public class toaplan1
 	
 	
 	
-	static MEMORY_READ_START( rallybik_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM },
-		{ 0x080000, 0x083fff, MRA_BANK1 },
-		{ 0x0c0000, 0x0c0fff, MRA_BANK2 },				/* sprite ram data */
-		{ 0x100002, 0x100003, video_ofs3_r },
-		{ 0x100004, 0x100007, rallybik_videoram3_r },	/* tile layers */
-		{ 0x100010, 0x10001f, scrollregs_r },
-		{ 0x140000, 0x140001, input_port_0_r },
-		{ 0x144000, 0x1447ff, toaplan1_colorram1_r },
-		{ 0x146000, 0x1467ff, toaplan1_colorram2_r },
-		{ 0x180000, 0x180fff, toaplan1_shared_r },
-	MEMORY_END
+	public static Memory_ReadAddress rallybik_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x080000, 0x083fff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x0c0000, 0x0c0fff, MRA_BANK2 ),				/* sprite ram data */
+		new Memory_ReadAddress( 0x100002, 0x100003, video_ofs3_r ),
+		new Memory_ReadAddress( 0x100004, 0x100007, rallybik_videoram3_r ),	/* tile layers */
+		new Memory_ReadAddress( 0x100010, 0x10001f, scrollregs_r ),
+		new Memory_ReadAddress( 0x140000, 0x140001, input_port_0_r ),
+		new Memory_ReadAddress( 0x144000, 0x1447ff, toaplan1_colorram1_r ),
+		new Memory_ReadAddress( 0x146000, 0x1467ff, toaplan1_colorram2_r ),
+		new Memory_ReadAddress( 0x180000, 0x180fff, toaplan1_shared_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	static MEMORY_WRITE_START( rallybik_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM },
 		{ 0x080000, 0x083fff, MWA_BANK1 },
@@ -94,20 +96,22 @@ public class toaplan1
 		{ 0x1c0000, 0x1c0003, offsetregs_w },
 	MEMORY_END
 	
-	static MEMORY_READ_START( truxton_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM },
-		{ 0x080000, 0x083fff, MRA_BANK1 },
-		{ 0x0c0000, 0x0c0001, input_port_0_r },
-		{ 0x0c0002, 0x0c0003, video_ofs_r },
-		{ 0x0c0004, 0x0c0005, toaplan1_videoram1_r },	/* sprites info */
-		{ 0x0c0006, 0x0c0007, toaplan1_videoram2_r },	/* sprite size ? */
-		{ 0x100002, 0x100003, video_ofs3_r },
-		{ 0x100004, 0x100007, toaplan1_videoram3_r },	/* tile layers */
-		{ 0x100010, 0x10001f, scrollregs_r },
-		{ 0x144000, 0x1447ff, toaplan1_colorram1_r },
-		{ 0x146000, 0x1467ff, toaplan1_colorram2_r },
-		{ 0x180000, 0x180fff, toaplan1_shared_r },
-	MEMORY_END
+	public static Memory_ReadAddress truxton_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x080000, 0x083fff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x0c0000, 0x0c0001, input_port_0_r ),
+		new Memory_ReadAddress( 0x0c0002, 0x0c0003, video_ofs_r ),
+		new Memory_ReadAddress( 0x0c0004, 0x0c0005, toaplan1_videoram1_r ),	/* sprites info */
+		new Memory_ReadAddress( 0x0c0006, 0x0c0007, toaplan1_videoram2_r ),	/* sprite size ? */
+		new Memory_ReadAddress( 0x100002, 0x100003, video_ofs3_r ),
+		new Memory_ReadAddress( 0x100004, 0x100007, toaplan1_videoram3_r ),	/* tile layers */
+		new Memory_ReadAddress( 0x100010, 0x10001f, scrollregs_r ),
+		new Memory_ReadAddress( 0x144000, 0x1447ff, toaplan1_colorram1_r ),
+		new Memory_ReadAddress( 0x146000, 0x1467ff, toaplan1_colorram2_r ),
+		new Memory_ReadAddress( 0x180000, 0x180fff, toaplan1_shared_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	static MEMORY_WRITE_START( truxton_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM },
 		{ 0x080000, 0x083fff, MWA_BANK1 },
@@ -126,20 +130,22 @@ public class toaplan1
 		{ 0x1c0006, 0x1c0007, toaplan1_flipscreen_w },
 	MEMORY_END
 	
-	static MEMORY_READ_START( hellfire_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x040000, 0x047fff, MRA_BANK1 },
-		{ 0x084000, 0x0847ff, toaplan1_colorram1_r },
-		{ 0x086000, 0x0867ff, toaplan1_colorram2_r },
-		{ 0x0c0000, 0x0c0fff, toaplan1_shared_r },
-		{ 0x100002, 0x100003, video_ofs3_r },
-		{ 0x100004, 0x100007, toaplan1_videoram3_r },	/* tile layers */
-		{ 0x100010, 0x10001f, scrollregs_r },
-		{ 0x140000, 0x140001, input_port_0_r },
-		{ 0x140002, 0x140003, video_ofs_r },
-		{ 0x140004, 0x140005, toaplan1_videoram1_r },	/* sprites info */
-		{ 0x140006, 0x140007, toaplan1_videoram2_r },	/* sprite size ? */
-	MEMORY_END
+	public static Memory_ReadAddress hellfire_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x040000, 0x047fff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x084000, 0x0847ff, toaplan1_colorram1_r ),
+		new Memory_ReadAddress( 0x086000, 0x0867ff, toaplan1_colorram2_r ),
+		new Memory_ReadAddress( 0x0c0000, 0x0c0fff, toaplan1_shared_r ),
+		new Memory_ReadAddress( 0x100002, 0x100003, video_ofs3_r ),
+		new Memory_ReadAddress( 0x100004, 0x100007, toaplan1_videoram3_r ),	/* tile layers */
+		new Memory_ReadAddress( 0x100010, 0x10001f, scrollregs_r ),
+		new Memory_ReadAddress( 0x140000, 0x140001, input_port_0_r ),
+		new Memory_ReadAddress( 0x140002, 0x140003, video_ofs_r ),
+		new Memory_ReadAddress( 0x140004, 0x140005, toaplan1_videoram1_r ),	/* sprites info */
+		new Memory_ReadAddress( 0x140006, 0x140007, toaplan1_videoram2_r ),	/* sprite size ? */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	static MEMORY_WRITE_START( hellfire_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
 		{ 0x040000, 0x047fff, MWA_BANK1 },
@@ -158,21 +164,23 @@ public class toaplan1
 		{ 0x180006, 0x180007, toaplan1_flipscreen_w },
 	MEMORY_END
 	
-	static MEMORY_READ_START( zerowing_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM },
-		{ 0x080000, 0x087fff, MRA_BANK1 },
-		{ 0x400000, 0x400005, toaplan1_unk_r },
-		{ 0x404000, 0x4047ff, toaplan1_colorram1_r },
-		{ 0x406000, 0x4067ff, toaplan1_colorram2_r },
-		{ 0x440000, 0x440fff, toaplan1_shared_r },
-		{ 0x480002, 0x480003, video_ofs3_r },
-		{ 0x480004, 0x480007, toaplan1_videoram3_r },	/* tile layers */
-		{ 0x480010, 0x48001f, scrollregs_r },
-		{ 0x4c0000, 0x4c0001, input_port_0_r },
-		{ 0x4c0002, 0x4c0003, video_ofs_r },
-		{ 0x4c0004, 0x4c0005, toaplan1_videoram1_r },	/* sprites info */
-		{ 0x4c0006, 0x4c0007, toaplan1_videoram2_r },	/* sprite size ? */
-	MEMORY_END
+	public static Memory_ReadAddress zerowing_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x080000, 0x087fff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x400000, 0x400005, toaplan1_unk_r ),
+		new Memory_ReadAddress( 0x404000, 0x4047ff, toaplan1_colorram1_r ),
+		new Memory_ReadAddress( 0x406000, 0x4067ff, toaplan1_colorram2_r ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, toaplan1_shared_r ),
+		new Memory_ReadAddress( 0x480002, 0x480003, video_ofs3_r ),
+		new Memory_ReadAddress( 0x480004, 0x480007, toaplan1_videoram3_r ),	/* tile layers */
+		new Memory_ReadAddress( 0x480010, 0x48001f, scrollregs_r ),
+		new Memory_ReadAddress( 0x4c0000, 0x4c0001, input_port_0_r ),
+		new Memory_ReadAddress( 0x4c0002, 0x4c0003, video_ofs_r ),
+		new Memory_ReadAddress( 0x4c0004, 0x4c0005, toaplan1_videoram1_r ),	/* sprites info */
+		new Memory_ReadAddress( 0x4c0006, 0x4c0007, toaplan1_videoram2_r ),	/* sprite size ? */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	static MEMORY_WRITE_START( zerowing_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM },
 		{ 0x080000, 0x087fff, MWA_BANK1 },
@@ -191,21 +199,23 @@ public class toaplan1
 		{ 0x4c0006, 0x4c0007, toaplan1_videoram2_w },	/* sprite size ? */
 	MEMORY_END
 	
-	static MEMORY_READ_START( demonwld_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x400000, 0x400001, input_port_0_r },
-		{ 0x404000, 0x4047ff, toaplan1_colorram1_r },
-		{ 0x406000, 0x4067ff, toaplan1_colorram2_r },
-		{ 0x600000, 0x600fff, toaplan1_shared_r },
-		{ 0x800002, 0x800003, video_ofs3_r },
-		{ 0x800004, 0x800007, toaplan1_videoram3_r },	/* tile layers */
-		{ 0x800010, 0x80001f, scrollregs_r },
-		{ 0xa00000, 0xa00001, input_port_0_r },
-		{ 0xa00002, 0xa00003, video_ofs_r },
-		{ 0xa00004, 0xa00005, toaplan1_videoram1_r },	/* sprites info */
-		{ 0xa00006, 0xa00007, toaplan1_videoram2_r },	/* sprite size ? */
-		{ 0xc00000, 0xc03fff, MRA_BANK1},
-	MEMORY_END
+	public static Memory_ReadAddress demonwld_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x400001, input_port_0_r ),
+		new Memory_ReadAddress( 0x404000, 0x4047ff, toaplan1_colorram1_r ),
+		new Memory_ReadAddress( 0x406000, 0x4067ff, toaplan1_colorram2_r ),
+		new Memory_ReadAddress( 0x600000, 0x600fff, toaplan1_shared_r ),
+		new Memory_ReadAddress( 0x800002, 0x800003, video_ofs3_r ),
+		new Memory_ReadAddress( 0x800004, 0x800007, toaplan1_videoram3_r ),	/* tile layers */
+		new Memory_ReadAddress( 0x800010, 0x80001f, scrollregs_r ),
+		new Memory_ReadAddress( 0xa00000, 0xa00001, input_port_0_r ),
+		new Memory_ReadAddress( 0xa00002, 0xa00003, video_ofs_r ),
+		new Memory_ReadAddress( 0xa00004, 0xa00005, toaplan1_videoram1_r ),	/* sprites info */
+		new Memory_ReadAddress( 0xa00006, 0xa00007, toaplan1_videoram2_r ),	/* sprite size ? */
+		new Memory_ReadAddress( 0xc00000, 0xc03fff, MRA_BANK1),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	static MEMORY_WRITE_START( demonwld_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
 		{ 0x340006, 0x340007, toaplan1_flipscreen_w },
@@ -225,27 +235,29 @@ public class toaplan1
 		{ 0xe0000a, 0xe0000b, demonwld_dsp_ctrl_w },			/* DSP Comms control */
 	MEMORY_END
 	
-	static MEMORY_READ_START( samesame_readmem )
-		{ 0x000000, 0x00ffff, MRA_ROM },
-		{ 0x040000, 0x07ffff, MRA_ROM },
-		{ 0x0c0000, 0x0c3fff, MRA_BANK1 },
-		{ 0x100000, 0x100001, toaplan1_vblank_r },
-		{ 0x104000, 0x1047ff, toaplan1_colorram1_r },
-		{ 0x106000, 0x1067ff, toaplan1_colorram2_r },
-		{ 0x140000, 0x140001, input_port_1_r },
-		{ 0x140002, 0x140003, input_port_2_r },
-		{ 0x140004, 0x140005, input_port_3_r },
-		{ 0x140006, 0x140007, input_port_4_r },
-		{ 0x140008, 0x140009, input_port_5_r },
-		{ 0x14000a, 0x14000b, samesame_port_6_r },		/* Territory, and MCU ready */
-		{ 0x180002, 0x180003, video_ofs3_r },
-		{ 0x180004, 0x180007, toaplan1_videoram3_r },	/* tile layers */
-		{ 0x180010, 0x18001f, scrollregs_r },
-		{ 0x1c0000, 0x1c0001, input_port_0_r },
-		{ 0x1c0002, 0x1c0003, video_ofs_r },
-		{ 0x1c0004, 0x1c0005, toaplan1_videoram1_r },	/* sprites info */
-		{ 0x1c0006, 0x1c0007, toaplan1_videoram2_r },	/* sprite size ? */
-	MEMORY_END
+	public static Memory_ReadAddress samesame_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x00ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x040000, 0x07ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x0c0000, 0x0c3fff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x100000, 0x100001, toaplan1_vblank_r ),
+		new Memory_ReadAddress( 0x104000, 0x1047ff, toaplan1_colorram1_r ),
+		new Memory_ReadAddress( 0x106000, 0x1067ff, toaplan1_colorram2_r ),
+		new Memory_ReadAddress( 0x140000, 0x140001, input_port_1_r ),
+		new Memory_ReadAddress( 0x140002, 0x140003, input_port_2_r ),
+		new Memory_ReadAddress( 0x140004, 0x140005, input_port_3_r ),
+		new Memory_ReadAddress( 0x140006, 0x140007, input_port_4_r ),
+		new Memory_ReadAddress( 0x140008, 0x140009, input_port_5_r ),
+		new Memory_ReadAddress( 0x14000a, 0x14000b, samesame_port_6_r ),		/* Territory, and MCU ready */
+		new Memory_ReadAddress( 0x180002, 0x180003, video_ofs3_r ),
+		new Memory_ReadAddress( 0x180004, 0x180007, toaplan1_videoram3_r ),	/* tile layers */
+		new Memory_ReadAddress( 0x180010, 0x18001f, scrollregs_r ),
+		new Memory_ReadAddress( 0x1c0000, 0x1c0001, input_port_0_r ),
+		new Memory_ReadAddress( 0x1c0002, 0x1c0003, video_ofs_r ),
+		new Memory_ReadAddress( 0x1c0004, 0x1c0005, toaplan1_videoram1_r ),	/* sprites info */
+		new Memory_ReadAddress( 0x1c0006, 0x1c0007, toaplan1_videoram2_r ),	/* sprite size ? */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	static MEMORY_WRITE_START( samesame_writemem )
 		{ 0x000000, 0x00ffff, MWA_ROM },
 		{ 0x040000, 0x07ffff, MWA_ROM },
@@ -268,21 +280,23 @@ public class toaplan1
 		{ 0x1c0006, 0x1c0007, toaplan1_videoram2_w },	/* sprite size ? */
 	MEMORY_END
 	
-	static MEMORY_READ_START( outzone_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM },
-		{ 0x100000, 0x100001, input_port_0_r },
-		{ 0x100002, 0x100003, video_ofs_r },
-		{ 0x100004, 0x100005, toaplan1_videoram1_r },	/* sprites info */
-		{ 0x100006, 0x100007, toaplan1_videoram2_r },
-		{ 0x140000, 0x140fff, toaplan1_shared_r },
-		{ 0x200002, 0x200003, video_ofs3_r },
-		{ 0x200004, 0x200007, toaplan1_videoram3_r },	/* tile layers */
-		{ 0x200010, 0x20001f, scrollregs_r },
-		{ 0x240000, 0x243fff, MRA_BANK1 },
-		{ 0x300000, 0x300001, toaplan1_vblank_r },
-		{ 0x304000, 0x3047ff, toaplan1_colorram1_r },
-		{ 0x306000, 0x3067ff, toaplan1_colorram2_r },
-	MEMORY_END
+	public static Memory_ReadAddress outzone_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x100000, 0x100001, input_port_0_r ),
+		new Memory_ReadAddress( 0x100002, 0x100003, video_ofs_r ),
+		new Memory_ReadAddress( 0x100004, 0x100005, toaplan1_videoram1_r ),	/* sprites info */
+		new Memory_ReadAddress( 0x100006, 0x100007, toaplan1_videoram2_r ),
+		new Memory_ReadAddress( 0x140000, 0x140fff, toaplan1_shared_r ),
+		new Memory_ReadAddress( 0x200002, 0x200003, video_ofs3_r ),
+		new Memory_ReadAddress( 0x200004, 0x200007, toaplan1_videoram3_r ),	/* tile layers */
+		new Memory_ReadAddress( 0x200010, 0x20001f, scrollregs_r ),
+		new Memory_ReadAddress( 0x240000, 0x243fff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x300000, 0x300001, toaplan1_vblank_r ),
+		new Memory_ReadAddress( 0x304000, 0x3047ff, toaplan1_colorram1_r ),
+		new Memory_ReadAddress( 0x306000, 0x3067ff, toaplan1_colorram2_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	static MEMORY_WRITE_START( outzone_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM },
 		{ 0x100002, 0x100003, video_ofs_w },
@@ -301,28 +315,30 @@ public class toaplan1
 		{ 0x340006, 0x340007, toaplan1_flipscreen_w },
 	MEMORY_END
 	
-	static MEMORY_READ_START( vimana_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x0c0000, 0x0c0001, input_port_0_r },
-		{ 0x0c0002, 0x0c0003, video_ofs_r },
-		{ 0x0c0004, 0x0c0005, toaplan1_videoram1_r },	/* sprites info */
-		{ 0x0c0006, 0x0c0007, toaplan1_videoram2_r },	/* sprite size ? */
-		{ 0x400000, 0x400001, toaplan1_vblank_r },
-		{ 0x404000, 0x4047ff, toaplan1_colorram1_r },
-		{ 0x406000, 0x4067ff, toaplan1_colorram2_r },
-		{ 0x440000, 0x440005, vimana_mcu_r },
-		{ 0x440006, 0x440007, input_port_3_r },
-		{ 0x440008, 0x440009, vimana_input_port_5_r },
-		{ 0x44000a, 0x44000b, input_port_1_r },
-		{ 0x44000c, 0x44000d, input_port_2_r },
-		{ 0x44000e, 0x44000f, input_port_4_r },
-		{ 0x440010, 0x440011, input_port_6_r },
-		{ 0x480000, 0x487fff, MRA_BANK1 },
-		{ 0x4c0000, 0x4c0001, toaplan1_unk_r },
-		{ 0x4c0002, 0x4c0003, video_ofs3_r },
-		{ 0x4c0004, 0x4c0007, toaplan1_videoram3_r },	/* tile layers */
-		{ 0x4c0010, 0x4c001f, scrollregs_r },
-	MEMORY_END
+	public static Memory_ReadAddress vimana_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x0c0000, 0x0c0001, input_port_0_r ),
+		new Memory_ReadAddress( 0x0c0002, 0x0c0003, video_ofs_r ),
+		new Memory_ReadAddress( 0x0c0004, 0x0c0005, toaplan1_videoram1_r ),	/* sprites info */
+		new Memory_ReadAddress( 0x0c0006, 0x0c0007, toaplan1_videoram2_r ),	/* sprite size ? */
+		new Memory_ReadAddress( 0x400000, 0x400001, toaplan1_vblank_r ),
+		new Memory_ReadAddress( 0x404000, 0x4047ff, toaplan1_colorram1_r ),
+		new Memory_ReadAddress( 0x406000, 0x4067ff, toaplan1_colorram2_r ),
+		new Memory_ReadAddress( 0x440000, 0x440005, vimana_mcu_r ),
+		new Memory_ReadAddress( 0x440006, 0x440007, input_port_3_r ),
+		new Memory_ReadAddress( 0x440008, 0x440009, vimana_input_port_5_r ),
+		new Memory_ReadAddress( 0x44000a, 0x44000b, input_port_1_r ),
+		new Memory_ReadAddress( 0x44000c, 0x44000d, input_port_2_r ),
+		new Memory_ReadAddress( 0x44000e, 0x44000f, input_port_4_r ),
+		new Memory_ReadAddress( 0x440010, 0x440011, input_port_6_r ),
+		new Memory_ReadAddress( 0x480000, 0x487fff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x4c0000, 0x4c0001, toaplan1_unk_r ),
+		new Memory_ReadAddress( 0x4c0002, 0x4c0003, video_ofs3_r ),
+		new Memory_ReadAddress( 0x4c0004, 0x4c0007, toaplan1_videoram3_r ),	/* tile layers */
+		new Memory_ReadAddress( 0x4c0010, 0x4c001f, scrollregs_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	static MEMORY_WRITE_START( vimana_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
 		{ 0x080000, 0x080003, offsetregs_w },
@@ -343,10 +359,12 @@ public class toaplan1
 	
 	
 	
-	static MEMORY_READ_START( sound_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0x8000, 0xffff, MRA_RAM },
-	MEMORY_END
+	public static Memory_ReadAddress sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0xffff, MRA_RAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	static MEMORY_WRITE_START( sound_writemem )
 		{ 0x0000, 0x7fff, MWA_ROM },
 		{ 0x8000, 0xffff, MWA_RAM, &toaplan1_sharedram },
@@ -433,12 +451,14 @@ public class toaplan1
 		{ 0x04, 0x04, toaplan1_coin_w },	/* Coin counter/lockout */
 	PORT_END
 	
-	static MEMORY_READ_START( DSP_readmem )
-		{ 0x0000, 0x011f, MRA_RAM },	/* 90h words internal RAM */
-		{ 0x8000, 0x8fff, MRA_ROM },	/* 800h words. The real DSPs ROM is at */
+	public static Memory_ReadAddress DSP_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x011f, MRA_RAM ),	/* 90h words internal RAM */
+		new Memory_ReadAddress( 0x8000, 0x8fff, MRA_ROM ),	/* 800h words. The real DSPs ROM is at */
 										/* address 0 */
 										/* View it at 8000h in the debugger */
-	MEMORY_END
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( DSP_writemem )
 		{ 0x0000, 0x011f, MWA_RAM },

@@ -480,11 +480,13 @@ public class system16
 		cpu_set_nmi_line(1, PULSE_LINE);
 	}
 	
-	static MEMORY_READ_START( sound_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0xe800, 0xe800, soundlatch_r },
-		{ 0xf800, 0xffff, MRA_RAM },
-	MEMORY_END
+	public static Memory_ReadAddress sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0xe800, 0xe800, soundlatch_r ),
+		new Memory_ReadAddress( 0xf800, 0xffff, MRA_RAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( sound_writemem )
 		{ 0x0000, 0x7fff, MWA_ROM },
@@ -505,11 +507,13 @@ public class system16
 	
 	// 7751 Sound
 	
-	static MEMORY_READ_START( sound_readmem_7751 )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0xe800, 0xe800, soundlatch_r },
-		{ 0xf800, 0xffff, MRA_RAM },
-	MEMORY_END
+	public static Memory_ReadAddress sound_readmem_7751[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0xe800, 0xe800, soundlatch_r ),
+		new Memory_ReadAddress( 0xf800, 0xffff, MRA_RAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static PORT_READ_START( sound_readport_7751 )
 		{ 0x01, 0x01, YM2151_status_port_0_r },
@@ -525,9 +529,11 @@ public class system16
 		{ 0x80, 0x80, sys16_7751_audio_8255_w },
 	PORT_END
 	
-	static MEMORY_READ_START( readmem_7751 )
-		{ 0x0000, 0x03ff, MRA_ROM },
-	MEMORY_END
+	public static Memory_ReadAddress readmem_7751[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x03ff, MRA_ROM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem_7751 )
 		{ 0x0000, 0x03ff, MWA_ROM },
@@ -558,12 +564,14 @@ public class system16
 	// 7759
 	
 	
-	static MEMORY_READ_START( sound_readmem_7759 )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0x8000, 0xdfff, UPD7759_0_data_r },
-		{ 0xe800, 0xe800, soundlatch_r },
-		{ 0xf800, 0xffff, MRA_RAM },
-	MEMORY_END
+	public static Memory_ReadAddress sound_readmem_7759[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0xdfff, UPD7759_0_data_r ),
+		new Memory_ReadAddress( 0xe800, 0xe800, soundlatch_r ),
+		new Memory_ReadAddress( 0xf800, 0xffff, MRA_RAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	// some games (aurail, riotcity, eswat), seem to send different format data to the 7759
 	// this function changes that data to what the 7759 expects, but it sounds quite poor.
@@ -601,13 +609,15 @@ public class system16
 		return sys18_SoundMemBank[offset];
 	} };
 	
-	static MEMORY_READ_START( sound_readmem_18 )
-		{ 0x0000, 0x9fff, MRA_ROM },
-		{ 0xa000, 0xbfff, system18_bank_r },
+	public static Memory_ReadAddress sound_readmem_18[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x9fff, MRA_ROM ),
+		new Memory_ReadAddress( 0xa000, 0xbfff, system18_bank_r ),
 		/**** D/A register ****/
-		{ 0xd000, 0xdfff, RF5C68_r },
-		{ 0xe000, 0xffff, MRA_RAM },
-	MEMORY_END
+		new Memory_ReadAddress( 0xd000, 0xdfff, RF5C68_r ),
+		new Memory_ReadAddress( 0xe000, 0xffff, MRA_RAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( sound_writemem_18 )
 		{ 0x0000, 0xbfff, MWA_ROM },
@@ -1443,21 +1453,23 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( alexkidd_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc40002, 0xc40005, MRA_NOP },		//??
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41006, 0xc41007, io_player2_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42000, 0xc42001, io_dip1_r },
-		{ 0xc42002, 0xc42003, io_dip2_r },
-		{ 0xc60000, 0xc60001, MRA_NOP },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress alexkidd_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc40002, 0xc40005, MRA_NOP ),		//??
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, io_player2_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip2_r ),
+		new Memory_ReadAddress( 0xc60000, 0xc60001, MRA_NOP ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( alexkidd_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -1670,19 +1682,21 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( aliensyn_readmem )
-		{ 0x000000, 0x02ffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41006, 0xc41007, io_player2_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42002, 0xc42003, io_dip1_r },
-		{ 0xc42000, 0xc42001, io_dip2_r },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress aliensyn_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x02ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, io_player2_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip2_r ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( aliensyn_writemem )
 		{ 0x000000, 0x02ffff, MWA_ROM },
@@ -1892,20 +1906,22 @@ public class system16
 		return 0xff;
 	} };
 	
-	static MEMORY_READ_START( altbeast_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41006, 0xc41007, io_player2_r },
-		{ 0xc41004, 0xc41005, altbeast_io_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42002, 0xc42003, io_dip1_r },
-		{ 0xc42000, 0xc42001, io_dip2_r },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress altbeast_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, io_player2_r ),
+		new Memory_ReadAddress( 0xc41004, 0xc41005, altbeast_io_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip2_r ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( altbeast_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -2075,22 +2091,24 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( astorm_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM },
-		{ 0x100000, 0x10ffff, MRA_TILERAM },
-		{ 0x110000, 0x110fff, MRA_TEXTRAM },
-		{ 0x140000, 0x140fff, MRA_PALETTERAM },
-		{ 0x200000, 0x200fff, MRA_SPRITERAM },
-		{ 0xa00000, 0xa00001, io_dip1_r },
-		{ 0xa00002, 0xa00003, io_dip2_r },
-		{ 0xa01002, 0xa01003, io_player1_r },
-		{ 0xa01004, 0xa01005, io_player2_r },
-		{ 0xa01006, 0xa01007, io_player3_r },
-		{ 0xa01000, 0xa01001, io_service_r },
-		{ 0xa00000, 0xa0ffff, MRA_EXTRAM2 },
-		{ 0xc00000, 0xc0ffff, MRA_EXTRAM },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress astorm_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x100000, 0x10ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x110000, 0x110fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x140000, 0x140fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0x200000, 0x200fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0xa00000, 0xa00001, io_dip1_r ),
+		new Memory_ReadAddress( 0xa00002, 0xa00003, io_dip2_r ),
+		new Memory_ReadAddress( 0xa01002, 0xa01003, io_player1_r ),
+		new Memory_ReadAddress( 0xa01004, 0xa01005, io_player2_r ),
+		new Memory_ReadAddress( 0xa01006, 0xa01007, io_player3_r ),
+		new Memory_ReadAddress( 0xa01000, 0xa01001, io_service_r ),
+		new Memory_ReadAddress( 0xa00000, 0xa0ffff, MRA_EXTRAM2 ),
+		new Memory_ReadAddress( 0xc00000, 0xc0ffff, MRA_EXTRAM ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( astorm_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM },
@@ -2331,18 +2349,20 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( atomicp_readmem )
-		{ 0x000000, 0x01ffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc41000, 0xc41001, io_player1_r },
-		{ 0xc41002, 0xc41003, io_player2_r },
-		{ 0xc41004, 0xc41005, io_dip1_r },
-		{ 0xc41006, 0xc41007, io_dip2_r },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress atomicp_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x01ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_player1_r ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player2_r ),
+		new Memory_ReadAddress( 0xc41004, 0xc41005, io_dip1_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, io_dip2_r ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static WriteHandlerPtr atomicp_sound_w = new WriteHandlerPtr() {public void handler(int offset, int data)
 	{
@@ -2603,21 +2623,23 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( aurail_readmem )
-		{ 0x000000, 0x0bffff, MRA_ROM },
-		{ 0x3f0000, 0x3fffff, MRA_EXTRAM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41006, 0xc41007, io_player2_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42002, 0xc42003, io_dip1_r },
-		{ 0xc42000, 0xc42001, io_dip2_r },
-		{ 0xfc0000, 0xfc0fff, MRA_EXTRAM3 },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress aurail_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x0bffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x3f0000, 0x3fffff, MRA_EXTRAM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, io_player2_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip2_r ),
+		new Memory_ReadAddress( 0xfc0000, 0xfc0fff, MRA_EXTRAM3 ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( aurail_writemem )
 		{ 0x000000, 0x0bffff, MWA_ROM },
@@ -2838,19 +2860,21 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( bayroute_readmem )
-		{ 0x000000, 0x0bffff, MRA_ROM },
-		{ 0x500000, 0x503fff, MRA_EXTRAM3 },
-		{ 0x600000, 0x600fff, MRA_SPRITERAM },
-		{ 0x700000, 0x70ffff, MRA_TILERAM },
-		{ 0x710000, 0x710fff, MRA_TEXTRAM },
-		{ 0x800000, 0x800fff, MRA_PALETTERAM },
-		{ 0x901002, 0x901003, io_player1_r },
-		{ 0x901006, 0x901007, io_player2_r },
-		{ 0x901000, 0x901001, io_service_r },
-		{ 0x902002, 0x902003, io_dip1_r },
-		{ 0x902000, 0x902001, io_dip2_r },
-	MEMORY_END
+	public static Memory_ReadAddress bayroute_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x0bffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x500000, 0x503fff, MRA_EXTRAM3 ),
+		new Memory_ReadAddress( 0x600000, 0x600fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x700000, 0x70ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x710000, 0x710fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x800000, 0x800fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0x901002, 0x901003, io_player1_r ),
+		new Memory_ReadAddress( 0x901006, 0x901007, io_player2_r ),
+		new Memory_ReadAddress( 0x901000, 0x901001, io_service_r ),
+		new Memory_ReadAddress( 0x902002, 0x902003, io_dip1_r ),
+		new Memory_ReadAddress( 0x902000, 0x902001, io_dip2_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( bayroute_writemem )
 		{ 0x000000, 0x0bffff, MWA_ROM },
@@ -3034,19 +3058,21 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( bodyslam_readmem )
-		{ 0x000000, 0x02ffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41006, 0xc41007, io_player2_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42000, 0xc42001, io_dip1_r },
-		{ 0xc42002, 0xc42003, io_dip2_r },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress bodyslam_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x02ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, io_player2_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip2_r ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( bodyslam_writemem )
 		{ 0x000000, 0x02ffff, MWA_ROM },
@@ -3221,19 +3247,21 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( dduxbl_readmem )
-		{ 0x000000, 0x0bffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41004, 0xc41005, io_player2_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42002, 0xc42003, io_dip1_r },
-		{ 0xc42000, 0xc42001, io_dip2_r },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress dduxbl_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x0bffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41004, 0xc41005, io_player2_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip2_r ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( dduxbl_writemem )
 		{ 0x000000, 0x0bffff, MWA_ROM },
@@ -3411,19 +3439,21 @@ public class system16
 	ROM_END(); }}; 
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( eswat_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x418fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41006, 0xc41007, io_player2_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42002, 0xc42003, io_dip1_r },
-		{ 0xc42000, 0xc42001, io_dip2_r },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress eswat_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x418fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, io_player2_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip2_r ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static int eswat_tilebank0;
 	
@@ -3573,20 +3603,22 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( fantzono_readmem )
-		{ 0x000000, 0x02ffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41006, 0xc41007, io_player2_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42000, 0xc42001, io_dip1_r },
-		{ 0xc42002, 0xc42003, io_dip2_r },
-		{ 0xc40000, 0xc40003, MRA_EXTRAM2 },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress fantzono_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x02ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, io_player2_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip2_r ),
+		new Memory_ReadAddress( 0xc40000, 0xc40003, MRA_EXTRAM2 ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( fantzono_writemem )
 		{ 0x000000, 0x02ffff, MWA_ROM },
@@ -3600,19 +3632,21 @@ public class system16
 		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
 	MEMORY_END
 	
-	static MEMORY_READ_START( fantzone_readmem )
-		{ 0x000000, 0x02ffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41006, 0xc41007, io_player2_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42000, 0xc42001, io_dip1_r },
-		{ 0xc42002, 0xc42003, io_dip2_r },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress fantzone_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x02ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, io_player2_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip2_r ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( fantzone_writemem )
 		{ 0x000000, 0x02ffff, MWA_ROM },
@@ -3784,22 +3818,24 @@ public class system16
 		return (data << 8) + data;
 	} };
 	
-	static MEMORY_READ_START( fpoint_readmem )
-		{ 0x000000, 0x01ffff, MRA_ROM },
-		{ 0x02002e, 0x020049, fp_io_service_dummy_r },
-		{ 0x601002, 0x601003, io_player1_r },
-		{ 0x601004, 0x601005, io_player2_r },
-		{ 0x601000, 0x601001, io_service_r },
-		{ 0x600000, 0x600001, io_dip2_r },
-		{ 0x600002, 0x600003, io_dip1_r },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x44302a, 0x44304d, fp_io_service_dummy_r },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xfe003e, 0xfe003f, fp_io_service_dummy_r },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress fpoint_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x01ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x02002e, 0x020049, fp_io_service_dummy_r ),
+		new Memory_ReadAddress( 0x601002, 0x601003, io_player1_r ),
+		new Memory_ReadAddress( 0x601004, 0x601005, io_player2_r ),
+		new Memory_ReadAddress( 0x601000, 0x601001, io_service_r ),
+		new Memory_ReadAddress( 0x600000, 0x600001, io_dip2_r ),
+		new Memory_ReadAddress( 0x600002, 0x600003, io_dip1_r ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x44302a, 0x44304d, fp_io_service_dummy_r ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xfe003e, 0xfe003f, fp_io_service_dummy_r ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( fpoint_writemem )
 		{ 0x000000, 0x01ffff, MWA_ROM },
@@ -4033,23 +4069,25 @@ public class system16
 		return (io_service_r(offset) << 8) | (READ_WORD(&sys16_workingram[0x2c96]) & 0x00ff);
 	} };
 	
-	static MEMORY_READ_START( goldnaxe_readmem )
-		{ 0x000000, 0x0bffff, MRA_ROM },
+	public static Memory_ReadAddress goldnaxe_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x0bffff, MRA_ROM ),
 	
-		{ 0x100000, 0x10ffff, MRA_TILERAM },
-		{ 0x110000, 0x110fff, MRA_TEXTRAM },
-		{ 0x140000, 0x140fff, MRA_PALETTERAM },
-		{ 0x1f0000, 0x1f0003, MRA_EXTRAM },
-		{ 0x200000, 0x200fff, MRA_SPRITERAM },
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41006, 0xc41007, io_player2_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42002, 0xc42003, io_dip1_r },
-		{ 0xc42000, 0xc42001, io_dip2_r },
-		{ 0xffecd0, 0xffecd1, ga_io_players_r },
-		{ 0xffec96, 0xffec97, ga_io_service_r },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+		new Memory_ReadAddress( 0x100000, 0x10ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x110000, 0x110fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x140000, 0x140fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0x1f0000, 0x1f0003, MRA_EXTRAM ),
+		new Memory_ReadAddress( 0x200000, 0x200fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, io_player2_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip2_r ),
+		new Memory_ReadAddress( 0xffecd0, 0xffecd1, ga_io_players_r ),
+		new Memory_ReadAddress( 0xffec96, 0xffec97, ga_io_service_r ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static WriteHandlerPtr ga_sound_command_w = new WriteHandlerPtr() {public void handler(int offset, int data)
 	{
@@ -4265,26 +4303,28 @@ public class system16
 			return ga_hardware_multiplier_data[offset/2];
 	} };
 	
-	static MEMORY_READ_START( goldnaxa_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM },
+	public static Memory_ReadAddress goldnaxa_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM ),
 	
-		{ 0x100000, 0x10ffff, MRA_TILERAM },
-		{ 0x110000, 0x110fff, MRA_TEXTRAM },
-		{ 0x140000, 0x140fff, MRA_PALETTERAM },
-		{ 0x1e0008, 0x1e0009, ga_hardware_collision_r },
-		{ 0x1f0000, 0x1f0007, ga_hardware_multiplier_r },
-		{ 0x1f1008, 0x1f1009, ga_hardware_collision_r },
-		{ 0x1f2000, 0x1f2003, MRA_EXTRAM },
-		{ 0x200000, 0x200fff, MRA_SPRITERAM },
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41006, 0xc41007, io_player2_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42002, 0xc42003, io_dip1_r },
-		{ 0xc42000, 0xc42001, io_dip2_r },
-		{ 0xffecd0, 0xffecd1, ga_io_players_r },
-		{ 0xffec96, 0xffec97, ga_io_service_r },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+		new Memory_ReadAddress( 0x100000, 0x10ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x110000, 0x110fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x140000, 0x140fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0x1e0008, 0x1e0009, ga_hardware_collision_r ),
+		new Memory_ReadAddress( 0x1f0000, 0x1f0007, ga_hardware_multiplier_r ),
+		new Memory_ReadAddress( 0x1f1008, 0x1f1009, ga_hardware_collision_r ),
+		new Memory_ReadAddress( 0x1f2000, 0x1f2003, MRA_EXTRAM ),
+		new Memory_ReadAddress( 0x200000, 0x200fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, io_player2_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip2_r ),
+		new Memory_ReadAddress( 0xffecd0, 0xffecd1, ga_io_players_r ),
+		new Memory_ReadAddress( 0xffec96, 0xffec97, ga_io_service_r ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( goldnaxa_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM },
@@ -4451,19 +4491,21 @@ public class system16
 		}
 	} };
 	
-	static MEMORY_READ_START( hwchamp_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x3f0000, 0x3fffff, MRA_EXTRAM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42002, 0xc42003, io_dip1_r },
-		{ 0xc42000, 0xc42001, io_dip2_r },
-		{ 0xc43020, 0xc43025, hwc_io_handles_r },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress hwchamp_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x3f0000, 0x3fffff, MRA_EXTRAM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip2_r ),
+		new Memory_ReadAddress( 0xc43020, 0xc43025, hwc_io_handles_r ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( hwchamp_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -4663,24 +4705,26 @@ public class system16
 	
 	} };
 	
-	static MEMORY_READ_START( mjleague_readmem )
-		{ 0x000000, 0x02ffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
+	public static Memory_ReadAddress mjleague_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x02ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
 	
-		{ 0xc40002, 0xc40003, sys16_coinctrl_r },
-		{ 0xc41000, 0xc41001, mjl_io_service_r },
-		{ 0xc41002, 0xc41003, mjl_io_player1_r },
-		{ 0xc41006, 0xc41007, mjl_io_player2_r },
-		{ 0xc41004, 0xc41005, mjl_io_bat_r },
-		{ 0xc42000, 0xc42001, io_dip1_r },
-		{ 0xc42002, 0xc42003, io_dip2_r },
-		{ 0xc60000, 0xc60001, MRA_NOP }, /* What is this? Watchdog? */
+		new Memory_ReadAddress( 0xc40002, 0xc40003, sys16_coinctrl_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, mjl_io_service_r ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, mjl_io_player1_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, mjl_io_player2_r ),
+		new Memory_ReadAddress( 0xc41004, 0xc41005, mjl_io_bat_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip2_r ),
+		new Memory_ReadAddress( 0xc60000, 0xc60001, MRA_NOP ), /* What is this? Watchdog? */
 	
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( mjleague_writemem )
 		{ 0x000000, 0x02ffff, MWA_ROM },
@@ -4891,24 +4935,26 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( moonwalk_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM },
+	public static Memory_ReadAddress moonwalk_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM ),
 	
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc00000, 0xc0ffff, MRA_EXTRAM },
-		{ 0xc40000, 0xc40001, io_dip1_r },
-		{ 0xc40002, 0xc40003, io_dip2_r },
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41004, 0xc41005, io_player2_r },
-		{ 0xc41006, 0xc41007, io_player3_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xe40000, 0xe4ffff, MRA_EXTRAM2 },
-		{ 0xfe0000, 0xfeffff, MRA_EXTRAM4 },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc00000, 0xc0ffff, MRA_EXTRAM ),
+		new Memory_ReadAddress( 0xc40000, 0xc40001, io_dip1_r ),
+		new Memory_ReadAddress( 0xc40002, 0xc40003, io_dip2_r ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41004, 0xc41005, io_player2_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, io_player3_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xe40000, 0xe4ffff, MRA_EXTRAM2 ),
+		new Memory_ReadAddress( 0xfe0000, 0xfeffff, MRA_EXTRAM4 ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( moonwalk_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM },
@@ -5171,19 +5217,21 @@ public class system16
 	ROM_END(); }}; 
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( passsht_readmem )
-		{ 0x000000, 0x01ffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41004, 0xc41005, io_player2_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42002, 0xc42003, io_dip1_r },
-		{ 0xc42000, 0xc42001, io_dip2_r },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress passsht_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x01ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41004, 0xc41005, io_player2_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip2_r ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( passsht_writemem )
 		{ 0x000000, 0x01ffff, MWA_ROM },
@@ -5241,26 +5289,28 @@ public class system16
 	public static ReadHandlerPtr passht4b_io2_r  = new ReadHandlerPtr() { public int handler(int offset) {	return passht4b_io2_val;} };
 	public static ReadHandlerPtr passht4b_io3_r  = new ReadHandlerPtr() { public int handler(int offset) {	return passht4b_io3_val;} };
 	
-	static MEMORY_READ_START( passht4b_readmem )
-		{ 0x000000, 0x01ffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc41000, 0xc41001, passht4b_service_r },
+	public static Memory_ReadAddress passht4b_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x01ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, passht4b_service_r ),
 	
-		{ 0xc41002, 0xc41003, passht4b_io1_r },
-		{ 0xc41004, 0xc41005, passht4b_io2_r },
-		{ 0xc41006, 0xc41007, passht4b_io3_r },
+		new Memory_ReadAddress( 0xc41002, 0xc41003, passht4b_io1_r ),
+		new Memory_ReadAddress( 0xc41004, 0xc41005, passht4b_io2_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, passht4b_io3_r ),
 	
-		{ 0xc42002, 0xc42003, io_dip1_r },
-		{ 0xc42000, 0xc42001, io_dip2_r },
-		{ 0xc43000, 0xc43001, io_player1_r },		// test mode only
-		{ 0xc43002, 0xc43003, io_player2_r },
-		{ 0xc43004, 0xc43005, io_player3_r },
-		{ 0xc43006, 0xc43007, io_player4_r },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip2_r ),
+		new Memory_ReadAddress( 0xc43000, 0xc43001, io_player1_r ),		// test mode only
+		new Memory_ReadAddress( 0xc43002, 0xc43003, io_player2_r ),
+		new Memory_ReadAddress( 0xc43004, 0xc43005, io_player3_r ),
+		new Memory_ReadAddress( 0xc43006, 0xc43007, io_player4_r ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( passht4b_writemem )
 		{ 0x000000, 0x01ffff, MWA_ROM },
@@ -5567,21 +5617,23 @@ public class system16
 	public static ReadHandlerPtr io_quartet_dip1_r  = new ReadHandlerPtr() { public int handler(int offset) {return input_port_4_r.handler( offset );} };
 	public static ReadHandlerPtr io_quartet_dip2_r  = new ReadHandlerPtr() { public int handler(int offset) {return input_port_5_r.handler( offset );} };
 	
-	static MEMORY_READ_START( quartet_readmem )
-		{ 0x000000, 0x02ffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc40002, 0xc40003, sys16_coinctrl_r },
-		{ 0xc41000, 0xc41001, io_quartet_p1_r },
-		{ 0xc41002, 0xc41003, io_quartet_p2_r },
-		{ 0xc41004, 0xc41005, io_quartet_p3_r },
-		{ 0xc41006, 0xc41007, io_quartet_p4_r },
-		{ 0xc42000, 0xc42001, io_quartet_dip1_r },
-		{ 0xc42002, 0xc42003, io_quartet_dip2_r },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress quartet_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x02ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc40002, 0xc40003, sys16_coinctrl_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_quartet_p1_r ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_quartet_p2_r ),
+		new Memory_ReadAddress( 0xc41004, 0xc41005, io_quartet_p3_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, io_quartet_p4_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_quartet_dip1_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_quartet_dip2_r ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( quartet_writemem )
 		{ 0x000000, 0x02ffff, MWA_ROM },
@@ -5747,20 +5799,22 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( quartet2_readmem )
-		{ 0x000000, 0x02ffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc40002, 0xc40003, sys16_coinctrl_r },
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41006, 0xc41007, io_player2_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42000, 0xc42001, io_dip1_r },
-		{ 0xc42002, 0xc42003, io_dip2_r },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress quartet2_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x02ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc40002, 0xc40003, sys16_coinctrl_r ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, io_player2_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip2_r ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( quartet2_writemem )
 		{ 0x000000, 0x02ffff, MWA_ROM },
@@ -5881,21 +5935,23 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( riotcity_readmem )
-		{ 0x000000, 0x0bffff, MRA_ROM },
-		{ 0x3f0000, 0x3fffff, MRA_EXTRAM },
-		{ 0xf20000, 0xf20fff, MRA_EXTRAM3 },
-		{ 0xf40000, 0xf40fff, MRA_SPRITERAM },
-		{ 0xf60000, 0xf60fff, MRA_PALETTERAM },
-		{ 0xf81002, 0xf81003, io_player1_r },
-		{ 0xf81006, 0xf81007, io_player2_r },
-		{ 0xf81000, 0xf81001, io_service_r },
-		{ 0xf82002, 0xf82003, io_dip1_r },
-		{ 0xf82000, 0xf82001, io_dip2_r },
-		{ 0xfa0000, 0xfaffff, MRA_TILERAM },
-		{ 0xfb0000, 0xfb0fff, MRA_TEXTRAM },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress riotcity_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x0bffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x3f0000, 0x3fffff, MRA_EXTRAM ),
+		new Memory_ReadAddress( 0xf20000, 0xf20fff, MRA_EXTRAM3 ),
+		new Memory_ReadAddress( 0xf40000, 0xf40fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0xf60000, 0xf60fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xf81002, 0xf81003, io_player1_r ),
+		new Memory_ReadAddress( 0xf81006, 0xf81007, io_player2_r ),
+		new Memory_ReadAddress( 0xf81000, 0xf81001, io_service_r ),
+		new Memory_ReadAddress( 0xf82002, 0xf82003, io_dip1_r ),
+		new Memory_ReadAddress( 0xf82000, 0xf82001, io_dip2_r ),
+		new Memory_ReadAddress( 0xfa0000, 0xfaffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0xfb0000, 0xfb0fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( riotcity_writemem )
 		{ 0x000000, 0x0bffff, MWA_ROM },
@@ -6045,26 +6101,28 @@ public class system16
 	public static ReadHandlerPtr io_p2mousex_r  = new ReadHandlerPtr() { public int handler(int offset){ return input_port_7_r.handler( offset ); } };
 	public static ReadHandlerPtr io_p2mousey_r  = new ReadHandlerPtr() { public int handler(int offset){ return input_port_8_r.handler( offset ); } };
 	
-	static MEMORY_READ_START( sdi_readmem )
-		{ 0x000000, 0x02ffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc41004, 0xc41005, io_player1_r },
-		{ 0xc41002, 0xc41003, io_player2_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42000, 0xc42001, io_dip2_r },
-		{ 0xc42002, 0xc42003, io_dip1_r },
-		{ 0xc42004, 0xc42005, io_dip2_r },
-		{ 0xc43000, 0xc43001, io_p1mousex_r },
-		{ 0xc43004, 0xc43005, io_p1mousey_r },
-		{ 0xc43008, 0xc43009, io_p2mousex_r },
-		{ 0xc4300c, 0xc4300d, io_p2mousey_r },
-	//	{ 0xc42000, 0xc42001, MRA_NOP }, /* What is this? */
-		{ 0xc60000, 0xc60001, MRA_NOP }, /* What is this? */
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress sdi_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x02ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc41004, 0xc41005, io_player1_r ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player2_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip2_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42004, 0xc42005, io_dip2_r ),
+		new Memory_ReadAddress( 0xc43000, 0xc43001, io_p1mousex_r ),
+		new Memory_ReadAddress( 0xc43004, 0xc43005, io_p1mousey_r ),
+		new Memory_ReadAddress( 0xc43008, 0xc43009, io_p2mousex_r ),
+		new Memory_ReadAddress( 0xc4300c, 0xc4300d, io_p2mousey_r ),
+	//	new Memory_ReadAddress( 0xc42000, 0xc42001, MRA_NOP ), /* What is this? */
+		new Memory_ReadAddress( 0xc60000, 0xc60001, MRA_NOP ), /* What is this? */
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( sdi_writemem )
 		{ 0x000000, 0x02ffff, MWA_ROM },
@@ -6210,22 +6268,24 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( shdancer_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM },
+	public static Memory_ReadAddress shdancer_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM ),
 	
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc00000, 0xc00007, MRA_EXTRAM },
-		{ 0xe4000a, 0xe4000b, io_dip1_r },
-		{ 0xe4000c, 0xe4000d, io_dip2_r },
-		{ 0xe40000, 0xe40001, io_player1_r },
-		{ 0xe40002, 0xe40003, io_player2_r },
-		{ 0xe40008, 0xe40009, io_service_r },
-		{ 0xe43034, 0xe43035, MRA_NOP },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc00000, 0xc00007, MRA_EXTRAM ),
+		new Memory_ReadAddress( 0xe4000a, 0xe4000b, io_dip1_r ),
+		new Memory_ReadAddress( 0xe4000c, 0xe4000d, io_dip2_r ),
+		new Memory_ReadAddress( 0xe40000, 0xe40001, io_player1_r ),
+		new Memory_ReadAddress( 0xe40002, 0xe40003, io_player2_r ),
+		new Memory_ReadAddress( 0xe40008, 0xe40009, io_service_r ),
+		new Memory_ReadAddress( 0xe43034, 0xe43035, MRA_NOP ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( shdancer_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM },
@@ -6406,24 +6466,26 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( shdancbl_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM },
+	public static Memory_ReadAddress shdancbl_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM ),
 	
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc00000, 0xc00007, MRA_EXTRAM },
-		{ 0xc40000, 0xc40001, io_dip1_r },
-		{ 0xc40002, 0xc40003, io_dip2_r },
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc00000, 0xc00007, MRA_EXTRAM ),
+		new Memory_ReadAddress( 0xc40000, 0xc40001, io_dip1_r ),
+		new Memory_ReadAddress( 0xc40002, 0xc40003, io_dip2_r ),
 	
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41004, 0xc41005, io_player2_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-	//	{ 0xc40000, 0xc4ffff, MRA_EXTRAM3 },
-		{ 0xe43034, 0xe43035, MRA_NOP },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41004, 0xc41005, io_player2_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+	//	new Memory_ReadAddress( 0xc40000, 0xc4ffff, MRA_EXTRAM3 ),
+		new Memory_ReadAddress( 0xe43034, 0xe43035, MRA_NOP ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( shdancbl_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM },
@@ -6618,20 +6680,22 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( shinobi_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41006, 0xc41007, io_player2_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42002, 0xc42003, io_dip1_r },
-		{ 0xc42000, 0xc42001, io_dip2_r },
-		{ 0xc43000, 0xc43001, MRA_NOP },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress shinobi_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, io_player2_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip2_r ),
+		new Memory_ReadAddress( 0xc43000, 0xc43001, MRA_NOP ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( shinobi_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -6787,19 +6851,21 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( shinobl_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41006, 0xc41007, io_player2_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42000, 0xc42001, io_dip1_r },
-		{ 0xc42002, 0xc42003, io_dip2_r },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress shinobl_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, io_player2_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip2_r ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( shinobl_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -6907,21 +6973,23 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( tetris_readmem )
-		{ 0x000000, 0x01ffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x418000, 0x41803f, MRA_EXTRAM2 },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41006, 0xc41007, io_player2_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42002, 0xc42003, io_dip1_r },
-		{ 0xc42000, 0xc42001, io_dip2_r },
-		{ 0xc80000, 0xc80001, MRA_NOP },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress tetris_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x01ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x418000, 0x41803f, MRA_EXTRAM2 ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, io_player2_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip2_r ),
+		new Memory_ReadAddress( 0xc80000, 0xc80001, MRA_NOP ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( tetris_writemem )
 		{ 0x000000, 0x01ffff, MWA_ROM },
@@ -7042,20 +7110,22 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( timscanr_readmem )
-		{ 0x000000, 0x02ffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41006, 0xc41007, io_player2_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42002, 0xc42003, io_dip1_r },
-		{ 0xc42000, 0xc42001, io_dip2_r },
-		{ 0xc41004, 0xc41005, io_dip3_r },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress timscanr_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x02ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, io_player2_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip2_r ),
+		new Memory_ReadAddress( 0xc41004, 0xc41005, io_dip3_r ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( timscanr_writemem )
 		{ 0x000000, 0x02ffff, MWA_ROM },
@@ -7194,23 +7264,25 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( toryumon_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x3e2000, 0x3e2003, MRA_EXTRAM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
+	public static Memory_ReadAddress toryumon_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x3e2000, 0x3e2003, MRA_EXTRAM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
 	
-		{ 0xe41002, 0xe41003, io_player1_r },
-		{ 0xe41004, 0xe41005, MRA_NOP },
-		{ 0xe41006, 0xe41007, io_player2_r },
-		{ 0xe41000, 0xe41001, io_service_r },
-		{ 0xe42002, 0xe42003, io_dip1_r },
-		{ 0xe42000, 0xe42001, io_dip2_r },
+		new Memory_ReadAddress( 0xe41002, 0xe41003, io_player1_r ),
+		new Memory_ReadAddress( 0xe41004, 0xe41005, MRA_NOP ),
+		new Memory_ReadAddress( 0xe41006, 0xe41007, io_player2_r ),
+		new Memory_ReadAddress( 0xe41000, 0xe41001, io_service_r ),
+		new Memory_ReadAddress( 0xe42002, 0xe42003, io_dip1_r ),
+		new Memory_ReadAddress( 0xe42000, 0xe42001, io_dip2_r ),
 	
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( toryumon_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -7357,20 +7429,22 @@ public class system16
 	public static ReadHandlerPtr tt_io_player2_r  = new ReadHandlerPtr() { public int handler(int offset){ return input_port_1_r.handler( offset ) << 8; } };
 	public static ReadHandlerPtr tt_io_service_r  = new ReadHandlerPtr() { public int handler(int offset){ return input_port_2_r.handler( offset ) << 8; } };
 	
-	static MEMORY_READ_START( tturf_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x2001e6, 0x2001e7, tt_io_service_r },
-		{ 0x2001e8, 0x2001e9, tt_io_player1_r },
-		{ 0x2001ea, 0x2001eb, tt_io_player2_r },
-		{ 0x200000, 0x203fff, MRA_EXTRAM },
-		{ 0x300000, 0x300fff, MRA_SPRITERAM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x500000, 0x500fff, MRA_PALETTERAM },
+	public static Memory_ReadAddress tturf_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x2001e6, 0x2001e7, tt_io_service_r ),
+		new Memory_ReadAddress( 0x2001e8, 0x2001e9, tt_io_player1_r ),
+		new Memory_ReadAddress( 0x2001ea, 0x2001eb, tt_io_player2_r ),
+		new Memory_ReadAddress( 0x200000, 0x203fff, MRA_EXTRAM ),
+		new Memory_ReadAddress( 0x300000, 0x300fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x500000, 0x500fff, MRA_PALETTERAM ),
 	
-		{ 0x602002, 0x602003, io_dip1_r },
-		{ 0x602000, 0x602001, io_dip2_r },
-	MEMORY_END
+		new Memory_ReadAddress( 0x602002, 0x602003, io_dip1_r ),
+		new Memory_ReadAddress( 0x602000, 0x602001, io_dip2_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( tturf_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -7486,25 +7560,27 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( tturfbl_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x2001e6, 0x2001e7, tt_io_service_r },
-		{ 0x2001e8, 0x2001e9, tt_io_player1_r },
-		{ 0x2001ea, 0x2001eb, tt_io_player2_r },
-		{ 0x200000, 0x203fff, MRA_EXTRAM },
-		{ 0x300000, 0x300fff, MRA_SPRITERAM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x500000, 0x500fff, MRA_PALETTERAM },
-		{ 0x600002, 0x600003, io_dip1_r },
-		{ 0x600000, 0x600001, io_dip2_r },
-		{ 0x601002, 0x601003, io_player1_r },
-		{ 0x601004, 0x601005, io_player2_r },
-		{ 0x601000, 0x601001, io_service_r },
-		{ 0x602002, 0x602003, io_dip1_r },
-		{ 0x602000, 0x602001, io_dip2_r },
-		{ 0xc46000, 0xc4601f, MRA_EXTRAM3 },
-	MEMORY_END
+	public static Memory_ReadAddress tturfbl_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x2001e6, 0x2001e7, tt_io_service_r ),
+		new Memory_ReadAddress( 0x2001e8, 0x2001e9, tt_io_player1_r ),
+		new Memory_ReadAddress( 0x2001ea, 0x2001eb, tt_io_player2_r ),
+		new Memory_ReadAddress( 0x200000, 0x203fff, MRA_EXTRAM ),
+		new Memory_ReadAddress( 0x300000, 0x300fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x500000, 0x500fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0x600002, 0x600003, io_dip1_r ),
+		new Memory_ReadAddress( 0x600000, 0x600001, io_dip2_r ),
+		new Memory_ReadAddress( 0x601002, 0x601003, io_player1_r ),
+		new Memory_ReadAddress( 0x601004, 0x601005, io_player2_r ),
+		new Memory_ReadAddress( 0x601000, 0x601001, io_service_r ),
+		new Memory_ReadAddress( 0x602002, 0x602003, io_dip1_r ),
+		new Memory_ReadAddress( 0x602000, 0x602001, io_dip2_r ),
+		new Memory_ReadAddress( 0xc46000, 0xc4601f, MRA_EXTRAM3 ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( tturfbl_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -7625,19 +7701,21 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( wb3_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41006, 0xc41007, io_player2_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42002, 0xc42003, io_dip1_r },
-		{ 0xc42000, 0xc42001, io_dip2_r },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress wb3_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, io_player2_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip2_r ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static WriteHandlerPtr wb3_sound_command_w = new WriteHandlerPtr() {public void handler(int offset, int data)
 	{
@@ -7753,20 +7831,22 @@ public class system16
 	
 	/***************************************************************************/
 	
-	static MEMORY_READ_START( wb3bl_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x440000, 0x440fff, MRA_SPRITERAM },
-		{ 0x840000, 0x840fff, MRA_PALETTERAM },
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41004, 0xc41005, io_player2_r },
-		{ 0xc41000, 0xc41001, io_service_r },
-		{ 0xc42002, 0xc42003, io_dip1_r },
-		{ 0xc42000, 0xc42001, io_dip2_r },
-		{ 0xc46000, 0xc4601f, MRA_EXTRAM3 },
-		{ 0xff0000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress wb3bl_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x440000, 0x440fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x840000, 0x840fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41004, 0xc41005, io_player2_r ),
+		new Memory_ReadAddress( 0xc41000, 0xc41001, io_service_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip2_r ),
+		new Memory_ReadAddress( 0xc46000, 0xc4601f, MRA_EXTRAM3 ),
+		new Memory_ReadAddress( 0xff0000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( wb3bl_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -7884,20 +7964,22 @@ public class system16
 		return io_service_r(offset) | (READ_WORD(&sys16_workingram[0x2082]) & 0xff00);
 	} };
 	
-	static MEMORY_READ_START( wrestwar_readmem )
-		{ 0x000000, 0x0bffff, MRA_ROM },
-		{ 0x100000, 0x10ffff, MRA_TILERAM },
-		{ 0x110000, 0x110fff, MRA_TEXTRAM },
-		{ 0x200000, 0x200fff, MRA_SPRITERAM },
-		{ 0x300000, 0x300fff, MRA_PALETTERAM },
-		{ 0x400000, 0x400003, MRA_EXTRAM },
-		{ 0xc41002, 0xc41003, io_player1_r },
-		{ 0xc41006, 0xc41007, io_player2_r },
-		{ 0xc42002, 0xc42003, io_dip1_r },
-		{ 0xc42000, 0xc42001, io_dip2_r },
-		{ 0xffe082, 0xffe083, ww_io_service_r },
-		{ 0xffc000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress wrestwar_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x0bffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x100000, 0x10ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x110000, 0x110fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x200000, 0x200fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x300000, 0x300fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0x400000, 0x400003, MRA_EXTRAM ),
+		new Memory_ReadAddress( 0xc41002, 0xc41003, io_player1_r ),
+		new Memory_ReadAddress( 0xc41006, 0xc41007, io_player2_r ),
+		new Memory_ReadAddress( 0xc42002, 0xc42003, io_dip1_r ),
+		new Memory_ReadAddress( 0xc42000, 0xc42001, io_dip2_r ),
+		new Memory_ReadAddress( 0xffe082, 0xffe083, ww_io_service_r ),
+		new Memory_ReadAddress( 0xffc000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( wrestwar_writemem )
 		{ 0x000000, 0x0bffff, MWA_ROM },
@@ -8075,23 +8157,25 @@ public class system16
 	} };
 	
 	
-	static MEMORY_READ_START( hangon_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x20c000, 0x20ffff, MRA_EXTRAM },
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x600000, 0x600fff, MRA_SPRITERAM },
-		{ 0xa00000, 0xa00fff, MRA_PALETTERAM },
-		{ 0xc68000, 0xc68fff, MRA_EXTRAM2 },
-		{ 0xc7e000, 0xc7ffff, MRA_EXTRAM3 },
-		{ 0xe00002, 0xe00003, sys16_coinctrl_r },
-		{ 0xe01000, 0xe01001, io_service_r },
-		{ 0xe0100c, 0xe0100d, io_dip2_r },
-		{ 0xe0100a, 0xe0100b, io_dip1_r },
-		{ 0xe03020, 0xe03021, ho_io_highscoreentry_r },
-		{ 0xe03028, 0xe03029, ho_io_x_r },
-		{ 0xe0302a, 0xe0302b, (mem_read_handler)ho_io_y_r },
-	MEMORY_END
+	public static Memory_ReadAddress hangon_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x20c000, 0x20ffff, MRA_EXTRAM ),
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x600000, 0x600fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0xa00000, 0xa00fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc68000, 0xc68fff, MRA_EXTRAM2 ),
+		new Memory_ReadAddress( 0xc7e000, 0xc7ffff, MRA_EXTRAM3 ),
+		new Memory_ReadAddress( 0xe00002, 0xe00003, sys16_coinctrl_r ),
+		new Memory_ReadAddress( 0xe01000, 0xe01001, io_service_r ),
+		new Memory_ReadAddress( 0xe0100c, 0xe0100d, io_dip2_r ),
+		new Memory_ReadAddress( 0xe0100a, 0xe0100b, io_dip1_r ),
+		new Memory_ReadAddress( 0xe03020, 0xe03021, ho_io_highscoreentry_r ),
+		new Memory_ReadAddress( 0xe03028, 0xe03029, ho_io_x_r ),
+		new Memory_ReadAddress( 0xe0302a, 0xe0302b, (mem_read_handler)ho_io_y_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( hangon_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -8106,11 +8190,13 @@ public class system16
 		{ 0xe00002, 0xe00003, sys16_3d_coinctrl_w },
 	MEMORY_END
 	
-	static MEMORY_READ_START( hangon_readmem2 )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0xc68000, 0xc68fff, MRA_EXTRAM2 },
-		{ 0xc7e000, 0xc7ffff, MRA_EXTRAM3 },
-	MEMORY_END
+	public static Memory_ReadAddress hangon_readmem2[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0xc68000, 0xc68fff, MRA_EXTRAM2 ),
+		new Memory_ReadAddress( 0xc7e000, 0xc7ffff, MRA_EXTRAM3 ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( hangon_writemem2 )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -8119,13 +8205,15 @@ public class system16
 	MEMORY_END
 	
 	
-	static MEMORY_READ_START( hangon_sound_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0xc000, 0xc7ff, MRA_RAM },
-		{ 0xd000, 0xd000, YM2203_status_port_0_r },
-		{ 0xe000, 0xe7ff, SegaPCM_r },
-		{ 0xf800, 0xffff, MRA_RAM },
-	MEMORY_END
+	public static Memory_ReadAddress hangon_sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0xc000, 0xc7ff, MRA_RAM ),
+		new Memory_ReadAddress( 0xd000, 0xd000, YM2203_status_port_0_r ),
+		new Memory_ReadAddress( 0xe000, 0xe7ff, SegaPCM_r ),
+		new Memory_ReadAddress( 0xf800, 0xffff, MRA_RAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( hangon_sound_writemem )
 		{ 0x0000, 0x7fff, MWA_ROM },
@@ -8380,22 +8468,24 @@ public class system16
 	
 	public static ReadHandlerPtr sh_motor_status_r  = new ReadHandlerPtr() { public int handler(int offset) { return 0x0; } };
 	
-	static MEMORY_READ_START( harrier_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x040000, 0x043fff, MRA_EXTRAM },
-		{ 0x100000, 0x107fff, MRA_TILERAM },
-		{ 0x108000, 0x108fff, MRA_TEXTRAM },
-		{ 0x110000, 0x110fff, MRA_PALETTERAM },
-		{ 0x124000, 0x127fff, shared_ram_r },
-		{ 0x130000, 0x130fff, MRA_SPRITERAM },
-		{ 0x140002, 0x140003, sys16_coinctrl_r },
-		{ 0x140010, 0x140011, io_service_r },
-		{ 0x140014, 0x140015, io_dip1_r },
-		{ 0x140016, 0x140017, io_dip2_r },
-		{ 0x140024, 0x140027, sh_motor_status_r },
-		{ 0xc68000, 0xc68fff, MRA_EXTRAM2 },
+	public static Memory_ReadAddress harrier_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x040000, 0x043fff, MRA_EXTRAM ),
+		new Memory_ReadAddress( 0x100000, 0x107fff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x108000, 0x108fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x110000, 0x110fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0x124000, 0x127fff, shared_ram_r ),
+		new Memory_ReadAddress( 0x130000, 0x130fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x140002, 0x140003, sys16_coinctrl_r ),
+		new Memory_ReadAddress( 0x140010, 0x140011, io_service_r ),
+		new Memory_ReadAddress( 0x140014, 0x140015, io_dip1_r ),
+		new Memory_ReadAddress( 0x140016, 0x140017, io_dip2_r ),
+		new Memory_ReadAddress( 0x140024, 0x140027, sh_motor_status_r ),
+		new Memory_ReadAddress( 0xc68000, 0xc68fff, MRA_EXTRAM2 ),
 	
-	MEMORY_END
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( harrier_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -8411,11 +8501,13 @@ public class system16
 	
 	MEMORY_END
 	
-	static MEMORY_READ_START( harrier_readmem2 )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0xc68000, 0xc68fff, MRA_EXTRAM2 },
-		{ 0xc7c000, 0xc7ffff, shared_ram_r },
-	MEMORY_END
+	public static Memory_ReadAddress harrier_readmem2[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0xc68000, 0xc68fff, MRA_EXTRAM2 ),
+		new Memory_ReadAddress( 0xc7c000, 0xc7ffff, shared_ram_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( harrier_writemem2 )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -8423,12 +8515,14 @@ public class system16
 		{ 0xc7c000, 0xc7ffff, shared_ram_w, &shared_ram },
 	MEMORY_END
 	
-	static MEMORY_READ_START( harrier_sound_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0xd000, 0xd000, YM2203_status_port_0_r },
-		{ 0xe000, 0xe0ff, SegaPCM_r },
-		{ 0x8000, 0xffff, MRA_RAM },
-	MEMORY_END
+	public static Memory_ReadAddress harrier_sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0xd000, 0xd000, YM2203_status_port_0_r ),
+		new Memory_ReadAddress( 0xe000, 0xe0ff, SegaPCM_r ),
+		new Memory_ReadAddress( 0x8000, 0xffff, MRA_RAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( harrier_sound_writemem )
 		{ 0x0000, 0x7fff, MWA_ROM },
@@ -8750,24 +8844,26 @@ public class system16
 	public static ReadHandlerPtr shared_ram2_r  = new ReadHandlerPtr() { public int handler(int offset) { return READ_WORD(&shared_ram2[offset]); } };
 	public static WriteHandlerPtr shared_ram2_w = new WriteHandlerPtr() {public void handler(int offset, int data) { COMBINE_WORD_MEM(&shared_ram2[offset], data); } };
 	
-	static MEMORY_READ_START( shangon_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x20c640, 0x20c647, sound_shared_ram_r },
-		{ 0x20c000, 0x20ffff, MRA_EXTRAM2 },
+	public static Memory_ReadAddress shangon_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x20c640, 0x20c647, sound_shared_ram_r ),
+		new Memory_ReadAddress( 0x20c000, 0x20ffff, MRA_EXTRAM2 ),
 	
-		{ 0x400000, 0x40ffff, MRA_TILERAM },
-		{ 0x410000, 0x410fff, MRA_TEXTRAM },
-		{ 0x600000, 0x600fff, MRA_SPRITERAM },
-		{ 0xa00000, 0xa00fff, MRA_PALETTERAM },
-		{ 0xc68000, 0xc68fff, shared_ram_r },
-		{ 0xc7c000, 0xc7ffff, shared_ram2_r },
-		{ 0xe00002, 0xe00003, sys16_coinctrl_r },
-		{ 0xe01000, 0xe01001, io_service_r },
-		{ 0xe0100c, 0xe0100d, io_dip2_r },
-		{ 0xe0100a, 0xe0100b, io_dip1_r },
-		{ 0xe030f8, 0xe030f9, ho_io_x_r },
-		{ 0xe030fa, 0xe030fb, (mem_read_handler)ho_io_y_r },
-	MEMORY_END
+		new Memory_ReadAddress( 0x400000, 0x40ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x410000, 0x410fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x600000, 0x600fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0xa00000, 0xa00fff, MRA_PALETTERAM ),
+		new Memory_ReadAddress( 0xc68000, 0xc68fff, shared_ram_r ),
+		new Memory_ReadAddress( 0xc7c000, 0xc7ffff, shared_ram2_r ),
+		new Memory_ReadAddress( 0xe00002, 0xe00003, sys16_coinctrl_r ),
+		new Memory_ReadAddress( 0xe01000, 0xe01001, io_service_r ),
+		new Memory_ReadAddress( 0xe0100c, 0xe0100d, io_dip2_r ),
+		new Memory_ReadAddress( 0xe0100a, 0xe0100b, io_dip1_r ),
+		new Memory_ReadAddress( 0xe030f8, 0xe030f9, ho_io_x_r ),
+		new Memory_ReadAddress( 0xe030fa, 0xe030fb, (mem_read_handler)ho_io_y_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( shangon_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -8782,13 +8878,15 @@ public class system16
 		{ 0xe00002, 0xe00003, sys16_3d_coinctrl_w },
 	MEMORY_END
 	
-	static MEMORY_READ_START( shangon_readmem2 )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x454000, 0x45401f, MRA_EXTRAM3 },
-		{ 0x7e8000, 0x7e8fff, shared_ram_r },
-		{ 0x7fc000, 0x7ffbff, shared_ram2_r },
-		{ 0x7ffc00, 0x7fffff, MRA_EXTRAM },
-	MEMORY_END
+	public static Memory_ReadAddress shangon_readmem2[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x454000, 0x45401f, MRA_EXTRAM3 ),
+		new Memory_ReadAddress( 0x7e8000, 0x7e8fff, shared_ram_r ),
+		new Memory_ReadAddress( 0x7fc000, 0x7ffbff, shared_ram2_r ),
+		new Memory_ReadAddress( 0x7ffc00, 0x7fffff, MRA_EXTRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( shangon_writemem2 )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -8798,12 +8896,14 @@ public class system16
 		{ 0x7ffc00, 0x7fffff, MWA_EXTRAM },
 	MEMORY_END
 	
-	static MEMORY_READ_START( shangon_sound_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0xf000, 0xf7ff, SegaPCM_r },
-		{ 0xf800, 0xf807, sound2_shared_ram_r },
-		{ 0xf808, 0xffff, MRA_RAM },
-	MEMORY_END
+	public static Memory_ReadAddress shangon_sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0xf000, 0xf7ff, SegaPCM_r ),
+		new Memory_ReadAddress( 0xf800, 0xf807, sound2_shared_ram_r ),
+		new Memory_ReadAddress( 0xf808, 0xffff, MRA_RAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( shangon_sound_writemem )
 		{ 0x0000, 0x7fff, MWA_ROM },
@@ -9273,26 +9373,28 @@ public class system16
 		}
 	} };
 	
-	static MEMORY_READ_START( outrun_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x060900, 0x060907, sound_shared_ram_r },		//???
-		{ 0x060000, 0x067fff, MRA_EXTRAM2 },
+	public static Memory_ReadAddress outrun_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x060900, 0x060907, sound_shared_ram_r ),		//???
+		new Memory_ReadAddress( 0x060000, 0x067fff, MRA_EXTRAM2 ),
 	
-		{ 0x100000, 0x10ffff, MRA_TILERAM },
-		{ 0x110000, 0x110fff, MRA_TEXTRAM },
+		new Memory_ReadAddress( 0x100000, 0x10ffff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x110000, 0x110fff, MRA_TEXTRAM ),
 	
-		{ 0x130000, 0x130fff, MRA_SPRITERAM },
-		{ 0x120000, 0x121fff, MRA_PALETTERAM },
+		new Memory_ReadAddress( 0x130000, 0x130fff, MRA_SPRITERAM ),
+		new Memory_ReadAddress( 0x120000, 0x121fff, MRA_PALETTERAM ),
 	
-		{ 0x140010, 0x140011, or_io_service_r },
-		{ 0x140014, 0x140015, io_dip1_r },
-		{ 0x140016, 0x140017, io_dip2_r },
-		{ 0x140030, 0x140031, outrun_analog_r },
+		new Memory_ReadAddress( 0x140010, 0x140011, or_io_service_r ),
+		new Memory_ReadAddress( 0x140014, 0x140015, io_dip1_r ),
+		new Memory_ReadAddress( 0x140016, 0x140017, io_dip2_r ),
+		new Memory_ReadAddress( 0x140030, 0x140031, outrun_analog_r ),
 	
-		{ 0x200000, 0x23ffff, MRA_BANK8 },
-		{ 0x260000, 0x267fff, shared_ram_r },
-		{ 0xe00000, 0xe00001, or_reset2_r },
-	MEMORY_END
+		new Memory_ReadAddress( 0x200000, 0x23ffff, MRA_BANK8 ),
+		new Memory_ReadAddress( 0x260000, 0x267fff, shared_ram_r ),
+		new Memory_ReadAddress( 0xe00000, 0xe00001, or_reset2_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( outrun_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -9314,11 +9416,13 @@ public class system16
 		{ 0xffff06, 0xffff07, outrun_sound_write_w },
 	MEMORY_END
 	
-	static MEMORY_READ_START( outrun_readmem2 )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x060000, 0x067fff, shared_ram_r },
-		{ 0x080000, 0x09ffff, MRA_EXTRAM },		// gr
-	MEMORY_END
+	public static Memory_ReadAddress outrun_readmem2[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x060000, 0x067fff, shared_ram_r ),
+		new Memory_ReadAddress( 0x080000, 0x09ffff, MRA_EXTRAM ),		// gr
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( outrun_writemem2 )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -9328,13 +9432,15 @@ public class system16
 	
 	// Outrun
 	
-	static MEMORY_READ_START( outrun_sound_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0xf000, 0xf0ff, SegaPCM_r },
-		{ 0xf100, 0xf7ff, MRA_NOP },
-		{ 0xf800, 0xf807, sound2_shared_ram_r },
-		{ 0xf808, 0xffff, MRA_RAM },
-	MEMORY_END
+	public static Memory_ReadAddress outrun_sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0xf000, 0xf0ff, SegaPCM_r ),
+		new Memory_ReadAddress( 0xf100, 0xf7ff, MRA_NOP ),
+		new Memory_ReadAddress( 0xf800, 0xf807, sound2_shared_ram_r ),
+		new Memory_ReadAddress( 0xf808, 0xffff, MRA_RAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( outrun_sound_writemem )
 		{ 0x0000, 0x7fff, MWA_ROM },
@@ -9935,26 +10041,28 @@ public class system16
 		return 0;
 	} };
 	
-	static MEMORY_READ_START( enduror_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x040000, 0x043fff, MRA_EXTRAM },
-		{ 0x100000, 0x107fff, MRA_TILERAM },
-		{ 0x108000, 0x108fff, MRA_TEXTRAM },
-		{ 0x110000, 0x110fff, MRA_PALETTERAM },
+	public static Memory_ReadAddress enduror_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x040000, 0x043fff, MRA_EXTRAM ),
+		new Memory_ReadAddress( 0x100000, 0x107fff, MRA_TILERAM ),
+		new Memory_ReadAddress( 0x108000, 0x108fff, MRA_TEXTRAM ),
+		new Memory_ReadAddress( 0x110000, 0x110fff, MRA_PALETTERAM ),
 	
-		{ 0x124000, 0x127fff, shared_ram_r },
+		new Memory_ReadAddress( 0x124000, 0x127fff, shared_ram_r ),
 	
-		{ 0x130000, 0x130fff, MRA_SPRITERAM },
+		new Memory_ReadAddress( 0x130000, 0x130fff, MRA_SPRITERAM ),
 	
-		{ 0x140002, 0x140003, sys16_coinctrl_r },
-		{ 0x140010, 0x140011, io_service_r },
-		{ 0x140014, 0x140015, io_dip1_r },
-		{ 0x140016, 0x140017, io_dip2_r },
+		new Memory_ReadAddress( 0x140002, 0x140003, sys16_coinctrl_r ),
+		new Memory_ReadAddress( 0x140010, 0x140011, io_service_r ),
+		new Memory_ReadAddress( 0x140014, 0x140015, io_dip1_r ),
+		new Memory_ReadAddress( 0x140016, 0x140017, io_dip2_r ),
 	
-		{ 0x140030, 0x140031, er_io_analog_r },
+		new Memory_ReadAddress( 0x140030, 0x140031, er_io_analog_r ),
 	
-		{ 0xe00000, 0xe00001, er_reset2_r },
-	MEMORY_END
+		new Memory_ReadAddress( 0xe00000, 0xe00001, er_reset2_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( enduror_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -9969,11 +10077,13 @@ public class system16
 	MEMORY_END
 	
 	
-	static MEMORY_READ_START( enduror_readmem2 )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0xc68000, 0xc68fff, MRA_EXTRAM2 },
-		{ 0xc7c000, 0xc7ffff, shared_ram_r },
-	MEMORY_END
+	public static Memory_ReadAddress enduror_readmem2[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0xc68000, 0xc68fff, MRA_EXTRAM2 ),
+		new Memory_ReadAddress( 0xc7c000, 0xc7ffff, shared_ram_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( enduror_writemem2 )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -9981,12 +10091,14 @@ public class system16
 		{ 0xc7c000, 0xc7ffff, shared_ram_w, &shared_ram },
 	MEMORY_END
 	
-	static MEMORY_READ_START( enduror_sound_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0xc000, 0xc7ff, MRA_RAM },
-		{ 0xd000, 0xd000, YM2203_status_port_0_r },
-		{ 0xe000, 0xe7ff, SegaPCM_r },
-	MEMORY_END
+	public static Memory_ReadAddress enduror_sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0xc000, 0xc7ff, MRA_RAM ),
+		new Memory_ReadAddress( 0xd000, 0xd000, YM2203_status_port_0_r ),
+		new Memory_ReadAddress( 0xe000, 0xe7ff, SegaPCM_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( enduror_sound_writemem )
 		{ 0x0000, 0x7fff, MWA_ROM },
@@ -10001,12 +10113,14 @@ public class system16
 	PORT_END
 	
 	
-	static MEMORY_READ_START( enduror_b2_sound_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-	//	{ 0xc000, 0xc7ff, MRA_RAM },
-		{ 0xf000, 0xf7ff, SegaPCM_r },
-		{ 0xf800, 0xffff, MRA_RAM },
-	MEMORY_END
+	public static Memory_ReadAddress enduror_b2_sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+	//	new Memory_ReadAddress( 0xc000, 0xc7ff, MRA_RAM ),
+		new Memory_ReadAddress( 0xf000, 0xf7ff, SegaPCM_r ),
+		new Memory_ReadAddress( 0xf800, 0xffff, MRA_RAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( enduror_b2_sound_writemem )
 		{ 0x0000, 0x7fff, MWA_ROM },
@@ -10325,10 +10439,12 @@ public class system16
 	/* Dummy drivers for games that don't have a working clone and are protected */
 	/*****************************************************************************/
 	
-	static MEMORY_READ_START( sys16_dummy_readmem )
-		{ 0x000000, 0x0fffff, MRA_ROM },
-		{ 0xff0000, 0xffffff, MRA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_ReadAddress sys16_dummy_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x0fffff, MRA_ROM ),
+		new Memory_ReadAddress( 0xff0000, 0xffffff, MRA_WORKINGRAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( sys16_dummy_writemem )
 		{ 0x000000, 0x0fffff, MWA_ROM },

@@ -133,15 +133,17 @@ public class scobra
 	} };
 	
 	
-	static MEMORY_READ_START( type1_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0x8000, 0x8bff, MRA_RAM },	/* RAM and Video RAM */
-		{ 0x9000, 0x907f, MRA_RAM },	/* screen attributes, sprites, bullets */
-		{ 0x9800, 0x9800, input_port_0_r },	/* IN0 */
-		{ 0x9801, 0x9801, input_port_1_r },	/* IN1 */
-		{ 0x9802, 0x9802, input_port_2_r },	/* IN2 */
-		{ 0xb000, 0xb000, watchdog_reset_r },
-	MEMORY_END
+	public static Memory_ReadAddress type1_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0x8bff, MRA_RAM ),	/* RAM and Video RAM */
+		new Memory_ReadAddress( 0x9000, 0x907f, MRA_RAM ),	/* screen attributes, sprites, bullets */
+		new Memory_ReadAddress( 0x9800, 0x9800, input_port_0_r ),	/* IN0 */
+		new Memory_ReadAddress( 0x9801, 0x9801, input_port_1_r ),	/* IN1 */
+		new Memory_ReadAddress( 0x9802, 0x9802, input_port_2_r ),	/* IN2 */
+		new Memory_ReadAddress( 0xb000, 0xb000, watchdog_reset_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( type1_writemem )
 		{ 0x0000, 0x7fff, MWA_ROM },
@@ -162,15 +164,17 @@ public class scobra
 		{ 0xa807, 0xa807, flip_screen_y_w },
 	MEMORY_END
 	
-	static MEMORY_READ_START( type2_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0x8000, 0x8bff, MRA_RAM },	/* RAM and Video RAM */
-		{ 0x9000, 0x93ff, MRA_RAM },	/* screen attributes, sprites, bullets */
-		{ 0x9800, 0x9800, watchdog_reset_r},
-		{ 0xa000, 0xa000, input_port_0_r },	/* IN0 */
-		{ 0xa004, 0xa004, input_port_1_r },	/* IN1 */
-		{ 0xa008, 0xa008, input_port_2_r },	/* IN2 */
-	MEMORY_END
+	public static Memory_ReadAddress type2_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0x8bff, MRA_RAM ),	/* RAM and Video RAM */
+		new Memory_ReadAddress( 0x9000, 0x93ff, MRA_RAM ),	/* screen attributes, sprites, bullets */
+		new Memory_ReadAddress( 0x9800, 0x9800, watchdog_reset_r),
+		new Memory_ReadAddress( 0xa000, 0xa000, input_port_0_r ),	/* IN0 */
+		new Memory_ReadAddress( 0xa004, 0xa004, input_port_1_r ),	/* IN1 */
+		new Memory_ReadAddress( 0xa008, 0xa008, input_port_2_r ),	/* IN2 */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( type2_writemem )
 		{ 0x0000, 0x7fff, MWA_ROM },
@@ -190,15 +194,17 @@ public class scobra
 		{ 0xb00e, 0xb00e, flip_screen_x_w },
 	MEMORY_END
 	
-	static MEMORY_READ_START( hustler_readmem )
-		{ 0x0000, 0x3fff, MRA_ROM },
-		{ 0x8000, 0x8bff, MRA_RAM },	/* RAM and Video RAM */
-		{ 0x9000, 0x907f, MRA_RAM },	/* screen attributes, sprites, bullets */
-		{ 0xb800, 0xb800, watchdog_reset_r },
-		{ 0xd000, 0xd000, input_port_0_r },	/* IN0 */
-		{ 0xd008, 0xd008, input_port_1_r },	/* IN1 */
-		{ 0xd010, 0xd010, input_port_2_r },	/* IN2 */
-	MEMORY_END
+	public static Memory_ReadAddress hustler_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x3fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0x8bff, MRA_RAM ),	/* RAM and Video RAM */
+		new Memory_ReadAddress( 0x9000, 0x907f, MRA_RAM ),	/* screen attributes, sprites, bullets */
+		new Memory_ReadAddress( 0xb800, 0xb800, watchdog_reset_r ),
+		new Memory_ReadAddress( 0xd000, 0xd000, input_port_0_r ),	/* IN0 */
+		new Memory_ReadAddress( 0xd008, 0xd008, input_port_1_r ),	/* IN1 */
+		new Memory_ReadAddress( 0xd010, 0xd010, input_port_2_r ),	/* IN2 */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( hustler_writemem )
 		{ 0x0000, 0x3fff, MWA_ROM },
@@ -215,15 +221,17 @@ public class scobra
 		{ 0xe008, 0xe008, scramble_sh_irqtrigger_w },
 	MEMORY_END
 	
-	static MEMORY_READ_START( hustlerb_readmem )
-		{ 0x0000, 0x3fff, MRA_ROM },
-		{ 0x8000, 0x8bff, MRA_RAM },	/* RAM and Video RAM */
-		{ 0x9000, 0x907f, MRA_RAM },	/* screen attributes, sprites, bullets */
-		{ 0xb000, 0xb000, watchdog_reset_r },
-		{ 0xc100, 0xc100, input_port_0_r },	/* IN0 */
-		{ 0xc101, 0xc101, input_port_1_r },	/* IN1 */
-		{ 0xc102, 0xc102, input_port_2_r },	/* IN2 */
-	MEMORY_END
+	public static Memory_ReadAddress hustlerb_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x3fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0x8bff, MRA_RAM ),	/* RAM and Video RAM */
+		new Memory_ReadAddress( 0x9000, 0x907f, MRA_RAM ),	/* screen attributes, sprites, bullets */
+		new Memory_ReadAddress( 0xb000, 0xb000, watchdog_reset_r ),
+		new Memory_ReadAddress( 0xc100, 0xc100, input_port_0_r ),	/* IN0 */
+		new Memory_ReadAddress( 0xc101, 0xc101, input_port_1_r ),	/* IN1 */
+		new Memory_ReadAddress( 0xc102, 0xc102, input_port_2_r ),	/* IN2 */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( hustlerb_writemem )
 		{ 0x0000, 0x3fff, MWA_ROM },
@@ -241,10 +249,12 @@ public class scobra
 	MEMORY_END
 	
 	
-	static MEMORY_READ_START( sound_readmem )
-		{ 0x0000, 0x1fff, MRA_ROM },
-		{ 0x8000, 0x83ff, MRA_RAM },
-	MEMORY_END
+	public static Memory_ReadAddress sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x1fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0x83ff, MRA_RAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( sound_writemem )
 		{ 0x0000, 0x1fff, MWA_ROM },
@@ -252,10 +262,12 @@ public class scobra
 		{ 0x9000, 0x9fff, scramble_filter_w },
 	MEMORY_END
 	
-	static MEMORY_READ_START( hustler_sound_readmem )
-		{ 0x0000, 0x0fff, MRA_ROM },
-		{ 0x4000, 0x43ff, MRA_RAM },
-	MEMORY_END
+	public static Memory_ReadAddress hustler_sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x0fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x4000, 0x43ff, MRA_RAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( hustler_sound_writemem )
 		{ 0x0000, 0x0fff, MWA_ROM },

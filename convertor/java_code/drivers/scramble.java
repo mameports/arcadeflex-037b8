@@ -123,70 +123,80 @@ public class scramble
 	} };
 	
 	
-	static MEMORY_READ_START( scramble_readmem )
-		{ 0x0000, 0x3fff, MRA_ROM },
-		{ 0x4000, 0x4bff, MRA_RAM },	/* RAM and Video RAM */
-		{ 0x4c00, 0x4fff, videoram_r },	/* mirror address */
-		{ 0x5000, 0x507f, MRA_RAM },	/* screen attributes, sprites, bullets */
-		{ 0x7000, 0x7000, watchdog_reset_r },
-		{ 0x7800, 0x7800, watchdog_reset_r },
-		{ 0x8100, 0x8100, input_port_0_r },	/* IN0 */
-		{ 0x8101, 0x8101, input_port_1_r },	/* IN1 */
-		{ 0x8102, 0x8102, input_port_2_r },	/* IN2 */
-	MEMORY_END
+	public static Memory_ReadAddress scramble_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x3fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x4000, 0x4bff, MRA_RAM ),	/* RAM and Video RAM */
+		new Memory_ReadAddress( 0x4c00, 0x4fff, videoram_r ),	/* mirror address */
+		new Memory_ReadAddress( 0x5000, 0x507f, MRA_RAM ),	/* screen attributes, sprites, bullets */
+		new Memory_ReadAddress( 0x7000, 0x7000, watchdog_reset_r ),
+		new Memory_ReadAddress( 0x7800, 0x7800, watchdog_reset_r ),
+		new Memory_ReadAddress( 0x8100, 0x8100, input_port_0_r ),	/* IN0 */
+		new Memory_ReadAddress( 0x8101, 0x8101, input_port_1_r ),	/* IN1 */
+		new Memory_ReadAddress( 0x8102, 0x8102, input_port_2_r ),	/* IN2 */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
-	static MEMORY_READ_START( ckongs_readmem )
-		{ 0x0000, 0x5fff, MRA_ROM },
-		{ 0x6000, 0x6bff, MRA_RAM },				/* RAM */
-		{ 0x7000, 0x7000, input_port_0_r },			/* IN0 */
-		{ 0x7001, 0x7001, ckongs_input_port_1_r },	/* IN1 */
-		{ 0x7002, 0x7002, ckongs_input_port_2_r },	/* IN2 */
-		{ 0x9000, 0x93ff, MRA_RAM },				/* Video RAM */
-		{ 0x9800, 0x987f, MRA_RAM },				/* screen attributes, sprites, bullets */
-		{ 0xb000, 0xb000, watchdog_reset_r },
-	MEMORY_END
+	public static Memory_ReadAddress ckongs_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x5fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x6000, 0x6bff, MRA_RAM ),				/* RAM */
+		new Memory_ReadAddress( 0x7000, 0x7000, input_port_0_r ),			/* IN0 */
+		new Memory_ReadAddress( 0x7001, 0x7001, ckongs_input_port_1_r ),	/* IN1 */
+		new Memory_ReadAddress( 0x7002, 0x7002, ckongs_input_port_2_r ),	/* IN2 */
+		new Memory_ReadAddress( 0x9000, 0x93ff, MRA_RAM ),				/* Video RAM */
+		new Memory_ReadAddress( 0x9800, 0x987f, MRA_RAM ),				/* screen attributes, sprites, bullets */
+		new Memory_ReadAddress( 0xb000, 0xb000, watchdog_reset_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/* Extra ROM and protection locations */
-	static MEMORY_READ_START( mariner_readmem )
-		{ 0x0000, 0x3fff, MRA_ROM },
-		{ 0x4000, 0x4bff, MRA_RAM },	/* RAM and Video RAM */
-		{ 0x4c00, 0x4fff, videoram_r },	/* mirror address */
-		{ 0x5000, 0x507f, MRA_RAM },	/* screen attributes, sprites, bullets */
-		{ 0x5800, 0x67ff, MRA_ROM },
-		{ 0x7000, 0x7000, watchdog_reset_r },
-		{ 0x8100, 0x8100, input_port_0_r },	/* IN0 */
-		{ 0x8101, 0x8101, input_port_1_r },	/* IN1 */
-		{ 0x8102, 0x8102, input_port_2_r },	/* IN2 */
-		{ 0x9008, 0x9008, mariner_protection_2_r },
-		{ 0xb401, 0xb401, mariner_protection_1_r },
-	MEMORY_END
+	public static Memory_ReadAddress mariner_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x3fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x4000, 0x4bff, MRA_RAM ),	/* RAM and Video RAM */
+		new Memory_ReadAddress( 0x4c00, 0x4fff, videoram_r ),	/* mirror address */
+		new Memory_ReadAddress( 0x5000, 0x507f, MRA_RAM ),	/* screen attributes, sprites, bullets */
+		new Memory_ReadAddress( 0x5800, 0x67ff, MRA_ROM ),
+		new Memory_ReadAddress( 0x7000, 0x7000, watchdog_reset_r ),
+		new Memory_ReadAddress( 0x8100, 0x8100, input_port_0_r ),	/* IN0 */
+		new Memory_ReadAddress( 0x8101, 0x8101, input_port_1_r ),	/* IN1 */
+		new Memory_ReadAddress( 0x8102, 0x8102, input_port_2_r ),	/* IN2 */
+		new Memory_ReadAddress( 0x9008, 0x9008, mariner_protection_2_r ),
+		new Memory_ReadAddress( 0xb401, 0xb401, mariner_protection_1_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
-	static MEMORY_READ_START( mars_readmem )
-		{ 0x0000, 0x3fff, MRA_ROM },
-		{ 0x4000, 0x4bff, MRA_RAM },	/* RAM and Video RAM */
-		{ 0x4c00, 0x4fff, videoram_r },	/* mirror address */
-		{ 0x5000, 0x507f, MRA_RAM },	/* screen attributes, sprites, bullets */
-		{ 0x7000, 0x7000, watchdog_reset_r },
-		{ 0x8100, 0x8100, input_port_0_r },	/* IN0 */
-		{ 0x8102, 0x8102, input_port_1_r },	/* IN1 */
-		{ 0x8108, 0x8108, input_port_2_r },	/* IN2 */
-		{ 0x8208, 0x8208, input_port_3_r },	/* IN3 */
-		{ 0xa000, 0xafff, MRA_ROM },    /* Sinbad 7 */
-		{ 0xc100, 0xc100, input_port_0_r },	/* IN0 - Sinbad 7 */
-		{ 0xc102, 0xc102, input_port_1_r },	/* IN1 - Sinbad 7 */
-		{ 0xc108, 0xc108, input_port_2_r },	/* IN2 - Sinbad 7 */
-	MEMORY_END
+	public static Memory_ReadAddress mars_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x3fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x4000, 0x4bff, MRA_RAM ),	/* RAM and Video RAM */
+		new Memory_ReadAddress( 0x4c00, 0x4fff, videoram_r ),	/* mirror address */
+		new Memory_ReadAddress( 0x5000, 0x507f, MRA_RAM ),	/* screen attributes, sprites, bullets */
+		new Memory_ReadAddress( 0x7000, 0x7000, watchdog_reset_r ),
+		new Memory_ReadAddress( 0x8100, 0x8100, input_port_0_r ),	/* IN0 */
+		new Memory_ReadAddress( 0x8102, 0x8102, input_port_1_r ),	/* IN1 */
+		new Memory_ReadAddress( 0x8108, 0x8108, input_port_2_r ),	/* IN2 */
+		new Memory_ReadAddress( 0x8208, 0x8208, input_port_3_r ),	/* IN3 */
+		new Memory_ReadAddress( 0xa000, 0xafff, MRA_ROM ),    /* Sinbad 7 */
+		new Memory_ReadAddress( 0xc100, 0xc100, input_port_0_r ),	/* IN0 - Sinbad 7 */
+		new Memory_ReadAddress( 0xc102, 0xc102, input_port_1_r ),	/* IN1 - Sinbad 7 */
+		new Memory_ReadAddress( 0xc108, 0xc108, input_port_2_r ),	/* IN2 - Sinbad 7 */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
-	static MEMORY_READ_START( hotshock_readmem )
-		{ 0x0000, 0x3fff, MRA_ROM },
-		{ 0x4000, 0x4bff, MRA_RAM },	/* RAM and Video RAM */
-		{ 0x4c00, 0x4fff, videoram_r },	/* mirror address */
-		{ 0x5000, 0x507f, MRA_RAM },	/* screen attributes, sprites, bullets */
-		{ 0x8000, 0x8000, input_port_0_r },	/* IN0 */
-		{ 0x8001, 0x8001, input_port_1_r },	/* IN1 */
-		{ 0x8002, 0x8002, input_port_2_r },	/* IN2 */
-		{ 0x8003, 0x8003, input_port_3_r },	/* IN3 */
-	MEMORY_END
+	public static Memory_ReadAddress hotshock_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x3fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x4000, 0x4bff, MRA_RAM ),	/* RAM and Video RAM */
+		new Memory_ReadAddress( 0x4c00, 0x4fff, videoram_r ),	/* mirror address */
+		new Memory_ReadAddress( 0x5000, 0x507f, MRA_RAM ),	/* screen attributes, sprites, bullets */
+		new Memory_ReadAddress( 0x8000, 0x8000, input_port_0_r ),	/* IN0 */
+		new Memory_ReadAddress( 0x8001, 0x8001, input_port_1_r ),	/* IN1 */
+		new Memory_ReadAddress( 0x8002, 0x8002, input_port_2_r ),	/* IN2 */
+		new Memory_ReadAddress( 0x8003, 0x8003, input_port_3_r ),	/* IN3 */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static ReadHandlerPtr hunchbks_mirror_r  = new ReadHandlerPtr() { public int handler(int offset)
 	{
@@ -209,22 +219,24 @@ public class scramble
 	} };
 	
 	
-	static MEMORY_READ_START( hunchbks_readmem )
-		{ 0x0000, 0x0fff, MRA_ROM },
-		{ 0x2000, 0x2fff, MRA_ROM },
-		{ 0x4000, 0x4fff, MRA_ROM },
-		{ 0x6000, 0x6fff, MRA_ROM },
-		{ 0x1c00, 0x1fff, MRA_RAM },
-		{ 0x1800, 0x1bff, videoram_r },
-		{ 0x1400, 0x147f, MRA_RAM },	/* screen attributes, sprites, bullets */
-		{ 0x1500, 0x1500, input_port_0_r },	/* IN0 */
-		{ 0x1501, 0x1501, input_port_1_r },	/* IN1 */
-		{ 0x1502, 0x1502, input_port_2_r },	/* IN2 */
-		{ 0x1680, 0x1680, watchdog_reset_r },
-		{ 0x3000, 0x3fff, hunchbks_mirror_r },
-		{ 0x5000, 0x5fff, hunchbks_mirror_r },
-		{ 0x7000, 0x7fff, hunchbks_mirror_r },
-	MEMORY_END
+	public static Memory_ReadAddress hunchbks_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x0fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x2000, 0x2fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x4000, 0x4fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x6000, 0x6fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x1c00, 0x1fff, MRA_RAM ),
+		new Memory_ReadAddress( 0x1800, 0x1bff, videoram_r ),
+		new Memory_ReadAddress( 0x1400, 0x147f, MRA_RAM ),	/* screen attributes, sprites, bullets */
+		new Memory_ReadAddress( 0x1500, 0x1500, input_port_0_r ),	/* IN0 */
+		new Memory_ReadAddress( 0x1501, 0x1501, input_port_1_r ),	/* IN1 */
+		new Memory_ReadAddress( 0x1502, 0x1502, input_port_2_r ),	/* IN2 */
+		new Memory_ReadAddress( 0x1680, 0x1680, watchdog_reset_r ),
+		new Memory_ReadAddress( 0x3000, 0x3fff, hunchbks_mirror_r ),
+		new Memory_ReadAddress( 0x5000, 0x5fff, hunchbks_mirror_r ),
+		new Memory_ReadAddress( 0x7000, 0x7fff, hunchbks_mirror_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	static MEMORY_WRITE_START( scramble_writemem )
@@ -349,10 +361,12 @@ public class scramble
 	
 	
 	
-	static MEMORY_READ_START( scramble_sound_readmem )
-		{ 0x0000, 0x1fff, MRA_ROM },
-		{ 0x8000, 0x83ff, MRA_RAM },
-	MEMORY_END
+	public static Memory_ReadAddress scramble_sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x1fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0x83ff, MRA_RAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( scramble_sound_writemem )
 		{ 0x0000, 0x1fff, MWA_ROM },
@@ -361,10 +375,12 @@ public class scramble
 	MEMORY_END
 	
 	
-	static MEMORY_READ_START( froggers_sound_readmem )
-		{ 0x0000, 0x17ff, MRA_ROM },
-		{ 0x4000, 0x43ff, MRA_RAM },
-	MEMORY_END
+	public static Memory_ReadAddress froggers_sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x17ff, MRA_ROM ),
+		new Memory_ReadAddress( 0x4000, 0x43ff, MRA_RAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( froggers_sound_writemem )
 		{ 0x0000, 0x17ff, MWA_ROM },

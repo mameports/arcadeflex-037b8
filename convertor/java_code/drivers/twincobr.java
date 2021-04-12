@@ -215,21 +215,23 @@ public class twincobr
 		else return MC68000_INT_NONE;
 	} };
 	
-	static MEMORY_READ_START( readmem )
-		{ 0x000000, 0x02ffff, MRA_ROM },
-		{ 0x030000, 0x033fff, twincobr_68k_dsp_r },		/* 68K and DSP shared RAM */
-		{ 0x040000, 0x040fff, MRA_BANK1 },				/* sprite ram data */
-		{ 0x050000, 0x050dff, paletteram_word_r },
-		{ 0x078000, 0x078001, input_port_3_r },			/* Flying Shark - DSW A */
-		{ 0x078002, 0x078003, input_port_4_r },			/* Flying Shark - DSW B */
-		{ 0x078004, 0x078005, input_port_1_r },			/* Player 1 inputs */
-		{ 0x078006, 0x078007, input_port_2_r },			/* Player 2 inputs */
-		{ 0x078008, 0x078009, input_port_0_r },			/* V-Blank & FShark Coin/Start */
-		{ 0x07a000, 0x07abff, twincobr_sharedram_r },	/* 16-bit on 68000 side, 8-bit on Z80 side */
-		{ 0x07e000, 0x07e001, twincobr_txram_r },		/* data from text video RAM */
-		{ 0x07e002, 0x07e003, twincobr_bgram_r },		/* data from bg video RAM */
-		{ 0x07e004, 0x07e005, twincobr_fgram_r },		/* data from fg video RAM */
-	MEMORY_END
+	public static Memory_ReadAddress readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x02ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x030000, 0x033fff, twincobr_68k_dsp_r ),		/* 68K and DSP shared RAM */
+		new Memory_ReadAddress( 0x040000, 0x040fff, MRA_BANK1 ),				/* sprite ram data */
+		new Memory_ReadAddress( 0x050000, 0x050dff, paletteram_word_r ),
+		new Memory_ReadAddress( 0x078000, 0x078001, input_port_3_r ),			/* Flying Shark - DSW A */
+		new Memory_ReadAddress( 0x078002, 0x078003, input_port_4_r ),			/* Flying Shark - DSW B */
+		new Memory_ReadAddress( 0x078004, 0x078005, input_port_1_r ),			/* Player 1 inputs */
+		new Memory_ReadAddress( 0x078006, 0x078007, input_port_2_r ),			/* Player 2 inputs */
+		new Memory_ReadAddress( 0x078008, 0x078009, input_port_0_r ),			/* V-Blank & FShark Coin/Start */
+		new Memory_ReadAddress( 0x07a000, 0x07abff, twincobr_sharedram_r ),	/* 16-bit on 68000 side, 8-bit on Z80 side */
+		new Memory_ReadAddress( 0x07e000, 0x07e001, twincobr_txram_r ),		/* data from text video RAM */
+		new Memory_ReadAddress( 0x07e002, 0x07e003, twincobr_bgram_r ),		/* data from bg video RAM */
+		new Memory_ReadAddress( 0x07e004, 0x07e005, twincobr_fgram_r ),		/* data from fg video RAM */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem )
 		{ 0x000000, 0x02ffff, MWA_ROM },
@@ -252,10 +254,12 @@ public class twincobr
 		{ 0x07e004, 0x07e005, twincobr_fgram_w },		/* data for fg video RAM */
 	MEMORY_END
 	
-	static MEMORY_READ_START( sound_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0x8000, 0x87ff, MRA_RAM },
-	MEMORY_END
+	public static Memory_ReadAddress sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0x87ff, MRA_RAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( sound_writemem )
 		{ 0x0000, 0x7fff, MWA_ROM },
@@ -275,12 +279,14 @@ public class twincobr
 		{ 0x20, 0x20, fshark_coin_dsp_w },		/* Twin Cobra coin count-lockout */
 	PORT_END
 	
-	static MEMORY_READ_START( DSP_readmem )
-		{ 0x0000, 0x011f, MRA_RAM },	/* 90h words internal RAM */
-		{ 0x8000, 0x8fff, MRA_ROM },	/* 800h words. The real DSPs ROM is at */
+	public static Memory_ReadAddress DSP_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x011f, MRA_RAM ),	/* 90h words internal RAM */
+		new Memory_ReadAddress( 0x8000, 0x8fff, MRA_ROM ),	/* 800h words. The real DSPs ROM is at */
 										/* address 0 */
 										/* View it at 8000h in the debugger */
-	MEMORY_END
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( DSP_writemem )
 		{ 0x0000, 0x011f, MWA_RAM },

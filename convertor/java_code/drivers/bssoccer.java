@@ -72,12 +72,14 @@ public class bssoccer
 	
 	***************************************************************************/
 	
-	static MEMORY_READ_START( bssoccer_sound_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM					},	// ROM
-		{ 0xf000, 0xf7ff, MRA_RAM					},	// RAM
-		{ 0xf801, 0xf801, YM2151_status_port_0_r	},	// YM2151
-		{ 0xfc00, 0xfc00, soundlatch_r				},	// From Main CPU
-	MEMORY_END
+	public static Memory_ReadAddress bssoccer_sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM					),	// ROM
+		new Memory_ReadAddress( 0xf000, 0xf7ff, MRA_RAM					),	// RAM
+		new Memory_ReadAddress( 0xf801, 0xf801, YM2151_status_port_0_r	),	// YM2151
+		new Memory_ReadAddress( 0xfc00, 0xfc00, soundlatch_r				),	// From Main CPU
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( bssoccer_sound_writemem )
 		{ 0x0000, 0x7fff, MWA_ROM					},	// ROM
@@ -119,19 +121,23 @@ public class bssoccer
 	
 	/* Memory maps: Yes, *no* RAM */
 	
-	static MEMORY_READ_START( bssoccer_pcm_1_readmem )
-		{ 0x0000, 0x0fff, MRA_ROM			},	// ROM
-		{ 0x1000, 0xffff, MRA_BANK1 		},	// Banked ROM
-	MEMORY_END
+	public static Memory_ReadAddress bssoccer_pcm_1_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x0fff, MRA_ROM			),	// ROM
+		new Memory_ReadAddress( 0x1000, 0xffff, MRA_BANK1 		),	// Banked ROM
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	static MEMORY_WRITE_START( bssoccer_pcm_1_writemem )
 		{ 0x0000, 0xffff, MWA_ROM			},	// ROM
 	MEMORY_END
 	
 	
-	static MEMORY_READ_START( bssoccer_pcm_2_readmem )
-		{ 0x0000, 0x0fff, MRA_ROM			},	// ROM
-		{ 0x1000, 0xffff, MRA_BANK2 		},	// Banked ROM
-	MEMORY_END
+	public static Memory_ReadAddress bssoccer_pcm_2_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x0fff, MRA_ROM			),	// ROM
+		new Memory_ReadAddress( 0x1000, 0xffff, MRA_BANK2 		),	// Banked ROM
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	static MEMORY_WRITE_START( bssoccer_pcm_2_writemem )
 		{ 0x0000, 0xffff, MWA_ROM			},	// ROM
 	MEMORY_END

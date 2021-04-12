@@ -86,17 +86,19 @@ public class amidar
 	} };
 	
 	
-	static MEMORY_READ_START( amidar_readmem )
-		{ 0x0000, 0x4fff, MRA_ROM },
-		{ 0x8000, 0x87ff, MRA_RAM },
-		{ 0x9000, 0x93ff, MRA_RAM },
-		{ 0x9800, 0x985f, MRA_RAM },
-		{ 0xa800, 0xa800, watchdog_reset_r },
-		{ 0xb000, 0xb000, input_port_0_r },	/* IN0 */
-		{ 0xb010, 0xb010, input_port_1_r },	/* IN1 */
-		{ 0xb020, 0xb020, input_port_2_r },	/* IN2 */
-		{ 0xb820, 0xb820, input_port_3_r },	/* DSW */
-	MEMORY_END
+	public static Memory_ReadAddress amidar_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x4fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0x87ff, MRA_RAM ),
+		new Memory_ReadAddress( 0x9000, 0x93ff, MRA_RAM ),
+		new Memory_ReadAddress( 0x9800, 0x985f, MRA_RAM ),
+		new Memory_ReadAddress( 0xa800, 0xa800, watchdog_reset_r ),
+		new Memory_ReadAddress( 0xb000, 0xb000, input_port_0_r ),	/* IN0 */
+		new Memory_ReadAddress( 0xb010, 0xb010, input_port_1_r ),	/* IN1 */
+		new Memory_ReadAddress( 0xb020, 0xb020, input_port_2_r ),	/* IN2 */
+		new Memory_ReadAddress( 0xb820, 0xb820, input_port_3_r ),	/* DSW */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem )
 		{ 0x0000, 0x4fff, MWA_ROM },
@@ -116,10 +118,12 @@ public class amidar
 	
 	
 	
-	static MEMORY_READ_START( sound_readmem )
-		{ 0x0000, 0x1fff, MRA_ROM },
-		{ 0x8000, 0x83ff, MRA_RAM },
-	MEMORY_END
+	public static Memory_ReadAddress sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x1fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0x83ff, MRA_RAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( sound_writemem )
 		{ 0x0000, 0x1fff, MWA_ROM },

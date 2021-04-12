@@ -138,17 +138,19 @@ public class lasso
 	
 	
 	/* 17f0 on CPU1 maps to 07f0 on CPU2 */
-	static MEMORY_READ_START( readmem )
-		{ 0x0000, 0x03ff, MRA_RAM }, /* work ram */
-		{ 0x0400, 0x0bff, MRA_RAM }, /* videoram */
-		{ 0x0c00, 0x0c7f, MRA_RAM }, /* spriteram */
-		{ 0x1000, 0x17ff, shareram_r },
-		{ 0x1804, 0x1804, input_port_0_r },
-		{ 0x1805, 0x1805, input_port_1_r },
-		{ 0x1806, 0x1806, input_port_2_r },
-		{ 0x1807, 0x1807, input_port_3_r },
-		{ 0x8000, 0xffff, MRA_ROM },
-	MEMORY_END
+	public static Memory_ReadAddress readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x03ff, MRA_RAM ), /* work ram */
+		new Memory_ReadAddress( 0x0400, 0x0bff, MRA_RAM ), /* videoram */
+		new Memory_ReadAddress( 0x0c00, 0x0c7f, MRA_RAM ), /* spriteram */
+		new Memory_ReadAddress( 0x1000, 0x17ff, shareram_r ),
+		new Memory_ReadAddress( 0x1804, 0x1804, input_port_0_r ),
+		new Memory_ReadAddress( 0x1805, 0x1805, input_port_1_r ),
+		new Memory_ReadAddress( 0x1806, 0x1806, input_port_2_r ),
+		new Memory_ReadAddress( 0x1807, 0x1807, input_port_3_r ),
+		new Memory_ReadAddress( 0x8000, 0xffff, MRA_ROM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem )
 		{ 0x0000, 0x03ff, MWA_RAM },
@@ -162,12 +164,14 @@ public class lasso
 		{ 0x8000, 0xffff, MWA_ROM },
 	MEMORY_END
 	
-	static MEMORY_READ_START( readmem_coprocessor )
-		{ 0x0000, 0x07ff, MRA_RAM },	/* shared RAM */
-		{ 0x2000, 0x3fff, MRA_RAM },
-		{ 0x8000, 0x8fff, MRA_ROM },
-		{ 0xf000, 0xffff, MRA_ROM },
-	MEMORY_END
+	public static Memory_ReadAddress readmem_coprocessor[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x07ff, MRA_RAM ),	/* shared RAM */
+		new Memory_ReadAddress( 0x2000, 0x3fff, MRA_RAM ),
+		new Memory_ReadAddress( 0x8000, 0x8fff, MRA_ROM ),
+		new Memory_ReadAddress( 0xf000, 0xffff, MRA_ROM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem_coprocessor )
 		{ 0x0000, 0x07ff, MWA_RAM, &shareram },	/* code is executed from here */
@@ -176,13 +180,15 @@ public class lasso
 		{ 0xf000, 0xffff, MWA_ROM },
 	MEMORY_END
 	
-	static MEMORY_READ_START( readmem_sound )
-		{ 0x0000, 0x01ff, MRA_RAM },
-		{ 0x5000, 0x7fff, MRA_ROM },
-		{ 0xb004, 0xb004, sound_status_r },
-		{ 0xb005, 0xb005, soundlatch_r },
-		{ 0xf000, 0xffff, MRA_ROM },
-	MEMORY_END
+	public static Memory_ReadAddress readmem_sound[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x01ff, MRA_RAM ),
+		new Memory_ReadAddress( 0x5000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0xb004, 0xb004, sound_status_r ),
+		new Memory_ReadAddress( 0xb005, 0xb005, soundlatch_r ),
+		new Memory_ReadAddress( 0xf000, 0xffff, MRA_ROM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem_sound )
 		{ 0x0000, 0x01ff, MWA_RAM },

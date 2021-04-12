@@ -190,37 +190,41 @@ public class starwars
 	} };
 	
 	/* Star Wars READ memory map */
-	static MEMORY_READ_START( readmem )
-		{ 0x0000, 0x2fff, MRA_RAM },   /* vector_ram */
-		{ 0x3000, 0x3fff, MRA_ROM },		/* vector_rom */
-		{ 0x4300, 0x431f, input_port_0_r }, /* Memory mapped input port 0 */
-		{ 0x4320, 0x433f, starwars_input_bank_1_r }, /* Memory mapped input port 1 */
-		{ 0x4340, 0x435f, input_port_2_r },	/* DIP switches bank 0 */
-		{ 0x4360, 0x437f, input_port_3_r },	/* DIP switches bank 1 */
-		{ 0x4380, 0x439f, starwars_control_r }, /* a-d control result */
-		{ 0x4400, 0x4400, starwars_main_read_r },
-		{ 0x4401, 0x4401, starwars_main_ready_flag_r },
-		{ 0x4500, 0x45ff, MRA_RAM },		/* nov_ram */
-		{ 0x4700, 0x4700, reh_r },
-		{ 0x4701, 0x4701, rel_r },
-		{ 0x4703, 0x4703, prng_r },			/* pseudo random number generator */
-	/*	{ 0x4800, 0x4fff, MRA_RAM }, */		/* cpu_ram */
-	/*	{ 0x5000, 0x5fff, MRA_RAM }, */		/* (math_ram_r) math_ram */
-		{ 0x4800, 0x5fff, MRA_RAM },		/* CPU and Math RAM */
-		{ 0x6000, 0x7fff, MRA_BANK1 },	    /* banked ROM */
-		{ 0x8000, 0xffff, MRA_ROM },		/* rest of main_rom */
-	MEMORY_END
+	public static Memory_ReadAddress readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x2fff, MRA_RAM ),   /* vector_ram */
+		new Memory_ReadAddress( 0x3000, 0x3fff, MRA_ROM ),		/* vector_rom */
+		new Memory_ReadAddress( 0x4300, 0x431f, input_port_0_r ), /* Memory mapped input port 0 */
+		new Memory_ReadAddress( 0x4320, 0x433f, starwars_input_bank_1_r ), /* Memory mapped input port 1 */
+		new Memory_ReadAddress( 0x4340, 0x435f, input_port_2_r ),	/* DIP switches bank 0 */
+		new Memory_ReadAddress( 0x4360, 0x437f, input_port_3_r ),	/* DIP switches bank 1 */
+		new Memory_ReadAddress( 0x4380, 0x439f, starwars_control_r ), /* a-d control result */
+		new Memory_ReadAddress( 0x4400, 0x4400, starwars_main_read_r ),
+		new Memory_ReadAddress( 0x4401, 0x4401, starwars_main_ready_flag_r ),
+		new Memory_ReadAddress( 0x4500, 0x45ff, MRA_RAM ),		/* nov_ram */
+		new Memory_ReadAddress( 0x4700, 0x4700, reh_r ),
+		new Memory_ReadAddress( 0x4701, 0x4701, rel_r ),
+		new Memory_ReadAddress( 0x4703, 0x4703, prng_r ),			/* pseudo random number generator */
+	/*	new Memory_ReadAddress( 0x4800, 0x4fff, MRA_RAM ), */		/* cpu_ram */
+	/*	new Memory_ReadAddress( 0x5000, 0x5fff, MRA_RAM ), */		/* (math_ram_r) math_ram */
+		new Memory_ReadAddress( 0x4800, 0x5fff, MRA_RAM ),		/* CPU and Math RAM */
+		new Memory_ReadAddress( 0x6000, 0x7fff, MRA_BANK1 ),	    /* banked ROM */
+		new Memory_ReadAddress( 0x8000, 0xffff, MRA_ROM ),		/* rest of main_rom */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/* Star Wars Sound READ memory map */
-	static MEMORY_READ_START( readmem2 )
-		{ 0x0800, 0x0fff, starwars_sin_r },		/* SIN Read */
-		{ 0x1000, 0x107f, MRA_RAM },	/* 6532 RAM */
-		{ 0x1080, 0x109f, starwars_m6532_r },
-		{ 0x2000, 0x27ff, MRA_RAM },	/* program RAM */
-		{ 0x4000, 0xbfff, MRA_ROM },	/* sound roms */
-		{ 0xc000, 0xffff, MRA_ROM },	/* load last rom twice */
+	public static Memory_ReadAddress readmem2[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0800, 0x0fff, starwars_sin_r ),		/* SIN Read */
+		new Memory_ReadAddress( 0x1000, 0x107f, MRA_RAM ),	/* 6532 RAM */
+		new Memory_ReadAddress( 0x1080, 0x109f, starwars_m6532_r ),
+		new Memory_ReadAddress( 0x2000, 0x27ff, MRA_RAM ),	/* program RAM */
+		new Memory_ReadAddress( 0x4000, 0xbfff, MRA_ROM ),	/* sound roms */
+		new Memory_ReadAddress( 0xc000, 0xffff, MRA_ROM ),	/* load last rom twice */
 										/* for proper int vec operation */
-	MEMORY_END
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/* Star Wars WRITE memory map */
 	static MEMORY_WRITE_START( writemem )
@@ -254,27 +258,29 @@ public class starwars
 		{ 0xc000, 0xffff, MWA_ROM }, /* sound rom again, for intvecs */
 	MEMORY_END
 	
-	static MEMORY_READ_START( esb_readmem )
-		{ 0x0000, 0x2fff, MRA_RAM },   /* vector_ram */
-		{ 0x3000, 0x3fff, MRA_ROM },		/* vector_rom */
-		{ 0x4300, 0x431f, input_port_0_r }, /* Memory mapped input port 0 */
-		{ 0x4320, 0x433f, starwars_input_bank_1_r }, /* Memory mapped input port 1 */
-		{ 0x4340, 0x435f, input_port_2_r },	/* DIP switches bank 0 */
-		{ 0x4360, 0x437f, input_port_3_r },	/* DIP switches bank 1 */
-		{ 0x4380, 0x439f, starwars_control_r }, /* a-d control result */
-		{ 0x4400, 0x4400, starwars_main_read_r },
-		{ 0x4401, 0x4401, starwars_main_ready_flag_r },
-		{ 0x4500, 0x45ff, MRA_RAM },		/* nov_ram */
-		{ 0x4700, 0x4700, reh_r },
-		{ 0x4701, 0x4701, rel_r },
-		{ 0x4703, 0x4703, prng_r },			/* pseudo random number generator */
-	/*	{ 0x4800, 0x4fff, MRA_RAM }, */		/* cpu_ram */
-	/*	{ 0x5000, 0x5fff, MRA_RAM }, */		/* (math_ram_r) math_ram */
-		{ 0x4800, 0x5fff, MRA_RAM },		/* CPU and Math RAM */
-		{ 0x6000, 0x7fff, MRA_BANK1 },	    /* banked ROM */
-		{ 0x8000, 0x9fff, esb_slapstic_r },
-		{ 0xa000, 0xffff, MRA_BANK2 },		/* banked ROM */
-	MEMORY_END
+	public static Memory_ReadAddress esb_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x2fff, MRA_RAM ),   /* vector_ram */
+		new Memory_ReadAddress( 0x3000, 0x3fff, MRA_ROM ),		/* vector_rom */
+		new Memory_ReadAddress( 0x4300, 0x431f, input_port_0_r ), /* Memory mapped input port 0 */
+		new Memory_ReadAddress( 0x4320, 0x433f, starwars_input_bank_1_r ), /* Memory mapped input port 1 */
+		new Memory_ReadAddress( 0x4340, 0x435f, input_port_2_r ),	/* DIP switches bank 0 */
+		new Memory_ReadAddress( 0x4360, 0x437f, input_port_3_r ),	/* DIP switches bank 1 */
+		new Memory_ReadAddress( 0x4380, 0x439f, starwars_control_r ), /* a-d control result */
+		new Memory_ReadAddress( 0x4400, 0x4400, starwars_main_read_r ),
+		new Memory_ReadAddress( 0x4401, 0x4401, starwars_main_ready_flag_r ),
+		new Memory_ReadAddress( 0x4500, 0x45ff, MRA_RAM ),		/* nov_ram */
+		new Memory_ReadAddress( 0x4700, 0x4700, reh_r ),
+		new Memory_ReadAddress( 0x4701, 0x4701, rel_r ),
+		new Memory_ReadAddress( 0x4703, 0x4703, prng_r ),			/* pseudo random number generator */
+	/*	new Memory_ReadAddress( 0x4800, 0x4fff, MRA_RAM ), */		/* cpu_ram */
+	/*	new Memory_ReadAddress( 0x5000, 0x5fff, MRA_RAM ), */		/* (math_ram_r) math_ram */
+		new Memory_ReadAddress( 0x4800, 0x5fff, MRA_RAM ),		/* CPU and Math RAM */
+		new Memory_ReadAddress( 0x6000, 0x7fff, MRA_BANK1 ),	    /* banked ROM */
+		new Memory_ReadAddress( 0x8000, 0x9fff, esb_slapstic_r ),
+		new Memory_ReadAddress( 0xa000, 0xffff, MRA_BANK2 ),		/* banked ROM */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( esb_writemem )
 		{ 0x0000, 0x2fff, MWA_RAM, &vectorram, &vectorram_size }, /* vector_ram */

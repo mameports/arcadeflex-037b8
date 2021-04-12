@@ -147,19 +147,21 @@ public class zaccaria
 	
 	
 	
-	static MEMORY_READ_START( readmem )
-		{ 0x0000, 0x5fff, MRA_ROM },
-		{ 0x6000, 0x63ff, MRA_RAM },
-		{ 0x6400, 0x6407, zaccaria_prot1_r },
-		{ 0x6c00, 0x6c07, zaccaria_prot2_r },
-		{ 0x6e00, 0x6e00, zaccaria_dsw_r },
-		{ 0x7000, 0x77ff, MRA_RAM },
-		{ 0x7800, 0x7800, input_port_3_r },
-		{ 0x7801, 0x7801, input_port_4_r },
-		{ 0x7802, 0x7802, input_port_5_r },
-		{ 0x7c00, 0x7c00, watchdog_reset_r },   /* not sure */
-		{ 0x8000, 0xdfff, MRA_ROM },
-	MEMORY_END
+	public static Memory_ReadAddress readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x5fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x6000, 0x63ff, MRA_RAM ),
+		new Memory_ReadAddress( 0x6400, 0x6407, zaccaria_prot1_r ),
+		new Memory_ReadAddress( 0x6c00, 0x6c07, zaccaria_prot2_r ),
+		new Memory_ReadAddress( 0x6e00, 0x6e00, zaccaria_dsw_r ),
+		new Memory_ReadAddress( 0x7000, 0x77ff, MRA_RAM ),
+		new Memory_ReadAddress( 0x7800, 0x7800, input_port_3_r ),
+		new Memory_ReadAddress( 0x7801, 0x7801, input_port_4_r ),
+		new Memory_ReadAddress( 0x7802, 0x7802, input_port_5_r ),
+		new Memory_ReadAddress( 0x7c00, 0x7c00, watchdog_reset_r ),   /* not sure */
+		new Memory_ReadAddress( 0x8000, 0xdfff, MRA_ROM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem )
 		{ 0x0000, 0x5fff, MWA_ROM },
@@ -175,11 +177,13 @@ public class zaccaria
 		{ 0x8000, 0xdfff, MWA_ROM },
 	MEMORY_END
 	
-	static MEMORY_READ_START( sound_readmem1 )
-		{ 0x0000, 0x007f, MRA_RAM },
-		{ 0x500c, 0x500f, pia_0_r },
-		{ 0xf000, 0xffff, MRA_ROM },
-	MEMORY_END
+	public static Memory_ReadAddress sound_readmem1[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x007f, MRA_RAM ),
+		new Memory_ReadAddress( 0x500c, 0x500f, pia_0_r ),
+		new Memory_ReadAddress( 0xf000, 0xffff, MRA_ROM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( sound_writemem1 )
 		{ 0x0000, 0x007f, MWA_RAM },
@@ -187,11 +191,13 @@ public class zaccaria
 		{ 0xf000, 0xffff, MWA_ROM },
 	MEMORY_END
 	
-	static MEMORY_READ_START( sound_readmem2 )
-		{ 0x0000, 0x007f, MRA_RAM },
-		{ 0x0090, 0x0093, pia_1_r },
-		{ 0xe000, 0xffff, MRA_ROM },
-	MEMORY_END
+	public static Memory_ReadAddress sound_readmem2[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x007f, MRA_RAM ),
+		new Memory_ReadAddress( 0x0090, 0x0093, pia_1_r ),
+		new Memory_ReadAddress( 0xe000, 0xffff, MRA_ROM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( sound_writemem2 )
 		{ 0x0000, 0x007f, MWA_RAM },

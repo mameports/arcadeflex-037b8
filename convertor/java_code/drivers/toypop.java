@@ -35,17 +35,21 @@ public class toypop
 	
 	
 	
-	static MEMORY_READ_START( toypop_readmem_mainCPU )
-		{ 0x6000, 0x603f, toypop_customio_r },						/* custom I/O chip interface */
-		{ 0x8000, 0xffff, MRA_ROM },								/* ROM code */
-		{ 0x0000, 0x7fff, MRA_RAM },								/* RAM everywhere else */
-	MEMORY_END
+	public static Memory_ReadAddress toypop_readmem_mainCPU[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x6000, 0x603f, toypop_customio_r ),						/* custom I/O chip interface */
+		new Memory_ReadAddress( 0x8000, 0xffff, MRA_ROM ),								/* ROM code */
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_RAM ),								/* RAM everywhere else */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
-	static MEMORY_READ_START( liblrabl_readmem_mainCPU )
-		{ 0x6800, 0x683f, liblrabl_customio_r },					/* custom I/O chip interface */
-		{ 0x8000, 0xffff, MRA_ROM },								/* ROM code */
-		{ 0x0000, 0x7fff, MRA_RAM },								/* RAM everywhere else */
-	MEMORY_END
+	public static Memory_ReadAddress liblrabl_readmem_mainCPU[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x6800, 0x683f, liblrabl_customio_r ),					/* custom I/O chip interface */
+		new Memory_ReadAddress( 0x8000, 0xffff, MRA_ROM ),								/* ROM code */
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_RAM ),								/* RAM everywhere else */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( toypop_writemem_mainCPU )
 		{ 0x0000, 0x03ff, MWA_RAM, &videoram, &videoram_size },		/* video RAM */
@@ -91,10 +95,12 @@ public class toypop
 		{ 0x8000, 0xffff, MWA_ROM },								/* ROM code */
 	MEMORY_END
 	
-	static MEMORY_READ_START( toypop_readmem_soundCPU )
-		{ 0x0040, 0x03ff, toypop_sound_sharedram_r },		/* shared RAM with the main CPU */
-		{ 0xe000, 0xffff, MRA_ROM },				/* ROM code */
-	MEMORY_END
+	public static Memory_ReadAddress toypop_readmem_soundCPU[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0040, 0x03ff, toypop_sound_sharedram_r ),		/* shared RAM with the main CPU */
+		new Memory_ReadAddress( 0xe000, 0xffff, MRA_ROM ),				/* ROM code */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( toypop_writemem_soundCPU )
 		{ 0x0000, 0x003f, mappy_sound_w, &namco_soundregs },	/* sound control registers */

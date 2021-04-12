@@ -590,20 +590,22 @@ public class toaplan2
 	} };
 	
 	
-	static MEMORY_READ_START( tekipaki_readmem )
-		{ 0x000000, 0x01ffff, MRA_ROM },
-		{ 0x020000, 0x03ffff, MRA_ROM },				/* extra for Whoopee */
-		{ 0x080000, 0x082fff, MRA_BANK1 },
-		{ 0x0c0000, 0x0c0fff, paletteram_word_r },
-		{ 0x140004, 0x140007, toaplan2_0_videoram_r },
-		{ 0x14000c, 0x14000d, input_port_0_r },			/* VBlank */
-		{ 0x180000, 0x180001, input_port_4_r },			/* Dip Switch A */
-		{ 0x180010, 0x180011, input_port_5_r },			/* Dip Switch B */
-		{ 0x180020, 0x180021, input_port_3_r },			/* Coin/System inputs */
-		{ 0x180030, 0x180031, c2map_port_6_r },			/* CPU 2 busy and Territory Jumper block */
-		{ 0x180050, 0x180051, input_port_1_r },			/* Player 1 controls */
-		{ 0x180060, 0x180061, input_port_2_r },			/* Player 2 controls */
-	MEMORY_END
+	public static Memory_ReadAddress tekipaki_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x01ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x020000, 0x03ffff, MRA_ROM ),				/* extra for Whoopee */
+		new Memory_ReadAddress( 0x080000, 0x082fff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x0c0000, 0x0c0fff, paletteram_word_r ),
+		new Memory_ReadAddress( 0x140004, 0x140007, toaplan2_0_videoram_r ),
+		new Memory_ReadAddress( 0x14000c, 0x14000d, input_port_0_r ),			/* VBlank */
+		new Memory_ReadAddress( 0x180000, 0x180001, input_port_4_r ),			/* Dip Switch A */
+		new Memory_ReadAddress( 0x180010, 0x180011, input_port_5_r ),			/* Dip Switch B */
+		new Memory_ReadAddress( 0x180020, 0x180021, input_port_3_r ),			/* Coin/System inputs */
+		new Memory_ReadAddress( 0x180030, 0x180031, c2map_port_6_r ),			/* CPU 2 busy and Territory Jumper block */
+		new Memory_ReadAddress( 0x180050, 0x180051, input_port_1_r ),			/* Player 1 controls */
+		new Memory_ReadAddress( 0x180060, 0x180061, input_port_2_r ),			/* Player 2 controls */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( tekipaki_writemem )
 		{ 0x000000, 0x01ffff, MWA_ROM },
@@ -618,25 +620,27 @@ public class toaplan2
 		{ 0x180070, 0x180071, toaplan2_hd647180_cpu_w },
 	MEMORY_END
 	
-	static MEMORY_READ_START( ghox_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x040000, 0x040001, ghox_p2_h_analog_r },		/* Paddle 2 */
-		{ 0x080000, 0x083fff, MRA_BANK1 },
-		{ 0x0c0000, 0x0c0fff, paletteram_word_r },
-		{ 0x100000, 0x100001, ghox_p1_h_analog_r },		/* Paddle 1 */
-		{ 0x140004, 0x140007, toaplan2_0_videoram_r },
-		{ 0x14000c, 0x14000d, input_port_0_r },			/* VBlank */
-		{ 0x180000, 0x180001, ghox_mcu_r },				/* really part of shared RAM */
-		{ 0x180006, 0x180007, input_port_4_r },			/* Dip Switch A */
-		{ 0x180008, 0x180009, input_port_5_r },			/* Dip Switch B */
-		{ 0x180010, 0x180011, input_port_3_r },			/* Coin/System inputs */
-	//	{ 0x18000c, 0x18000d, input_port_1_r },			/* Player 1 controls (real) */
-	//	{ 0x18000e, 0x18000f, input_port_2_r },			/* Player 2 controls (real) */
-		{ 0x18000c, 0x18000d, ghox_p1_v_analog_r },		/* Player 1 controls */
-		{ 0x18000e, 0x18000f, ghox_p2_v_analog_r },		/* Player 2 controls */
-		{ 0x180500, 0x180fff, ghox_shared_ram_r },
-		{ 0x18100c, 0x18100d, input_port_6_r },			/* Territory Jumper block */
-	MEMORY_END
+	public static Memory_ReadAddress ghox_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x040000, 0x040001, ghox_p2_h_analog_r ),		/* Paddle 2 */
+		new Memory_ReadAddress( 0x080000, 0x083fff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x0c0000, 0x0c0fff, paletteram_word_r ),
+		new Memory_ReadAddress( 0x100000, 0x100001, ghox_p1_h_analog_r ),		/* Paddle 1 */
+		new Memory_ReadAddress( 0x140004, 0x140007, toaplan2_0_videoram_r ),
+		new Memory_ReadAddress( 0x14000c, 0x14000d, input_port_0_r ),			/* VBlank */
+		new Memory_ReadAddress( 0x180000, 0x180001, ghox_mcu_r ),				/* really part of shared RAM */
+		new Memory_ReadAddress( 0x180006, 0x180007, input_port_4_r ),			/* Dip Switch A */
+		new Memory_ReadAddress( 0x180008, 0x180009, input_port_5_r ),			/* Dip Switch B */
+		new Memory_ReadAddress( 0x180010, 0x180011, input_port_3_r ),			/* Coin/System inputs */
+	//	new Memory_ReadAddress( 0x18000c, 0x18000d, input_port_1_r ),			/* Player 1 controls (real) */
+	//	new Memory_ReadAddress( 0x18000e, 0x18000f, input_port_2_r ),			/* Player 2 controls (real) */
+		new Memory_ReadAddress( 0x18000c, 0x18000d, ghox_p1_v_analog_r ),		/* Player 1 controls */
+		new Memory_ReadAddress( 0x18000e, 0x18000f, ghox_p2_v_analog_r ),		/* Player 2 controls */
+		new Memory_ReadAddress( 0x180500, 0x180fff, ghox_shared_ram_r ),
+		new Memory_ReadAddress( 0x18100c, 0x18100d, input_port_6_r ),			/* Territory Jumper block */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( ghox_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -651,31 +655,33 @@ public class toaplan2
 		{ 0x181000, 0x181001, toaplan2_coin_w },
 	MEMORY_END
 	
-	static MEMORY_READ_START( dogyuun_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM },
-		{ 0x100000, 0x103fff, MRA_BANK1 },
-		{ 0x200010, 0x200011, input_port_1_r },			/* Player 1 controls */
-		{ 0x200014, 0x200015, input_port_2_r },			/* Player 2 controls */
-		{ 0x200018, 0x200019, input_port_3_r },			/* Coin/System inputs */
+	public static Memory_ReadAddress dogyuun_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x100000, 0x103fff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x200010, 0x200011, input_port_1_r ),			/* Player 1 controls */
+		new Memory_ReadAddress( 0x200014, 0x200015, input_port_2_r ),			/* Player 2 controls */
+		new Memory_ReadAddress( 0x200018, 0x200019, input_port_3_r ),			/* Coin/System inputs */
 	#if Zx80
-		{ 0x21e000, 0x21fbff, shared_ram_r },			/* $21f000 status port */
-		{ 0x21fc00, 0x21ffff, Zx80_sharedram_r },		/* 16-bit on 68000 side, 8-bit on Zx80 side */
+		new Memory_ReadAddress( 0x21e000, 0x21fbff, shared_ram_r ),			/* $21f000 status port */
+		new Memory_ReadAddress( 0x21fc00, 0x21ffff, Zx80_sharedram_r ),		/* 16-bit on 68000 side, 8-bit on Zx80 side */
 	#else
-		{ 0x21e000, 0x21efff, shared_ram_r },
-		{ 0x21f000, 0x21f001, Zx80_status_port_r },		/* Zx80 status port */
-		{ 0x21f004, 0x21f005, input_port_4_r },			/* Dip Switch A */
-		{ 0x21f006, 0x21f007, input_port_5_r },			/* Dip Switch B */
-		{ 0x21f008, 0x21f009, input_port_6_r },			/* Territory Jumper block */
-		{ 0x21fc00, 0x21ffff, Zx80_sharedram_r },		/* 16-bit on 68000 side, 8-bit on Zx80 side */
+		new Memory_ReadAddress( 0x21e000, 0x21efff, shared_ram_r ),
+		new Memory_ReadAddress( 0x21f000, 0x21f001, Zx80_status_port_r ),		/* Zx80 status port */
+		new Memory_ReadAddress( 0x21f004, 0x21f005, input_port_4_r ),			/* Dip Switch A */
+		new Memory_ReadAddress( 0x21f006, 0x21f007, input_port_5_r ),			/* Dip Switch B */
+		new Memory_ReadAddress( 0x21f008, 0x21f009, input_port_6_r ),			/* Territory Jumper block */
+		new Memory_ReadAddress( 0x21fc00, 0x21ffff, Zx80_sharedram_r ),		/* 16-bit on 68000 side, 8-bit on Zx80 side */
 	#endif
 		/***** The following in 0x30000x are for video controller 1 ******/
-		{ 0x300004, 0x300007, toaplan2_0_videoram_r },	/* tile layers */
-		{ 0x30000c, 0x30000d, input_port_0_r },			/* VBlank */
-		{ 0x400000, 0x400fff, paletteram_word_r },
+		new Memory_ReadAddress( 0x300004, 0x300007, toaplan2_0_videoram_r ),	/* tile layers */
+		new Memory_ReadAddress( 0x30000c, 0x30000d, input_port_0_r ),			/* VBlank */
+		new Memory_ReadAddress( 0x400000, 0x400fff, paletteram_word_r ),
 		/***** The following in 0x50000x are for video controller 2 ******/
-		{ 0x500004, 0x500007, toaplan2_1_videoram_r },	/* tile layers 2 */
-		{ 0x700000, 0x700001, video_count_r },			/* test bit 8 */
-	MEMORY_END
+		new Memory_ReadAddress( 0x500004, 0x500007, toaplan2_1_videoram_r ),	/* tile layers 2 */
+		new Memory_ReadAddress( 0x700000, 0x700001, video_count_r ),			/* test bit 8 */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( dogyuun_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM },
@@ -703,21 +709,23 @@ public class toaplan2
 		{ 0x50000c, 0x50000d, toaplan2_1_scroll_reg_data_w },
 	MEMORY_END
 	
-	static MEMORY_READ_START( kbash_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM },
-		{ 0x100000, 0x103fff, MRA_BANK1 },
-		{ 0x200000, 0x200001, kbash_sub_cpu_r },
-		{ 0x200004, 0x200005, input_port_4_r },			/* Dip Switch A */
-		{ 0x200006, 0x200007, input_port_5_r },			/* Dip Switch B */
-		{ 0x200008, 0x200009, input_port_6_r },			/* Territory Jumper block */
-		{ 0x208010, 0x208011, input_port_1_r },			/* Player 1 controls */
-		{ 0x208014, 0x208015, input_port_2_r },			/* Player 2 controls */
-		{ 0x208018, 0x208019, input_port_3_r },			/* Coin/System inputs */
-		{ 0x300004, 0x300007, toaplan2_0_videoram_r },	/* tile layers */
-		{ 0x30000c, 0x30000d, input_port_0_r },			/* VBlank */
-		{ 0x400000, 0x400fff, paletteram_word_r },
-		{ 0x700000, 0x700001, video_count_r },			/* test bit 8 */
-	MEMORY_END
+	public static Memory_ReadAddress kbash_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x100000, 0x103fff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x200000, 0x200001, kbash_sub_cpu_r ),
+		new Memory_ReadAddress( 0x200004, 0x200005, input_port_4_r ),			/* Dip Switch A */
+		new Memory_ReadAddress( 0x200006, 0x200007, input_port_5_r ),			/* Dip Switch B */
+		new Memory_ReadAddress( 0x200008, 0x200009, input_port_6_r ),			/* Territory Jumper block */
+		new Memory_ReadAddress( 0x208010, 0x208011, input_port_1_r ),			/* Player 1 controls */
+		new Memory_ReadAddress( 0x208014, 0x208015, input_port_2_r ),			/* Player 2 controls */
+		new Memory_ReadAddress( 0x208018, 0x208019, input_port_3_r ),			/* Coin/System inputs */
+		new Memory_ReadAddress( 0x300004, 0x300007, toaplan2_0_videoram_r ),	/* tile layers */
+		new Memory_ReadAddress( 0x30000c, 0x30000d, input_port_0_r ),			/* VBlank */
+		new Memory_ReadAddress( 0x400000, 0x400fff, paletteram_word_r ),
+		new Memory_ReadAddress( 0x700000, 0x700001, video_count_r ),			/* test bit 8 */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( kbash_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM },
@@ -733,24 +741,26 @@ public class toaplan2
 	MEMORY_END
 	
 	/* Fixed by Yochizo 2000/08/16 */
-	static MEMORY_READ_START( tatsujn2_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM },
-		{ 0x100000, 0x10ffff, MRA_BANK1 },
-		{ 0x200004, 0x200007, toaplan2_0_videoram_r },
-		{ 0x20000c, 0x20000d, input_port_0_r },			/* VBlank */
-		{ 0x300000, 0x300fff, paletteram_word_r },
-	//	{ 0x400000, 0x403fff, MRA_BANK2 },
-		{ 0x400000, 0x403fff, raizing_textram_r },
-		{ 0x500000, 0x50ffff, MRA_BANK3 },
-		{ 0x600000, 0x600001, video_count_r },
-		{ 0x700000, 0x700001, input_port_4_r },			/* Dip Switch A */
-		{ 0x700002, 0x700003, input_port_5_r },			/* Dip Switch B */
-		{ 0x700004, 0x700005, input_port_6_r },			/* Territory Jumper block */
-		{ 0x700006, 0x700007, input_port_1_r },			/* Player 1 controls */
-		{ 0x700008, 0x700009, input_port_2_r },			/* Player 2 controls */
-		{ 0x70000a, 0x70000b, input_port_3_r },			/* Coin/System inputs */
-		{ 0x700016, 0x700017, YM2151_status_port_0_r },
-	MEMORY_END
+	public static Memory_ReadAddress tatsujn2_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x100000, 0x10ffff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x200004, 0x200007, toaplan2_0_videoram_r ),
+		new Memory_ReadAddress( 0x20000c, 0x20000d, input_port_0_r ),			/* VBlank */
+		new Memory_ReadAddress( 0x300000, 0x300fff, paletteram_word_r ),
+	//	new Memory_ReadAddress( 0x400000, 0x403fff, MRA_BANK2 ),
+		new Memory_ReadAddress( 0x400000, 0x403fff, raizing_textram_r ),
+		new Memory_ReadAddress( 0x500000, 0x50ffff, MRA_BANK3 ),
+		new Memory_ReadAddress( 0x600000, 0x600001, video_count_r ),
+		new Memory_ReadAddress( 0x700000, 0x700001, input_port_4_r ),			/* Dip Switch A */
+		new Memory_ReadAddress( 0x700002, 0x700003, input_port_5_r ),			/* Dip Switch B */
+		new Memory_ReadAddress( 0x700004, 0x700005, input_port_6_r ),			/* Territory Jumper block */
+		new Memory_ReadAddress( 0x700006, 0x700007, input_port_1_r ),			/* Player 1 controls */
+		new Memory_ReadAddress( 0x700008, 0x700009, input_port_2_r ),			/* Player 2 controls */
+		new Memory_ReadAddress( 0x70000a, 0x70000b, input_port_3_r ),			/* Coin/System inputs */
+		new Memory_ReadAddress( 0x700016, 0x700017, YM2151_status_port_0_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( tatsujn2_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM },
@@ -769,20 +779,22 @@ public class toaplan2
 		{ 0x70001e, 0x70001f, toaplan2_coin_w },		/* Coin count/lock */
 	MEMORY_END
 	
-	static MEMORY_READ_START( pipibibs_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x080000, 0x082fff, MRA_BANK1 },
-		{ 0x0c0000, 0x0c0fff, paletteram_word_r },
-		{ 0x140004, 0x140007, toaplan2_0_videoram_r },
-		{ 0x14000c, 0x14000d, input_port_0_r },			/* VBlank */
-		{ 0x190000, 0x190fff, toaplan2_shared_r },
-		{ 0x19c020, 0x19c021, input_port_4_r },			/* Dip Switch A */
-		{ 0x19c024, 0x19c025, input_port_5_r },			/* Dip Switch B */
-		{ 0x19c028, 0x19c029, input_port_6_r },			/* Territory Jumper block */
-		{ 0x19c02c, 0x19c02d, input_port_3_r },			/* Coin/System inputs */
-		{ 0x19c030, 0x19c031, input_port_1_r },			/* Player 1 controls */
-		{ 0x19c034, 0x19c035, input_port_2_r },			/* Player 2 controls */
-	MEMORY_END
+	public static Memory_ReadAddress pipibibs_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x080000, 0x082fff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x0c0000, 0x0c0fff, paletteram_word_r ),
+		new Memory_ReadAddress( 0x140004, 0x140007, toaplan2_0_videoram_r ),
+		new Memory_ReadAddress( 0x14000c, 0x14000d, input_port_0_r ),			/* VBlank */
+		new Memory_ReadAddress( 0x190000, 0x190fff, toaplan2_shared_r ),
+		new Memory_ReadAddress( 0x19c020, 0x19c021, input_port_4_r ),			/* Dip Switch A */
+		new Memory_ReadAddress( 0x19c024, 0x19c025, input_port_5_r ),			/* Dip Switch B */
+		new Memory_ReadAddress( 0x19c028, 0x19c029, input_port_6_r ),			/* Territory Jumper block */
+		new Memory_ReadAddress( 0x19c02c, 0x19c02d, input_port_3_r ),			/* Coin/System inputs */
+		new Memory_ReadAddress( 0x19c030, 0x19c031, input_port_1_r ),			/* Player 1 controls */
+		new Memory_ReadAddress( 0x19c034, 0x19c035, input_port_2_r ),			/* Player 2 controls */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( pipibibs_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -796,22 +808,24 @@ public class toaplan2
 		{ 0x19c01c, 0x19c01d, toaplan2_coin_w },		/* Coin count/lock */
 	MEMORY_END
 	
-	static MEMORY_READ_START( pipibibi_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x080000, 0x082fff, MRA_BANK1 },
-		{ 0x083000, 0x0837ff, pipibibi_spriteram_r },
-		{ 0x083800, 0x087fff, MRA_BANK2 },
-		{ 0x0c0000, 0x0c0fff, paletteram_word_r },
-		{ 0x120000, 0x120fff, MRA_BANK3 },
-		{ 0x180000, 0x182fff, pipibibi_videoram_r },
-		{ 0x190002, 0x190003, pipibibi_z80_status_r },	/* Z80 ready ? */
-		{ 0x19c020, 0x19c021, input_port_4_r },			/* Dip Switch A */
-		{ 0x19c024, 0x19c025, input_port_5_r },			/* Dip Switch B */
-		{ 0x19c028, 0x19c029, input_port_6_r },			/* Territory Jumper block */
-		{ 0x19c02c, 0x19c02d, input_port_3_r },			/* Coin/System inputs */
-		{ 0x19c030, 0x19c031, input_port_1_r },			/* Player 1 controls */
-		{ 0x19c034, 0x19c035, input_port_2_r },			/* Player 2 controls */
-	MEMORY_END
+	public static Memory_ReadAddress pipibibi_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x080000, 0x082fff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x083000, 0x0837ff, pipibibi_spriteram_r ),
+		new Memory_ReadAddress( 0x083800, 0x087fff, MRA_BANK2 ),
+		new Memory_ReadAddress( 0x0c0000, 0x0c0fff, paletteram_word_r ),
+		new Memory_ReadAddress( 0x120000, 0x120fff, MRA_BANK3 ),
+		new Memory_ReadAddress( 0x180000, 0x182fff, pipibibi_videoram_r ),
+		new Memory_ReadAddress( 0x190002, 0x190003, pipibibi_z80_status_r ),	/* Z80 ready ? */
+		new Memory_ReadAddress( 0x19c020, 0x19c021, input_port_4_r ),			/* Dip Switch A */
+		new Memory_ReadAddress( 0x19c024, 0x19c025, input_port_5_r ),			/* Dip Switch B */
+		new Memory_ReadAddress( 0x19c028, 0x19c029, input_port_6_r ),			/* Territory Jumper block */
+		new Memory_ReadAddress( 0x19c02c, 0x19c02d, input_port_3_r ),			/* Coin/System inputs */
+		new Memory_ReadAddress( 0x19c030, 0x19c031, input_port_1_r ),			/* Player 1 controls */
+		new Memory_ReadAddress( 0x19c034, 0x19c035, input_port_2_r ),			/* Player 2 controls */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( pipibibi_writemem )
 		{ 0x000000, 0x03ffff, MWA_ROM },
@@ -827,33 +841,35 @@ public class toaplan2
 		{ 0x19c01c, 0x19c01d, toaplan2_coin_w },		/* Coin count/lock */
 	MEMORY_END
 	
-	static MEMORY_READ_START( fixeight_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM },
-		{ 0x100000, 0x103fff, MRA_BANK1 },
-		{ 0x200008, 0x200009, input_port_4_r },			/* Dip Switch A */
-		{ 0x20000c, 0x20000d, input_port_5_r },			/* Dip Switch B */
-		{ 0x200010, 0x200011, input_port_1_r },			/* Player 1 controls */
-		{ 0x200014, 0x200015, input_port_2_r },			/* Player 2 controls */
-		{ 0x200018, 0x200019, input_port_3_r },			/* Coin/System inputs */
-		{ 0x280000, 0x28dfff, MRA_BANK2 },				/* part of shared ram ? */
+	public static Memory_ReadAddress fixeight_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x100000, 0x103fff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x200008, 0x200009, input_port_4_r ),			/* Dip Switch A */
+		new Memory_ReadAddress( 0x20000c, 0x20000d, input_port_5_r ),			/* Dip Switch B */
+		new Memory_ReadAddress( 0x200010, 0x200011, input_port_1_r ),			/* Player 1 controls */
+		new Memory_ReadAddress( 0x200014, 0x200015, input_port_2_r ),			/* Player 2 controls */
+		new Memory_ReadAddress( 0x200018, 0x200019, input_port_3_r ),			/* Coin/System inputs */
+		new Memory_ReadAddress( 0x280000, 0x28dfff, MRA_BANK2 ),				/* part of shared ram ? */
 	#if Zx80
-		{ 0x28e000, 0x28fbff, shared_ram_r },			/* $21f000 status port */
-		{ 0x28fc00, 0x28ffff, Zx80_sharedram_r },		/* 16-bit on 68000 side, 8-bit on Zx80 side */
+		new Memory_ReadAddress( 0x28e000, 0x28fbff, shared_ram_r ),			/* $21f000 status port */
+		new Memory_ReadAddress( 0x28fc00, 0x28ffff, Zx80_sharedram_r ),		/* 16-bit on 68000 side, 8-bit on Zx80 side */
 	#else
-		{ 0x28e000, 0x28efff, shared_ram_r },
-		{ 0x28f000, 0x28f001, Zx80_status_port_r },		/* Zx80 status port */
-		{ 0x28f002, 0x28fbff, MRA_BANK3 },				/* part of shared ram ? */
-		{ 0x28fc00, 0x28ffff, Zx80_sharedram_r },		/* 16-bit on 68000 side, 8-bit on Zx80 side */
+		new Memory_ReadAddress( 0x28e000, 0x28efff, shared_ram_r ),
+		new Memory_ReadAddress( 0x28f000, 0x28f001, Zx80_status_port_r ),		/* Zx80 status port */
+		new Memory_ReadAddress( 0x28f002, 0x28fbff, MRA_BANK3 ),				/* part of shared ram ? */
+		new Memory_ReadAddress( 0x28fc00, 0x28ffff, Zx80_sharedram_r ),		/* 16-bit on 68000 side, 8-bit on Zx80 side */
 	#endif
-		{ 0x300004, 0x300007, toaplan2_0_videoram_r },
-		{ 0x30000c, 0x30000d, input_port_0_r },
-		{ 0x400000, 0x400fff, paletteram_word_r },
-		{ 0x500000, 0x501fff, MRA_BANK4 },
-		{ 0x502000, 0x5021ff, MRA_BANK5 },
-		{ 0x503000, 0x5031ff, MRA_BANK6 },
-		{ 0x600000, 0x60ffff, MRA_BANK7 },
-		{ 0x800000, 0x800001, video_count_r },
-	MEMORY_END
+		new Memory_ReadAddress( 0x300004, 0x300007, toaplan2_0_videoram_r ),
+		new Memory_ReadAddress( 0x30000c, 0x30000d, input_port_0_r ),
+		new Memory_ReadAddress( 0x400000, 0x400fff, paletteram_word_r ),
+		new Memory_ReadAddress( 0x500000, 0x501fff, MRA_BANK4 ),
+		new Memory_ReadAddress( 0x502000, 0x5021ff, MRA_BANK5 ),
+		new Memory_ReadAddress( 0x503000, 0x5031ff, MRA_BANK6 ),
+		new Memory_ReadAddress( 0x600000, 0x60ffff, MRA_BANK7 ),
+		new Memory_ReadAddress( 0x800000, 0x800001, video_count_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( fixeight_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM },
@@ -880,29 +896,31 @@ public class toaplan2
 		{ 0x600000, 0x60ffff, MWA_BANK7 },
 	MEMORY_END
 	
-	static MEMORY_READ_START( vfive_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM },
-		{ 0x100000, 0x103fff, MRA_BANK1 },
-	//	{ 0x200000, 0x20ffff, MRA_ROM },				/* Sound ROM is here ??? */
-		{ 0x200010, 0x200011, input_port_1_r },			/* Player 1 controls */
-		{ 0x200014, 0x200015, input_port_2_r },			/* Player 2 controls */
-		{ 0x200018, 0x200019, input_port_3_r },			/* Coin/System inputs */
+	public static Memory_ReadAddress vfive_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x100000, 0x103fff, MRA_BANK1 ),
+	//	new Memory_ReadAddress( 0x200000, 0x20ffff, MRA_ROM ),				/* Sound ROM is here ??? */
+		new Memory_ReadAddress( 0x200010, 0x200011, input_port_1_r ),			/* Player 1 controls */
+		new Memory_ReadAddress( 0x200014, 0x200015, input_port_2_r ),			/* Player 2 controls */
+		new Memory_ReadAddress( 0x200018, 0x200019, input_port_3_r ),			/* Coin/System inputs */
 	#if Zx80
-		{ 0x21e000, 0x21fbff, shared_ram_r },			/* $21f000 status port */
-		{ 0x21fc00, 0x21ffff, Zx80_sharedram_r },		/* 16-bit on 68000 side, 8-bit on Zx80 side */
+		new Memory_ReadAddress( 0x21e000, 0x21fbff, shared_ram_r ),			/* $21f000 status port */
+		new Memory_ReadAddress( 0x21fc00, 0x21ffff, Zx80_sharedram_r ),		/* 16-bit on 68000 side, 8-bit on Zx80 side */
 	#else
-		{ 0x21e000, 0x21efff, shared_ram_r },
-		{ 0x21f000, 0x21f001, Zx80_status_port_r },		/* Zx80 status port */
-		{ 0x21f004, 0x21f005, input_port_4_r },			/* Dip Switch A */
-		{ 0x21f006, 0x21f007, input_port_5_r },			/* Dip Switch B */
-		{ 0x21f008, 0x21f009, input_port_6_r },			/* Territory Jumper block */
-		{ 0x21fc00, 0x21ffff, Zx80_sharedram_r },		/* 16-bit on 68000 side, 8-bit on Zx80 side */
+		new Memory_ReadAddress( 0x21e000, 0x21efff, shared_ram_r ),
+		new Memory_ReadAddress( 0x21f000, 0x21f001, Zx80_status_port_r ),		/* Zx80 status port */
+		new Memory_ReadAddress( 0x21f004, 0x21f005, input_port_4_r ),			/* Dip Switch A */
+		new Memory_ReadAddress( 0x21f006, 0x21f007, input_port_5_r ),			/* Dip Switch B */
+		new Memory_ReadAddress( 0x21f008, 0x21f009, input_port_6_r ),			/* Territory Jumper block */
+		new Memory_ReadAddress( 0x21fc00, 0x21ffff, Zx80_sharedram_r ),		/* 16-bit on 68000 side, 8-bit on Zx80 side */
 	#endif
-		{ 0x300004, 0x300007, toaplan2_0_videoram_r },
-		{ 0x30000c, 0x30000d, input_port_0_r },
-		{ 0x400000, 0x400fff, paletteram_word_r },
-		{ 0x700000, 0x700001, video_count_r },
-	MEMORY_END
+		new Memory_ReadAddress( 0x300004, 0x300007, toaplan2_0_videoram_r ),
+		new Memory_ReadAddress( 0x30000c, 0x30000d, input_port_0_r ),
+		new Memory_ReadAddress( 0x400000, 0x400fff, paletteram_word_r ),
+		new Memory_ReadAddress( 0x700000, 0x700001, video_count_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( vfive_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM },
@@ -924,32 +942,34 @@ public class toaplan2
 		{ 0x400000, 0x400fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram },
 	MEMORY_END
 	
-	static MEMORY_READ_START( batsugun_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM },
-		{ 0x100000, 0x10ffff, MRA_BANK1 },
-		{ 0x200010, 0x200011, input_port_1_r },			/* Player 1 controls */
-		{ 0x200014, 0x200015, input_port_2_r },			/* Player 2 controls */
-		{ 0x200018, 0x200019, input_port_3_r },			/* Coin/System inputs */
-		{ 0x210000, 0x21bbff, MRA_BANK2 },
+	public static Memory_ReadAddress batsugun_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x100000, 0x10ffff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x200010, 0x200011, input_port_1_r ),			/* Player 1 controls */
+		new Memory_ReadAddress( 0x200014, 0x200015, input_port_2_r ),			/* Player 2 controls */
+		new Memory_ReadAddress( 0x200018, 0x200019, input_port_3_r ),			/* Coin/System inputs */
+		new Memory_ReadAddress( 0x210000, 0x21bbff, MRA_BANK2 ),
 	#if Zx80
-		{ 0x21e000, 0x21fbff, shared_ram_r },			/* $21f000 status port */
-		{ 0x21fc00, 0x21ffff, Zx80_sharedram_r },		/* 16-bit on 68000 side, 8-bit on Zx80 side */
+		new Memory_ReadAddress( 0x21e000, 0x21fbff, shared_ram_r ),			/* $21f000 status port */
+		new Memory_ReadAddress( 0x21fc00, 0x21ffff, Zx80_sharedram_r ),		/* 16-bit on 68000 side, 8-bit on Zx80 side */
 	#else
-		{ 0x21e000, 0x21efff, shared_ram_r },
-		{ 0x21f000, 0x21f001, Zx80_status_port_r },		/* Zx80 status port */
-		{ 0x21f004, 0x21f005, input_port_4_r },			/* Dip Switch A */
-		{ 0x21f006, 0x21f007, input_port_5_r },			/* Dip Switch B */
-		{ 0x21f008, 0x21f009, input_port_6_r },			/* Territory Jumper block */
-		{ 0x21fc00, 0x21ffff, Zx80_sharedram_r },		/* 16-bit on 68000 side, 8-bit on Zx80 side */
+		new Memory_ReadAddress( 0x21e000, 0x21efff, shared_ram_r ),
+		new Memory_ReadAddress( 0x21f000, 0x21f001, Zx80_status_port_r ),		/* Zx80 status port */
+		new Memory_ReadAddress( 0x21f004, 0x21f005, input_port_4_r ),			/* Dip Switch A */
+		new Memory_ReadAddress( 0x21f006, 0x21f007, input_port_5_r ),			/* Dip Switch B */
+		new Memory_ReadAddress( 0x21f008, 0x21f009, input_port_6_r ),			/* Territory Jumper block */
+		new Memory_ReadAddress( 0x21fc00, 0x21ffff, Zx80_sharedram_r ),		/* 16-bit on 68000 side, 8-bit on Zx80 side */
 	#endif
 		/***** The following in 0x30000x are for video controller 2 ******/
-		{ 0x300004, 0x300007, toaplan2_1_videoram_r },	/* tile layers */
-		{ 0x30000c, 0x30000d, input_port_0_r },			/* VBlank */
-		{ 0x400000, 0x400fff, paletteram_word_r },
+		new Memory_ReadAddress( 0x300004, 0x300007, toaplan2_1_videoram_r ),	/* tile layers */
+		new Memory_ReadAddress( 0x30000c, 0x30000d, input_port_0_r ),			/* VBlank */
+		new Memory_ReadAddress( 0x400000, 0x400fff, paletteram_word_r ),
 		/***** The following in 0x50000x are for video controller 1 ******/
-		{ 0x500004, 0x500007, toaplan2_0_videoram_r },	/* tile layers 2 */
-		{ 0x700000, 0x700001, video_count_r },			/* test bit 8 */
-	MEMORY_END
+		new Memory_ReadAddress( 0x500004, 0x500007, toaplan2_0_videoram_r ),	/* tile layers 2 */
+		new Memory_ReadAddress( 0x700000, 0x700001, video_count_r ),			/* test bit 8 */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( batsugun_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM },
@@ -977,23 +997,25 @@ public class toaplan2
 		{ 0x50000c, 0x50000d, toaplan2_0_scroll_reg_data_w },
 	MEMORY_END
 	
-	static MEMORY_READ_START( snowbro2_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM },
-		{ 0x100000, 0x10ffff, MRA_BANK1 },
-		{ 0x300004, 0x300007, toaplan2_0_videoram_r },	/* tile layers */
-		{ 0x30000c, 0x30000d, input_port_0_r },			/* VBlank */
-		{ 0x400000, 0x400fff, paletteram_word_r },
-		{ 0x500002, 0x500003, YM2151_status_port_0_r },
-		{ 0x600000, 0x600001, OKIM6295_status_0_r },
-		{ 0x700000, 0x700001, input_port_8_r },			/* Territory Jumper block */
-		{ 0x700004, 0x700005, input_port_6_r },			/* Dip Switch A */
-		{ 0x700008, 0x700009, input_port_7_r },			/* Dip Switch B */
-		{ 0x70000c, 0x70000d, input_port_1_r },			/* Player 1 controls */
-		{ 0x700010, 0x700011, input_port_2_r },			/* Player 2 controls */
-		{ 0x700014, 0x700015, input_port_3_r },			/* Player 3 controls */
-		{ 0x700018, 0x700019, input_port_4_r },			/* Player 4 controls */
-		{ 0x70001c, 0x70001d, input_port_5_r },			/* Coin/System inputs */
-	MEMORY_END
+	public static Memory_ReadAddress snowbro2_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x100000, 0x10ffff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x300004, 0x300007, toaplan2_0_videoram_r ),	/* tile layers */
+		new Memory_ReadAddress( 0x30000c, 0x30000d, input_port_0_r ),			/* VBlank */
+		new Memory_ReadAddress( 0x400000, 0x400fff, paletteram_word_r ),
+		new Memory_ReadAddress( 0x500002, 0x500003, YM2151_status_port_0_r ),
+		new Memory_ReadAddress( 0x600000, 0x600001, OKIM6295_status_0_r ),
+		new Memory_ReadAddress( 0x700000, 0x700001, input_port_8_r ),			/* Territory Jumper block */
+		new Memory_ReadAddress( 0x700004, 0x700005, input_port_6_r ),			/* Dip Switch A */
+		new Memory_ReadAddress( 0x700008, 0x700009, input_port_7_r ),			/* Dip Switch B */
+		new Memory_ReadAddress( 0x70000c, 0x70000d, input_port_1_r ),			/* Player 1 controls */
+		new Memory_ReadAddress( 0x700010, 0x700011, input_port_2_r ),			/* Player 2 controls */
+		new Memory_ReadAddress( 0x700014, 0x700015, input_port_3_r ),			/* Player 3 controls */
+		new Memory_ReadAddress( 0x700018, 0x700019, input_port_4_r ),			/* Player 4 controls */
+		new Memory_ReadAddress( 0x70001c, 0x70001d, input_port_5_r ),			/* Coin/System inputs */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( snowbro2_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM },
@@ -1010,24 +1032,26 @@ public class toaplan2
 		{ 0x700034, 0x700035, toaplan2_coin_w },		/* Coin count/lock */
 	MEMORY_END
 	
-	static MEMORY_READ_START( mahoudai_readmem )
-		{ 0x000000, 0x07ffff, MRA_ROM },
-		{ 0x100000, 0x10ffff, MRA_BANK1 },
-		{ 0x218000, 0x21bfff, raizing_shared_ram_r },
-		{ 0x21c002, 0x21c003, YM2151_status_port_0_r },
-	//	{ 0x21c008, 0x21c009, OKIM6295_status_0_r },
-		{ 0x21c020, 0x21c021, input_port_1_r },
-		{ 0x21c024, 0x21c025, input_port_2_r },
-		{ 0x21c028, 0x21c029, input_port_3_r },
-		{ 0x21c02c, 0x21c02d, input_port_4_r },
-		{ 0x21c030, 0x21c031, input_port_5_r },
-		{ 0x21c034, 0x21c035, input_port_6_r },
-		{ 0x21c03c, 0x21c03d, video_count_r },
-		{ 0x300004, 0x300007, toaplan2_0_videoram_r },	/* tile layers */
-		{ 0x30000c, 0x30000d, input_port_0_r },			/* VBlank */
-		{ 0x400000, 0x400fff, paletteram_word_r },
-		{ 0x500000, 0x503fff, raizing_textram_r },
-	MEMORY_END
+	public static Memory_ReadAddress mahoudai_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x07ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x100000, 0x10ffff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x218000, 0x21bfff, raizing_shared_ram_r ),
+		new Memory_ReadAddress( 0x21c002, 0x21c003, YM2151_status_port_0_r ),
+	//	new Memory_ReadAddress( 0x21c008, 0x21c009, OKIM6295_status_0_r ),
+		new Memory_ReadAddress( 0x21c020, 0x21c021, input_port_1_r ),
+		new Memory_ReadAddress( 0x21c024, 0x21c025, input_port_2_r ),
+		new Memory_ReadAddress( 0x21c028, 0x21c029, input_port_3_r ),
+		new Memory_ReadAddress( 0x21c02c, 0x21c02d, input_port_4_r ),
+		new Memory_ReadAddress( 0x21c030, 0x21c031, input_port_5_r ),
+		new Memory_ReadAddress( 0x21c034, 0x21c035, input_port_6_r ),
+		new Memory_ReadAddress( 0x21c03c, 0x21c03d, video_count_r ),
+		new Memory_ReadAddress( 0x300004, 0x300007, toaplan2_0_videoram_r ),	/* tile layers */
+		new Memory_ReadAddress( 0x30000c, 0x30000d, input_port_0_r ),			/* VBlank */
+		new Memory_ReadAddress( 0x400000, 0x400fff, paletteram_word_r ),
+		new Memory_ReadAddress( 0x500000, 0x503fff, raizing_textram_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( mahoudai_writemem )
 		{ 0x000000, 0x07ffff, MWA_ROM },
@@ -1045,24 +1069,26 @@ public class toaplan2
 		{ 0x500000, 0x503fff, raizing_textram_w, &textvideoram},
 	MEMORY_END
 	
-	static MEMORY_READ_START( shippumd_readmem )
-		{ 0x000000, 0x0fffff, MRA_ROM },
-		{ 0x100000, 0x10ffff, MRA_BANK1 },
-		{ 0x218000, 0x21bfff, raizing_shared_ram_r },
-		{ 0x21c002, 0x21c003, YM2151_status_port_0_r },
-	//	{ 0x21c008, 0x21c009, OKIM6295_status_0_r },
-		{ 0x21c020, 0x21c021, input_port_1_r },
-		{ 0x21c024, 0x21c025, input_port_2_r },
-		{ 0x21c028, 0x21c029, input_port_3_r },
-		{ 0x21c02c, 0x21c02d, input_port_4_r },
-		{ 0x21c030, 0x21c031, input_port_5_r },
-		{ 0x21c034, 0x21c035, input_port_6_r },
-		{ 0x21c03c, 0x21c03d, video_count_r },
-		{ 0x300004, 0x300007, toaplan2_0_videoram_r },	/* tile layers */
-		{ 0x30000c, 0x30000d, input_port_0_r },			/* VBlank */
-		{ 0x400000, 0x400fff, paletteram_word_r },
-		{ 0x500000, 0x503fff, raizing_textram_r },
-	MEMORY_END
+	public static Memory_ReadAddress shippumd_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x0fffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x100000, 0x10ffff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x218000, 0x21bfff, raizing_shared_ram_r ),
+		new Memory_ReadAddress( 0x21c002, 0x21c003, YM2151_status_port_0_r ),
+	//	new Memory_ReadAddress( 0x21c008, 0x21c009, OKIM6295_status_0_r ),
+		new Memory_ReadAddress( 0x21c020, 0x21c021, input_port_1_r ),
+		new Memory_ReadAddress( 0x21c024, 0x21c025, input_port_2_r ),
+		new Memory_ReadAddress( 0x21c028, 0x21c029, input_port_3_r ),
+		new Memory_ReadAddress( 0x21c02c, 0x21c02d, input_port_4_r ),
+		new Memory_ReadAddress( 0x21c030, 0x21c031, input_port_5_r ),
+		new Memory_ReadAddress( 0x21c034, 0x21c035, input_port_6_r ),
+		new Memory_ReadAddress( 0x21c03c, 0x21c03d, video_count_r ),
+		new Memory_ReadAddress( 0x300004, 0x300007, toaplan2_0_videoram_r ),	/* tile layers */
+		new Memory_ReadAddress( 0x30000c, 0x30000d, input_port_0_r ),			/* VBlank */
+		new Memory_ReadAddress( 0x400000, 0x400fff, paletteram_word_r ),
+		new Memory_ReadAddress( 0x500000, 0x503fff, raizing_textram_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( shippumd_writemem )
 		{ 0x000000, 0x0fffff, MWA_ROM },
@@ -1081,11 +1107,13 @@ public class toaplan2
 	MEMORY_END
 	
 	
-	static MEMORY_READ_START( sound_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0x8000, 0x87ff, MRA_RAM },
-		{ 0xe000, 0xe000, YM3812_status_port_0_r },
-	MEMORY_END
+	public static Memory_ReadAddress sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0x87ff, MRA_RAM ),
+		new Memory_ReadAddress( 0xe000, 0xe000, YM3812_status_port_0_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( sound_writemem )
 		{ 0x0000, 0x7fff, MWA_ROM },
@@ -1096,18 +1124,20 @@ public class toaplan2
 	
 	/* Added by Yochizo 2000/08/20 */
 	
-	static MEMORY_READ_START( raizing_sound_readmem )
-		{ 0x0000, 0xbfff, MRA_ROM },
-		{ 0xc000, 0xdfff, MRA_RAM },
-		{ 0xe001, 0xe001, YM2151_status_port_0_r },
-	//	{ 0xe004, 0xe004, OKIM6295_status_0_r },
-		{ 0xe010, 0xe010, input_port_1_r },
-		{ 0xe012, 0xe012, input_port_2_r },
-		{ 0xe014, 0xe014, input_port_3_r },
-		{ 0xe016, 0xe016, input_port_4_r },
-		{ 0xe018, 0xe018, input_port_5_r },
-		{ 0xe01a, 0xe01a, input_port_6_r },
-	MEMORY_END
+	public static Memory_ReadAddress raizing_sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0xbfff, MRA_ROM ),
+		new Memory_ReadAddress( 0xc000, 0xdfff, MRA_RAM ),
+		new Memory_ReadAddress( 0xe001, 0xe001, YM2151_status_port_0_r ),
+	//	new Memory_ReadAddress( 0xe004, 0xe004, OKIM6295_status_0_r ),
+		new Memory_ReadAddress( 0xe010, 0xe010, input_port_1_r ),
+		new Memory_ReadAddress( 0xe012, 0xe012, input_port_2_r ),
+		new Memory_ReadAddress( 0xe014, 0xe014, input_port_3_r ),
+		new Memory_ReadAddress( 0xe016, 0xe016, input_port_4_r ),
+		new Memory_ReadAddress( 0xe018, 0xe018, input_port_5_r ),
+		new Memory_ReadAddress( 0xe01a, 0xe01a, input_port_6_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( raizing_sound_writemem )
 		{ 0x0000, 0xbfff, MWA_ROM },
@@ -1120,10 +1150,12 @@ public class toaplan2
 	
 	
 	#if HD64x180
-	static MEMORY_READ_START( hd647180_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0xfe00, 0xffff, MRA_RAM },			/* Internal 512 bytes of RAM */
-	MEMORY_END
+	public static Memory_ReadAddress hd647180_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0xfe00, 0xffff, MRA_RAM ),			/* Internal 512 bytes of RAM */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( hd647180_writemem )
 		{ 0x0000, 0x7fff, MWA_ROM },
@@ -1133,9 +1165,11 @@ public class toaplan2
 	
 	
 	#if Zx80
-	static MEMORY_READ_START( Zx80_readmem )
-		{ 0x0000, 0x7fff, MRA_RAM },
-	MEMORY_END
+	public static Memory_ReadAddress Zx80_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_RAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( Zx80_writemem )
 		{ 0x0000, 0x07fff, MWA_RAM, &Zx80_sharedram },

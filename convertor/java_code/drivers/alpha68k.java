@@ -293,14 +293,16 @@ public class alpha68k
 	
 	/******************************************************************************/
 	
-	static MEMORY_READ_START( kouyakyu_readmem )
-		{ 0x000000, 0x01ffff, MRA_ROM },
-		{ 0x040000, 0x040fff, MRA_BANK1 },
-		{ 0x080000, 0x081fff, MRA_BANK2 },
-		{ 0x0c0000, 0x0c0fff, MRA_BANK3 },
-		{ 0x100000, 0x1007ff, MRA_BANK4 },
-		{ 0x140000, 0x1407ff, MRA_BANK5 },
-	MEMORY_END
+	public static Memory_ReadAddress kouyakyu_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x01ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x040000, 0x040fff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x080000, 0x081fff, MRA_BANK2 ),
+		new Memory_ReadAddress( 0x0c0000, 0x0c0fff, MRA_BANK3 ),
+		new Memory_ReadAddress( 0x100000, 0x1007ff, MRA_BANK4 ),
+		new Memory_ReadAddress( 0x140000, 0x1407ff, MRA_BANK5 ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( kouyakyu_writemem )
 		{ 0x000000, 0x01ffff, MWA_ROM },
@@ -312,15 +314,17 @@ public class alpha68k
 		{ 0x780000, 0x780001, MWA_NOP }, /* Watchdog? */
 	MEMORY_END
 	
-	static MEMORY_READ_START( kyros_readmem )
-		{ 0x000000, 0x01ffff, MRA_ROM },
-		{ 0x020000, 0x020fff, MRA_BANK1 },
-		{ 0x040000, 0x041fff, MRA_BANK2 },
-		{ 0x060000, 0x060001, MRA_NOP }, /* Watchdog? */
-		{ 0x080000, 0x0801ff, kyros_alpha_trigger_r },
-		{ 0x0c0000, 0x0c0001, input_port_0_r },
-		{ 0x0e0000, 0x0e0001, kyros_dip_r },
-	MEMORY_END
+	public static Memory_ReadAddress kyros_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x01ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x020000, 0x020fff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x040000, 0x041fff, MRA_BANK2 ),
+		new Memory_ReadAddress( 0x060000, 0x060001, MRA_NOP ), /* Watchdog? */
+		new Memory_ReadAddress( 0x080000, 0x0801ff, kyros_alpha_trigger_r ),
+		new Memory_ReadAddress( 0x0c0000, 0x0c0001, input_port_0_r ),
+		new Memory_ReadAddress( 0x0e0000, 0x0e0001, kyros_dip_r ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( kyros_writemem )
 		{ 0x000000, 0x01ffff, MWA_ROM },
@@ -330,14 +334,16 @@ public class alpha68k
 		{ 0x0e0000, 0x0e0001, kyros_sound_w },
 	MEMORY_END
 	
-	static MEMORY_READ_START( alpha68k_I_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x080000, 0x083fff, MRA_BANK1 },
-	//	{ 0x180008, 0x180009, control_2_r }, /* 1 byte */
-		{ 0x300000, 0x300001, control_1_r }, /* 2  */
-		{ 0x340000, 0x340001, control_1_r }, /* 2  */
-		{ 0x100000, 0x103fff, MRA_BANK2 },
-	MEMORY_END
+	public static Memory_ReadAddress alpha68k_I_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x080000, 0x083fff, MRA_BANK1 ),
+	//	new Memory_ReadAddress( 0x180008, 0x180009, control_2_r ), /* 1 byte */
+		new Memory_ReadAddress( 0x300000, 0x300001, control_1_r ), /* 2  */
+		new Memory_ReadAddress( 0x340000, 0x340001, control_1_r ), /* 2  */
+		new Memory_ReadAddress( 0x100000, 0x103fff, MRA_BANK2 ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( alpha68k_I_writemem )
 		{ 0x000000, 0x03ffff, MWA_NOP },
@@ -347,22 +353,24 @@ public class alpha68k
 		{ 0x380000, 0x380001, alpha68k_II_sound_w },
 	MEMORY_END
 	
-	static MEMORY_READ_START( alpha68k_II_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x040000, 0x040fff, MRA_BANK1 },
-		{ 0x080000, 0x080001, control_1_r }, /* Joysticks */
-		{ 0x0c0000, 0x0c0001, control_2_r }, /* CN1 & Dip 1 */
-		{ 0x0c8000, 0x0c8001, control_3_r }, /* Bottom of CN2 */
-		{ 0x0d0000, 0x0d0001, control_4_r }, /* Top of CN1 & CN2 */
-		{ 0x0d8000, 0x0d8001, MRA_NOP }, /* IRQ ack? */
-		{ 0x0e0000, 0x0e0001, MRA_NOP }, /* IRQ ack? */
-		{ 0x0e8000, 0x0e8001, MRA_NOP }, /* watchdog? */
-		{ 0x100000, 0x100fff, alpha68k_II_video_r },
-		{ 0x200000, 0x207fff, MRA_BANK2 },
-		{ 0x300000, 0x3001ff, alpha_II_trigger_r },
-		{ 0x400000, 0x400fff, paletteram_word_r },
-		{ 0x800000, 0x83ffff, MRA_BANK8 }, /* Extra code bank */
-	MEMORY_END
+	public static Memory_ReadAddress alpha68k_II_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x040000, 0x040fff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x080000, 0x080001, control_1_r ), /* Joysticks */
+		new Memory_ReadAddress( 0x0c0000, 0x0c0001, control_2_r ), /* CN1 & Dip 1 */
+		new Memory_ReadAddress( 0x0c8000, 0x0c8001, control_3_r ), /* Bottom of CN2 */
+		new Memory_ReadAddress( 0x0d0000, 0x0d0001, control_4_r ), /* Top of CN1 & CN2 */
+		new Memory_ReadAddress( 0x0d8000, 0x0d8001, MRA_NOP ), /* IRQ ack? */
+		new Memory_ReadAddress( 0x0e0000, 0x0e0001, MRA_NOP ), /* IRQ ack? */
+		new Memory_ReadAddress( 0x0e8000, 0x0e8001, MRA_NOP ), /* watchdog? */
+		new Memory_ReadAddress( 0x100000, 0x100fff, alpha68k_II_video_r ),
+		new Memory_ReadAddress( 0x200000, 0x207fff, MRA_BANK2 ),
+		new Memory_ReadAddress( 0x300000, 0x3001ff, alpha_II_trigger_r ),
+		new Memory_ReadAddress( 0x400000, 0x400fff, paletteram_word_r ),
+		new Memory_ReadAddress( 0x800000, 0x83ffff, MRA_BANK8 ), /* Extra code bank */
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( alpha68k_II_writemem )
 		{ 0x000000, 0x03ffff, MWA_NOP },
@@ -375,20 +383,22 @@ public class alpha68k
 		{ 0x400000, 0x400fff, alpha68k_paletteram_w, &paletteram },
 	MEMORY_END
 	
-	static MEMORY_READ_START( alpha68k_V_readmem )
-		{ 0x000000, 0x03ffff, MRA_ROM },
-		{ 0x040000, 0x043fff, MRA_BANK1 },
-		{ 0x080000, 0x080001, control_1_r }, /* Joysticks */
-		{ 0x0c0000, 0x0c0001, control_2_V_r }, /* Dip 2 */
-		{ 0x0d8000, 0x0d8001, MRA_NOP }, /* IRQ ack? */
-		{ 0x0e0000, 0x0e0001, MRA_NOP }, /* IRQ ack? */
-		{ 0x0e8000, 0x0e8001, MRA_NOP }, /* watchdog? */
-		{ 0x100000, 0x100fff, alpha68k_II_video_r },
-		{ 0x200000, 0x207fff, MRA_BANK3 },
-		{ 0x300000, 0x303fff, alpha_V_trigger_r },
-		{ 0x400000, 0x401fff, paletteram_word_r },
-		{ 0x800000, 0x83ffff, MRA_BANK8 },
-	MEMORY_END
+	public static Memory_ReadAddress alpha68k_V_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x000000, 0x03ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x040000, 0x043fff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0x080000, 0x080001, control_1_r ), /* Joysticks */
+		new Memory_ReadAddress( 0x0c0000, 0x0c0001, control_2_V_r ), /* Dip 2 */
+		new Memory_ReadAddress( 0x0d8000, 0x0d8001, MRA_NOP ), /* IRQ ack? */
+		new Memory_ReadAddress( 0x0e0000, 0x0e0001, MRA_NOP ), /* IRQ ack? */
+		new Memory_ReadAddress( 0x0e8000, 0x0e8001, MRA_NOP ), /* watchdog? */
+		new Memory_ReadAddress( 0x100000, 0x100fff, alpha68k_II_video_r ),
+		new Memory_ReadAddress( 0x200000, 0x207fff, MRA_BANK3 ),
+		new Memory_ReadAddress( 0x300000, 0x303fff, alpha_V_trigger_r ),
+		new Memory_ReadAddress( 0x400000, 0x401fff, paletteram_word_r ),
+		new Memory_ReadAddress( 0x800000, 0x83ffff, MRA_BANK8 ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( alpha68k_V_writemem )
 		{ 0x000000, 0x03ffff, MWA_NOP },
@@ -413,35 +423,41 @@ public class alpha68k
 		cpu_setbank(7,&RAM[bankaddress]);
 	} };
 	
-	static MEMORY_READ_START( sound_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0x8000, 0x87ff, MRA_RAM },
-		{ 0xc000, 0xffff, MRA_BANK7 },
-	MEMORY_END
+	public static Memory_ReadAddress sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0x87ff, MRA_RAM ),
+		new Memory_ReadAddress( 0xc000, 0xffff, MRA_BANK7 ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( sound_writemem )
 		{ 0x0000, 0x7fff, MWA_ROM },
 		{ 0x8000, 0x87ff, MWA_RAM },
 	MEMORY_END
 	
-	static MEMORY_READ_START( kyros_sound_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0xc000, 0xc7ff, MRA_RAM },
-	//	{ 0xe000, 0xe000, soundlatch_r },
-	//	{ 0xc000, 0xffff, MRA_BANK7 },
-	MEMORY_END
+	public static Memory_ReadAddress kyros_sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0xc000, 0xc7ff, MRA_RAM ),
+	//	new Memory_ReadAddress( 0xe000, 0xe000, soundlatch_r ),
+	//	new Memory_ReadAddress( 0xc000, 0xffff, MRA_BANK7 ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( kyros_sound_writemem )
 		{ 0x0000, 0x7fff, MWA_ROM },
 		{ 0xc000, 0xc7ff, MWA_RAM },
 	MEMORY_END
 	
-	static MEMORY_READ_START( sstingry_sound_readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0x8000, 0x83ff, MRA_RAM },
-	//	{ 0xe000, 0xe000, soundlatch_r },
-	//	{ 0xc000, 0xffff, MRA_BANK7 },
-	MEMORY_END
+	public static Memory_ReadAddress sstingry_sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0x83ff, MRA_RAM ),
+	//	new Memory_ReadAddress( 0xe000, 0xe000, soundlatch_r ),
+	//	new Memory_ReadAddress( 0xc000, 0xffff, MRA_BANK7 ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static WRITE_HANDLER (soundram_mirror_w)
 	{

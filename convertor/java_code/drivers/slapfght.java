@@ -209,30 +209,34 @@ public class slapfght
 	
 	/* Driver structure definition */
 	
-	static MEMORY_READ_START( tigerh_readmem )
-		{ 0x0000, 0xbfff, MRA_ROM },
-		{ 0xc000, 0xc7ff, MRA_RAM },
-		{ 0xc800, 0xc80f, slapfight_dpram_r },
-		{ 0xc810, 0xcfff, MRA_RAM },
-		{ 0xd000, 0xd7ff, MRA_RAM },
-		{ 0xd800, 0xdfff, MRA_RAM },
-		{ 0xf000, 0xf7ff, MRA_RAM },
-		{ 0xf800, 0xffff, MRA_RAM },
-	MEMORY_END
+	public static Memory_ReadAddress tigerh_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0xbfff, MRA_ROM ),
+		new Memory_ReadAddress( 0xc000, 0xc7ff, MRA_RAM ),
+		new Memory_ReadAddress( 0xc800, 0xc80f, slapfight_dpram_r ),
+		new Memory_ReadAddress( 0xc810, 0xcfff, MRA_RAM ),
+		new Memory_ReadAddress( 0xd000, 0xd7ff, MRA_RAM ),
+		new Memory_ReadAddress( 0xd800, 0xdfff, MRA_RAM ),
+		new Memory_ReadAddress( 0xf000, 0xf7ff, MRA_RAM ),
+		new Memory_ReadAddress( 0xf800, 0xffff, MRA_RAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
-	static MEMORY_READ_START( readmem )
-		{ 0x0000, 0x7fff, MRA_ROM },
-		{ 0x8000, 0xbfff, MRA_BANK1 },
-		{ 0xc000, 0xc7ff, MRA_RAM },
-		{ 0xc800, 0xc80f, slapfight_dpram_r },
-		{ 0xc810, 0xcfff, MRA_RAM },
-		{ 0xd000, 0xd7ff, MRA_RAM },
-		{ 0xd800, 0xdfff, MRA_RAM },
-		{ 0xe000, 0xe7ff, MRA_RAM },		/* LE 151098 */
-		{ 0xe803, 0xe803, getstar_e803_r }, /* LE 151098 */
-		{ 0xf000, 0xf7ff, MRA_RAM },
-		{ 0xf800, 0xffff, MRA_RAM },
-	MEMORY_END
+	public static Memory_ReadAddress readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x7fff, MRA_ROM ),
+		new Memory_ReadAddress( 0x8000, 0xbfff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0xc000, 0xc7ff, MRA_RAM ),
+		new Memory_ReadAddress( 0xc800, 0xc80f, slapfight_dpram_r ),
+		new Memory_ReadAddress( 0xc810, 0xcfff, MRA_RAM ),
+		new Memory_ReadAddress( 0xd000, 0xd7ff, MRA_RAM ),
+		new Memory_ReadAddress( 0xd800, 0xdfff, MRA_RAM ),
+		new Memory_ReadAddress( 0xe000, 0xe7ff, MRA_RAM ),		/* LE 151098 */
+		new Memory_ReadAddress( 0xe803, 0xe803, getstar_e803_r ), /* LE 151098 */
+		new Memory_ReadAddress( 0xf000, 0xf7ff, MRA_RAM ),
+		new Memory_ReadAddress( 0xf800, 0xffff, MRA_RAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem )
 		{ 0x0000, 0xbfff, MWA_ROM },
@@ -286,13 +290,15 @@ public class slapfght
 	PORT_END
 	
 	
-	static MEMORY_READ_START( sound_readmem )
-		{ 0x0000, 0x1fff, MRA_ROM },
-		{ 0xa081, 0xa081, AY8910_read_port_0_r },
-		{ 0xa091, 0xa091, AY8910_read_port_1_r },
-		{ 0xc800, 0xc80f, slapfight_dpram_r },
-		{ 0xc810, 0xcfff, MRA_RAM },
-	MEMORY_END
+	public static Memory_ReadAddress sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x0000, 0x1fff, MRA_ROM ),
+		new Memory_ReadAddress( 0xa081, 0xa081, AY8910_read_port_0_r ),
+		new Memory_ReadAddress( 0xa091, 0xa091, AY8910_read_port_1_r ),
+		new Memory_ReadAddress( 0xc800, 0xc80f, slapfight_dpram_r ),
+		new Memory_ReadAddress( 0xc810, 0xcfff, MRA_RAM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( sound_writemem )
 		{ 0x0000, 0x1fff, MWA_ROM },

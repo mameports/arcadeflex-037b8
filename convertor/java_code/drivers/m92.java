@@ -233,17 +233,19 @@ public class m92
 	
 	/*****************************************************************************/
 	
-	static MEMORY_READ_START( readmem )
-		{ 0x00000, 0x9ffff, MRA_ROM },
-		{ 0xa0000, 0xbffff, MRA_BANK1 },
-		{ 0xc0000, 0xcffff, MRA_BANK2 }, /* Mirror of rom:  Used by In The Hunt as protection */
-		{ 0xd0000, 0xdffff, m92_vram_r },
-		{ 0xe0000, 0xeffff, MRA_RAM },
-		{ 0xf0000, 0xf3fff, m92_eeprom_r }, /* Eeprom, Major Title 2 only */
-		{ 0xf8000, 0xf87ff, MRA_RAM },
-		{ 0xf8800, 0xf8fff, paletteram_r },
-		{ 0xffff0, 0xfffff, MRA_ROM },
-	MEMORY_END
+	public static Memory_ReadAddress readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x00000, 0x9ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0xa0000, 0xbffff, MRA_BANK1 ),
+		new Memory_ReadAddress( 0xc0000, 0xcffff, MRA_BANK2 ), /* Mirror of rom:  Used by In The Hunt as protection */
+		new Memory_ReadAddress( 0xd0000, 0xdffff, m92_vram_r ),
+		new Memory_ReadAddress( 0xe0000, 0xeffff, MRA_RAM ),
+		new Memory_ReadAddress( 0xf0000, 0xf3fff, m92_eeprom_r ), /* Eeprom, Major Title 2 only */
+		new Memory_ReadAddress( 0xf8000, 0xf87ff, MRA_RAM ),
+		new Memory_ReadAddress( 0xf8800, 0xf8fff, paletteram_r ),
+		new Memory_ReadAddress( 0xffff0, 0xfffff, MRA_ROM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( writemem )
 		{ 0x00000, 0xbffff, MWA_ROM },
@@ -257,14 +259,16 @@ public class m92
 		{ 0xffff0, 0xfffff, MWA_ROM },
 	MEMORY_END
 	
-	static MEMORY_READ_START( lethalth_readmem )
-		{ 0x00000, 0x7ffff, MRA_ROM },
-		{ 0x80000, 0x8ffff, m92_vram_r },
-		{ 0xe0000, 0xeffff, MRA_RAM },
-		{ 0xf8000, 0xf87ff, MRA_RAM },
-		{ 0xf8800, 0xf8fff, paletteram_r },
-		{ 0xffff0, 0xfffff, MRA_ROM },
-	MEMORY_END
+	public static Memory_ReadAddress lethalth_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x00000, 0x7ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0x80000, 0x8ffff, m92_vram_r ),
+		new Memory_ReadAddress( 0xe0000, 0xeffff, MRA_RAM ),
+		new Memory_ReadAddress( 0xf8000, 0xf87ff, MRA_RAM ),
+		new Memory_ReadAddress( 0xf8800, 0xf8fff, paletteram_r ),
+		new Memory_ReadAddress( 0xffff0, 0xfffff, MRA_ROM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( lethalth_writemem )
 		{ 0x00000, 0x7ffff, MWA_ROM },
@@ -303,13 +307,15 @@ public class m92
 	
 	/******************************************************************************/
 	
-	static MEMORY_READ_START( sound_readmem )
-		{ 0x00000, 0x1ffff, MRA_ROM },
-		{ 0xa0000, 0xa3fff, MRA_RAM },
-		{ 0xa8042, 0xa8043, YM2151_status_port_0_r },
-		{ 0xa8044, 0xa8045, soundlatch_r },
-		{ 0xffff0, 0xfffff, MRA_ROM },
-	MEMORY_END
+	public static Memory_ReadAddress sound_readmem[]={
+		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_ReadAddress( 0x00000, 0x1ffff, MRA_ROM ),
+		new Memory_ReadAddress( 0xa0000, 0xa3fff, MRA_RAM ),
+		new Memory_ReadAddress( 0xa8042, 0xa8043, YM2151_status_port_0_r ),
+		new Memory_ReadAddress( 0xa8044, 0xa8045, soundlatch_r ),
+		new Memory_ReadAddress( 0xffff0, 0xfffff, MRA_ROM ),
+		new Memory_ReadAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_WRITE_START( sound_writemem )
 		{ 0x00000, 0x1ffff, MWA_ROM },
