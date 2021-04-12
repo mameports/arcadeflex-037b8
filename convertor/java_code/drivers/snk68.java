@@ -833,7 +833,7 @@ public class snk68
 	
 		ikari3_gfxdecodeinfo,
 		2048, 2048,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -882,7 +882,7 @@ public class snk68
 	
 		pow_gfxdecodeinfo,
 		2048, 2048,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -931,7 +931,7 @@ public class snk68
 	
 		searchar_gfxdecodeinfo,
 		2048, 2048,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -980,7 +980,7 @@ public class snk68
 	
 		searchar_gfxdecodeinfo,
 		2048, 2048,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,

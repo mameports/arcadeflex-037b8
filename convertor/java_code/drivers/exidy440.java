@@ -1106,7 +1106,7 @@ public class exidy440
 		320, 240, new rectangle( 0, 319, 0, 239 ),
 		null,
 		257, 512,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,

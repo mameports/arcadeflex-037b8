@@ -586,7 +586,7 @@ public class senjyo
 		32*8, 32*8, new rectangle( 0*8, 32*8-1, 2*8, 30*8-1 ),
 		gfxdecodeinfo,
 		402, 402,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,

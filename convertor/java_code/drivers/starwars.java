@@ -523,7 +523,7 @@ public class starwars
 		/* video hardware */
 		400, 300, new rectangle( 0, 250, 0, 280 ),
 		null,
-		256,null, /* Number of colours, length of colour lookup table */
+		256,0, /* Number of colours, length of colour lookup table */
 		avg_init_palette_swars,
 	
 		VIDEO_TYPE_VECTOR | VIDEO_SUPPORTS_DIRTY,
@@ -577,7 +577,7 @@ public class starwars
 		/* video hardware */
 		400, 300, new rectangle( 0, 250, 0, 280 ),
 		null,
-		256,null, /* Number of colours, length of colour lookup table */
+		256,0, /* Number of colours, length of colour lookup table */
 		avg_init_palette_swars,
 	
 		VIDEO_TYPE_VECTOR | VIDEO_SUPPORTS_DIRTY,

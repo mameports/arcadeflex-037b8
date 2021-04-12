@@ -2436,7 +2436,7 @@ public class balsente
 		256, 240, new rectangle( 0, 255, 0, 239 ),
 		null,
 		1025,1025,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		null,

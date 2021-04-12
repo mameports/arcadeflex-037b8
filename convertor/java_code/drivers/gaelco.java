@@ -270,7 +270,7 @@ public class gaelco
 		32*16, 32*16, new rectangle( 0, 320-1, 16, 256-1 ),
 		gfxdecodeinfo_0x100000,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -531,7 +531,7 @@ public class gaelco
 		32*16, 32*16, new rectangle( 0, 320-1, 16, 256-1 ),
 		gfxdecodeinfo_0x100000,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,

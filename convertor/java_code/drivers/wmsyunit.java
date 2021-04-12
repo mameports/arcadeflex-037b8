@@ -713,7 +713,7 @@ public class wmsyunit
 	
 		null,
 		65536,65536,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		wms_zunit_vh_eof,
@@ -759,7 +759,7 @@ public class wmsyunit
 	
 		null,
 		256,256,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		wms_yunit_vh_eof,
@@ -798,7 +798,7 @@ public class wmsyunit
 	
 		null,
 		4096,4096,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		wms_yunit_vh_eof,
@@ -837,7 +837,7 @@ public class wmsyunit
 	
 		null,
 		4096,4096,
-	    null,
+	    0,
 	
 	    VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		wms_yunit_vh_eof,

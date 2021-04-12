@@ -238,7 +238,7 @@ public class citycon
 		32*8, 32*8, new rectangle( 1*8, 31*8-1, 2*8, 30*8-1 ),
 		gfxdecodeinfo,
 		640, 640,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,

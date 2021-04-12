@@ -312,7 +312,7 @@ public class battlera
 	
 		gfxdecodeinfo,
 		512, 512,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,

@@ -340,7 +340,7 @@ public class raiden
 		32*8, 32*8, new rectangle( 0*8, 32*8-1, 2*8, 30*8-1 ),
 		raiden_gfxdecodeinfo,
 		2048, 2048,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		raiden_eof_callback,
@@ -383,7 +383,7 @@ public class raiden
 		32*8, 32*8, new rectangle( 0*8, 32*8-1, 2*8, 30*8-1 ),
 		raiden_gfxdecodeinfo,
 		2048, 2048,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		raiden_eof_callback,

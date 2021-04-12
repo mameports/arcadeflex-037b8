@@ -324,7 +324,7 @@ public class starfire
 	    256,256,
 	    new rectangle( 0, 256-1, 32, 256-1 ),
 	    null,
-	    64,64,null,
+	    64,64,0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,

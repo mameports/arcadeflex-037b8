@@ -408,7 +408,7 @@ public class cbuster
 	
 		gfxdecodeinfo,
 		2048, 2048,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		null,

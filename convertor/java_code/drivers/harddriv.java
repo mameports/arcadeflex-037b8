@@ -845,7 +845,7 @@ public class harddriv
 		512, 384, new rectangle( 0, 511, 0, 383 ),
 		null,
 		256*4,256*4,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		harddriv_vh_eof,
@@ -922,7 +922,7 @@ public class harddriv
 		512, 288, new rectangle( 0, 511, 0, 287 ),
 		null,
 		256*4,256*4,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		harddriv_vh_eof,
@@ -973,7 +973,7 @@ public class harddriv
 		512, 240, new rectangle( 0, 511, 0, 239 ),
 		null,
 		256*4,256*4,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		harddriv_vh_eof,
@@ -1029,7 +1029,7 @@ public class harddriv
 		512, 288, new rectangle( 0, 511, 0, 287 ),
 		null,
 		256*4,256*4,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		harddriv_vh_eof,

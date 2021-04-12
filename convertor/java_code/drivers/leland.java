@@ -1783,7 +1783,7 @@ public class leland
 		40*8, 30*8, new rectangle( 0*8, 40*8-1, 0*8, 30*8-1 ),
 		gfxdecodeinfo,
 		1024,1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		leland_vh_eof,
@@ -1835,7 +1835,7 @@ public class leland
 		40*8, 30*8, new rectangle( 0*8, 40*8-1, 0*8, 30*8-1 ),
 		gfxdecodeinfo,
 		1024,1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		leland_vh_eof,
@@ -1887,7 +1887,7 @@ public class leland
 		40*8, 30*8, new rectangle( 0*8, 40*8-1, 0*8, 30*8-1 ),
 		gfxdecodeinfo,
 		1024,1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		leland_vh_eof,
@@ -1939,7 +1939,7 @@ public class leland
 		40*8, 30*8, new rectangle( 0*8, 40*8-1, 0*8, 30*8-1 ),
 		gfxdecodeinfo,
 		1024,1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		leland_vh_eof,

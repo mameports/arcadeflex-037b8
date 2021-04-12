@@ -2501,7 +2501,7 @@ public class toaplan2
 		32*16, 32*16, new rectangle( 0, 319, 0, 239 ),
 		gfxdecodeinfo,
 		(64*16)+(64*16), (64*16)+(64*16),
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK, /* Sprites are buffered too */
 		toaplan2_0_eof_callback,
@@ -2546,7 +2546,7 @@ public class toaplan2
 		32*16, 32*16, new rectangle( 0, 319, 0, 239 ),
 		gfxdecodeinfo,
 		(64*16)+(64*16), (64*16)+(64*16),
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK, /* Sprites are buffered too */
 		toaplan2_0_eof_callback,
@@ -2591,7 +2591,7 @@ public class toaplan2
 		32*16, 32*16, new rectangle( 0, 319, 0, 239 ),
 		gfxdecodeinfo_2,
 		(64*16)+(64*16), (64*16)+(64*16),
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK, /* Sprites are buffered too */
 		toaplan2_1_eof_callback,
@@ -2640,7 +2640,7 @@ public class toaplan2
 		32*16, 32*16, new rectangle( 0, 319, 0, 239 ),
 		gfxdecodeinfo,
 		(64*16)+(64*16), (64*16)+(64*16),
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK, /* Sprites are buffered too */
 		toaplan2_0_eof_callback,
@@ -2690,7 +2690,7 @@ public class toaplan2
 		32*16, 32*16, new rectangle( 0, 319, 0, 239 ),
 		tatsujn2_gfxdecodeinfo,
 		(64*16)+(64*16), (64*16)+(64*16),
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK, /* Sprites are buffered too */
 		toaplan2_0_eof_callback,
@@ -2737,7 +2737,7 @@ public class toaplan2
 		32*16, 32*16, new rectangle( 0, 319, 0, 239 ),
 		gfxdecodeinfo,
 		(128*16), (128*16),
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK, /* Sprites are buffered too */
 		toaplan2_0_eof_callback,
@@ -2780,7 +2780,7 @@ public class toaplan2
 		32*16, 32*16, new rectangle( 0, 319, 0, 239 ),
 		gfxdecodeinfo,
 		(128*16), (128*16),
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK, /* Sprites are buffered too */
 		toaplan2_0_eof_callback,
@@ -2823,7 +2823,7 @@ public class toaplan2
 		32*16, 32*16, new rectangle( 0, 319, 0, 239 ),
 		gfxdecodeinfo,
 		(128*16), (128*16),
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK, /* Sprites are buffered too */
 		toaplan2_0_eof_callback,
@@ -2868,7 +2868,7 @@ public class toaplan2
 		32*16, 32*16, new rectangle( 0, 319, 0, 239 ),
 		gfxdecodeinfo,
 		(64*16)+(64*16), (64*16)+(64*16),
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK, /* Sprites are buffered too */
 		toaplan2_0_eof_callback,
@@ -2913,7 +2913,7 @@ public class toaplan2
 		32*16, 32*16, new rectangle( 0, 319, 0, 239 ),
 		gfxdecodeinfo,
 		(64*16)+(64*16), (64*16)+(64*16),
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK, /* Sprites are buffered too */
 		toaplan2_0_eof_callback,
@@ -2958,7 +2958,7 @@ public class toaplan2
 		32*16, 32*16, new rectangle( 0, 319, 0, 239 ),
 		gfxdecodeinfo_2,
 		(64*16)+(64*16), (64*16)+(64*16),
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK, /* Sprites are buffered too */
 		toaplan2_1_eof_callback,
@@ -2999,7 +2999,7 @@ public class toaplan2
 		32*16, 32*16, new rectangle( 0, 319, 0, 239 ),
 		gfxdecodeinfo,
 		(64*16)+(64*16), (64*16)+(64*16),
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK, /* Sprites are buffered too */
 		toaplan2_0_eof_callback,
@@ -3046,7 +3046,7 @@ public class toaplan2
 		32*16, 32*16, new rectangle( 0, 319, 0, 239 ),
 		raizing_gfxdecodeinfo,
 		(128*16), (128*16),
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK, /* Sprites are buffered too */
 		toaplan2_0_eof_callback,
@@ -3093,7 +3093,7 @@ public class toaplan2
 		32*16, 32*16, new rectangle( 0, 319, 0, 239 ),
 		raizing_gfxdecodeinfo,
 		(128*16), (128*16),
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK, /* Sprites are buffered too */
 		toaplan2_0_eof_callback,

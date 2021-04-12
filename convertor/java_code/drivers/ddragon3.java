@@ -592,7 +592,7 @@ public class ddragon3
 	
 		ddragon3_gfxdecodeinfo,
 		768,768,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -639,7 +639,7 @@ public class ddragon3
 	
 		ddragon3_gfxdecodeinfo,
 		768,768,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -686,7 +686,7 @@ public class ddragon3
 	
 		ddragon3_gfxdecodeinfo,
 		768,768,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,

@@ -2291,7 +2291,7 @@ public class taito_b
 	
 		gfxdecodeinfo,
 		4096, 4096,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -2335,7 +2335,7 @@ public class taito_b
 	
 		gfxdecodeinfo,
 		4096, 4096,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -2379,7 +2379,7 @@ public class taito_b
 	
 		gfxdecodeinfo,
 		4096, 4096,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -2468,7 +2468,7 @@ public class taito_b
 	
 		gfxdecodeinfo,
 		4096, 4096,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -2516,7 +2516,7 @@ public class taito_b
 	
 		rambo3_gfxdecodeinfo,
 		4096, 4096,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -2560,7 +2560,7 @@ public class taito_b
 	
 		viofight_gfxdecodeinfo,
 		4096, 4096,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -2605,7 +2605,7 @@ public class taito_b
 	
 		gfxdecodeinfo,
 		4096, 4096,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -2700,7 +2700,7 @@ public class taito_b
 	
 		qzshowby_gfxdecodeinfo,
 		4096, 4096,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -2747,7 +2747,7 @@ public class taito_b
 	
 		viofight_gfxdecodeinfo,
 		4096, 4096,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -2795,7 +2795,7 @@ public class taito_b
 	
 		gfxdecodeinfo,
 		4096, 4096,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -2839,7 +2839,7 @@ public class taito_b
 	
 		silentd_gfxdecodeinfo,
 		4096, 4096,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -2884,7 +2884,7 @@ public class taito_b
 	
 		selfeena_gfxdecodeinfo,
 		4096, 4096,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,

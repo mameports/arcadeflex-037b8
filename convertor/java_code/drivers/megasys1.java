@@ -832,7 +832,7 @@ public class megasys1
 		256, 256,new rectangle( 0, 256-1, 0+16, 256-16-1 ),\
 		gfxdecodeinfo_Z,\
 		256*3, 256*3,\
-		null	/*megasys1_convert_prom*/,\
+		0	/*megasys1_convert_prom*/,\
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,\
 		null,\
 		megasys1_vh_start,\

@@ -1685,7 +1685,7 @@ public class gionbana
 		512, 256, new rectangle( 0, 512-1, 8, 248-1 ), \
 		null, \
 		256, 256*4, \
-		null, \
+		0, \
 	\
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_PIXEL_ASPECT_RATIO_1_2, \
 		null, \
@@ -1727,7 +1727,7 @@ public class gionbana
 		512, 256, new rectangle( 0, 512-1, 16, 240-1 ), \
 		null, \
 		256, 256*4, \
-		null, \
+		0, \
 	\
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_PIXEL_ASPECT_RATIO_1_2, \
 		null, \
@@ -1769,7 +1769,7 @@ public class gionbana
 		512, 256, new rectangle( 0, 512-1, 8, 248-1 ), \
 		null, \
 		256, 256*4, \
-		null, \
+		0, \
 	\
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_PIXEL_ASPECT_RATIO_1_2, \
 		null, \
@@ -1811,7 +1811,7 @@ public class gionbana
 		512, 256, new rectangle( 0, 512-1, 8, 248-1 ), \
 		null, \
 		256, 256*4, \
-		null, \
+		0, \
 	\
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_PIXEL_ASPECT_RATIO_1_2, \
 		null, \
@@ -1853,7 +1853,7 @@ public class gionbana
 		512, 256, new rectangle( 0, 512-1, 8, 248-1 ), \
 		null, \
 		256, 256*4, \
-		null, \
+		0, \
 	\
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_PIXEL_ASPECT_RATIO_1_2, \
 		null, \
@@ -1895,7 +1895,7 @@ public class gionbana
 		512, 256, new rectangle( 0, 512-1, 16, 240-1 ), \
 		null, \
 		256, 256*4, \
-		null, \
+		0, \
 	\
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_PIXEL_ASPECT_RATIO_1_2, \
 		null, \

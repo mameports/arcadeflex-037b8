@@ -958,7 +958,7 @@ public class dec0
 	
 		gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		null,
@@ -1010,7 +1010,7 @@ public class dec0
 	
 		gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		null,
@@ -1062,7 +1062,7 @@ public class dec0
 	
 		gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		null,
@@ -1120,7 +1120,7 @@ public class dec0
 	
 		gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		null,
@@ -1172,7 +1172,7 @@ public class dec0
 	
 		gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		null,
@@ -1230,7 +1230,7 @@ public class dec0
 	
 		gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		null,
@@ -1282,7 +1282,7 @@ public class dec0
 	
 		gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		null,
@@ -1334,7 +1334,7 @@ public class dec0
 	
 		midres_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		null,

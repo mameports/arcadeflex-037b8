@@ -374,8 +374,8 @@ public class missile
 		/* video hardware */
 		256, 231, new rectangle( 0, 255, 0, 230 ),
 		null,
-		8, null,
-		null,
+		8, 0,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_SUPPORTS_DIRTY,
 		null,

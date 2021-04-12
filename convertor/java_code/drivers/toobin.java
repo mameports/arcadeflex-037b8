@@ -277,7 +277,7 @@ public class toobin
 		64*8, 48*8, new rectangle( 0*8, 64*8-1, 0*8, 48*8-1 ),
 		gfxdecodeinfo,
 		1024,1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		null,

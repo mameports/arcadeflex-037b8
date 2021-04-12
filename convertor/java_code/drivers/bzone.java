@@ -522,7 +522,7 @@ public class bzone
 		/* video hardware */
 		400, 300, new rectangle( 0, 580, 0, 400 ),
 		null,
-		256+32768, null,
+		256+32768, 0,
 		avg_init_palette_bzone,
 	
 		VIDEO_TYPE_VECTOR | VIDEO_SUPPORTS_DIRTY,
@@ -591,7 +591,7 @@ public class bzone
 		/* video hardware */
 		400, 300, new rectangle( 0, 520, 0, 400 ),
 		null,
-		256, null,
+		256, 0,
 		avg_init_palette_aqua,
 	
 		VIDEO_TYPE_VECTOR | VIDEO_SUPPORTS_DIRTY,

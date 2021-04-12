@@ -127,7 +127,7 @@ public class beezer
 		256, 384, new rectangle( 0, 256-1, 16, 303 ),
 		null,
 		16,16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,

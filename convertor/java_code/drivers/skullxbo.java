@@ -292,7 +292,7 @@ public class skullxbo
 		42*16, 30*8, new rectangle( 0*16, 42*16-1, 0*8, 30*8-1 ),
 		gfxdecodeinfo,
 		2048, 2048,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK |
 				VIDEO_PIXEL_ASPECT_RATIO_1_2,

@@ -596,7 +596,7 @@ public class tigeroad
 		32*8, 32*8, new rectangle( 0*8, 32*8-1, 2*8, 30*8-1 ),
 		gfxdecodeinfo,
 		576, 576,
-		null, /* convert color prom routine */
+		0, /* convert color prom routine */
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		tigeroad_eof_callback,
@@ -647,7 +647,7 @@ public class tigeroad
 		32*8, 32*8, new rectangle( 0*8, 32*8-1, 2*8, 30*8-1 ),
 		gfxdecodeinfo,
 		576, 576,
-		null, /* convert color prom routine */
+		0, /* convert color prom routine */
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		tigeroad_eof_callback,

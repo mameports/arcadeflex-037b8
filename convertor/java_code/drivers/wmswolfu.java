@@ -689,7 +689,7 @@ public class wmswolfu
 	
 		null,
 		65536,65536,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,

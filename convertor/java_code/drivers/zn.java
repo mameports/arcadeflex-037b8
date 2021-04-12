@@ -255,7 +255,7 @@ public class zn
 		znqs_gfxdecodeinfo,
 		4096,
 		4096,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,

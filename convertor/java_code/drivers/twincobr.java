@@ -703,7 +703,7 @@ public class twincobr
 		64*8, 32*8, new rectangle( 0*8, 40*8-1, 0*8, 30*8-1 ),
 		gfxdecodeinfo,
 		1792, 1792,
-		null,	/* No color PROM decode */
+		0,	/* No color PROM decode */
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK | VIDEO_BUFFERS_SPRITERAM,
 		twincobr_eof_callback,

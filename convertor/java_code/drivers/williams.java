@@ -1331,7 +1331,7 @@ public class williams
 		new rectangle( 6, 298-1, 7, 247-1 ),
 		null,
 		16,16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_SUPPORTS_DIRTY,
 		null,
@@ -1378,7 +1378,7 @@ public class williams
 		new rectangle( 6, 298-1, 7, 247-1 ),
 		null,
 		16,16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_SUPPORTS_DIRTY,
 		null,
@@ -1425,7 +1425,7 @@ public class williams
 		new rectangle( 6, 298-1, 7, 247-1 ),
 		null,
 		16,16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_SUPPORTS_DIRTY,
 		null,
@@ -1476,7 +1476,7 @@ public class williams
 		new rectangle( 6, 298-1, 7, 247-1 ),
 		null,
 		16+256,16+256,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -1523,7 +1523,7 @@ public class williams
 		new rectangle( 4, 288-1, 8, 248-1 ),
 		williams2_gfxdecodeinfo,
 		16+8*16,16+8*16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -1571,7 +1571,7 @@ public class williams
 		new rectangle( 4, 288-1, 8, 248-1 ),
 		williams2_gfxdecodeinfo,
 		16+8*16,16+8*16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,

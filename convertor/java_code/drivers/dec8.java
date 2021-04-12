@@ -2052,7 +2052,7 @@ public class dec8
 	
 		cobracom_gfxdecodeinfo,
 		256,256,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK | VIDEO_BUFFERS_SPRITERAM,
 		null,
@@ -2150,7 +2150,7 @@ public class dec8
 	
 		srdarwin_gfxdecodeinfo,
 		144,144,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK | VIDEO_BUFFERS_SPRITERAM,
 		null,
@@ -2199,7 +2199,7 @@ public class dec8
 	
 		gondo_gfxdecodeinfo,
 		1024,1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK | VIDEO_BUFFERS_SPRITERAM,
 		dec8_eof_callback,
@@ -2254,7 +2254,7 @@ public class dec8
 	
 		oscar_gfxdecodeinfo,
 		512,512,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK | VIDEO_BUFFERS_SPRITERAM,
 		null,
@@ -2309,7 +2309,7 @@ public class dec8
 	
 		shackled_gfxdecodeinfo,
 		1024,1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK | VIDEO_BUFFERS_SPRITERAM,
 		null,
@@ -2364,7 +2364,7 @@ public class dec8
 	
 		shackled_gfxdecodeinfo,
 		1024,1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK | VIDEO_BUFFERS_SPRITERAM,
 		null,
@@ -2419,7 +2419,7 @@ public class dec8
 	
 		shackled_gfxdecodeinfo,
 		1024,1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_AFTER_VBLANK | VIDEO_BUFFERS_SPRITERAM,
 		null,
@@ -2472,7 +2472,7 @@ public class dec8
 	
 		gondo_gfxdecodeinfo,
 		1024,1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK | VIDEO_BUFFERS_SPRITERAM,
 		dec8_eof_callback,

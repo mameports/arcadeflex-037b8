@@ -1003,7 +1003,7 @@ public class mcr68
 		32*16, 30*16, new rectangle( 0, 32*16-1, 0, 30*16-1 ),			\
 		gfxdecodeinfo,										\
 		8*16, 8*16,											\
-		null,													\
+		0,													\
 															\
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,			\
 		null,													\

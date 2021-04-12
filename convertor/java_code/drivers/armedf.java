@@ -681,7 +681,7 @@ public class armedf
 		64*8, 32*8, new rectangle( 12*8, (64-12)*8-1, 1*8, 31*8-1 ),
 		gfxdecodeinfo,
 		2048,2048,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		armedf_eof_callback,
@@ -727,7 +727,7 @@ public class armedf
 		64*8, 32*8, new rectangle( 14*8, (64-14)*8-1, 2*8, 30*8-1 ),
 		gfxdecodeinfo,
 		2048,2048,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		armedf_eof_callback,
@@ -773,7 +773,7 @@ public class armedf
 		64*8, 32*8, new rectangle( 12*8, (64-12)*8-1, 1*8, 31*8-1 ),
 		gfxdecodeinfo,
 		2048,2048,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		armedf_eof_callback,
@@ -819,7 +819,7 @@ public class armedf
 		64*8, 32*8, new rectangle( 14*8, (64-14)*8-1, 2*8, 30*8-1 ),
 		gfxdecodeinfo,
 		2048,2048,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		armedf_eof_callback,

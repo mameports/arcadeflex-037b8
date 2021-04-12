@@ -362,7 +362,7 @@ public class bionicc
 		32*8, 32*8, new rectangle( 0*8, 32*8-1, 2*8, 30*8-1 ),
 		gfxdecodeinfo_bionicc,
 		1024, 1024,	/* but a lot are not used */
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		bionicc_eof_callback,

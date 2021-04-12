@@ -224,8 +224,8 @@ public class blockout
 		/* video hardware */
 		320, 256, new rectangle( 0, 319, 8, 247 ),
 		null,
-		513, null,
-		null,
+		513, 0,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,

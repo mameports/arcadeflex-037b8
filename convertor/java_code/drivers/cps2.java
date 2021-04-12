@@ -120,7 +120,7 @@ static MachineDriver machine_driver_cps2 = new MachineDriver
 	cps1_gfxdecodeinfo,
 	32*16+32*16+32*16+32*16,   /* lotsa colours */
 	32*16+32*16+32*16+32*16,   /* Colour table length */
-	null,
+	0,
 
 	VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 	null,

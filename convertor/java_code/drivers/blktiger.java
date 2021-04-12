@@ -299,7 +299,7 @@ public class blktiger
 		32*8, 32*8, new rectangle( 0*8, 32*8-1, 2*8, 30*8-1 ),
 		gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		blktiger_eof_callback,

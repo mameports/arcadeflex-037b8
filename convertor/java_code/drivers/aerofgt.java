@@ -1076,7 +1076,7 @@ public class aerofgt
 		64*8, 32*8, new rectangle( 2*8-4, 44*8-4-1, 1*8, 29*8-1 ),
 		pspikes_gfxdecodeinfo,
 		2048, 2048,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -1120,7 +1120,7 @@ public class aerofgt
 		64*8, 32*8, new rectangle( 1*8, 45*8-1, 0*8, 30*8-1 ),
 		turbofrc_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -1164,7 +1164,7 @@ public class aerofgt
 		64*8, 32*8, new rectangle( 1*8, 45*8-1, 0*8, 30*8-1 ),
 		turbofrc_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -1208,7 +1208,7 @@ public class aerofgt
 		64*8, 32*8, new rectangle( 1*8, 44*8-1, 0*8, 30*8-1 ),
 		turbofrc_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -1253,7 +1253,7 @@ public class aerofgt
 		64*8, 32*8, new rectangle( 0*8+12, 40*8-1+12, 0*8, 28*8-1 ),
 		aerofgtb_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -1298,7 +1298,7 @@ public class aerofgt
 		64*8, 32*8, new rectangle( 0*8, 40*8-1, 0*8, 28*8-1 ),
 		aerofgt_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,

@@ -333,7 +333,7 @@ public class pushman
 	
 		pushman_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,

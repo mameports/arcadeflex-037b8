@@ -125,7 +125,7 @@ public class avalnche
 		/* video hardware */
 		32*8, 32*8, new rectangle( 0*8, 32*8-1, 2*8, 32*8-1 ),
 		null,
-		sizeof(palette) / sizeof(palette[null]) / 3, null,
+		sizeof(palette) / sizeof(palette[0]) / 3, 0,
 		init_palette,
 	
 		VIDEO_TYPE_RASTER,

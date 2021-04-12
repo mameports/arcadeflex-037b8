@@ -247,7 +247,7 @@ public class klax
 		42*8, 30*8, new rectangle( 0*8, 42*8-1, 0*8, 30*8-1 ),
 		gfxdecodeinfo,
 		512, 512,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		null,

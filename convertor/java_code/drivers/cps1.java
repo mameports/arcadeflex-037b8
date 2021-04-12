@@ -3592,7 +3592,7 @@ public class cps1
 																				\
 		cps1_gfxdecodeinfo,														\
 		4096, 4096,																\
-		null,																		\
+		0,																		\
 																				\
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,								\
 		cps1_eof_callback,														\
@@ -3633,7 +3633,7 @@ public class cps1
 	
 		cps1_gfxdecodeinfo,
 		4096, 4096,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		cps1_eof_callback,

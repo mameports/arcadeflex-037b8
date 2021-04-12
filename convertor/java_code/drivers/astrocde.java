@@ -599,7 +599,7 @@ public class astrocde
 		/* video hardware */
 		320, 204, new rectangle( 0, 320-1, 0, 204-1 ),
 		null,	/* no gfxdecodeinfo - bitmapped display */
-		256, null,
+		256, 0,
 		astrocde_init_palette,
 	
 		VIDEO_TYPE_RASTER,
@@ -630,7 +630,7 @@ public class astrocde
 		/* video hardware */
 		320, 204, new rectangle( 0, 320-1, 0, 204-1 ),
 		null,	/* no gfxdecodeinfo - bitmapped display */
-		256, null,
+		256, 0,
 		astrocde_init_palette,
 	
 		VIDEO_TYPE_RASTER,
@@ -667,7 +667,7 @@ public class astrocde
 		/* video hardware */
 		320, 204, new rectangle( 0, 320-1, 0, 204-1 ),
 		null,	/* no gfxdecodeinfo - bitmapped display */
-		256, null,
+		256, 0,
 		astrocde_init_palette,
 	
 		VIDEO_TYPE_RASTER,
@@ -704,7 +704,7 @@ public class astrocde
 		/* video hardware */
 		320, 204, new rectangle( 0, 320-1, 0, 204-1 ),
 		null,	/* no gfxdecodeinfo - bitmapped display */
-		256, null,
+		256, 0,
 		astrocde_init_palette,
 	
 		VIDEO_TYPE_RASTER,
@@ -751,7 +751,7 @@ public class astrocde
 		/* this isn't the case: cocktail mode would be clipped on the wrong side */
 	
 		320, 204, { 0, 320-1, 0, 204-1 },
-		null,	/* no gfxdecodeinfo - bitmapped display */
+		0,	/* no gfxdecodeinfo - bitmapped display */
 		256, null,
 		astrocde_init_palette,
 	
@@ -797,7 +797,7 @@ public class astrocde
 		/* video hardware */
 		320, 204, new rectangle( 0, 320-1, 0, 204-1 ),
 		null,	/* no gfxdecodeinfo - bitmapped display */
-		256, null,
+		256, 0,
 		astrocde_init_palette,
 	
 		VIDEO_TYPE_RASTER,
@@ -834,7 +834,7 @@ public class astrocde
 		/* video hardware */
 		320, 204, new rectangle( 0, 320-1, 0, 204-1 ),
 		null,	/* no gfxdecodeinfo - bitmapped display */
-		256, null,
+		256, 0,
 		astrocde_init_palette,
 	
 		VIDEO_TYPE_RASTER,

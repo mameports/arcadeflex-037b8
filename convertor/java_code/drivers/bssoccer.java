@@ -394,7 +394,7 @@ public class bssoccer
 		256, 256, new rectangle( 0, 256-1, 0+16, 256-16-1 ),
 		bssoccer_gfxdecodeinfo,
 		256, 256,
-		null,
+		0,
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
 		null,	/* No need for a vh_start: we only have sprites */

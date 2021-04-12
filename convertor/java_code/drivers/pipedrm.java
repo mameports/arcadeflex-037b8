@@ -679,7 +679,7 @@ public class pipedrm
 	  	44*8, 30*8, new rectangle( 0*8, 44*8-1, 0*8, 30*8-1 ),
 		gfxdecodeinfo,
 		1536,1536,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -720,7 +720,7 @@ public class pipedrm
 	  	44*8, 30*8, new rectangle( 0*8, 44*8-1, 0*8, 30*8-1 ),
 		gfxdecodeinfo_hatris,
 		2048,2048,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,

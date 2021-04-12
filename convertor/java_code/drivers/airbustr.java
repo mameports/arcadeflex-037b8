@@ -746,7 +746,7 @@ public class airbustr
 		256, 256, new rectangle( 0, 256-1, 0+16, 256-16-1 ),
 		gfxdecodeinfo,
 		256 * 3, 256 * 3,
-		null,
+		0,
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
 		airbustr_vh_start,

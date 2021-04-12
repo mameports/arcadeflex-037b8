@@ -381,7 +381,7 @@ public class tempest
 		/* video hardware */
 		300, 400, new rectangle( 0, 550, 0, 580 ),
 		null,
-		256,null,
+		256,0,
 		avg_init_palette_multi,
 	
 		VIDEO_TYPE_VECTOR | VIDEO_SUPPORTS_DIRTY,

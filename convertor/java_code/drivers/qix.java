@@ -612,7 +612,7 @@ public class qix
 		new rectangle( 0, 255, 8, 247 ), 		/* struct rectangle visible_area - just a guess */
 		null,							/* GfxDecodeInfo * */
 		256,						/* total colors */
-		null,							/* color table length */
+		0,							/* color table length */
 		null,							/* convert color prom routine */
 	
 		VIDEO_TYPE_RASTER|VIDEO_MODIFIES_PALETTE|VIDEO_SUPPORTS_DIRTY,
@@ -672,7 +672,7 @@ public class qix
 		new rectangle( 0, 255, 8, 247 ), 		/* struct rectangle visible_area - just a guess */
 		null,							/* GfxDecodeInfo * */
 		256,						/* total colors */
-		null,							/* color table length */
+		0,							/* color table length */
 		null,							/* convert color prom routine */
 	
 		VIDEO_TYPE_RASTER|VIDEO_MODIFIES_PALETTE|VIDEO_SUPPORTS_DIRTY,
@@ -732,7 +732,7 @@ public class qix
 		new rectangle( 0, 255, 8, 247 ), 		/* struct rectangle visible_area - just a guess */
 		null,							/* GfxDecodeInfo * */
 		256,						/* total colors */
-		null,							/* color table length */
+		0,							/* color table length */
 		null,							/* convert color prom routine */
 	
 		VIDEO_TYPE_RASTER|VIDEO_MODIFIES_PALETTE|VIDEO_SUPPORTS_DIRTY,

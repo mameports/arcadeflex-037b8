@@ -1903,7 +1903,7 @@ public class m72
 		512, 512, new rectangle( 8*8, (64-8)*8-1, 16*8, (64-16)*8-1 ),
 		m72_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		m72_eof_callback,
@@ -1947,7 +1947,7 @@ public class m72
 		512, 512, new rectangle( 8*8, (64-8)*8-1, 16*8, (64-16)*8-1 ),
 		m72_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		m72_eof_callback,
@@ -1995,7 +1995,7 @@ public class m72
 		512, 512, new rectangle( 8*8, (64-8)*8-1, 16*8, (64-16)*8-1 ),
 		m72_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		m72_eof_callback,
@@ -2043,7 +2043,7 @@ public class m72
 		512, 512, new rectangle( 8*8, (64-8)*8-1, 16*8, (64-16)*8-1 ),
 		m72_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		m72_eof_callback,
@@ -2091,7 +2091,7 @@ public class m72
 		512, 512, new rectangle( 8*8, (64-8)*8-1, 16*8, (64-16)*8-1 ),
 		m72_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		m72_eof_callback,
@@ -2139,7 +2139,7 @@ public class m72
 		512, 512, new rectangle( 8*8, (64-8)*8-1, 16*8, (64-16)*8-1 ),
 		rtype2_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		m72_eof_callback,
@@ -2187,7 +2187,7 @@ public class m72
 		512, 512, new rectangle( 8*8, (64-8)*8-1, 16*8, (64-16)*8-1 ),
 		majtitle_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		m72_eof_callback,
@@ -2235,7 +2235,7 @@ public class m72
 		512, 512, new rectangle( 8*8, (64-8)*8-1, 16*8, (64-16)*8-1 ),
 		rtype2_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		m72_eof_callback,
@@ -2283,7 +2283,7 @@ public class m72
 		512, 512, new rectangle( 8*8, (64-8)*8-1, 16*8, (64-16)*8-1 ),
 		rtype2_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		m72_eof_callback,
@@ -2331,7 +2331,7 @@ public class m72
 		512, 512, new rectangle( 8*8, (64-8)*8-1, 16*8, (64-16)*8-1 ),
 		rtype2_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		m72_eof_callback,

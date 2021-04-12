@@ -295,7 +295,7 @@ public class powerins
 		320, 256, new rectangle( 0, 320-1, 0+16, 256-16-1 ),
 		powerins_gfxdecodeinfo,
 		0x800, 0x800,
-		null,
+		0,
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
 		powerins_vh_start,

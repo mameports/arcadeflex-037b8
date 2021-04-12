@@ -494,7 +494,7 @@ public class rampart
 		43*8, 30*8, new rectangle( 0*8+4, 43*8-1-4, 0*8, 30*8-1 ),
 		gfxdecodeinfo,
 		512,512,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		null,

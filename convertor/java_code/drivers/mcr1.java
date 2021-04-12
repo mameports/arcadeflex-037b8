@@ -379,7 +379,7 @@ public class mcr1
 		32*16, 30*16, new rectangle( 0*16, 32*16-1, 0*16, 30*16-1 ),
 		gfxdecodeinfo,
 		32,32,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		null,

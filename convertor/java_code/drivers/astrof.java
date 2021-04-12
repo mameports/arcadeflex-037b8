@@ -227,7 +227,7 @@ public class astrof
 		256, 256,                               /* screen_width, screen_height */  \
 		{ 8, 256-1-8, 8, 256-1-8 },             /* struct rectangle visible_area */\
 																				   \
-		null,	/* no gfxdecodeinfo - bitmapped display */							   \
+		0,	/* no gfxdecodeinfo - bitmapped display */							   \
 		NUMCOLORS, null,															   \
 		astrof_vh_convert_color_prom,											   \
 																				   \

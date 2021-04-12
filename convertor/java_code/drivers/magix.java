@@ -414,7 +414,7 @@ public class magix
 		512, 256, new rectangle( 0+64, 512-64-1, 0+8, 256-8-1 ),
 		magix_gfxdecodeinfo,
 		0x800, 0x800,
-		null,
+		0,
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
 		magix_vh_start,

@@ -408,7 +408,7 @@ public class ginganin
 		256, 256, new rectangle( 0, 255, 0 + 16 , 255 - 16 ),
 		gfxdecodeinfo,
 		256 * 4, 256 * 4,
-		null,
+		0,
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
 		ginganin_vh_start,

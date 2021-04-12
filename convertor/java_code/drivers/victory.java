@@ -440,7 +440,7 @@ public class victory
 		256, 256, new rectangle( 0, 255, 0, 255 ),
 		gfxdecodeinfo,
 		64,64,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		victory_vh_eof,

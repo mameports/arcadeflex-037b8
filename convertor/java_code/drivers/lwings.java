@@ -708,7 +708,7 @@ public class lwings
 		32*8, 32*8, new rectangle( 0*8, 32*8-1, 1*8, 31*8-1 ),
 		gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		lwings_eof_callback,
@@ -758,7 +758,7 @@ public class lwings
 		32*8, 32*8, new rectangle( 0*8, 32*8-1, 1*8, 31*8-1 ),
 		gfxdecodeinfo_trojan,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		lwings_eof_callback,
@@ -812,7 +812,7 @@ public class lwings
 		32*8, 32*8, new rectangle( 0*8, 32*8-1, 1*8, 31*8-1 ),
 		gfxdecodeinfo_trojan,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		lwings_eof_callback,

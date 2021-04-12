@@ -1129,7 +1129,7 @@ public class m92
 	
 		gfxdecodeinfo,
 		1024,1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		null,
@@ -1177,7 +1177,7 @@ public class m92
 	
 		gfxdecodeinfo,
 		1024,1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		null,
@@ -1225,7 +1225,7 @@ public class m92
 	
 		gfxdecodeinfo,
 		1024,1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		null,
@@ -1273,7 +1273,7 @@ public class m92
 	
 		gfxdecodeinfo2,
 		1024,1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		null,

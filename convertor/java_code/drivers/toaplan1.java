@@ -1405,7 +1405,7 @@ public class toaplan1
 		320, 240, new rectangle( 0, 319, 0, 239 ),
 		rallybik_gfxdecodeinfo,
 		64*16+64*16, 64*16+64*16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK | VIDEO_BUFFERS_SPRITERAM,
 		rallybik_eof_callback,
@@ -1448,7 +1448,7 @@ public class toaplan1
 		320, 240, new rectangle( 0, 319, 0, 239 ),
 		gfxdecodeinfo,
 		64*16+64*16, 64*16+64*16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		toaplan1_eof_callback,
@@ -1491,7 +1491,7 @@ public class toaplan1
 		320, 256, new rectangle( 0, 319, 16, 255 ),
 		gfxdecodeinfo,
 		64*16+64*16, 64*16+64*16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		toaplan1_eof_callback,
@@ -1534,7 +1534,7 @@ public class toaplan1
 		320, 256, new rectangle( 0, 319, 16, 255 ),
 		gfxdecodeinfo,
 		64*16+64*16, 64*16+64*16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		toaplan1_eof_callback,
@@ -1583,7 +1583,7 @@ public class toaplan1
 		320, 256, new rectangle( 0, 319, 16, 255 ),
 		gfxdecodeinfo,
 		64*16+64*16, 64*16+64*16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		toaplan1_eof_callback,
@@ -1620,7 +1620,7 @@ public class toaplan1
 		320, 240, new rectangle( 0, 319, 0, 239 ),
 		gfxdecodeinfo,
 		64*16+64*16, 64*16+64*16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		samesame_eof_callback,
@@ -1663,7 +1663,7 @@ public class toaplan1
 		320, 240, new rectangle(0, 319, 0, 239 ),
 		outzone_gfxdecodeinfo,
 		64*16+64*16, 64*16+64*16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		toaplan1_eof_callback,
@@ -1700,7 +1700,7 @@ public class toaplan1
 		320, 240, new rectangle( 0, 319, 0, 239 ),
 		vm_gfxdecodeinfo,
 		64*16+64*16, 64*16+64*16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		toaplan1_eof_callback,

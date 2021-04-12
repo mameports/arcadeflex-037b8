@@ -288,7 +288,7 @@ public class rainbow
 		40*8, 32*8, new rectangle( 0*8, 40*8-1, 1*8, 31*8-1 ),
 		rainbowe_gfxdecodeinfo,
 		2048, 2048,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -534,7 +534,7 @@ public class rainbow
 		40*8, 32*8, new rectangle( 0*8, 40*8-1, 1*8, 31*8-1 ),
 		jumping_gfxdecodeinfo,
 		2048, 2048,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,

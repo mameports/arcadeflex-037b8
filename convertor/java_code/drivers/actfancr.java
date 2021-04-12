@@ -442,7 +442,7 @@ public class actfancr
 	
 		actfan_gfxdecodeinfo,
 		768, 768,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM | VIDEO_UPDATE_AFTER_VBLANK,
 		null,
@@ -494,7 +494,7 @@ public class actfancr
 	
 		triothep_gfxdecodeinfo,
 		768, 768,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM | VIDEO_UPDATE_AFTER_VBLANK,
 		null,

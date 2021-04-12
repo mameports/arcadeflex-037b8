@@ -611,7 +611,7 @@ public class gladiatr
 	
 		gfxdecodeinfo,
 		512+2, 512+2,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,

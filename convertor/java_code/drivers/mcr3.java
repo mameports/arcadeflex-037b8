@@ -1159,7 +1159,7 @@ public class mcr3
 		32*16, 30*16, new rectangle( 0*16, 32*16-1, 0*16, 30*16-1 ),
 		gfxdecodeinfo,
 		8*16, 8*16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		null,
@@ -1193,7 +1193,7 @@ public class mcr3
 		800, 600, new rectangle( 0, 800-1, 0, 600-1 ),
 		gfxdecodeinfo,
 		4*16+32768, 4*16,		/* The extra colors are for the backdrop */
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		null,
@@ -1227,7 +1227,7 @@ public class mcr3
 		32*16, 30*16, new rectangle( 0*16, 32*16-1, 0*16, 30*16-1 ),
 		gfxdecodeinfo,
 		8*16, 8*16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		null,
@@ -1261,7 +1261,7 @@ public class mcr3
 		32*16, 30*16, new rectangle( 0*16, 32*16-1, 0*16, 30*16-1 ),
 		gfxdecodeinfo,
 		8*16, 8*16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		null,
@@ -1294,7 +1294,7 @@ public class mcr3
 		32*16, 30*16, new rectangle( 0*16, 32*16-1, 0*16, 30*16-1 ),
 		gfxdecodeinfo,
 		8*16, 8*16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		null,
@@ -1333,7 +1333,7 @@ public class mcr3
 		32*16, 30*16, new rectangle( 0*16, 32*16-1, 0*16, 30*16-1 ),
 		gfxdecodeinfo,
 		8*16, 8*16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_BEFORE_VBLANK,
 		null,

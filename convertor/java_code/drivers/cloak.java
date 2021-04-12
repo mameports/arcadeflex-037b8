@@ -341,7 +341,7 @@ public class cloak
 		32*8, 32*8, new rectangle( 0*8, 32*8-1, 3*8, 32*8-1 ),
 		gfxdecodeinfo,
 		64, 64,
-		null,
+		0,
 	
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,

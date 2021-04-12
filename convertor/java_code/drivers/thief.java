@@ -486,7 +486,7 @@ public class thief
 		32*8, 32*8, new rectangle( 0*8, 32*8-1, 0*8, 24*8-1 ),
 		null,      /* no gfxdecodeinfo - bitmapped display */
 		16, 16,
-		null,
+		0,
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
 		thief_vh_start,

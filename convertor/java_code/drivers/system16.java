@@ -294,7 +294,7 @@ public class system16
 		40*8, 28*8, new rectangle( 0*8, 40*8-1, 0*8, 28*8-1 ), \
 		gfxdecodeinfo, \
 		2048*ShadowColorsMultiplier,2048*ShadowColorsMultiplier, \
-		null, \
+		0, \
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE, \
 		null, \
 		sys16_vh_start, \
@@ -332,7 +332,7 @@ public class system16
 		40*8, 28*8, new rectangle( 0*8, 40*8-1, 0*8, 28*8-1 ), \
 		gfxdecodeinfo, \
 		2048*ShadowColorsMultiplier,2048*ShadowColorsMultiplier, \
-		null, \
+		0, \
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE, \
 		null, \
 		sys16_vh_start, \
@@ -380,7 +380,7 @@ public class system16
 		40*8, 28*8, new rectangle( 0*8, 40*8-1, 0*8, 28*8-1 ), \
 		gfxdecodeinfo, \
 		2048*ShadowColorsMultiplier,2048*ShadowColorsMultiplier, \
-		null, \
+		0, \
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE, \
 		null, \
 		sys16_vh_start, \
@@ -423,7 +423,7 @@ public class system16
 		40*8, 28*8, new rectangle( 0*8, 40*8-1, 0*8, 28*8-1 ), \
 		gfxdecodeinfo, \
 		2048*ShadowColorsMultiplier,2048*ShadowColorsMultiplier, \
-		null, \
+		0, \
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE, \
 		null, \
 		sys18_vh_start, \
@@ -2552,7 +2552,7 @@ public class system16
 		40*8, 28*8, new rectangle( 0*8, 40*8-1, 0*8, 28*8-1 ),
 		gfxdecodeinfo,
 		2048*ShadowColorsMultiplier,2048*ShadowColorsMultiplier,
-		null,
+		0,
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
 		sys16_vh_start,
@@ -8467,7 +8467,7 @@ public class system16
 		40*8, 28*8, new rectangle( 0*8, 40*8-1, 0*8, 28*8-1 ),
 		gfxdecodeinfo,
 		2048*ShadowColorsMultiplier,2048*ShadowColorsMultiplier,
-		null,
+		0,
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
 		sys16_ho_vh_start,
@@ -8825,7 +8825,7 @@ public class system16
 		40*8, 28*8, new rectangle( 0*8, 40*8-1, 0*8, 28*8-1 ),
 		gfxdecodeinfo,
 		2048*ShadowColorsMultiplier,2048*ShadowColorsMultiplier,
-		null,
+		0,
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
 		sys16_ho_vh_start,
@@ -9190,7 +9190,7 @@ public class system16
 		40*8, 28*8, new rectangle( 0*8, 40*8-1, 0*8, 28*8-1 ),
 		gfxdecodeinfo,
 		2048*ShadowColorsMultiplier,2048*ShadowColorsMultiplier,
-		null,
+		0,
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
 		sys16_ho_vh_start,
@@ -9883,7 +9883,7 @@ public class system16
 		40*8, 28*8, new rectangle( 0*8, 40*8-1, 0*8, 28*8-1 ), \
 		gfxdecodeinfo, \
 		4096*ShadowColorsMultiplier,4096*ShadowColorsMultiplier, \
-		null, \
+		0, \
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_UPDATE_AFTER_VBLANK, \
 		null, \
 		sys16_or_vh_start, \
@@ -10507,7 +10507,7 @@ public class system16
 		40*8, 28*8, new rectangle( 0*8, 40*8-1, 0*8, 28*8-1 ),
 		gfxdecodeinfo,
 		2048*ShadowColorsMultiplier,2048*ShadowColorsMultiplier,
-		null,
+		0,
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
 		sys16_ho_vh_start,
@@ -10554,7 +10554,7 @@ public class system16
 		40*8, 28*8, new rectangle( 0*8, 40*8-1, 0*8, 28*8-1 ),
 		gfxdecodeinfo,
 		2048*ShadowColorsMultiplier,2048*ShadowColorsMultiplier,
-		null,
+		0,
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
 		sys16_ho_vh_start,

@@ -858,7 +858,7 @@ public class dooyong
 		64*8, 32*8, new rectangle( 8*8, (64-8)*8-1, 1*8, 31*8-1 ),
 		lastday_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		dooyong_eof_callback,
@@ -901,7 +901,7 @@ public class dooyong
 		64*8, 32*8, new rectangle( 8*8, (64-8)*8-1, 1*8, 31*8-1 ),
 		lastday_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		dooyong_eof_callback,
@@ -944,7 +944,7 @@ public class dooyong
 		64*8, 32*8, new rectangle( 8*8, (64-8)*8-1, 1*8, 31*8-1 ),
 		bluehawk_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		dooyong_eof_callback,
@@ -991,7 +991,7 @@ public class dooyong
 		64*8, 32*8, new rectangle( 8*8, (64-8)*8-1, 0*8, 32*8-1 ),
 		primella_gfxdecodeinfo,
 		1024, 1024,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		dooyong_eof_callback,
@@ -1044,7 +1044,7 @@ public class dooyong
 		64*8, 32*8, new rectangle( 8*8, (64-8)*8-1, 1*8, 31*8-1 ),
 		rshark_gfxdecodeinfo,
 		2048, 2048,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE | VIDEO_BUFFERS_SPRITERAM,
 		rshark_eof_callback,

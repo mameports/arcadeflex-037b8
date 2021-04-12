@@ -1522,7 +1522,7 @@ public class tnzs
 		32*8, 32*8, new rectangle( 0*8, 32*8-1, 2*8, 30*8-1 ),
 		tnzs_gfxdecodeinfo,
 		512, 512,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -1572,7 +1572,7 @@ public class tnzs
 		32*8, 32*8, new rectangle( 0*8, 32*8-1, 2*8, 30*8-1 ),
 		tnzs_gfxdecodeinfo,
 		512, 512,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -1616,7 +1616,7 @@ public class tnzs
 		32*8, 32*8, new rectangle( 0*8, 32*8-1, 2*8, 30*8-1 ),
 		insectx_gfxdecodeinfo,
 		512, 512,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -1659,7 +1659,7 @@ public class tnzs
 		32*8, 32*8, new rectangle( 0*8, 32*8-1, 2*8, 30*8-1 ),
 		tnzs_gfxdecodeinfo,
 		512, 512,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER|VIDEO_MODIFIES_PALETTE,
 		null,

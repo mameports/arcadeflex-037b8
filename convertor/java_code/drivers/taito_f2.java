@@ -5108,7 +5108,7 @@ public class taito_f2
 																						\
 		GFX##_gfxdecodeinfo,															\
 		MAXCOLS, MAXCOLS,																		\
-		null,																				\
+		0,																				\
 																						\
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,										\
 		taitof2_##EOF##_eof_callback,													\

@@ -638,7 +638,7 @@ public class marvins
 		256+32, 224, new rectangle( 0, 255+32,0, 223 ),
 		marvins_gfxdecodeinfo,
 		(16+2)*16,(16+2)*16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,
@@ -689,7 +689,7 @@ public class marvins
 		256+32, 224, new rectangle( 0, 255+32,0, 223 ),
 		marvins_gfxdecodeinfo,
 		(16+2)*16,(16+2)*16,
-		null,
+		0,
 	
 		VIDEO_TYPE_RASTER | VIDEO_MODIFIES_PALETTE,
 		null,

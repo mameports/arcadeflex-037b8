@@ -780,7 +780,7 @@ public class sega
 	
 		/* video hardware */
 		400, 300, { 512, 1536, 552, 1464 },
-		null,
+		0,
 		256,256,
 		sega_init_colors,
 	
@@ -882,7 +882,7 @@ public class sega
 	
 		/* video hardware */
 		400, 300, { 512, 1536, 624, 1432 },
-		null,
+		0,
 		256,256,
 		sega_init_colors,
 	
@@ -979,7 +979,7 @@ public class sega
 	
 		/* video hardware */
 		400, 300, { 496, 1552, 592, 1456 },
-		null,
+		0,
 		256,256,
 		sega_init_colors,
 	
@@ -1055,7 +1055,7 @@ public class sega
 	
 		/* video hardware */
 		400, 300, { 512, 1536, 600, 1440 },
-		null,
+		0,
 		256,256,
 		sega_init_colors,
 	
@@ -1100,7 +1100,7 @@ public class sega
 	
 		/* video hardware */
 		400, 300, { 512, 1536, 600, 1440 },
-		null,
+		0,
 		256,256,
 		sega_init_colors,
 	
@@ -1215,7 +1215,7 @@ public class sega
 	
 		/* video hardware */
 		400, 300, { 512, 1536, 616, 1464 },
-		null,
+		0,
 		256,256,
 		sega_init_colors,
 	
