@@ -21,7 +21,7 @@ public class sbasketb
 	UBytePtr sbasketb_palettebank;
 	UBytePtr sbasketb_spriteram_select;
 	
-	static struct rectangle scroll_area = { 0*8, 32*8-1, 0*8, 32*8-1 };
+	static rectangle scroll_area = new rectangle( 0*8, 32*8-1, 0*8, 32*8-1 );
 	
 	
 	

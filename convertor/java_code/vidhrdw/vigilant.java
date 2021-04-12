@@ -24,16 +24,16 @@ public class vigilant
 {
 	
 	
-	static struct rectangle topvisiblearea =
-	{
+	static rectangle topvisiblearea = new rectangle
+	(
 		16*8, 48*8-1,
 		0*8, 6*8-1
-	};
-	static struct rectangle bottomvisiblearea =
-	{
+	);
+	static rectangle bottomvisiblearea = new rectangle
+	(
 		16*8, 48*8-1,
 		6*8, 32*8-1
-	};
+	);
 	
 	UBytePtr vigilant_paletteram;
 	UBytePtr vigilant_sprite_paletteram;

@@ -19,11 +19,11 @@ public class zaccaria
 	
 	UBytePtr zaccaria_attributesram;
 	
-	static struct rectangle spritevisiblearea =
-	{
+	static rectangle spritevisiblearea = new rectangle
+	(
 		2*8+1, 29*8-1,
 		2*8, 30*8-1
-	};
+	);
 	
 	
 	

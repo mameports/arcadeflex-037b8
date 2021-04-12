@@ -75,6 +75,7 @@ public class convertMame {
     static final int MEMORY_WRITE8 = 58;
     static final int PORT_READ8 = 59;
     static final int PORT_WRITE8 = 60;
+    static final int RECTANGLE=61;
 
     //type2 fields
     static final int NEWINPUT = 130;
@@ -214,6 +215,11 @@ public class convertMame {
                         }
                     }
                     i = Convertor.inpos;
+                     boolean isstatic=false;
+                    if (sUtil.getToken("static")) {
+                        sUtil.skipSpace();
+                        isstatic=true;
+                    }
                     if (sUtil.getToken("spriteram")) {
                         if (sUtil.parseChar() != '[') {
                             Convertor.inpos = i;
@@ -636,6 +642,20 @@ public class convertMame {
                         Convertor.inpos = i;
                     } else {
                         sUtil.skipSpace();
+                         if (isstatic && sUtil.getToken("rectangle")) {//only static struct rectangle conversion
+                            sUtil.skipSpace();
+                            Convertor.token[0] = sUtil.parseToken();
+                            sUtil.skipSpace();
+                            if (sUtil.parseChar() != '=') {
+                                Convertor.inpos = i;
+                            } else {
+                                sUtil.skipSpace();
+                                sUtil.putString("static rectangle " + Convertor.token[0] + " = new rectangle");
+                                type = RECTANGLE;
+                                i3 = -1;
+                                continue;
+                            }
+                        }
                         if (sUtil.getToken("GfxLayout")) {
                             sUtil.skipSpace();
                             Convertor.token[0] = sUtil.parseToken();
@@ -2415,7 +2435,15 @@ public class convertMame {
                             Convertor.inpos += 1;
                             continue;
                         }
-                    } else if (type == DACinterface) {
+                    } else if (type == RECTANGLE) {
+                        i3++;
+                        insideagk[i3] = 0;
+                        if (i3 == 0) {
+                            Convertor.outbuf[(Convertor.outpos++)] = '(';
+                            Convertor.inpos += 1;
+                            continue;
+                        }
+                    }else if (type == DACinterface) {
                         i3++;
                         insideagk[i3] = 0;
                         if (i3 == 0) {
@@ -2670,7 +2698,15 @@ public class convertMame {
                             Convertor.inpos += 1;
                             continue;
                         }
-                    } else if (type == DACinterface) {
+                    } else if (type == RECTANGLE) {
+                        i3--;
+                        if (i3 == -1) {
+                            Convertor.outbuf[(Convertor.outpos++)] = 41;
+                            Convertor.inpos += 1;
+                            type = -1;
+                            continue;
+                        }
+                    }else if (type == DACinterface) {
                         i3--;
                         if (i3 == -1) {
                             Convertor.outbuf[(Convertor.outpos++)] = 41;
