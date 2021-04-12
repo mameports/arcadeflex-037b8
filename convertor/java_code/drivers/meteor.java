@@ -125,16 +125,20 @@ public class meteor
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( sound_readport )
-		{ I8039_bus, I8039_bus, soundlatch_r },
-		{ I8039_p2,  I8039_p2,  meteor_SN76496_select_r },
-		{ I8039_t0,  I8039_t0,  meteor_t0_r },
-	PORT_END
+	public static IO_ReadPort sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( I8039_bus, I8039_bus, soundlatch_r ),
+		new IO_ReadPort( I8039_p2,  I8039_p2,  meteor_SN76496_select_r ),
+		new IO_ReadPort( I8039_t0,  I8039_t0,  meteor_t0_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( sound_writeport )
-		{ I8039_p1,  I8039_p1, meteor_SN76496_latch_w },
-		{ I8039_p2,  I8039_p2, meteor_SN76496_select_w },
-	PORT_END
+	public static IO_WritePort sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( I8039_p1,  I8039_p1, meteor_SN76496_latch_w ),
+		new IO_WritePort( I8039_p2,  I8039_p2, meteor_SN76496_select_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	static InputPortPtr input_ports_meteor = new InputPortPtr(){ public void handler() { 

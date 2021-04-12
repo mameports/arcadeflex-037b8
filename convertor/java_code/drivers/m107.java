@@ -91,25 +91,29 @@ public class m107
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( readport )
-		{ 0x00, 0x00, input_port_0_r }, /* Player 1 */
-		{ 0x01, 0x01, input_port_1_r }, /* Player 2 */
-		{ 0x02, 0x02, m107_port_4_r }, /* Coins */
-		{ 0x03, 0x03, input_port_7_r }, /* Dip 3 */
-		{ 0x04, 0x04, input_port_6_r }, /* Dip 2 */
-		{ 0x05, 0x05, input_port_5_r }, /* Dip 1 */
-		{ 0x06, 0x06, input_port_2_r }, /* Player 3 */
-		{ 0x07, 0x07, input_port_3_r }, /* Player 4 */
-	PORT_END
+	public static IO_ReadPort readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, input_port_0_r ), /* Player 1 */
+		new IO_ReadPort( 0x01, 0x01, input_port_1_r ), /* Player 2 */
+		new IO_ReadPort( 0x02, 0x02, m107_port_4_r ), /* Coins */
+		new IO_ReadPort( 0x03, 0x03, input_port_7_r ), /* Dip 3 */
+		new IO_ReadPort( 0x04, 0x04, input_port_6_r ), /* Dip 2 */
+		new IO_ReadPort( 0x05, 0x05, input_port_5_r ), /* Dip 1 */
+		new IO_ReadPort( 0x06, 0x06, input_port_2_r ), /* Player 3 */
+		new IO_ReadPort( 0x07, 0x07, input_port_3_r ), /* Player 4 */
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( writeport )
-		{ 0x00, 0x01, m107_soundlatch_w },
-		{ 0x02, 0x03, m107_coincounter_w },
-		{ 0x06, 0x07, bankswitch_w },
-		{ 0x80, 0x9f, m107_control_w },
-		{ 0xa0, 0xaf, MWA_NOP }, /* Written with 0's in interrupt */
-		{ 0xb0, 0xb1, m107_spritebuffer_w },
-	PORT_END
+	public static IO_WritePort writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x01, m107_soundlatch_w ),
+		new IO_WritePort( 0x02, 0x03, m107_coincounter_w ),
+		new IO_WritePort( 0x06, 0x07, bankswitch_w ),
+		new IO_WritePort( 0x80, 0x9f, m107_control_w ),
+		new IO_WritePort( 0xa0, 0xaf, MWA_NOP ), /* Written with 0's in interrupt */
+		new IO_WritePort( 0xb0, 0xb1, m107_spritebuffer_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	/******************************************************************************/
 	

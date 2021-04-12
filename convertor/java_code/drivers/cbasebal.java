@@ -158,25 +158,29 @@ public class cbasebal
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( cbasebal_readport )
-		{ 0x10, 0x10, input_port_0_r },
-		{ 0x11, 0x11, input_port_1_r },
-		{ 0x12, 0x12, eeprom_r },
-	PORT_END
+	public static IO_ReadPort cbasebal_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x10, 0x10, input_port_0_r ),
+		new IO_ReadPort( 0x11, 0x11, input_port_1_r ),
+		new IO_ReadPort( 0x12, 0x12, eeprom_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( cbasebal_writeport )
-		{ 0x00, 0x00, cbasebal_bankswitch_w },
-		{ 0x01, 0x01, eeprom_cs_w },
-		{ 0x02, 0x02, eeprom_clock_w },
-		{ 0x03, 0x03, eeprom_serial_w },
-		{ 0x05, 0x05, OKIM6295_data_0_w },
-		{ 0x06, 0x06, YM2413_register_port_0_w },
-		{ 0x07, 0x07, YM2413_data_port_0_w },
-		{ 0x08, 0x09, cbasebal_scrollx_w },
-		{ 0x0a, 0x0b, cbasebal_scrolly_w },
-		{ 0x13, 0x13, cbasebal_gfxctrl_w },
-		{ 0x14, 0x14, cbasebal_coinctrl_w },
-	PORT_END
+	public static IO_WritePort cbasebal_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, cbasebal_bankswitch_w ),
+		new IO_WritePort( 0x01, 0x01, eeprom_cs_w ),
+		new IO_WritePort( 0x02, 0x02, eeprom_clock_w ),
+		new IO_WritePort( 0x03, 0x03, eeprom_serial_w ),
+		new IO_WritePort( 0x05, 0x05, OKIM6295_data_0_w ),
+		new IO_WritePort( 0x06, 0x06, YM2413_register_port_0_w ),
+		new IO_WritePort( 0x07, 0x07, YM2413_data_port_0_w ),
+		new IO_WritePort( 0x08, 0x09, cbasebal_scrollx_w ),
+		new IO_WritePort( 0x0a, 0x0b, cbasebal_scrolly_w ),
+		new IO_WritePort( 0x13, 0x13, cbasebal_gfxctrl_w ),
+		new IO_WritePort( 0x14, 0x14, cbasebal_coinctrl_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	static InputPortPtr input_ports_cbasebal = new InputPortPtr(){ public void handler() { 

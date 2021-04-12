@@ -450,9 +450,11 @@ public class galaxian
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_WRITE_START( checkman_writeport )
-		{ 0, 0, checkman_sound_command_w },
-	PORT_END
+	public static IO_WritePort checkman_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0, 0, checkman_sound_command_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress checkman_sound_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -468,15 +470,19 @@ public class galaxian
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( checkman_sound_readport )
-		{ 0x03, 0x03, soundlatch_r },
-		{ 0x06, 0x06, AY8910_read_port_0_r },
-	PORT_END
+	public static IO_ReadPort checkman_sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x03, 0x03, soundlatch_r ),
+		new IO_ReadPort( 0x06, 0x06, AY8910_read_port_0_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( checkman_sound_writeport )
-		{ 0x04, 0x04, AY8910_control_port_0_w },
-		{ 0x05, 0x05, AY8910_write_port_0_w },
-	PORT_END
+	public static IO_WritePort checkman_sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x04, 0x04, AY8910_control_port_0_w ),
+		new IO_WritePort( 0x05, 0x05, AY8910_write_port_0_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress checkmaj_sound_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -534,13 +540,17 @@ public class galaxian
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( kingball_sound_readport )
-		{ 0x00, 0x00, soundlatch_r },
-	PORT_END
+	public static IO_ReadPort kingball_sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, soundlatch_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( kingball_sound_writeport )
-		{ 0x00, 0x00, DAC_0_data_w },
-	PORT_END
+	public static IO_WritePort kingball_sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, DAC_0_data_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	/* Zig Zag can swap ROMs 2 and 3 as a form of copy protection */

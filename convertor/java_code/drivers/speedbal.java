@@ -115,22 +115,28 @@ public class speedbal
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( readport )
-		{ 0x00, 0x00, input_port_0_r },
-		{ 0x10, 0x10, input_port_1_r },
-		{ 0x20, 0x20, input_port_2_r },
-		{ 0x30, 0x30, input_port_3_r },
-	PORT_END
+	public static IO_ReadPort readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, input_port_0_r ),
+		new IO_ReadPort( 0x10, 0x10, input_port_1_r ),
+		new IO_ReadPort( 0x20, 0x20, input_port_2_r ),
+		new IO_ReadPort( 0x30, 0x30, input_port_3_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
 	
-	static PORT_READ_START( sound_readport )
-		{ 0x00, 0x00, YM3812_status_port_0_r },
-	PORT_END
+	public static IO_ReadPort sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, YM3812_status_port_0_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( sound_writeport )
-		{ 0x00, 0x00, YM3812_control_port_0_w },
-		{ 0x01, 0x01, YM3812_write_port_0_w },
-	PORT_END
+	public static IO_WritePort sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, YM3812_control_port_0_w ),
+		new IO_WritePort( 0x01, 0x01, YM3812_write_port_0_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	

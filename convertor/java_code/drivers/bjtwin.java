@@ -541,20 +541,24 @@ public class bjtwin
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( macross2_sound_readport )
-		{ 0x00, 0x00, YM2203_status_port_0_r },
-		{ 0x01, 0x01, YM2203_read_port_0_r },
-		{ 0x80, 0x80, OKIM6295_status_0_r },
-		{ 0x88, 0x88, OKIM6295_status_1_r },
-	PORT_END
+	public static IO_ReadPort macross2_sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, YM2203_status_port_0_r ),
+		new IO_ReadPort( 0x01, 0x01, YM2203_read_port_0_r ),
+		new IO_ReadPort( 0x80, 0x80, OKIM6295_status_0_r ),
+		new IO_ReadPort( 0x88, 0x88, OKIM6295_status_1_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( macross2_sound_writeport )
-		{ 0x00, 0x00, YM2203_control_port_0_w },
-		{ 0x01, 0x01, YM2203_write_port_0_w },
-		{ 0x80, 0x80, OKIM6295_data_0_w },
-		{ 0x88, 0x88, OKIM6295_data_1_w },
-		{ 0x90, 0x97, macross2_oki6295_bankswitch_w },
-	PORT_END
+	public static IO_WritePort macross2_sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, YM2203_control_port_0_w ),
+		new IO_WritePort( 0x01, 0x01, YM2203_write_port_0_w ),
+		new IO_WritePort( 0x80, 0x80, OKIM6295_data_0_w ),
+		new IO_WritePort( 0x88, 0x88, OKIM6295_data_1_w ),
+		new IO_WritePort( 0x90, 0x97, macross2_oki6295_bankswitch_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	static MEMORY_READ16_START( bjtwin_readmem )
 		{ 0x000000, 0x07ffff, MRA16_ROM },

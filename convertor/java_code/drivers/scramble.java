@@ -360,16 +360,20 @@ public class scramble
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( triplep_readport )
-		{ 0x01, 0x01, AY8910_read_port_0_r },
-		{ 0x02, 0x02, mariner_pip_r },
-		{ 0x03, 0x03, mariner_pap_r },
-	PORT_END
+	public static IO_ReadPort triplep_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x01, 0x01, AY8910_read_port_0_r ),
+		new IO_ReadPort( 0x02, 0x02, mariner_pip_r ),
+		new IO_ReadPort( 0x03, 0x03, mariner_pap_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( triplep_writeport )
-		{ 0x01, 0x01, AY8910_control_port_0_w },
-		{ 0x00, 0x00, AY8910_write_port_0_w },
-	PORT_END
+	public static IO_WritePort triplep_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x01, 0x01, AY8910_control_port_0_w ),
+		new IO_WritePort( 0x00, 0x00, AY8910_write_port_0_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	
@@ -406,40 +410,52 @@ public class scramble
 	};
 	
 	
-	static PORT_READ_START( scramble_sound_readport )
-		{ 0x20, 0x20, AY8910_read_port_1_r },
-		{ 0x80, 0x80, AY8910_read_port_0_r },
-	PORT_END
+	public static IO_ReadPort scramble_sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x20, 0x20, AY8910_read_port_1_r ),
+		new IO_ReadPort( 0x80, 0x80, AY8910_read_port_0_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( scramble_sound_writeport )
-		{ 0x10, 0x10, AY8910_control_port_1_w },
-		{ 0x20, 0x20, AY8910_write_port_1_w },
-		{ 0x40, 0x40, AY8910_control_port_0_w },
-		{ 0x80, 0x80, AY8910_write_port_0_w },
-	PORT_END
-	
-	
-	static PORT_READ_START( froggers_sound_readport )
-		{ 0x40, 0x40, AY8910_read_port_0_r },
-	PORT_END
-	
-	static PORT_WRITE_START( froggers_sound_writeport )
-		{ 0x40, 0x40, AY8910_write_port_0_w },
-		{ 0x80, 0x80, AY8910_control_port_0_w },
-	PORT_END
+	public static IO_WritePort scramble_sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x10, 0x10, AY8910_control_port_1_w ),
+		new IO_WritePort( 0x20, 0x20, AY8910_write_port_1_w ),
+		new IO_WritePort( 0x40, 0x40, AY8910_control_port_0_w ),
+		new IO_WritePort( 0x80, 0x80, AY8910_write_port_0_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
-	static PORT_READ_START( hotshock_sound_readport )
-		{ 0x20, 0x20, AY8910_read_port_1_r },
-		{ 0x40, 0x40, AY8910_read_port_0_r },
-	PORT_END
+	public static IO_ReadPort froggers_sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x40, 0x40, AY8910_read_port_0_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( hotshock_sound_writeport )
-		{ 0x10, 0x10, AY8910_control_port_1_w },
-		{ 0x20, 0x20, AY8910_write_port_1_w },
-		{ 0x40, 0x40, AY8910_write_port_0_w },
-		{ 0x80, 0x80, AY8910_control_port_0_w },
-	PORT_END
+	public static IO_WritePort froggers_sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x40, 0x40, AY8910_write_port_0_w ),
+		new IO_WritePort( 0x80, 0x80, AY8910_control_port_0_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
+	
+	
+	public static IO_ReadPort hotshock_sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x20, 0x20, AY8910_read_port_1_r ),
+		new IO_ReadPort( 0x40, 0x40, AY8910_read_port_0_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
+	
+	public static IO_WritePort hotshock_sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x10, 0x10, AY8910_control_port_1_w ),
+		new IO_WritePort( 0x20, 0x20, AY8910_write_port_1_w ),
+		new IO_WritePort( 0x40, 0x40, AY8910_write_port_0_w ),
+		new IO_WritePort( 0x80, 0x80, AY8910_control_port_0_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	static InputPortPtr input_ports_scramble = new InputPortPtr(){ public void handler() { 

@@ -161,15 +161,19 @@ public class kingobox
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( sound_readport )
-		{ 0x08, 0x08, AY8910_read_port_0_r },
-	PORT_END
+	public static IO_ReadPort sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x08, 0x08, AY8910_read_port_0_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( sound_writeport )
-		{ 0x00, 0x00, DAC_0_data_w },
-		{ 0x08, 0x08, AY8910_write_port_0_w },
-		{ 0x0c, 0x0c, AY8910_control_port_0_w },
-	PORT_END
+	public static IO_WritePort sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, DAC_0_data_w ),
+		new IO_WritePort( 0x08, 0x08, AY8910_write_port_0_w ),
+		new IO_WritePort( 0x0c, 0x0c, AY8910_control_port_0_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	/* Ring King */
 	public static Memory_ReadAddress rk_main_readmem[]={
@@ -247,15 +251,19 @@ public class kingobox
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( rk_sound_readport )
-		{ 0x02, 0x02, AY8910_read_port_0_r },
-	PORT_END
+	public static IO_ReadPort rk_sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x02, 0x02, AY8910_read_port_0_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( rk_sound_writeport )
-		{ 0x00, 0x00, DAC_0_data_w },
-		{ 0x02, 0x02, AY8910_write_port_0_w },
-		{ 0x03, 0x03, AY8910_control_port_0_w },
-	PORT_END
+	public static IO_WritePort rk_sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, DAC_0_data_w ),
+		new IO_WritePort( 0x02, 0x02, AY8910_write_port_0_w ),
+		new IO_WritePort( 0x03, 0x03, AY8910_control_port_0_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	static InputPortPtr input_ports_kingofb = new InputPortPtr(){ public void handler() { 
 	    PORT_START();  /* DSW0 - 0xfc01 */

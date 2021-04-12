@@ -199,19 +199,23 @@ public class shangha3
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( heberpop_sound_readport )
-		{ 0x00, 0x00, YM2612_status_port_0_A_r },
-		{ 0x80, 0x80, OKIM6295_status_0_r },
-		{ 0xc0, 0xc0, soundlatch_r },
-	PORT_END
+	public static IO_ReadPort heberpop_sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, YM2612_status_port_0_A_r ),
+		new IO_ReadPort( 0x80, 0x80, OKIM6295_status_0_r ),
+		new IO_ReadPort( 0xc0, 0xc0, soundlatch_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( heberpop_sound_writeport )
-		{ 0x00, 0x00, YM2612_control_port_0_A_w },
-		{ 0x01, 0x01, YM2612_data_port_0_A_w },
-		{ 0x02, 0x02, YM2612_control_port_0_B_w },
-		{ 0x03, 0x03, YM2612_data_port_0_B_w },
-		{ 0x80, 0x80, OKIM6295_data_0_w },
-	PORT_END
+	public static IO_WritePort heberpop_sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, YM2612_control_port_0_A_w ),
+		new IO_WritePort( 0x01, 0x01, YM2612_data_port_0_A_w ),
+		new IO_WritePort( 0x02, 0x02, YM2612_control_port_0_B_w ),
+		new IO_WritePort( 0x03, 0x03, YM2612_data_port_0_B_w ),
+		new IO_WritePort( 0x80, 0x80, OKIM6295_data_0_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	

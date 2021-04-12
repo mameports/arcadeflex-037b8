@@ -809,13 +809,17 @@ public class neogeo
 		}
 	} };
 	
-	static PORT_READ_START( neo_readio )
-		{ 0x0000, 0xffff, z80_port_r },
-	PORT_END
+	public static IO_ReadPort neo_readio[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x0000, 0xffff, z80_port_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( neo_writeio )
-		{ 0x0000, 0xffff, z80_port_w },
-	PORT_END
+	public static IO_WritePort neo_writeio[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x0000, 0xffff, z80_port_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	/******************************************************************************/
 	

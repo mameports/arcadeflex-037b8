@@ -122,18 +122,24 @@ public class geebee
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( readport )
-		{ 0x50, 0x5f, geebee_in_r },
-	PORT_END
+	public static IO_ReadPort readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x50, 0x5f, geebee_in_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_READ_START( readport_navalone )
-		{ 0x50, 0x5f, navalone_in_r },
-	PORT_END
+	public static IO_ReadPort readport_navalone[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x50, 0x5f, navalone_in_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( writeport )
-		{ 0x60, 0x6f, geebee_out6_w },
-		{ 0x70, 0x7f, geebee_out7_w },
-	PORT_END
+	public static IO_WritePort writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x60, 0x6f, geebee_out6_w ),
+		new IO_WritePort( 0x70, 0x7f, geebee_out7_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	static InputPortPtr input_ports_geebee = new InputPortPtr(){ public void handler() { 
 		PORT_START(); 		/* IN0 SW0 */

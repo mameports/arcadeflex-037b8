@@ -73,6 +73,8 @@ public class convertMame {
     static final int TILEINFO = 56;
     static final int MEMORY_READ8 = 57;
     static final int MEMORY_WRITE8 = 58;
+    static final int PORT_READ8 = 59;
+    static final int PORT_WRITE8 = 60;
 
     //type2 fields
     static final int NEWINPUT = 130;
@@ -567,8 +569,7 @@ public class convertMame {
                                 Convertor.inpos += 1;
                                 continue;
                             }
-                        } 
-                        else if (sUtil.getToken("MEMORY_READ_START(")) {
+                        } else if (sUtil.getToken("MEMORY_READ_START(")) {
                             sUtil.skipSpace();
                             Convertor.token[0] = sUtil.parseToken();
                             sUtil.skipSpace();
@@ -579,8 +580,7 @@ public class convertMame {
                                 Convertor.inpos += 1;
                                 continue;
                             }
-                        }
-                        else if (sUtil.getToken("MEMORY_WRITE_START(")) {
+                        } else if (sUtil.getToken("MEMORY_WRITE_START(")) {
                             sUtil.skipSpace();
                             Convertor.token[0] = sUtil.parseToken();
                             sUtil.skipSpace();
@@ -591,7 +591,29 @@ public class convertMame {
                                 Convertor.inpos += 1;
                                 continue;
                             }
-                        }else if (sUtil.getToken("const")) {
+                        } else if (sUtil.getToken("PORT_READ_START(")) {
+                            sUtil.skipSpace();
+                            Convertor.token[0] = sUtil.parseToken();
+                            sUtil.skipSpace();
+                            if (sUtil.getToken(")")) {
+                                sUtil.putString("public static IO_ReadPort " + Convertor.token[0] + "[]={\n\t\tnew IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),");
+                                type = PORT_READ8;
+                                i3 = 1;
+                                Convertor.inpos += 1;
+                                continue;
+                            }
+                        } else if (sUtil.getToken("PORT_WRITE_START(")) {
+                            sUtil.skipSpace();
+                            Convertor.token[0] = sUtil.parseToken();
+                            sUtil.skipSpace();
+                            if (sUtil.getToken(")")) {
+                                sUtil.putString("public static IO_WritePort " + Convertor.token[0] + "[]={\n\t\tnew IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),");
+                                type = PORT_WRITE8;
+                                i3 = 1;
+                                Convertor.inpos += 1;
+                                continue;
+                            }
+                        } else if (sUtil.getToken("const")) {
                             sUtil.skipSpace();
                             if (sUtil.getToken("struct")) {
                                 sUtil.skipSpace();
@@ -719,8 +741,7 @@ public class convertMame {
                                     }
                                 }
                             }
-                        } 
-                        else if (sUtil.getToken("MachineDriver")) {
+                        } else if (sUtil.getToken("MachineDriver")) {
                             sUtil.skipSpace();
                             Convertor.token[0] = sUtil.parseToken();
                             sUtil.skipSpace();
@@ -1094,7 +1115,7 @@ public class convertMame {
                                 i3 = -1;
                                 continue;
                             }
-                        }  else {
+                        } else {
                             Convertor.inpos = i;
                         }
                     }
@@ -1650,22 +1671,37 @@ public class convertMame {
                     }
                 }
                 break;
-                case 'P':
-
+                case 'P': {
+                    i = Convertor.inpos;
+                    if (sUtil.getToken("PORT_END")) {
+                        if (type == PORT_READ8) {
+                            sUtil.putString("\tnew IO_ReadPort(MEMPORT_MARKER, 0)\n\t};");
+                            type = -1;
+                            Convertor.inpos += 1;
+                            continue;
+                        }
+                        if (type == PORT_WRITE8) {
+                            sUtil.putString("\tnew IO_WritePort(MEMPORT_MARKER, 0)\n\t};");
+                            type = -1;
+                            Convertor.inpos += 1;
+                            continue;
+                        }
+                    }
                     if (sUtil.getToken("PORT_START")) {
                         sUtil.putString((new StringBuilder()).append("PORT_START(); ").toString());
                         continue;
                     }
-                    int h = Convertor.inpos;
                     if (sUtil.getToken("PORT_DIPNAME") || sUtil.getToken("PORT_BIT") || sUtil.getToken("PORT_DIPSETTING") || sUtil.getToken("PORT_BITX") || sUtil.getToken("PORT_SERVICE") || sUtil.getToken("PORT_BIT_IMPULSE") || sUtil.getToken("PORT_ANALOG") || sUtil.getToken("PORT_ANALOGX")) {
                         i8++;
                         type2 = NEWINPUT;
                         sUtil.skipSpace();
                         if (sUtil.parseChar() == '(') {
-                            Convertor.inpos = h;
+                            Convertor.inpos = i;
                         }
                     }
+                    Convertor.inpos = i;
                     break;
+                }
                 case 'W': {
                     i = Convertor.inpos;
                     if (sUtil.getToken("WRITE_HANDLER(")) {
@@ -1697,7 +1733,7 @@ public class convertMame {
                             Convertor.inpos += 1;
                             continue;
                         }
-                    } 
+                    }
                     if (type == MEMORY_WRITE8) {
                         i3++;
                         insideagk[i3] = 0;
@@ -1707,7 +1743,24 @@ public class convertMame {
                             continue;
                         }
                     }
-                    else if (type == MEMORYREAD) {
+                    if (type == PORT_READ8) {
+                        i3++;
+                        insideagk[i3] = 0;
+                        if (i3 == 2) {
+                            sUtil.putString("new IO_ReadPort(");
+                            Convertor.inpos += 1;
+                            continue;
+                        }
+                    }
+                    if (type == PORT_WRITE8) {
+                        i3++;
+                        insideagk[i3] = 0;
+                        if (i3 == 2) {
+                            sUtil.putString("new IO_WritePort(");
+                            Convertor.inpos += 1;
+                            continue;
+                        }
+                    } else if (type == MEMORYREAD) {
                         i3++;
                         insideagk[i3] = 0;
                         if (i3 == 1) {
@@ -2392,7 +2445,7 @@ public class convertMame {
                 }
                 break;
                 case '}': {
-                    if ((type == MEMORY_READ8|| type == MEMORY_WRITE8)) {
+                    if ((type == MEMORY_READ8 || type == MEMORY_WRITE8 || type == PORT_READ8 || type == PORT_WRITE8)) {
                         i3--;
                         if (i3 == 0) {
                             type = -1;
@@ -2880,14 +2933,12 @@ public class convertMame {
                         type = -1;
                         Convertor.inpos += 1;
                         continue;
-                    } 
-                    else if(type == MEMORY_WRITE8) {
+                    } else if (type == MEMORY_WRITE8) {
                         sUtil.putString("\tnew Memory_WriteAddress(MEMPORT_MARKER, 0)\n\t};");
                         type = -1;
                         Convertor.inpos += 1;
                         continue;
-                    }
-                    else {
+                    } else {
                         Convertor.inpos = i;
                         break;
                     }

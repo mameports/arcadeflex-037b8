@@ -285,29 +285,33 @@ public class m92
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( readport )
-		{ 0x00, 0x00, input_port_0_r }, /* Player 1 */
-		{ 0x01, 0x01, input_port_1_r }, /* Player 2 */
-		{ 0x02, 0x02, m92_port_4_r },   /* Coins & VBL */
-		{ 0x03, 0x03, input_port_7_r }, /* Dip 3 */
-		{ 0x04, 0x04, input_port_6_r }, /* Dip 2 */
-		{ 0x05, 0x05, input_port_5_r }, /* Dip 1 */
-		{ 0x06, 0x06, input_port_2_r }, /* Player 3 */
-		{ 0x07, 0x07, input_port_3_r }, /* Player 4 */
-		{ 0x08, 0x09, status_port_r },  /* ? */
-	PORT_END
+	public static IO_ReadPort readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, input_port_0_r ), /* Player 1 */
+		new IO_ReadPort( 0x01, 0x01, input_port_1_r ), /* Player 2 */
+		new IO_ReadPort( 0x02, 0x02, m92_port_4_r ),   /* Coins & VBL */
+		new IO_ReadPort( 0x03, 0x03, input_port_7_r ), /* Dip 3 */
+		new IO_ReadPort( 0x04, 0x04, input_port_6_r ), /* Dip 2 */
+		new IO_ReadPort( 0x05, 0x05, input_port_5_r ), /* Dip 1 */
+		new IO_ReadPort( 0x06, 0x06, input_port_2_r ), /* Player 3 */
+		new IO_ReadPort( 0x07, 0x07, input_port_3_r ), /* Player 4 */
+		new IO_ReadPort( 0x08, 0x09, status_port_r ),  /* ? */
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( writeport )
-		{ 0x00, 0x01, m92_soundlatch_w },
-		{ 0x02, 0x03, m92_coincounter_w },
-		{ 0x20, 0x21, m92_bankswitch_w },
-		{ 0x40, 0x43, MWA_NOP }, /* Interrupt controller, only written to at bootup */
-		{ 0x80, 0x87, m92_pf1_control_w },
-		{ 0x88, 0x8f, m92_pf2_control_w },
-		{ 0x90, 0x97, m92_pf3_control_w },
-		{ 0x98, 0x9f, m92_master_control_w },
-		{ 0xc0, 0xc1, m92_unknown_w },
-	PORT_END
+	public static IO_WritePort writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x01, m92_soundlatch_w ),
+		new IO_WritePort( 0x02, 0x03, m92_coincounter_w ),
+		new IO_WritePort( 0x20, 0x21, m92_bankswitch_w ),
+		new IO_WritePort( 0x40, 0x43, MWA_NOP ), /* Interrupt controller, only written to at bootup */
+		new IO_WritePort( 0x80, 0x87, m92_pf1_control_w ),
+		new IO_WritePort( 0x88, 0x8f, m92_pf2_control_w ),
+		new IO_WritePort( 0x90, 0x97, m92_pf3_control_w ),
+		new IO_WritePort( 0x98, 0x9f, m92_master_control_w ),
+		new IO_WritePort( 0xc0, 0xc1, m92_unknown_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	/******************************************************************************/
 	

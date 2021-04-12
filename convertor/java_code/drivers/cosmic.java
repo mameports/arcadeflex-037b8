@@ -473,15 +473,19 @@ public class cosmic
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( cosmicg_readport )
-		{ 0x00, 0x00, cosmicg_pixel_clock_r },
-		{ 0x01, 0x01, input_port_1_r },
-	PORT_END
+	public static IO_ReadPort cosmicg_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, cosmicg_pixel_clock_r ),
+		new IO_ReadPort( 0x01, 0x01, input_port_1_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( cosmicg_writeport )
-		{ 0x00, 0x15, cosmicg_output_w },
-	    { 0x16, 0x17, cosmicg_color_register_w },
-	PORT_END
+	public static IO_WritePort cosmicg_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x15, cosmicg_output_w ),
+	    new IO_WritePort( 0x16, 0x17, cosmicg_color_register_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress magspot2_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),

@@ -76,9 +76,11 @@ public class hyhoo
 		}
 	} };
 	
-	static PORT_READ_START( readport_hyhoo )
-		{ 0x0000, 0xffff, io_hyhoo_r },
-	PORT_END
+	public static IO_ReadPort readport_hyhoo[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x0000, 0xffff, io_hyhoo_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
 	public static WriteHandlerPtr io_hyhoo_w = new WriteHandlerPtr() {public void handler(int offset, int data)
 	{
@@ -114,9 +116,11 @@ public class hyhoo
 		}
 	} };
 	
-	static PORT_WRITE_START( writeport_hyhoo )
-		{ 0x0000, 0xffff, io_hyhoo_w },
-	PORT_END
+	public static IO_WritePort writeport_hyhoo[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x0000, 0xffff, io_hyhoo_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	static InputPortPtr input_ports_hyhoo = new InputPortPtr(){ public void handler() { 

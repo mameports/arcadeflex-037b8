@@ -382,9 +382,11 @@ public class gionbana
 		}
 	} };
 	
-	static PORT_READ_START( readport_gionbana )
-		{ 0x0000, 0xffff, io_gionbana_r },
-	PORT_END
+	public static IO_ReadPort readport_gionbana[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x0000, 0xffff, io_gionbana_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
 	public static WriteHandlerPtr io_gionbana_w = new WriteHandlerPtr() {public void handler(int offset, int data)
 	{
@@ -415,9 +417,11 @@ public class gionbana
 		}
 	} };
 	
-	static PORT_WRITE_START( writeport_gionbana )
-		{ 0x0000, 0xffff, io_gionbana_w },
-	PORT_END
+	public static IO_WritePort writeport_gionbana[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x0000, 0xffff, io_gionbana_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	public static WriteHandlerPtr io_hanamomo_w = new WriteHandlerPtr() {public void handler(int offset, int data)
 	{
@@ -448,9 +452,11 @@ public class gionbana
 		}
 	} };
 	
-	static PORT_WRITE_START( writeport_hanamomo )
-		{ 0x0000, 0xffff, io_hanamomo_w },
-	PORT_END
+	public static IO_WritePort writeport_hanamomo[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x0000, 0xffff, io_hanamomo_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	public static WriteHandlerPtr io_msjiken_w = new WriteHandlerPtr() {public void handler(int offset, int data)
 	{
@@ -481,9 +487,11 @@ public class gionbana
 		}
 	} };
 	
-	static PORT_WRITE_START( writeport_msjiken )
-		{ 0x0000, 0xffff, io_msjiken_w },
-	PORT_END
+	public static IO_WritePort writeport_msjiken[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x0000, 0xffff, io_msjiken_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	public static WriteHandlerPtr io_scandal_w = new WriteHandlerPtr() {public void handler(int offset, int data)
 	{
@@ -519,9 +527,11 @@ public class gionbana
 		}
 	} };
 	
-	static PORT_WRITE_START( writeport_scandal )
-		{ 0x0000, 0xffff, io_scandal_w },
-	PORT_END
+	public static IO_WritePort writeport_scandal[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x0000, 0xffff, io_scandal_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	public static ReadHandlerPtr io_scandalm_r  = new ReadHandlerPtr() { public int handler(int offset)
 	{
@@ -542,9 +552,11 @@ public class gionbana
 		}
 	} };
 	
-	static PORT_READ_START( readport_scandalm )
-		{ 0x0000, 0xffff, io_scandalm_r },
-	PORT_END
+	public static IO_ReadPort readport_scandalm[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x0000, 0xffff, io_scandalm_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
 	public static WriteHandlerPtr io_scandalm_w = new WriteHandlerPtr() {public void handler(int offset, int data)
 	{
@@ -580,9 +592,11 @@ public class gionbana
 		}
 	} };
 	
-	static PORT_WRITE_START( writeport_scandalm )
-		{ 0x0000, 0xffff, io_scandalm_w },
-	PORT_END
+	public static IO_WritePort writeport_scandalm[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x0000, 0xffff, io_scandalm_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	public static WriteHandlerPtr io_bananadr_w = new WriteHandlerPtr() {public void handler(int offset, int data)
 	{
@@ -619,9 +633,11 @@ public class gionbana
 		}
 	} };
 	
-	static PORT_WRITE_START( writeport_bananadr )
-		{ 0x0000, 0xffff, io_bananadr_w },
-	PORT_END
+	public static IO_WritePort writeport_bananadr[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x0000, 0xffff, io_bananadr_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	public static ReadHandlerPtr io_maiko_r  = new ReadHandlerPtr() { public int handler(int offset)
 	{
@@ -641,9 +657,11 @@ public class gionbana
 		}
 	} };
 	
-	static PORT_READ_START( readport_maiko )
-		{ 0x0000, 0xffff, io_maiko_r },
-	PORT_END
+	public static IO_ReadPort readport_maiko[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x0000, 0xffff, io_maiko_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
 	public static WriteHandlerPtr io_maiko_w = new WriteHandlerPtr() {public void handler(int offset, int data)
 	{
@@ -674,9 +692,11 @@ public class gionbana
 		}
 	} };
 	
-	static PORT_WRITE_START( writeport_maiko )
-		{ 0x0000, 0xffff, io_maiko_w },
-	PORT_END
+	public static IO_WritePort writeport_maiko[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x0000, 0xffff, io_maiko_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	static InputPortPtr input_ports_hanamomo = new InputPortPtr(){ public void handler() { 

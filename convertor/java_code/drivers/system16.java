@@ -495,15 +495,19 @@ public class system16
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( sound_readport )
-		{ 0x01, 0x01, YM2151_status_port_0_r },
-		{ 0xc0, 0xc0, soundlatch_r },
-	PORT_END
+	public static IO_ReadPort sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x01, 0x01, YM2151_status_port_0_r ),
+		new IO_ReadPort( 0xc0, 0xc0, soundlatch_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( sound_writeport )
-		{ 0x00, 0x00, YM2151_register_port_0_w },
-		{ 0x01, 0x01, YM2151_data_port_0_w },
-	PORT_END
+	public static IO_WritePort sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, YM2151_register_port_0_w ),
+		new IO_WritePort( 0x01, 0x01, YM2151_data_port_0_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	
@@ -517,19 +521,23 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( sound_readport_7751 )
-		{ 0x01, 0x01, YM2151_status_port_0_r },
-	//    { 0x0e, 0x0e, sys16_7751_audio_8255_r },
-		{ 0xc0, 0xc0, soundlatch_r },
-	PORT_END
+	public static IO_ReadPort sound_readport_7751[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x01, 0x01, YM2151_status_port_0_r ),
+	//    new IO_ReadPort( 0x0e, 0x0e, sys16_7751_audio_8255_r ),
+		new IO_ReadPort( 0xc0, 0xc0, soundlatch_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	
-	static PORT_WRITE_START( sound_writeport_7751 )
-		{ 0x00, 0x00, YM2151_register_port_0_w },
-		{ 0x01, 0x01, YM2151_data_port_0_w },
-		{ 0x80, 0x80, sys16_7751_audio_8255_w },
-	PORT_END
+	public static IO_WritePort sound_writeport_7751[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, YM2151_register_port_0_w ),
+		new IO_WritePort( 0x01, 0x01, YM2151_data_port_0_w ),
+		new IO_WritePort( 0x80, 0x80, sys16_7751_audio_8255_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress readmem_7751[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -543,20 +551,24 @@ public class system16
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( readport_7751 )
-		{ I8039_t1,  I8039_t1,  sys16_7751_sh_t1_r },
-		{ I8039_p2,  I8039_p2,  sys16_7751_sh_command_r },
-		{ I8039_bus, I8039_bus, sys16_7751_sh_rom_r },
-	PORT_END
+	public static IO_ReadPort readport_7751[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( I8039_t1,  I8039_t1,  sys16_7751_sh_t1_r ),
+		new IO_ReadPort( I8039_p2,  I8039_p2,  sys16_7751_sh_command_r ),
+		new IO_ReadPort( I8039_bus, I8039_bus, sys16_7751_sh_rom_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( writeport_7751 )
-		{ I8039_p1, I8039_p1, sys16_7751_sh_dac_w },
-		{ I8039_p2, I8039_p2, sys16_7751_sh_busy_w },
-		{ I8039_p4, I8039_p4, sys16_7751_sh_offset_a0_a3_w },
-		{ I8039_p5, I8039_p5, sys16_7751_sh_offset_a4_a7_w },
-		{ I8039_p6, I8039_p6, sys16_7751_sh_offset_a8_a11_w },
-		{ I8039_p7, I8039_p7, sys16_7751_sh_rom_select_w },
-	PORT_END
+	public static IO_WritePort writeport_7751[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( I8039_p1, I8039_p1, sys16_7751_sh_dac_w ),
+		new IO_WritePort( I8039_p2, I8039_p2, sys16_7751_sh_busy_w ),
+		new IO_WritePort( I8039_p4, I8039_p4, sys16_7751_sh_offset_a0_a3_w ),
+		new IO_WritePort( I8039_p5, I8039_p5, sys16_7751_sh_offset_a4_a7_w ),
+		new IO_WritePort( I8039_p6, I8039_p6, sys16_7751_sh_offset_a8_a11_w ),
+		new IO_WritePort( I8039_p7, I8039_p7, sys16_7751_sh_rom_select_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	static DACinterface sys16_7751_dac_interface = new DACinterface
 	(
@@ -587,12 +599,14 @@ public class system16
 		UPD7759_message_w(offset,data);
 	} };
 	
-	static PORT_WRITE_START( sound_writeport_7759 )
-		{ 0x00, 0x00, YM2151_register_port_0_w },
-		{ 0x01, 0x01, YM2151_data_port_0_w },
-		{ 0x40, 0x40, UPD7759_process_message_w },
-		{ 0x80, 0x80, UPD7759_0_start_w },
-	PORT_END
+	public static IO_WritePort sound_writeport_7759[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, YM2151_register_port_0_w ),
+		new IO_WritePort( 0x01, 0x01, YM2151_data_port_0_w ),
+		new IO_WritePort( 0x40, 0x40, UPD7759_process_message_w ),
+		new IO_WritePort( 0x80, 0x80, UPD7759_0_start_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	static UPD7759_interface upd7759_interface = new UPD7759_interface
 	(
@@ -664,26 +678,30 @@ public class system16
 		sys18_SoundMemBank = &RAM[Bank+0x10000];
 	} };
 	
-	static PORT_READ_START( sound_readport_18 )
-		{ 0x80, 0x80, YM2612_status_port_0_A_r },
-	//	{ 0x82, 0x82, YM2612_status_port_0_B_r },
-	//	{ 0x90, 0x90, YM2612_status_port_1_A_r },
-	//	{ 0x92, 0x92, YM2612_status_port_1_B_r },
-		{ 0xc0, 0xc0, soundlatch_r },
-	PORT_END
+	public static IO_ReadPort sound_readport_18[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x80, 0x80, YM2612_status_port_0_A_r ),
+	//	new IO_ReadPort( 0x82, 0x82, YM2612_status_port_0_B_r ),
+	//	new IO_ReadPort( 0x90, 0x90, YM2612_status_port_1_A_r ),
+	//	new IO_ReadPort( 0x92, 0x92, YM2612_status_port_1_B_r ),
+		new IO_ReadPort( 0xc0, 0xc0, soundlatch_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
 	
-	static PORT_WRITE_START( sound_writeport_18 )
-		{ 0x80, 0x80, YM2612_control_port_0_A_w },
-		{ 0x81, 0x81, YM2612_data_port_0_A_w },
-		{ 0x82, 0x82, YM2612_control_port_0_B_w },
-		{ 0x83, 0x83, YM2612_data_port_0_B_w },
-		{ 0x90, 0x90, YM2612_control_port_1_A_w },
-		{ 0x91, 0x91, YM2612_data_port_1_A_w },
-		{ 0x92, 0x92, YM2612_control_port_1_B_w },
-		{ 0x93, 0x93, YM2612_data_port_1_B_w },
-		{ 0xa0, 0xa0, sys18_soundbank_w },
-	PORT_END
+	public static IO_WritePort sound_writeport_18[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x80, 0x80, YM2612_control_port_0_A_w ),
+		new IO_WritePort( 0x81, 0x81, YM2612_data_port_0_A_w ),
+		new IO_WritePort( 0x82, 0x82, YM2612_control_port_0_B_w ),
+		new IO_WritePort( 0x83, 0x83, YM2612_data_port_0_B_w ),
+		new IO_WritePort( 0x90, 0x90, YM2612_control_port_1_A_w ),
+		new IO_WritePort( 0x91, 0x91, YM2612_data_port_1_A_w ),
+		new IO_WritePort( 0x92, 0x92, YM2612_control_port_1_B_w ),
+		new IO_WritePort( 0x93, 0x93, YM2612_data_port_1_B_w ),
+		new IO_WritePort( 0xa0, 0xa0, sys18_soundbank_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	static struct YM2612interface ym3438_interface =
 	{
@@ -8308,9 +8326,11 @@ public class system16
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( hangon_sound_readport )
-		{ 0x40, 0x40, soundlatch_r },
-	PORT_END
+	public static IO_ReadPort hangon_sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x40, 0x40, soundlatch_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	/***************************************************************************/
@@ -8622,9 +8642,11 @@ public class system16
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( harrier_sound_readport )
-		{ 0x40, 0x40, soundlatch_r },
-	PORT_END
+	public static IO_ReadPort harrier_sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x40, 0x40, soundlatch_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	/***************************************************************************/
@@ -10216,9 +10238,11 @@ public class system16
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( enduror_sound_readport )
-		{ 0x40, 0x40, soundlatch_r },
-	PORT_END
+	public static IO_ReadPort enduror_sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x40, 0x40, soundlatch_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	public static Memory_ReadAddress enduror_b2_sound_readmem[]={
@@ -10239,21 +10263,25 @@ public class system16
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( enduror_b2_sound_readport )
-		{ 0x00, 0x00, YM2203_status_port_0_r },
-		{ 0x80, 0x80, YM2203_status_port_1_r },
-		{ 0xc0, 0xc0, YM2203_status_port_2_r },
-		{ 0x40, 0x40, soundlatch_r },
-	PORT_END
+	public static IO_ReadPort enduror_b2_sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, YM2203_status_port_0_r ),
+		new IO_ReadPort( 0x80, 0x80, YM2203_status_port_1_r ),
+		new IO_ReadPort( 0xc0, 0xc0, YM2203_status_port_2_r ),
+		new IO_ReadPort( 0x40, 0x40, soundlatch_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( enduror_b2_sound_writeport )
-		{ 0x00, 0x00, YM2203_control_port_0_w },
-		{ 0x01, 0x01, YM2203_write_port_0_w },
-		{ 0x80, 0x80, YM2203_control_port_1_w },
-		{ 0x81, 0x81, YM2203_write_port_1_w },
-		{ 0xc0, 0xc0, YM2203_control_port_2_w },
-		{ 0xc1, 0xc1, YM2203_write_port_2_w },
-	PORT_END
+	public static IO_WritePort enduror_b2_sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, YM2203_control_port_0_w ),
+		new IO_WritePort( 0x01, 0x01, YM2203_write_port_0_w ),
+		new IO_WritePort( 0x80, 0x80, YM2203_control_port_1_w ),
+		new IO_WritePort( 0x81, 0x81, YM2203_write_port_1_w ),
+		new IO_WritePort( 0xc0, 0xc0, YM2203_control_port_2_w ),
+		new IO_WritePort( 0xc1, 0xc1, YM2203_write_port_2_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	/***************************************************************************/
 	static void enduror_update_proc( void ){

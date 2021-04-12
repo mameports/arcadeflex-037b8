@@ -234,19 +234,23 @@ public class psikyo
 	};
 	
 	
-	static PORT_READ_START( gunbird_sound_readport )
-		{ 0x04, 0x04, YM2610_status_port_0_A_r		},
-		{ 0x06, 0x06, YM2610_status_port_0_B_r		},
-		{ 0x08, 0x08, soundlatch_r					},
-	PORT_END
-	static PORT_WRITE_START( gunbird_sound_writeport )
-		{ 0x00, 0x00, gunbird_sound_bankswitch_w	},
-		{ 0x04, 0x04, YM2610_control_port_0_A_w		},
-		{ 0x05, 0x05, YM2610_data_port_0_A_w		},
-		{ 0x06, 0x06, YM2610_control_port_0_B_w		},
-		{ 0x07, 0x07, YM2610_data_port_0_B_w		},
-		{ 0x0c, 0x0c, psikyo_ack_latch_w			},
-	PORT_END
+	public static IO_ReadPort gunbird_sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x04, 0x04, YM2610_status_port_0_A_r		),
+		new IO_ReadPort( 0x06, 0x06, YM2610_status_port_0_B_r		),
+		new IO_ReadPort( 0x08, 0x08, soundlatch_r					),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
+	public static IO_WritePort gunbird_sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, gunbird_sound_bankswitch_w	),
+		new IO_WritePort( 0x04, 0x04, YM2610_control_port_0_A_w		),
+		new IO_WritePort( 0x05, 0x05, YM2610_data_port_0_A_w		),
+		new IO_WritePort( 0x06, 0x06, YM2610_control_port_0_B_w		),
+		new IO_WritePort( 0x07, 0x07, YM2610_data_port_0_B_w		),
+		new IO_WritePort( 0x0c, 0x0c, psikyo_ack_latch_w			),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	
@@ -277,19 +281,23 @@ public class psikyo
 	};
 	
 	
-	static PORT_READ_START( sngkace_sound_readport )
-		{ 0x00, 0x00, YM2610_status_port_0_A_r		},
-		{ 0x02, 0x02, YM2610_status_port_0_B_r		},
-		{ 0x08, 0x08, soundlatch_r					},
-	PORT_END
-	static PORT_WRITE_START( sngkace_sound_writeport )
-		{ 0x00, 0x00, YM2610_control_port_0_A_w		},
-		{ 0x01, 0x01, YM2610_data_port_0_A_w		},
-		{ 0x02, 0x02, YM2610_control_port_0_B_w		},
-		{ 0x03, 0x03, YM2610_data_port_0_B_w		},
-		{ 0x04, 0x04, sngkace_sound_bankswitch_w	},
-		{ 0x0c, 0x0c, psikyo_ack_latch_w			},
-	PORT_END
+	public static IO_ReadPort sngkace_sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, YM2610_status_port_0_A_r		),
+		new IO_ReadPort( 0x02, 0x02, YM2610_status_port_0_B_r		),
+		new IO_ReadPort( 0x08, 0x08, soundlatch_r					),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
+	public static IO_WritePort sngkace_sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, YM2610_control_port_0_A_w		),
+		new IO_WritePort( 0x01, 0x01, YM2610_data_port_0_A_w		),
+		new IO_WritePort( 0x02, 0x02, YM2610_control_port_0_B_w		),
+		new IO_WritePort( 0x03, 0x03, YM2610_data_port_0_B_w		),
+		new IO_WritePort( 0x04, 0x04, sngkace_sound_bankswitch_w	),
+		new IO_WritePort( 0x0c, 0x0c, psikyo_ack_latch_w			),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	/***************************************************************************
@@ -297,23 +305,27 @@ public class psikyo
 	***************************************************************************/
 	
 	
-	static PORT_READ_START( s1945_sound_readport )
-		{ 0x08, 0x08, YM2610_status_port_0_A_r		},
-	//	{ 0x06, 0x06, YM2610_status_port_0_B_r		},
-		{ 0x10, 0x10, soundlatch_r					},
-	PORT_END
-	static PORT_WRITE_START( s1945_sound_writeport )
-		{ 0x00, 0x00, gunbird_sound_bankswitch_w	},
-	//	{ 0x02, 0x02, IOWP_NOP	},
-	//	{ 0x03, 0x03, IOWP_NOP	},
-		{ 0x08, 0x08, YM2610_control_port_0_A_w		},
-		{ 0x09, 0x09, YM2610_data_port_0_A_w		},
-		{ 0x0a, 0x0a, YM2610_control_port_0_B_w		},
-		{ 0x0b, 0x0b, YM2610_data_port_0_B_w		},
-	//	{ 0x0c, 0x0c, IOWP_NOP	},
-	//	{ 0x0d, 0x0d, IOWP_NOP	},
-		{ 0x18, 0x18, psikyo_ack_latch_w			},
-	PORT_END
+	public static IO_ReadPort s1945_sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x08, 0x08, YM2610_status_port_0_A_r		),
+	//	new IO_ReadPort( 0x06, 0x06, YM2610_status_port_0_B_r		),
+		new IO_ReadPort( 0x10, 0x10, soundlatch_r					),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
+	public static IO_WritePort s1945_sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, gunbird_sound_bankswitch_w	),
+	//	new IO_WritePort( 0x02, 0x02, IOWP_NOP	),
+	//	new IO_WritePort( 0x03, 0x03, IOWP_NOP	),
+		new IO_WritePort( 0x08, 0x08, YM2610_control_port_0_A_w		),
+		new IO_WritePort( 0x09, 0x09, YM2610_data_port_0_A_w		),
+		new IO_WritePort( 0x0a, 0x0a, YM2610_control_port_0_B_w		),
+		new IO_WritePort( 0x0b, 0x0b, YM2610_data_port_0_B_w		),
+	//	new IO_WritePort( 0x0c, 0x0c, IOWP_NOP	),
+	//	new IO_WritePort( 0x0d, 0x0d, IOWP_NOP	),
+		new IO_WritePort( 0x18, 0x18, psikyo_ack_latch_w			),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	/***************************************************************************

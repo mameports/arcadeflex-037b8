@@ -643,21 +643,25 @@ public class ataxx
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( master_readport )
-	    { 0x04, 0x04, leland_i86_response_r },
-	    { 0x20, 0x20, eeprom_r },
-	    { 0xd0, 0xef, ataxx_mvram_port_r },
-	    { 0xf0, 0xff, master_input_r },
-	PORT_END
+	public static IO_ReadPort master_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+	    new IO_ReadPort( 0x04, 0x04, leland_i86_response_r ),
+	    new IO_ReadPort( 0x20, 0x20, eeprom_r ),
+	    new IO_ReadPort( 0xd0, 0xef, ataxx_mvram_port_r ),
+	    new IO_ReadPort( 0xf0, 0xff, master_input_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( master_writeport )
-	    { 0x05, 0x05, leland_i86_command_hi_w },
-	    { 0x06, 0x06, leland_i86_command_lo_w },
-	    { 0x0c, 0x0c, ataxx_i86_control_w },
-	    { 0x20, 0x20, eeprom_w },
-	    { 0xd0, 0xef, ataxx_mvram_port_w },
-	    { 0xf0, 0xff, master_output_w },
-	PORT_END
+	public static IO_WritePort master_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+	    new IO_WritePort( 0x05, 0x05, leland_i86_command_hi_w ),
+	    new IO_WritePort( 0x06, 0x06, leland_i86_command_lo_w ),
+	    new IO_WritePort( 0x0c, 0x0c, ataxx_i86_control_w ),
+	    new IO_WritePort( 0x20, 0x20, eeprom_w ),
+	    new IO_WritePort( 0xd0, 0xef, ataxx_mvram_port_w ),
+	    new IO_WritePort( 0xf0, 0xff, master_output_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	
@@ -687,13 +691,17 @@ public class ataxx
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( slave_readport )
-		{ 0x60, 0x7f, ataxx_svram_port_r },
-	PORT_END
+	public static IO_ReadPort slave_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x60, 0x7f, ataxx_svram_port_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( slave_writeport )
-		{ 0x60, 0x7f, ataxx_svram_port_w },
-	PORT_END
+	public static IO_WritePort slave_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x60, 0x7f, ataxx_svram_port_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	

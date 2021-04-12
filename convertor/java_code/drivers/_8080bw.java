@@ -118,37 +118,49 @@ public class _8080bw
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( invaders_readport )
-		{ 0x00, 0x00, input_port_0_r },
-		{ 0x01, 0x01, input_port_1_r },
-		{ 0x02, 0x02, input_port_2_r },
-		{ 0x03, 0x03, invaders_shift_data_r },
-	PORT_END
+	public static IO_ReadPort invaders_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, input_port_0_r ),
+		new IO_ReadPort( 0x01, 0x01, input_port_1_r ),
+		new IO_ReadPort( 0x02, 0x02, input_port_2_r ),
+		new IO_ReadPort( 0x03, 0x03, invaders_shift_data_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( writeport_0_3 )
-		{ 0x00, 0x00, invaders_shift_amount_w },
-		{ 0x03, 0x03, invaders_shift_data_w },
-	PORT_END
+	public static IO_WritePort writeport_0_3[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, invaders_shift_amount_w ),
+		new IO_WritePort( 0x03, 0x03, invaders_shift_data_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( writeport_1_2 )
-		{ 0x01, 0x01, invaders_shift_amount_w },
-		{ 0x02, 0x02, invaders_shift_data_w },
-	PORT_END
+	public static IO_WritePort writeport_1_2[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x01, 0x01, invaders_shift_amount_w ),
+		new IO_WritePort( 0x02, 0x02, invaders_shift_data_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( writeport_2_3 )
-		{ 0x02, 0x02, invaders_shift_amount_w },
-		{ 0x03, 0x03, invaders_shift_data_w },
-	PORT_END
+	public static IO_WritePort writeport_2_3[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x02, 0x02, invaders_shift_amount_w ),
+		new IO_WritePort( 0x03, 0x03, invaders_shift_data_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( writeport_2_4 )
-		{ 0x02, 0x02, invaders_shift_amount_w },
-		{ 0x04, 0x04, invaders_shift_data_w },
-	PORT_END
+	public static IO_WritePort writeport_2_4[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x02, 0x02, invaders_shift_amount_w ),
+		new IO_WritePort( 0x04, 0x04, invaders_shift_data_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( writeport_4_3 )
-		{ 0x03, 0x03, invaders_shift_data_w },
-		{ 0x04, 0x04, invaders_shift_amount_w },
-	PORT_END
+	public static IO_WritePort writeport_4_3[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x03, 0x03, invaders_shift_data_w ),
+		new IO_WritePort( 0x04, 0x04, invaders_shift_amount_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	static InputPortPtr input_ports_invaders = new InputPortPtr(){ public void handler() { 
@@ -1033,13 +1045,15 @@ public class _8080bw
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( sheriff_readport )
-		{ 0x00, 0x00, input_port_0_r },
-		{ 0x01, 0x01, input_port_1_r },
-		{ 0x02, 0x02, input_port_2_r },
-		{ 0x03, 0x03, invaders_shift_data_r },
-		{ 0x04, 0x04, input_port_3_r },
-	PORT_END
+	public static IO_ReadPort sheriff_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, input_port_0_r ),
+		new IO_ReadPort( 0x01, 0x01, input_port_1_r ),
+		new IO_ReadPort( 0x02, 0x02, input_port_2_r ),
+		new IO_ReadPort( 0x03, 0x03, invaders_shift_data_r ),
+		new IO_ReadPort( 0x04, 0x04, input_port_3_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress sheriff_sound_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -1052,16 +1066,20 @@ public class _8080bw
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( sheriff_sound_readport )
-		{ I8039_p1, I8039_p1, sheriff_sh_p1_r },
-		{ I8039_p2, I8039_p2, sheriff_sh_p2_r },
-		{ I8039_t0, I8039_t0, sheriff_sh_t0_r },
-		{ I8039_t1, I8039_t1, sheriff_sh_t1_r },
-	PORT_END
+	public static IO_ReadPort sheriff_sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( I8039_p1, I8039_p1, sheriff_sh_p1_r ),
+		new IO_ReadPort( I8039_p2, I8039_p2, sheriff_sh_p2_r ),
+		new IO_ReadPort( I8039_t0, I8039_t0, sheriff_sh_t0_r ),
+		new IO_ReadPort( I8039_t1, I8039_t1, sheriff_sh_t1_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( sheriff_sound_writeport )
-		{ I8039_p2, I8039_p2, sheriff_sh_p2_w },
-	PORT_END
+	public static IO_WritePort sheriff_sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( I8039_p2, I8039_p2, sheriff_sh_p2_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	/* All of the controls/dips for cocktail mode are as per the schematic */
 	/* BUT a coffee table version was never manufactured and support was   */
@@ -1239,11 +1257,13 @@ public class _8080bw
 	/*                                                     */
 	/*******************************************************/
 	
-	static PORT_READ_START( spcenctr_readport )
-		{ 0x00, 0x00, spcenctr_port_0_r }, /* These 2 ports use Gray's binary encoding */
-		{ 0x01, 0x01, spcenctr_port_1_r },
-		{ 0x02, 0x02, input_port_2_r },
-	PORT_END
+	public static IO_ReadPort spcenctr_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, spcenctr_port_0_r ), /* These 2 ports use Gray's binary encoding */
+		new IO_ReadPort( 0x01, 0x01, spcenctr_port_1_r ),
+		new IO_ReadPort( 0x02, 0x02, input_port_2_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	static InputPortPtr input_ports_spcenctr = new InputPortPtr(){ public void handler() { 
@@ -1318,12 +1338,14 @@ public class _8080bw
 	/*                                                     */
 	/*******************************************************/
 	
-	static PORT_READ_START( gunfight_readport )
-		{ 0x00, 0x00, input_port_0_r },
-		{ 0x01, 0x01, input_port_1_r },
-		{ 0x02, 0x02, input_port_2_r },
-		{ 0x03, 0x03, boothill_shift_data_r },
-	PORT_END
+	public static IO_ReadPort gunfight_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, input_port_0_r ),
+		new IO_ReadPort( 0x01, 0x01, input_port_1_r ),
+		new IO_ReadPort( 0x02, 0x02, input_port_2_r ),
+		new IO_ReadPort( 0x03, 0x03, boothill_shift_data_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
 	static InputPortPtr input_ports_gunfight = new InputPortPtr(){ public void handler() { 
 	    /* Gun position uses bits 4-6, handled using fake paddles */
@@ -2396,13 +2418,15 @@ public class _8080bw
 	/*                                                     */
 	/*******************************************************/
 	
-	static PORT_READ_START( bowler_readport )
-		{ 0x01, 0x01, invaders_shift_data_comp_r },
-		{ 0x02, 0x02, input_port_0_r },				/* dip switch */
-		{ 0x04, 0x04, input_port_1_r },				/* coins / switches */
-		{ 0x05, 0x05, input_port_2_r },				/* ball vert */
-		{ 0x06, 0x06, input_port_3_r },				/* ball horz */
-	PORT_END
+	public static IO_ReadPort bowler_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x01, 0x01, invaders_shift_data_comp_r ),
+		new IO_ReadPort( 0x02, 0x02, input_port_0_r ),				/* dip switch */
+		new IO_ReadPort( 0x04, 0x04, input_port_1_r ),				/* coins / switches */
+		new IO_ReadPort( 0x05, 0x05, input_port_2_r ),				/* ball vert */
+		new IO_ReadPort( 0x06, 0x06, input_port_3_r ),				/* ball horz */
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
 	static InputPortPtr input_ports_bowler = new InputPortPtr(){ public void handler() { 
 		PORT_START();       /* IN2 */
@@ -2481,13 +2505,15 @@ public class _8080bw
 	/*                                                     */
 	/*******************************************************/
 	
-	static PORT_READ_START( shuffle_readport )
-		{ 0x01, 0x01, invaders_shift_data_r },
-		{ 0x02, 0x02, input_port_0_r },				/* dip switch */
-		{ 0x04, 0x04, input_port_1_r },				/* coins / switches */
-		{ 0x05, 0x05, input_port_2_r },				/* ball vert */
-		{ 0x06, 0x06, input_port_3_r },				/* ball horz */
-	PORT_END
+	public static IO_ReadPort shuffle_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x01, 0x01, invaders_shift_data_r ),
+		new IO_ReadPort( 0x02, 0x02, input_port_0_r ),				/* dip switch */
+		new IO_ReadPort( 0x04, 0x04, input_port_1_r ),				/* coins / switches */
+		new IO_ReadPort( 0x05, 0x05, input_port_2_r ),				/* ball vert */
+		new IO_ReadPort( 0x06, 0x06, input_port_3_r ),				/* ball horz */
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
 	static InputPortPtr input_ports_shuffle = new InputPortPtr(){ public void handler() { 
 		PORT_START();       /* DSW0 */
@@ -2566,12 +2592,14 @@ public class _8080bw
 	/*                                                     */
 	/*******************************************************/
 	
-	static PORT_READ_START( seawolf_readport )
-		{ 0x00, 0x00, invaders_shift_data_rev_r },
-		{ 0x01, 0x01, input_port_0_r },
-		{ 0x02, 0x02, input_port_1_r },
-		{ 0x03, 0x03, invaders_shift_data_r },
-	PORT_END
+	public static IO_ReadPort seawolf_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, invaders_shift_data_rev_r ),
+		new IO_ReadPort( 0x01, 0x01, input_port_0_r ),
+		new IO_ReadPort( 0x02, 0x02, input_port_1_r ),
+		new IO_ReadPort( 0x03, 0x03, invaders_shift_data_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
 	static InputPortPtr input_ports_seawolf = new InputPortPtr(){ public void handler() { 
 		PORT_START();       /* IN0 */
@@ -2949,12 +2977,14 @@ public class _8080bw
 	/*                                                     */
 	/*******************************************************/
 	
-	static PORT_READ_START( checkmat_readport )
-		{ 0x00, 0x00, input_port_0_r },
-		{ 0x01, 0x01, input_port_1_r },
-		{ 0x02, 0x02, input_port_2_r },
-		{ 0x03, 0x03, input_port_3_r },
-	PORT_END
+	public static IO_ReadPort checkmat_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, input_port_0_r ),
+		new IO_ReadPort( 0x01, 0x01, input_port_1_r ),
+		new IO_ReadPort( 0x02, 0x02, input_port_2_r ),
+		new IO_ReadPort( 0x03, 0x03, input_port_3_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	static InputPortPtr input_ports_checkmat = new InputPortPtr(){ public void handler() { 

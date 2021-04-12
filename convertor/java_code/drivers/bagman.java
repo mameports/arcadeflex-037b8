@@ -254,15 +254,19 @@ public class bagman
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( readport )
-		{ 0x0c, 0x0c, AY8910_read_port_0_r },
-	PORT_END
+	public static IO_ReadPort readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x0c, 0x0c, AY8910_read_port_0_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( writeport )
-		{ 0x08, 0x08, AY8910_control_port_0_w },
-		{ 0x09, 0x09, AY8910_write_port_0_w },
-		//{ 0x56, 0x56, IOWP_NOP },
-	PORT_END
+	public static IO_WritePort writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x08, 0x08, AY8910_control_port_0_w ),
+		new IO_WritePort( 0x09, 0x09, AY8910_write_port_0_w ),
+		//new IO_WritePort( 0x56, 0x56, IOWP_NOP ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	

@@ -71,17 +71,21 @@ public class cinemat
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( readport )
-		{ CCPU_PORT_IOSWITCHES,   CCPU_PORT_IOSWITCHES,   input_port_0_r },
-		{ CCPU_PORT_IOINPUTS,     CCPU_PORT_IOINPUTS,     input_port_1_r },
-		{ CCPU_PORT_IOOUTPUTS,    CCPU_PORT_IOOUTPUTS,    cinemat_output_port_r },
-		{ CCPU_PORT_IN_JOYSTICKX, CCPU_PORT_IN_JOYSTICKX, input_port_2_r },
-		{ CCPU_PORT_IN_JOYSTICKY, CCPU_PORT_IN_JOYSTICKY, input_port_3_r },
-	PORT_END
+	public static IO_ReadPort readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( CCPU_PORT_IOSWITCHES,   CCPU_PORT_IOSWITCHES,   input_port_0_r ),
+		new IO_ReadPort( CCPU_PORT_IOINPUTS,     CCPU_PORT_IOINPUTS,     input_port_1_r ),
+		new IO_ReadPort( CCPU_PORT_IOOUTPUTS,    CCPU_PORT_IOOUTPUTS,    cinemat_output_port_r ),
+		new IO_ReadPort( CCPU_PORT_IN_JOYSTICKX, CCPU_PORT_IN_JOYSTICKX, input_port_2_r ),
+		new IO_ReadPort( CCPU_PORT_IN_JOYSTICKY, CCPU_PORT_IN_JOYSTICKY, input_port_3_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( writeport )
-		{ CCPU_PORT_IOOUTPUTS,    CCPU_PORT_IOOUTPUTS,    cinemat_output_port_w },
-	PORT_END
+	public static IO_WritePort writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( CCPU_PORT_IOOUTPUTS,    CCPU_PORT_IOOUTPUTS,    cinemat_output_port_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	/* Note: the CPU speed is somewhat arbitrary as the cycle timings in

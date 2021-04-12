@@ -142,32 +142,40 @@ public class kchamp
 		msm_play_lo_nibble = 1;
 	} };
 	
-	static PORT_READ_START( readport )
-		{ 0x00, 0x00, input_port_0_r }, /* Player 1 controls - ACTIVE LOW */
-		{ 0x40, 0x40, input_port_1_r }, /* Player 2 controls - ACTIVE LOW */
-		{ 0x80, 0x80, input_port_2_r }, /* Coins & Start - ACTIVE LOW */
-		{ 0xC0, 0xC0, input_port_3_r }, /* Dipswitch */
-	PORT_END
+	public static IO_ReadPort readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, input_port_0_r ), /* Player 1 controls - ACTIVE LOW */
+		new IO_ReadPort( 0x40, 0x40, input_port_1_r ), /* Player 2 controls - ACTIVE LOW */
+		new IO_ReadPort( 0x80, 0x80, input_port_2_r ), /* Coins & Start - ACTIVE LOW */
+		new IO_ReadPort( 0xC0, 0xC0, input_port_3_r ), /* Dipswitch */
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( writeport )
-		{ 0x00, 0x00, MWA_NOP },
-		{ 0x01, 0x01, control_w },
-		{ 0x02, 0x02, sound_reset_w },
-		{ 0x40, 0x40, sound_command_w },
-	PORT_END
+	public static IO_WritePort writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, MWA_NOP ),
+		new IO_WritePort( 0x01, 0x01, control_w ),
+		new IO_WritePort( 0x02, 0x02, sound_reset_w ),
+		new IO_WritePort( 0x40, 0x40, sound_command_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_READ_START( sound_readport )
-		{ 0x01, 0x01, soundlatch_r },
-	PORT_END
+	public static IO_ReadPort sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x01, 0x01, soundlatch_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( sound_writeport )
-		{ 0x00, 0x00, AY8910_write_port_0_w },
-		{ 0x01, 0x01, AY8910_control_port_0_w },
-		{ 0x02, 0x02, AY8910_write_port_1_w },
-		{ 0x03, 0x03, AY8910_control_port_1_w },
-		{ 0x04, 0x04, sound_msm_w },
-		{ 0x05, 0x05, sound_control_w },
-	PORT_END
+	public static IO_WritePort sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, AY8910_write_port_0_w ),
+		new IO_WritePort( 0x01, 0x01, AY8910_control_port_0_w ),
+		new IO_WritePort( 0x02, 0x02, AY8910_write_port_1_w ),
+		new IO_WritePort( 0x03, 0x03, AY8910_control_port_1_w ),
+		new IO_WritePort( 0x04, 0x04, sound_msm_w ),
+		new IO_WritePort( 0x05, 0x05, sound_control_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	/********************
 	* 1 Player Version  *
@@ -221,32 +229,40 @@ public class kchamp
 	//		DAC_set_volume(0,( data == 1 ) ? 255 : 0,0);
 	} };
 	
-	static PORT_READ_START( kc_readport )
-		{ 0x90, 0x90, input_port_0_r }, /* Player 1 controls - ACTIVE LOW */
-		{ 0x98, 0x98, input_port_1_r }, /* Player 2 controls - ACTIVE LOW */
-		{ 0xa0, 0xa0, input_port_2_r }, /* Coins & Start - ACTIVE LOW */
-		{ 0x80, 0x80, input_port_3_r }, /* Dipswitch */
-		{ 0xa8, 0xa8, sound_reset_r },
-	PORT_END
+	public static IO_ReadPort kc_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x90, 0x90, input_port_0_r ), /* Player 1 controls - ACTIVE LOW */
+		new IO_ReadPort( 0x98, 0x98, input_port_1_r ), /* Player 2 controls - ACTIVE LOW */
+		new IO_ReadPort( 0xa0, 0xa0, input_port_2_r ), /* Coins & Start - ACTIVE LOW */
+		new IO_ReadPort( 0x80, 0x80, input_port_3_r ), /* Dipswitch */
+		new IO_ReadPort( 0xa8, 0xa8, sound_reset_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( kc_writeport )
-		{ 0x80, 0x80, MWA_NOP },
-		{ 0x81, 0x81, control_w },
-		{ 0xa8, 0xa8, sound_command_w },
-	PORT_END
+	public static IO_WritePort kc_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x80, 0x80, MWA_NOP ),
+		new IO_WritePort( 0x81, 0x81, control_w ),
+		new IO_WritePort( 0xa8, 0xa8, sound_command_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_READ_START( kc_sound_readport )
-		{ 0x06, 0x06, soundlatch_r },
-	PORT_END
+	public static IO_ReadPort kc_sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x06, 0x06, soundlatch_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( kc_sound_writeport )
-		{ 0x00, 0x00, AY8910_write_port_0_w },
-		{ 0x01, 0x01, AY8910_control_port_0_w },
-		{ 0x02, 0x02, AY8910_write_port_1_w },
-		{ 0x03, 0x03, AY8910_control_port_1_w },
-		{ 0x04, 0x04, DAC_0_data_w },
-		{ 0x05, 0x05, kc_sound_control_w },
-	PORT_END
+	public static IO_WritePort kc_sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, AY8910_write_port_0_w ),
+		new IO_WritePort( 0x01, 0x01, AY8910_control_port_0_w ),
+		new IO_WritePort( 0x02, 0x02, AY8910_write_port_1_w ),
+		new IO_WritePort( 0x03, 0x03, AY8910_control_port_1_w ),
+		new IO_WritePort( 0x04, 0x04, DAC_0_data_w ),
+		new IO_WritePort( 0x05, 0x05, kc_sound_control_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	static InputPortPtr input_ports_kchampvs = new InputPortPtr(){ public void handler() { 

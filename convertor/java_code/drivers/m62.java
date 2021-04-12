@@ -368,62 +368,78 @@ public class m62
 	};
 	
 	
-	static PORT_READ_START( ldrun_readport )
-		{ 0x00, 0x00, input_port_0_r },   /* coin */
-		{ 0x01, 0x01, input_port_1_r },   /* player 1 control */
-		{ 0x02, 0x02, input_port_2_r },   /* player 2 control */
-		{ 0x03, 0x03, input_port_3_r },   /* DSW 1 */
-		{ 0x04, 0x04, input_port_4_r },   /* DSW 2 */
-	PORT_END
+	public static IO_ReadPort ldrun_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, input_port_0_r ),   /* coin */
+		new IO_ReadPort( 0x01, 0x01, input_port_1_r ),   /* player 1 control */
+		new IO_ReadPort( 0x02, 0x02, input_port_2_r ),   /* player 2 control */
+		new IO_ReadPort( 0x03, 0x03, input_port_3_r ),   /* DSW 1 */
+		new IO_ReadPort( 0x04, 0x04, input_port_4_r ),   /* DSW 2 */
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( battroad_writeport )
-		{ 0x00, 0x00, irem_sound_cmd_w },
-		{ 0x01, 0x01, irem_flipscreen_w },	/* + coin counters */
-		{ 0x80, 0x82, battroad_scroll_w },
-		{ 0x83, 0x83, battroad_bankswitch_w },
-	PORT_END
+	public static IO_WritePort battroad_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, irem_sound_cmd_w ),
+		new IO_WritePort( 0x01, 0x01, irem_flipscreen_w ),	/* + coin counters */
+		new IO_WritePort( 0x80, 0x82, battroad_scroll_w ),
+		new IO_WritePort( 0x83, 0x83, battroad_bankswitch_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( ldrun_writeport )
-		{ 0x00, 0x00, irem_sound_cmd_w },
-		{ 0x01, 0x01, irem_flipscreen_w },	/* + coin counters */
-	PORT_END
+	public static IO_WritePort ldrun_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, irem_sound_cmd_w ),
+		new IO_WritePort( 0x01, 0x01, irem_flipscreen_w ),	/* + coin counters */
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_READ_START( ldrun2_readport )
-		{ 0x00, 0x00, input_port_0_r },   /* coin */
-		{ 0x01, 0x01, input_port_1_r },   /* player 1 control */
-		{ 0x02, 0x02, input_port_2_r },   /* player 2 control */
-		{ 0x03, 0x03, input_port_3_r },   /* DSW 1 */
-		{ 0x04, 0x04, input_port_4_r },   /* DSW 2 */
-		{ 0x80, 0x80, ldrun2_bankswitch_r },
-	PORT_END
+	public static IO_ReadPort ldrun2_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, input_port_0_r ),   /* coin */
+		new IO_ReadPort( 0x01, 0x01, input_port_1_r ),   /* player 1 control */
+		new IO_ReadPort( 0x02, 0x02, input_port_2_r ),   /* player 2 control */
+		new IO_ReadPort( 0x03, 0x03, input_port_3_r ),   /* DSW 1 */
+		new IO_ReadPort( 0x04, 0x04, input_port_4_r ),   /* DSW 2 */
+		new IO_ReadPort( 0x80, 0x80, ldrun2_bankswitch_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( ldrun2_writeport )
-		{ 0x00, 0x00, irem_sound_cmd_w },
-		{ 0x01, 0x01, irem_flipscreen_w },	/* + coin counters */
-		{ 0x80, 0x81, ldrun2_bankswitch_w },
-	PORT_END
+	public static IO_WritePort ldrun2_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, irem_sound_cmd_w ),
+		new IO_WritePort( 0x01, 0x01, irem_flipscreen_w ),	/* + coin counters */
+		new IO_WritePort( 0x80, 0x81, ldrun2_bankswitch_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( ldrun3_writeport )
-		{ 0x00, 0x00, irem_sound_cmd_w },
-		{ 0x01, 0x01, irem_flipscreen_w },	/* + coin counters */
-		{ 0x80, 0x80, ldrun3_vscroll_w },
+	public static IO_WritePort ldrun3_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, irem_sound_cmd_w ),
+		new IO_WritePort( 0x01, 0x01, irem_flipscreen_w ),	/* + coin counters */
+		new IO_WritePort( 0x80, 0x80, ldrun3_vscroll_w ),
 		/* 0x81 used too, don't know what for */
-	PORT_END
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( ldrun4_writeport )
-		{ 0x00, 0x00, irem_sound_cmd_w },
-		{ 0x01, 0x01, irem_flipscreen_w },	/* + coin counters */
-		{ 0x82, 0x83, ldrun4_hscroll_w },
-	PORT_END
+	public static IO_WritePort ldrun4_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, irem_sound_cmd_w ),
+		new IO_WritePort( 0x01, 0x01, irem_flipscreen_w ),	/* + coin counters */
+		new IO_WritePort( 0x82, 0x83, ldrun4_hscroll_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( kidniki_writeport )
-		{ 0x00, 0x00, irem_sound_cmd_w },
-		{ 0x01, 0x01, irem_flipscreen_w },	/* + coin counters */
-		{ 0x80, 0x81, irem_background_hscroll_w },
-		{ 0x82, 0x83, kidniki_text_vscroll_w },
-		{ 0x84, 0x84, kidniki_background_bank_w },
-		{ 0x85, 0x85, kidniki_bankswitch_w },
-	PORT_END
+	public static IO_WritePort kidniki_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, irem_sound_cmd_w ),
+		new IO_WritePort( 0x01, 0x01, irem_flipscreen_w ),	/* + coin counters */
+		new IO_WritePort( 0x80, 0x81, irem_background_hscroll_w ),
+		new IO_WritePort( 0x82, 0x83, kidniki_text_vscroll_w ),
+		new IO_WritePort( 0x84, 0x84, kidniki_background_bank_w ),
+		new IO_WritePort( 0x85, 0x85, kidniki_bankswitch_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	

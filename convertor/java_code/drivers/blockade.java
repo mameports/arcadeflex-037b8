@@ -217,18 +217,22 @@ public class blockade
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( readport )
-	    { 0x01, 0x01, blockade_input_port_0_r },
-	    { 0x02, 0x02, input_port_1_r },
-	    { 0x04, 0x04, input_port_2_r },
-	PORT_END
+	public static IO_ReadPort readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+	    new IO_ReadPort( 0x01, 0x01, blockade_input_port_0_r ),
+	    new IO_ReadPort( 0x02, 0x02, input_port_1_r ),
+	    new IO_ReadPort( 0x04, 0x04, input_port_2_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( writeport )
-	    { 0x01, 0x01, blockade_coin_latch_w },
-	    { 0x02, 0x02, blockade_sound_freq_w },
-	    { 0x04, 0x04, blockade_env_on_w },
-	    { 0x08, 0x08, blockade_env_off_w },
-	PORT_END
+	public static IO_WritePort writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+	    new IO_WritePort( 0x01, 0x01, blockade_coin_latch_w ),
+	    new IO_WritePort( 0x02, 0x02, blockade_sound_freq_w ),
+	    new IO_WritePort( 0x04, 0x04, blockade_env_on_w ),
+	    new IO_WritePort( 0x08, 0x08, blockade_env_off_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	/* These are not dip switches, they are mapped to */
 	/* connectors on the board.  Different games had  */

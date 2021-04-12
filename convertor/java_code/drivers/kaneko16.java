@@ -700,15 +700,19 @@ public class kaneko16
 	};
 	
 	
-	static PORT_READ_START( blazeon_sound_readport )
-		{ 0x03, 0x03, YM2151_status_port_0_r	},
-		{ 0x06, 0x06, soundlatch_r				},
-	PORT_END
+	public static IO_ReadPort blazeon_sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x03, 0x03, YM2151_status_port_0_r	),
+		new IO_ReadPort( 0x06, 0x06, soundlatch_r				),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( blazeon_sound_writeport )
-		{ 0x02, 0x02, YM2151_register_port_0_w	},
-		{ 0x03, 0x03, YM2151_data_port_0_w		},
-	PORT_END
+	public static IO_WritePort blazeon_sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x02, 0x02, YM2151_register_port_0_w	),
+		new IO_WritePort( 0x03, 0x03, YM2151_data_port_0_w		),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	

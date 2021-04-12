@@ -622,77 +622,91 @@ public class m72
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( readport )
-		{ 0x00, 0x00, input_port_0_r },
-		{ 0x01, 0x01, input_port_1_r },
-		{ 0x02, 0x02, input_port_2_r },
-		{ 0x03, 0x03, input_port_3_r },
-		{ 0x04, 0x04, input_port_4_r },
-		{ 0x05, 0x05, input_port_5_r },
-	PORT_END
+	public static IO_ReadPort readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, input_port_0_r ),
+		new IO_ReadPort( 0x01, 0x01, input_port_1_r ),
+		new IO_ReadPort( 0x02, 0x02, input_port_2_r ),
+		new IO_ReadPort( 0x03, 0x03, input_port_3_r ),
+		new IO_ReadPort( 0x04, 0x04, input_port_4_r ),
+		new IO_ReadPort( 0x05, 0x05, input_port_5_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_READ_START( poundfor_readport )
-		{ 0x02, 0x02, input_port_2_r },
-		{ 0x03, 0x03, input_port_3_r },
-		{ 0x04, 0x04, input_port_4_r },
-		{ 0x05, 0x05, input_port_5_r },
-		{ 0x08, 0x0f, poundfor_trackball_r },
-	PORT_END
+	public static IO_ReadPort poundfor_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x02, 0x02, input_port_2_r ),
+		new IO_ReadPort( 0x03, 0x03, input_port_3_r ),
+		new IO_ReadPort( 0x04, 0x04, input_port_4_r ),
+		new IO_ReadPort( 0x05, 0x05, input_port_5_r ),
+		new IO_ReadPort( 0x08, 0x0f, poundfor_trackball_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
 	
-	static PORT_WRITE_START( writeport )
-		{ 0x00, 0x01, m72_sound_command_w },
-		{ 0x02, 0x03, m72_port02_w },	/* coin counters, reset sound cpu, other stuff? */
-		{ 0x04, 0x05, m72_spritectrl_w },
-		{ 0x06, 0x07, m72_irq_line_w },
-		{ 0x80, 0x81, m72_scrolly1_w },
-		{ 0x82, 0x83, m72_scrollx1_w },
-		{ 0x84, 0x85, m72_scrolly2_w },
-		{ 0x86, 0x87, m72_scrollx2_w },
-	/*	{ 0xc0, 0xc0      trigger sample, filled by init_ function */
-	PORT_END
+	public static IO_WritePort writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x01, m72_sound_command_w ),
+		new IO_WritePort( 0x02, 0x03, m72_port02_w ),	/* coin counters, reset sound cpu, other stuff? */
+		new IO_WritePort( 0x04, 0x05, m72_spritectrl_w ),
+		new IO_WritePort( 0x06, 0x07, m72_irq_line_w ),
+		new IO_WritePort( 0x80, 0x81, m72_scrolly1_w ),
+		new IO_WritePort( 0x82, 0x83, m72_scrollx1_w ),
+		new IO_WritePort( 0x84, 0x85, m72_scrolly2_w ),
+		new IO_WritePort( 0x86, 0x87, m72_scrollx2_w ),
+	/*	new IO_WritePort( 0xc0, 0xc0      trigger sample, filled by init_ function */
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( xmultipl_writeport )
-		{ 0x00, 0x01, m72_sound_command_w },
-		{ 0x02, 0x03, m72_port02_w },	/* coin counters, reset sound cpu, other stuff? */
-		{ 0x04, 0x04, hharry_spritectrl_w },
-		{ 0x06, 0x07, m72_irq_line_w },
-		{ 0x80, 0x81, m72_scrolly1_w },
-		{ 0x82, 0x83, m72_scrollx1_w },
-		{ 0x84, 0x85, m72_scrolly2_w },
-		{ 0x86, 0x87, m72_scrollx2_w },
-	/*	{ 0xc0, 0xc0      trigger sample, filled by init_ function */
-	PORT_END
+	public static IO_WritePort xmultipl_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x01, m72_sound_command_w ),
+		new IO_WritePort( 0x02, 0x03, m72_port02_w ),	/* coin counters, reset sound cpu, other stuff? */
+		new IO_WritePort( 0x04, 0x04, hharry_spritectrl_w ),
+		new IO_WritePort( 0x06, 0x07, m72_irq_line_w ),
+		new IO_WritePort( 0x80, 0x81, m72_scrolly1_w ),
+		new IO_WritePort( 0x82, 0x83, m72_scrollx1_w ),
+		new IO_WritePort( 0x84, 0x85, m72_scrolly2_w ),
+		new IO_WritePort( 0x86, 0x87, m72_scrollx2_w ),
+	/*	new IO_WritePort( 0xc0, 0xc0      trigger sample, filled by init_ function */
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( rtype2_writeport )
-		{ 0x00, 0x01, m72_sound_command_w },
-		{ 0x02, 0x03, rtype2_port02_w },
-		{ 0x80, 0x81, m72_scrolly1_w },
-		{ 0x82, 0x83, m72_scrollx1_w },
-		{ 0x84, 0x85, m72_scrolly2_w },
-		{ 0x86, 0x87, m72_scrollx2_w },
-	PORT_END
+	public static IO_WritePort rtype2_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x01, m72_sound_command_w ),
+		new IO_WritePort( 0x02, 0x03, rtype2_port02_w ),
+		new IO_WritePort( 0x80, 0x81, m72_scrolly1_w ),
+		new IO_WritePort( 0x82, 0x83, m72_scrollx1_w ),
+		new IO_WritePort( 0x84, 0x85, m72_scrolly2_w ),
+		new IO_WritePort( 0x86, 0x87, m72_scrollx2_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( majtitle_writeport )
-		{ 0x00, 0x01, m72_sound_command_w },
-		{ 0x02, 0x03, rtype2_port02_w },
-		{ 0x80, 0x81, m72_scrolly1_w },
-		{ 0x82, 0x83, m72_scrollx1_w },
-		{ 0x84, 0x85, m72_scrolly2_w },
-		{ 0x86, 0x87, m72_scrollx2_w },
-		{ 0x8e, 0x8f, majtitle_gfx_ctrl_w },
-	PORT_END
+	public static IO_WritePort majtitle_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x01, m72_sound_command_w ),
+		new IO_WritePort( 0x02, 0x03, rtype2_port02_w ),
+		new IO_WritePort( 0x80, 0x81, m72_scrolly1_w ),
+		new IO_WritePort( 0x82, 0x83, m72_scrollx1_w ),
+		new IO_WritePort( 0x84, 0x85, m72_scrolly2_w ),
+		new IO_WritePort( 0x86, 0x87, m72_scrollx2_w ),
+		new IO_WritePort( 0x8e, 0x8f, majtitle_gfx_ctrl_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( hharry_writeport )
-		{ 0x00, 0x01, m72_sound_command_w },
-		{ 0x02, 0x03, rtype2_port02_w },	/* coin counters, reset sound cpu, other stuff? */
-		{ 0x04, 0x04, hharry_spritectrl_w },
-		{ 0x06, 0x07, m72_irq_line_w },
-		{ 0x80, 0x81, m72_scrolly1_w },
-		{ 0x82, 0x83, m72_scrollx1_w },
-		{ 0x84, 0x85, m72_scrolly2_w },
-		{ 0x86, 0x87, m72_scrollx2_w },
-	PORT_END
+	public static IO_WritePort hharry_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x01, m72_sound_command_w ),
+		new IO_WritePort( 0x02, 0x03, rtype2_port02_w ),	/* coin counters, reset sound cpu, other stuff? */
+		new IO_WritePort( 0x04, 0x04, hharry_spritectrl_w ),
+		new IO_WritePort( 0x06, 0x07, m72_irq_line_w ),
+		new IO_WritePort( 0x80, 0x81, m72_scrolly1_w ),
+		new IO_WritePort( 0x82, 0x83, m72_scrollx1_w ),
+		new IO_WritePort( 0x84, 0x85, m72_scrolly2_w ),
+		new IO_WritePort( 0x86, 0x87, m72_scrollx2_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	public static Memory_ReadAddress sound_readmem[]={
@@ -707,46 +721,58 @@ public class m72
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( sound_readport )
-		{ 0x01, 0x01, YM2151_status_port_0_r },
-		{ 0x02, 0x02, soundlatch_r },
-		{ 0x84, 0x84, m72_sample_r },
-	PORT_END
+	public static IO_ReadPort sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x01, 0x01, YM2151_status_port_0_r ),
+		new IO_ReadPort( 0x02, 0x02, soundlatch_r ),
+		new IO_ReadPort( 0x84, 0x84, m72_sample_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( sound_writeport )
-		{ 0x00, 0x00, YM2151_register_port_0_w },
-		{ 0x01, 0x01, YM2151_data_port_0_w },
-		{ 0x06, 0x06, m72_sound_irq_ack_w },
-		{ 0x82, 0x82, m72_sample_w },
-	PORT_END
+	public static IO_WritePort sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, YM2151_register_port_0_w ),
+		new IO_WritePort( 0x01, 0x01, YM2151_data_port_0_w ),
+		new IO_WritePort( 0x06, 0x06, m72_sound_irq_ack_w ),
+		new IO_WritePort( 0x82, 0x82, m72_sample_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_READ_START( rtype2_sound_readport )
-		{ 0x01, 0x01, YM2151_status_port_0_r },
-		{ 0x80, 0x80, soundlatch_r },
-		{ 0x84, 0x84, m72_sample_r },
-	PORT_END
+	public static IO_ReadPort rtype2_sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x01, 0x01, YM2151_status_port_0_r ),
+		new IO_ReadPort( 0x80, 0x80, soundlatch_r ),
+		new IO_ReadPort( 0x84, 0x84, m72_sample_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( rtype2_sound_writeport )
-		{ 0x00, 0x00, YM2151_register_port_0_w },
-		{ 0x01, 0x01, YM2151_data_port_0_w },
-		{ 0x80, 0x81, rtype2_sample_addr_w },
-		{ 0x82, 0x82, m72_sample_w },
-		{ 0x83, 0x83, m72_sound_irq_ack_w },
-	PORT_END
+	public static IO_WritePort rtype2_sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, YM2151_register_port_0_w ),
+		new IO_WritePort( 0x01, 0x01, YM2151_data_port_0_w ),
+		new IO_WritePort( 0x80, 0x81, rtype2_sample_addr_w ),
+		new IO_WritePort( 0x82, 0x82, m72_sample_w ),
+		new IO_WritePort( 0x83, 0x83, m72_sound_irq_ack_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_READ_START( poundfor_sound_readport )
-		{ 0x41, 0x41, YM2151_status_port_0_r },
-		{ 0x42, 0x42, soundlatch_r },
-	//	{ 0x84, 0x84, m72_sample_r },
-	PORT_END
+	public static IO_ReadPort poundfor_sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x41, 0x41, YM2151_status_port_0_r ),
+		new IO_ReadPort( 0x42, 0x42, soundlatch_r ),
+	//	new IO_ReadPort( 0x84, 0x84, m72_sample_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( poundfor_sound_writeport )
-		{ 0x40, 0x40, YM2151_register_port_0_w },
-		{ 0x41, 0x41, YM2151_data_port_0_w },
-		{ 0x42, 0x42, m72_sound_irq_ack_w },
-	//	{ 0x80, 0x81, _sample_addr_w },
-	//	{ 0x82, 0x82, m72_sample_w },
-	PORT_END
+	public static IO_WritePort poundfor_sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x40, 0x40, YM2151_register_port_0_w ),
+		new IO_WritePort( 0x41, 0x41, YM2151_data_port_0_w ),
+		new IO_WritePort( 0x42, 0x42, m72_sound_irq_ack_w ),
+	//	new IO_WritePort( 0x80, 0x81, _sample_addr_w ),
+	//	new IO_WritePort( 0x82, 0x82, m72_sample_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	

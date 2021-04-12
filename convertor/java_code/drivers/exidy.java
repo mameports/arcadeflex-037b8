@@ -306,13 +306,17 @@ public class exidy
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_WRITE_START( cvsd_iowrite )
-		{ 0x00, 0xff, mtrap_voiceio_w },
-	PORT_END
+	public static IO_WritePort cvsd_iowrite[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0xff, mtrap_voiceio_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_READ_START( cvsd_ioread )
-		{ 0x00, 0xff, mtrap_voiceio_r },
-	PORT_END
+	public static IO_ReadPort cvsd_ioread[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0xff, mtrap_voiceio_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	

@@ -181,15 +181,19 @@ public class skykid
 		return 0xff;
 	} };
 	
-	static PORT_READ_START( mcu_readport )
-		{ HD63701_PORT1, HD63701_PORT1, inputport_r },			/* input ports read */
-		{ HD63701_PORT2, HD63701_PORT2, readFF },	/* leds won't work otherwise */
-	PORT_END
+	public static IO_ReadPort mcu_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( HD63701_PORT1, HD63701_PORT1, inputport_r ),			/* input ports read */
+		new IO_ReadPort( HD63701_PORT2, HD63701_PORT2, readFF ),	/* leds won't work otherwise */
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( mcu_writeport )
-		{ HD63701_PORT1, HD63701_PORT1, inputport_select_w },	/* input port select */
-		{ HD63701_PORT2, HD63701_PORT2, skykid_led_w },			/* lamps */
-	PORT_END
+	public static IO_WritePort mcu_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( HD63701_PORT1, HD63701_PORT1, inputport_select_w ),	/* input port select */
+		new IO_WritePort( HD63701_PORT2, HD63701_PORT2, skykid_led_w ),			/* lamps */
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	static InputPortPtr input_ports_skykid = new InputPortPtr(){ public void handler() { 
 		PORT_START(); 	/* DSW A */

@@ -182,18 +182,22 @@ public class spacefb
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( readport )
-		{ 0x00, 0x00, input_port_0_r }, /* IN 0 */
-		{ 0x01, 0x01, input_port_1_r }, /* IN 1 */
-		{ 0x02, 0x02, input_port_2_r }, /* Coin - Start */
-		{ 0x03, 0x03, input_port_3_r }, /* DSW0 */
-	PORT_END
+	public static IO_ReadPort readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, input_port_0_r ), /* IN 0 */
+		new IO_ReadPort( 0x01, 0x01, input_port_1_r ), /* IN 1 */
+		new IO_ReadPort( 0x02, 0x02, input_port_2_r ), /* Coin - Start */
+		new IO_ReadPort( 0x03, 0x03, input_port_3_r ), /* DSW0 */
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( writeport )
-		{ 0x00, 0x00, spacefb_video_control_w },
-		{ 0x01, 0x01, spacefb_port_1_w },
-		{ 0x02, 0x02, spacefb_port_2_w },
-	PORT_END
+	public static IO_WritePort writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, spacefb_video_control_w ),
+		new IO_WritePort( 0x01, 0x01, spacefb_port_1_w ),
+		new IO_WritePort( 0x02, 0x02, spacefb_port_2_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress readmem_sound[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -207,15 +211,19 @@ public class spacefb
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( readport_sound )
-		{ I8039_p2, I8039_p2, spacefb_sh_p2_r },
-		{ I8039_t0, I8039_t0, spacefb_sh_t0_r },
-		{ I8039_t1, I8039_t1, spacefb_sh_t1_r },
-	PORT_END
+	public static IO_ReadPort readport_sound[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( I8039_p2, I8039_p2, spacefb_sh_p2_r ),
+		new IO_ReadPort( I8039_t0, I8039_t0, spacefb_sh_t0_r ),
+		new IO_ReadPort( I8039_t1, I8039_t1, spacefb_sh_t1_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( writeport_sound )
-		{ I8039_p1, I8039_p1, DAC_0_data_w },
-	PORT_END
+	public static IO_WritePort writeport_sound[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( I8039_p1, I8039_p1, DAC_0_data_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	static InputPortPtr input_ports_spacefb = new InputPortPtr(){ public void handler() { 

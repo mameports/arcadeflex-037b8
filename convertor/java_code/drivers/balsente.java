@@ -1337,19 +1337,23 @@ public class balsente
 	};
 	
 	
-	static PORT_READ_START( readport_cpu2 )
-		{ 0x00, 0x03, counter_8253_r },
-		{ 0x08, 0x0f, counter_state_r },
-	PORT_END
+	public static IO_ReadPort readport_cpu2[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x03, counter_8253_r ),
+		new IO_ReadPort( 0x08, 0x0f, counter_state_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
 	
-	static PORT_WRITE_START( writeport_cpu2 )
-		{ 0x00, 0x03, counter_8253_w },
-		{ 0x08, 0x09, counter_control_w },
-		{ 0x0a, 0x0b, dac_data_w },
-		{ 0x0c, 0x0d, register_addr_w },
-		{ 0x0e, 0x0f, chip_select_w },
-	PORT_END
+	public static IO_WritePort writeport_cpu2[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x03, counter_8253_w ),
+		new IO_WritePort( 0x08, 0x09, counter_control_w ),
+		new IO_WritePort( 0x0a, 0x0b, dac_data_w ),
+		new IO_WritePort( 0x0c, 0x0d, register_addr_w ),
+		new IO_WritePort( 0x0e, 0x0f, chip_select_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	

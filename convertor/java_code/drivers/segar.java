@@ -194,45 +194,57 @@ public class segar
 	};
 	
 	
-	static PORT_READ_START( readport )
-	//{0x3f, 0x3f, MRA_NOP }, /* Pig Newton - read from 1D87 */
-		{ 0x0e, 0x0e, monsterb_audio_8255_r },
-		{ 0x81, 0x81, input_port_8_r },     /* only used by Sindbad Mystery */
-		{ 0xf8, 0xfc, segar_ports_r },
-	PORT_END
+	public static IO_ReadPort readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+	//new IO_ReadPort(0x3f, 0x3f, MRA_NOP ), /* Pig Newton - read from 1D87 */
+		new IO_ReadPort( 0x0e, 0x0e, monsterb_audio_8255_r ),
+		new IO_ReadPort( 0x81, 0x81, input_port_8_r ),     /* only used by Sindbad Mystery */
+		new IO_ReadPort( 0xf8, 0xfc, segar_ports_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( astrob_writeport )
-		{ 0x38, 0x38, astrob_speech_port_w },
-		{ 0x3e, 0x3f, astrob_audio_ports_w },
-		{ 0xbf, 0xbf, segar_video_port_w }, /* bit0=cocktail flip, bit1=write to color RAM, bit2=always on? */
-	PORT_END
+	public static IO_WritePort astrob_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x38, 0x38, astrob_speech_port_w ),
+		new IO_WritePort( 0x3e, 0x3f, astrob_audio_ports_w ),
+		new IO_WritePort( 0xbf, 0xbf, segar_video_port_w ), /* bit0=cocktail flip, bit1=write to color RAM, bit2=always on? */
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( spaceod_writeport )
-		{ 0x08, 0x08, spaceod_back_port_w },
-		{ 0x09, 0x09, spaceod_backshift_clear_w },
-		{ 0x0a, 0x0a, spaceod_backshift_w },
-		{ 0x0b, 0x0c, spaceod_nobackfill_w }, /* I'm not sure what these ports really do */
-		{ 0x0d, 0x0d, spaceod_backfill_w },
-		{ 0x0e, 0x0f, spaceod_audio_ports_w },
-		{ 0xbf, 0xbf, segar_video_port_w }, /* bit0=cocktail flip, bit1=write to color RAM, bit2=always on? */
-	PORT_END
+	public static IO_WritePort spaceod_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x08, 0x08, spaceod_back_port_w ),
+		new IO_WritePort( 0x09, 0x09, spaceod_backshift_clear_w ),
+		new IO_WritePort( 0x0a, 0x0a, spaceod_backshift_w ),
+		new IO_WritePort( 0x0b, 0x0c, spaceod_nobackfill_w ), /* I'm not sure what these ports really do */
+		new IO_WritePort( 0x0d, 0x0d, spaceod_backfill_w ),
+		new IO_WritePort( 0x0e, 0x0f, spaceod_audio_ports_w ),
+		new IO_WritePort( 0xbf, 0xbf, segar_video_port_w ), /* bit0=cocktail flip, bit1=write to color RAM, bit2=always on? */
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( writeport_005 )
-		{ 0xbf, 0xbf, segar_video_port_w }, /* bit0=cocktail flip, bit1=write to color RAM, bit2=always on? */
-	PORT_END
+	public static IO_WritePort writeport_005[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0xbf, 0xbf, segar_video_port_w ), /* bit0=cocktail flip, bit1=write to color RAM, bit2=always on? */
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( monsterb_writeport )
-		{ 0x0c, 0x0f, monsterb_audio_8255_w },
-		{ 0xbc, 0xbc, monsterb_back_port_w },
-		{ 0xbf, 0xbf, segar_video_port_w }, /* bit0=cocktail flip, bit1=write to color RAM, bit2=always on? */
-	PORT_END
+	public static IO_WritePort monsterb_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x0c, 0x0f, monsterb_audio_8255_w ),
+		new IO_WritePort( 0xbc, 0xbc, monsterb_back_port_w ),
+		new IO_WritePort( 0xbf, 0xbf, segar_video_port_w ), /* bit0=cocktail flip, bit1=write to color RAM, bit2=always on? */
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( pignewt_writeport )
-		{ 0xb4, 0xb5, pignewt_back_color_w },   /* Just guessing */
-		{ 0xb8, 0xbc, pignewt_back_ports_w },   /* Just guessing */
-		{ 0xbe, 0xbe, MWA_NOP },    		/* probably some type of music register */
-		{ 0xbf, 0xbf, segar_video_port_w }, /* bit0=cocktail flip, bit1=write to color RAM, bit2=always on? */
-	PORT_END
+	public static IO_WritePort pignewt_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0xb4, 0xb5, pignewt_back_color_w ),   /* Just guessing */
+		new IO_WritePort( 0xb8, 0xbc, pignewt_back_ports_w ),   /* Just guessing */
+		new IO_WritePort( 0xbe, 0xbe, MWA_NOP ),    		/* probably some type of music register */
+		new IO_WritePort( 0xbf, 0xbf, segar_video_port_w ), /* bit0=cocktail flip, bit1=write to color RAM, bit2=always on? */
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	public static WriteHandlerPtr sindbadm_soundport_w = new WriteHandlerPtr() {public void handler(int offset, int data)
 	{
@@ -260,12 +272,14 @@ public class segar
 	} };
 	
 	
-	static PORT_WRITE_START( sindbadm_writeport )
-	//      { 0x00, 0x00, ???_w }, /* toggles on and off immediately (0x01, 0x00) */
-		{ 0x41, 0x41, sindbadm_back_port_w },
-		{ 0x43, 0x43, segar_video_port_w }, /* bit0=cocktail flip, bit1=write to color RAM, bit2=always on? */
-		{ 0x80, 0x80, sindbadm_soundport_w },    /* sound commands */
-	PORT_END
+	public static IO_WritePort sindbadm_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+	//      new IO_WritePort( 0x00, 0x00, ???_w ), /* toggles on and off immediately (0x01, 0x00) */
+		new IO_WritePort( 0x41, 0x41, sindbadm_back_port_w ),
+		new IO_WritePort( 0x43, 0x43, segar_video_port_w ), /* bit0=cocktail flip, bit1=write to color RAM, bit2=always on? */
+		new IO_WritePort( 0x80, 0x80, sindbadm_soundport_w ),    /* sound commands */
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	/***************************************************************************
@@ -296,20 +310,24 @@ public class segar
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( monsterb_7751_readport )
-		{ I8039_t1,  I8039_t1,  monsterb_sh_t1_r },
-		{ I8039_p2,  I8039_p2,  monsterb_sh_command_r },
-		{ I8039_bus, I8039_bus, monsterb_sh_rom_r },
-	PORT_END
+	public static IO_ReadPort monsterb_7751_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( I8039_t1,  I8039_t1,  monsterb_sh_t1_r ),
+		new IO_ReadPort( I8039_p2,  I8039_p2,  monsterb_sh_command_r ),
+		new IO_ReadPort( I8039_bus, I8039_bus, monsterb_sh_rom_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( monsterb_7751_writeport )
-		{ I8039_p1, I8039_p1, monsterb_sh_dac_w },
-		{ I8039_p2, I8039_p2, monsterb_sh_busy_w },
-		{ I8039_p4, I8039_p4, monsterb_sh_offset_a0_a3_w },
-		{ I8039_p5, I8039_p5, monsterb_sh_offset_a4_a7_w },
-		{ I8039_p6, I8039_p6, monsterb_sh_offset_a8_a11_w },
-		{ I8039_p7, I8039_p7, monsterb_sh_rom_select_w },
-	PORT_END
+	public static IO_WritePort monsterb_7751_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( I8039_p1, I8039_p1, monsterb_sh_dac_w ),
+		new IO_WritePort( I8039_p2, I8039_p2, monsterb_sh_busy_w ),
+		new IO_WritePort( I8039_p4, I8039_p4, monsterb_sh_offset_a0_a3_w ),
+		new IO_WritePort( I8039_p5, I8039_p5, monsterb_sh_offset_a4_a7_w ),
+		new IO_WritePort( I8039_p6, I8039_p6, monsterb_sh_offset_a8_a11_w ),
+		new IO_WritePort( I8039_p7, I8039_p7, monsterb_sh_rom_select_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress sindbadm_sound_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),

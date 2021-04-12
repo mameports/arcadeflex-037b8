@@ -419,55 +419,59 @@ public class punchout
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( readport )
-		{ 0x00, 0x00, input_port_0_r },
-		{ 0x01, 0x01, input_port_1_r },
-		{ 0x02, 0x02, input_port_2_r },
-		{ 0x03, 0x03, punchout_input_3_r },
+	public static IO_ReadPort readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, input_port_0_r ),
+		new IO_ReadPort( 0x01, 0x01, input_port_1_r ),
+		new IO_ReadPort( 0x02, 0x02, input_port_2_r ),
+		new IO_ReadPort( 0x03, 0x03, punchout_input_3_r ),
 	
 		/* protection ports */
-		{ 0x07, 0x07, spunchout_prot_0_r },
-		{ 0x17, 0x17, spunchout_prot_1_r },
-		{ 0x27, 0x27, spunchout_prot_2_r },
-		{ 0x37, 0x37, spunchout_prot_3_r },
-		{ 0x57, 0x57, spunchout_prot_5_r },
-		{ 0x67, 0x67, spunchout_prot_6_r },
-		{ 0x97, 0x97, spunchout_prot_9_r },
-		{ 0xa7, 0xa7, spunchout_prot_a_r },
-		{ 0xb7, 0xb7, spunchout_prot_b_r },
-		{ 0xc7, 0xc7, spunchout_prot_c_r },
-		/* { 0xf7, 0xf7, spunchout_prot_f_r }, */
-	PORT_END
+		new IO_ReadPort( 0x07, 0x07, spunchout_prot_0_r ),
+		new IO_ReadPort( 0x17, 0x17, spunchout_prot_1_r ),
+		new IO_ReadPort( 0x27, 0x27, spunchout_prot_2_r ),
+		new IO_ReadPort( 0x37, 0x37, spunchout_prot_3_r ),
+		new IO_ReadPort( 0x57, 0x57, spunchout_prot_5_r ),
+		new IO_ReadPort( 0x67, 0x67, spunchout_prot_6_r ),
+		new IO_ReadPort( 0x97, 0x97, spunchout_prot_9_r ),
+		new IO_ReadPort( 0xa7, 0xa7, spunchout_prot_a_r ),
+		new IO_ReadPort( 0xb7, 0xb7, spunchout_prot_b_r ),
+		new IO_ReadPort( 0xc7, 0xc7, spunchout_prot_c_r ),
+		/* new IO_ReadPort( 0xf7, 0xf7, spunchout_prot_f_r ), */
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( writeport )
-		{ 0x00, 0x01, IOWP_NOP },	/* the 2A03 #1 is not present */
-		{ 0x02, 0x02, soundlatch_w },
-		{ 0x03, 0x03, soundlatch2_w },
-		{ 0x04, 0x04, VLM5030_data_w },	/* VLM5030 */
-		{ 0x05, 0x05, IOWP_NOP },	/* unused */
-		{ 0x08, 0x08, interrupt_enable_w },
-		{ 0x09, 0x09, IOWP_NOP },	/* watchdog reset, seldom used because 08 clears the watchdog as well */
-		{ 0x0a, 0x0a, IOWP_NOP },	/* ?? */
-		{ 0x0b, 0x0b, punchout_2a03_reset_w },
-		{ 0x0c, 0x0c, punchout_speech_reset_w },	/* VLM5030 */
-		{ 0x0d, 0x0d, punchout_speech_st_w    },	/* VLM5030 */
-		{ 0x0e, 0x0e, punchout_speech_vcu_w   },	/* VLM5030 */
-		{ 0x0f, 0x0f, IOWP_NOP },	/* enable NVRAM ? */
+	public static IO_WritePort writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x01, IOWP_NOP ),	/* the 2A03 #1 is not present */
+		new IO_WritePort( 0x02, 0x02, soundlatch_w ),
+		new IO_WritePort( 0x03, 0x03, soundlatch2_w ),
+		new IO_WritePort( 0x04, 0x04, VLM5030_data_w ),	/* VLM5030 */
+		new IO_WritePort( 0x05, 0x05, IOWP_NOP ),	/* unused */
+		new IO_WritePort( 0x08, 0x08, interrupt_enable_w ),
+		new IO_WritePort( 0x09, 0x09, IOWP_NOP ),	/* watchdog reset, seldom used because 08 clears the watchdog as well */
+		new IO_WritePort( 0x0a, 0x0a, IOWP_NOP ),	/* ?? */
+		new IO_WritePort( 0x0b, 0x0b, punchout_2a03_reset_w ),
+		new IO_WritePort( 0x0c, 0x0c, punchout_speech_reset_w ),	/* VLM5030 */
+		new IO_WritePort( 0x0d, 0x0d, punchout_speech_st_w    ),	/* VLM5030 */
+		new IO_WritePort( 0x0e, 0x0e, punchout_speech_vcu_w   ),	/* VLM5030 */
+		new IO_WritePort( 0x0f, 0x0f, IOWP_NOP ),	/* enable NVRAM ? */
 	
-		{ 0x06, 0x06, IOWP_NOP},
+		new IO_WritePort( 0x06, 0x06, IOWP_NOP),
 	
 		/* protection ports */
-		{ 0x07, 0x07, spunchout_prot_0_w },
-		{ 0x17, 0x17, spunchout_prot_1_w },
-		{ 0x27, 0x27, spunchout_prot_2_w },
-		{ 0x37, 0x37, spunchout_prot_3_w },
-		{ 0x57, 0x57, spunchout_prot_5_w },
-		{ 0x67, 0x67, spunchout_prot_6_w },
-		{ 0xa7, 0xa7, spunchout_prot_a_w },
-		{ 0xb7, 0xb7, spunchout_prot_b_w },
-		{ 0xd7, 0xd7, spunchout_prot_d_w },
-		{ 0xf7, 0xf7, spunchout_prot_f_w },
-	PORT_END
+		new IO_WritePort( 0x07, 0x07, spunchout_prot_0_w ),
+		new IO_WritePort( 0x17, 0x17, spunchout_prot_1_w ),
+		new IO_WritePort( 0x27, 0x27, spunchout_prot_2_w ),
+		new IO_WritePort( 0x37, 0x37, spunchout_prot_3_w ),
+		new IO_WritePort( 0x57, 0x57, spunchout_prot_5_w ),
+		new IO_WritePort( 0x67, 0x67, spunchout_prot_6_w ),
+		new IO_WritePort( 0xa7, 0xa7, spunchout_prot_a_w ),
+		new IO_WritePort( 0xb7, 0xb7, spunchout_prot_b_w ),
+		new IO_WritePort( 0xd7, 0xd7, spunchout_prot_d_w ),
+		new IO_WritePort( 0xf7, 0xf7, spunchout_prot_f_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress sound_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),

@@ -148,44 +148,50 @@ public class astrocde
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( readport )
-		{ 0x08, 0x08, wow_intercept_r },
-		{ 0x0e, 0x0e, wow_video_retrace_r },
-		{ 0x10, 0x10, input_port_0_r },
-		{ 0x11, 0x11, input_port_1_r },
-	  	{ 0x12, 0x12, input_port_2_r },
-		{ 0x13, 0x13, input_port_3_r },
-	PORT_END
+	public static IO_ReadPort readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x08, 0x08, wow_intercept_r ),
+		new IO_ReadPort( 0x0e, 0x0e, wow_video_retrace_r ),
+		new IO_ReadPort( 0x10, 0x10, input_port_0_r ),
+		new IO_ReadPort( 0x11, 0x11, input_port_1_r ),
+	  	new IO_ReadPort( 0x12, 0x12, input_port_2_r ),
+		new IO_ReadPort( 0x13, 0x13, input_port_3_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( seawolf2_writeport )
-		{ 0x00, 0x07, astrocde_colour_register_w },
-		{ 0x08, 0x08, astrocde_mode_w },
-		{ 0x09, 0x09, astrocde_colour_split_w },
-		{ 0x0a, 0x0a, astrocde_vertical_blank_w },
-		{ 0x0b, 0x0b, astrocde_colour_block_w },
-		{ 0x0c, 0x0c, astrocde_magic_control_w },
-		{ 0x0d, 0x0d, interrupt_vector_w },
-		{ 0x0e, 0x0e, astrocde_interrupt_enable_w },
-		{ 0x0f, 0x0f, astrocde_interrupt_w },
-		{ 0x19, 0x19, astrocde_magic_expand_color_w },
-	PORT_END
-	static PORT_WRITE_START( writeport )
-		{ 0x00, 0x07, astrocde_colour_register_w },
-		{ 0x08, 0x08, astrocde_mode_w },
-		{ 0x09, 0x09, astrocde_colour_split_w },
-		{ 0x0a, 0x0a, astrocde_vertical_blank_w },
-		{ 0x0b, 0x0b, astrocde_colour_block_w },
-		{ 0x0c, 0x0c, astrocde_magic_control_w },
-		{ 0x0d, 0x0d, interrupt_vector_w },
-		{ 0x0e, 0x0e, astrocde_interrupt_enable_w },
-		{ 0x0f, 0x0f, astrocde_interrupt_w },
-		{ 0x10, 0x18, astrocade_sound1_w },
-		{ 0x19, 0x19, astrocde_magic_expand_color_w },
-		{ 0x50, 0x58, astrocade_sound2_w },
-		{ 0x5b, 0x5b, MWA_NOP }, /* speech board ? Wow always sets this to a5*/
-		{ 0x78, 0x7e, astrocde_pattern_board_w },
-	/*	{ 0xf8, 0xff, MWA_NOP }, */ /* Gorf uses these */
-	PORT_END
+	public static IO_WritePort seawolf2_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x07, astrocde_colour_register_w ),
+		new IO_WritePort( 0x08, 0x08, astrocde_mode_w ),
+		new IO_WritePort( 0x09, 0x09, astrocde_colour_split_w ),
+		new IO_WritePort( 0x0a, 0x0a, astrocde_vertical_blank_w ),
+		new IO_WritePort( 0x0b, 0x0b, astrocde_colour_block_w ),
+		new IO_WritePort( 0x0c, 0x0c, astrocde_magic_control_w ),
+		new IO_WritePort( 0x0d, 0x0d, interrupt_vector_w ),
+		new IO_WritePort( 0x0e, 0x0e, astrocde_interrupt_enable_w ),
+		new IO_WritePort( 0x0f, 0x0f, astrocde_interrupt_w ),
+		new IO_WritePort( 0x19, 0x19, astrocde_magic_expand_color_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
+	public static IO_WritePort writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x07, astrocde_colour_register_w ),
+		new IO_WritePort( 0x08, 0x08, astrocde_mode_w ),
+		new IO_WritePort( 0x09, 0x09, astrocde_colour_split_w ),
+		new IO_WritePort( 0x0a, 0x0a, astrocde_vertical_blank_w ),
+		new IO_WritePort( 0x0b, 0x0b, astrocde_colour_block_w ),
+		new IO_WritePort( 0x0c, 0x0c, astrocde_magic_control_w ),
+		new IO_WritePort( 0x0d, 0x0d, interrupt_vector_w ),
+		new IO_WritePort( 0x0e, 0x0e, astrocde_interrupt_enable_w ),
+		new IO_WritePort( 0x0f, 0x0f, astrocde_interrupt_w ),
+		new IO_WritePort( 0x10, 0x18, astrocade_sound1_w ),
+		new IO_WritePort( 0x19, 0x19, astrocde_magic_expand_color_w ),
+		new IO_WritePort( 0x50, 0x58, astrocade_sound2_w ),
+		new IO_WritePort( 0x5b, 0x5b, MWA_NOP ), /* speech board ? Wow always sets this to a5*/
+		new IO_WritePort( 0x78, 0x7e, astrocde_pattern_board_w ),
+	/*	new IO_WritePort( 0xf8, 0xff, MWA_NOP ), */ /* Gorf uses these */
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	

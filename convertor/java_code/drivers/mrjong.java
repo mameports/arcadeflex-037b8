@@ -54,18 +54,22 @@ public class mrjong
 		return 0x00;
 	} };
 	
-	static PORT_READ_START( readport )
-		{ 0x00, 0x00, input_port_0_r },		// Input 1
-		{ 0x01, 0x01, input_port_1_r },		// Input 2
-		{ 0x02, 0x02, input_port_2_r },		// DipSw 1
-		{ 0x03, 0x03, io_0x03_r },		// Unknown
-	PORT_END
+	public static IO_ReadPort readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x00, input_port_0_r ),		// Input 1
+		new IO_ReadPort( 0x01, 0x01, input_port_1_r ),		// Input 2
+		new IO_ReadPort( 0x02, 0x02, input_port_2_r ),		// DipSw 1
+		new IO_ReadPort( 0x03, 0x03, io_0x03_r ),		// Unknown
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( writeport )
-		{ 0x00, 0x00, io_0x00_w },
-		{ 0x01, 0x01, SN76496_0_w },
-		{ 0x02, 0x02, SN76496_1_w },
-	PORT_END
+	public static IO_WritePort writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, io_0x00_w ),
+		new IO_WritePort( 0x01, 0x01, SN76496_0_w ),
+		new IO_WritePort( 0x02, 0x02, SN76496_1_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	static InputPortPtr input_ports_mrjong = new InputPortPtr(){ public void handler() { 

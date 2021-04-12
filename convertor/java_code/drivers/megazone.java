@@ -162,14 +162,18 @@ public class megazone
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( sound_readport )
-		{ 0x00, 0x02, AY8910_read_port_0_r },
-	PORT_END
+	public static IO_ReadPort sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0x02, AY8910_read_port_0_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( sound_writeport )
-		{ 0x00, 0x00, AY8910_control_port_0_w },
-		{ 0x02, 0x02, AY8910_write_port_0_w },
-	PORT_END
+	public static IO_WritePort sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, AY8910_control_port_0_w ),
+		new IO_WritePort( 0x02, 0x02, AY8910_write_port_0_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress i8039_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -183,15 +187,19 @@ public class megazone
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( i8039_readport )
-		{ 0x00, 0xff, soundlatch_r },
-		{ 0x111,0x111, IORP_NOP },
-	PORT_END
+	public static IO_ReadPort i8039_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x00, 0xff, soundlatch_r ),
+		new IO_ReadPort( 0x111,0x111, IORP_NOP ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( i8039_writeport )
-		{ I8039_p1, I8039_p1, DAC_0_data_w },
-		{ I8039_p2, I8039_p2, i8039_irqen_and_status_w },
-	PORT_END
+	public static IO_WritePort i8039_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( I8039_p1, I8039_p1, DAC_0_data_w ),
+		new IO_WritePort( I8039_p2, I8039_p2, i8039_irqen_and_status_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	static InputPortPtr input_ports_megazone = new InputPortPtr(){ public void handler() { 
 		PORT_START();       /* IN0 */

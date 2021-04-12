@@ -164,17 +164,21 @@ public class thepit
 		new Memory_WriteAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static PORT_READ_START( sound_readport )
-		{ 0x8f, 0x8f, AY8910_read_port_0_r },
-	PORT_END
+	public static IO_ReadPort sound_readport[]={
+		new IO_ReadPort(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_ReadPort( 0x8f, 0x8f, AY8910_read_port_0_r ),
+		new IO_ReadPort(MEMPORT_MARKER, 0)
+	};
 	
-	static PORT_WRITE_START( sound_writeport )
-		{ 0x00, 0x00, soundlatch_clear_w },
-		{ 0x8c, 0x8c, AY8910_control_port_1_w },
-		{ 0x8d, 0x8d, AY8910_write_port_1_w },
-		{ 0x8e, 0x8e, AY8910_control_port_0_w },
-		{ 0x8f, 0x8f, AY8910_write_port_0_w },
-	PORT_END
+	public static IO_WritePort sound_writeport[]={
+		new IO_WritePort(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_IO | MEMPORT_WIDTH_8),
+		new IO_WritePort( 0x00, 0x00, soundlatch_clear_w ),
+		new IO_WritePort( 0x8c, 0x8c, AY8910_control_port_1_w ),
+		new IO_WritePort( 0x8d, 0x8d, AY8910_write_port_1_w ),
+		new IO_WritePort( 0x8e, 0x8e, AY8910_control_port_0_w ),
+		new IO_WritePort( 0x8f, 0x8f, AY8910_write_port_0_w ),
+		new IO_WritePort(MEMPORT_MARKER, 0)
+	};
 	
 	
 	static InputPortPtr input_ports_thepit = new InputPortPtr(){ public void handler() { 
