@@ -152,17 +152,19 @@ public class lasso
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem )
-		{ 0x0000, 0x03ff, MWA_RAM },
-		{ 0x0400, 0x0bff, lasso_videoram_w, &videoram },
-		{ 0x0c00, 0x0c7f, MWA_RAM, &spriteram },
-		{ 0x1000, 0x17ff, shareram_w },
-		{ 0x1800, 0x1800, lasso_sound_command_w },
-		{ 0x1801, 0x1801, lasso_backcolor_w },
-		{ 0x1802, 0x1802, lasso_cocktail_w },
-		{ 0x1806, 0x1806, MWA_NOP }, /* spurious write */
-		{ 0x8000, 0xffff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x03ff, MWA_RAM ),
+		new Memory_WriteAddress( 0x0400, 0x0bff, lasso_videoram_w, &videoram ),
+		new Memory_WriteAddress( 0x0c00, 0x0c7f, MWA_RAM, &spriteram ),
+		new Memory_WriteAddress( 0x1000, 0x17ff, shareram_w ),
+		new Memory_WriteAddress( 0x1800, 0x1800, lasso_sound_command_w ),
+		new Memory_WriteAddress( 0x1801, 0x1801, lasso_backcolor_w ),
+		new Memory_WriteAddress( 0x1802, 0x1802, lasso_cocktail_w ),
+		new Memory_WriteAddress( 0x1806, 0x1806, MWA_NOP ), /* spurious write */
+		new Memory_WriteAddress( 0x8000, 0xffff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress readmem_coprocessor[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -173,12 +175,14 @@ public class lasso
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem_coprocessor )
-		{ 0x0000, 0x07ff, MWA_RAM, &shareram },	/* code is executed from here */
-		{ 0x2000, 0x3fff, MWA_RAM, &lasso_vram },
-		{ 0x8000, 0x8fff, MWA_ROM },
-		{ 0xf000, 0xffff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress writemem_coprocessor[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x07ff, MWA_RAM, &shareram ),	/* code is executed from here */
+		new Memory_WriteAddress( 0x2000, 0x3fff, MWA_RAM, &lasso_vram ),
+		new Memory_WriteAddress( 0x8000, 0x8fff, MWA_ROM ),
+		new Memory_WriteAddress( 0xf000, 0xffff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress readmem_sound[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -190,13 +194,15 @@ public class lasso
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem_sound )
-		{ 0x0000, 0x01ff, MWA_RAM },
-		{ 0x5000, 0x7fff, MWA_ROM },
-		{ 0xb000, 0xb000, sound_data_w },
-		{ 0xb001, 0xb001, sound_select_w },
-		{ 0xf000, 0xffff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress writemem_sound[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x01ff, MWA_RAM ),
+		new Memory_WriteAddress( 0x5000, 0x7fff, MWA_ROM ),
+		new Memory_WriteAddress( 0xb000, 0xb000, sound_data_w ),
+		new Memory_WriteAddress( 0xb001, 0xb001, sound_select_w ),
+		new Memory_WriteAddress( 0xf000, 0xffff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	

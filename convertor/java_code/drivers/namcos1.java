@@ -169,21 +169,23 @@ public class namcos1
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( main_writemem )
-		{ 0x0000, 0x1fff, namcos1_0_banked_area0_w },
-		{ 0x2000, 0x3fff, namcos1_0_banked_area1_w },
-		{ 0x4000, 0x5fff, namcos1_0_banked_area2_w },
-		{ 0x6000, 0x7fff, namcos1_0_banked_area3_w },
-		{ 0x8000, 0x9fff, namcos1_0_banked_area4_w },
-		{ 0xa000, 0xbfff, namcos1_0_banked_area5_w },
-		{ 0xc000, 0xdfff, namcos1_0_banked_area6_w },
-		{ 0xe000, 0xefff, namcos1_bankswitch_w },
-		{ 0xf000, 0xf000, namcos1_cpu_control_w },
-		{ 0xf200, 0xf200, MWA_NOP }, /* watchdog? */
-	//	{ 0xf400, 0xf400, MWA_NOP }, /* unknown */
-	//	{ 0xf600, 0xf600, MWA_NOP }, /* unknown */
-		{ 0xfc00, 0xfc01, namcos1_subcpu_bank_w },
-	MEMORY_END
+	public static Memory_WriteAddress main_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x1fff, namcos1_0_banked_area0_w ),
+		new Memory_WriteAddress( 0x2000, 0x3fff, namcos1_0_banked_area1_w ),
+		new Memory_WriteAddress( 0x4000, 0x5fff, namcos1_0_banked_area2_w ),
+		new Memory_WriteAddress( 0x6000, 0x7fff, namcos1_0_banked_area3_w ),
+		new Memory_WriteAddress( 0x8000, 0x9fff, namcos1_0_banked_area4_w ),
+		new Memory_WriteAddress( 0xa000, 0xbfff, namcos1_0_banked_area5_w ),
+		new Memory_WriteAddress( 0xc000, 0xdfff, namcos1_0_banked_area6_w ),
+		new Memory_WriteAddress( 0xe000, 0xefff, namcos1_bankswitch_w ),
+		new Memory_WriteAddress( 0xf000, 0xf000, namcos1_cpu_control_w ),
+		new Memory_WriteAddress( 0xf200, 0xf200, MWA_NOP ), /* watchdog? */
+	//	new Memory_WriteAddress( 0xf400, 0xf400, MWA_NOP ), /* unknown */
+	//	new Memory_WriteAddress( 0xf600, 0xf600, MWA_NOP ), /* unknown */
+		new Memory_WriteAddress( 0xfc00, 0xfc01, namcos1_subcpu_bank_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress sub_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -198,20 +200,22 @@ public class namcos1
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( sub_writemem )
-		{ 0xe000, 0xefff, namcos1_bankswitch_w },
-		{ 0x0000, 0x1fff, namcos1_1_banked_area0_w },
-		{ 0x2000, 0x3fff, namcos1_1_banked_area1_w },
-		{ 0x4000, 0x5fff, namcos1_1_banked_area2_w },
-		{ 0x6000, 0x7fff, namcos1_1_banked_area3_w },
-		{ 0x8000, 0x9fff, namcos1_1_banked_area4_w },
-		{ 0xa000, 0xbfff, namcos1_1_banked_area5_w },
-		{ 0xc000, 0xdfff, namcos1_1_banked_area6_w },
-		{ 0xf000, 0xf000, MWA_NOP }, /* IO Chip */
-		{ 0xf200, 0xf200, MWA_NOP }, /* watchdog? */
-	//	{ 0xf400, 0xf400, MWA_NOP }, /* unknown */
-	//	{ 0xf600, 0xf600, MWA_NOP }, /* unknown */
-	MEMORY_END
+	public static Memory_WriteAddress sub_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0xe000, 0xefff, namcos1_bankswitch_w ),
+		new Memory_WriteAddress( 0x0000, 0x1fff, namcos1_1_banked_area0_w ),
+		new Memory_WriteAddress( 0x2000, 0x3fff, namcos1_1_banked_area1_w ),
+		new Memory_WriteAddress( 0x4000, 0x5fff, namcos1_1_banked_area2_w ),
+		new Memory_WriteAddress( 0x6000, 0x7fff, namcos1_1_banked_area3_w ),
+		new Memory_WriteAddress( 0x8000, 0x9fff, namcos1_1_banked_area4_w ),
+		new Memory_WriteAddress( 0xa000, 0xbfff, namcos1_1_banked_area5_w ),
+		new Memory_WriteAddress( 0xc000, 0xdfff, namcos1_1_banked_area6_w ),
+		new Memory_WriteAddress( 0xf000, 0xf000, MWA_NOP ), /* IO Chip */
+		new Memory_WriteAddress( 0xf200, 0xf200, MWA_NOP ), /* watchdog? */
+	//	new Memory_WriteAddress( 0xf400, 0xf400, MWA_NOP ), /* unknown */
+	//	new Memory_WriteAddress( 0xf600, 0xf600, MWA_NOP ), /* unknown */
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress sound_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -226,19 +230,21 @@ public class namcos1
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( sound_writemem )
-		{ 0x0000, 0x3fff, MWA_ROM },	/* Banked ROMs */
-		{ 0x4000, 0x4000, YM2151_register_port_0_w },
-		{ 0x4001, 0x4001, YM2151_data_port_0_w },
-		{ 0x5000, 0x50ff, namcos1_wavedata_w,&namco_wavedata }, /* PSG ( Shared ) */
-		{ 0x5100, 0x513f, namcos1_sound_w,&namco_soundregs },	/* PSG ( Shared ) */
-		{ 0x5140, 0x54ff, MWA_RAM },	/* Sound RAM 1 - ( Shared ) */
-		{ 0x7000, 0x77ff, MWA_BANK2 },	/* Sound RAM 2 - ( Shared ) */
-		{ 0x8000, 0x9fff, MWA_RAM },	/* Sound RAM 3 */
-		{ 0xc000, 0xc001, namcos1_sound_bankswitch_w }, /* bank selector */
-		{ 0xd001, 0xd001, MWA_NOP },	/* watchdog? */
-		{ 0xe000, 0xe000, MWA_NOP },	/* IRQ clear ? */
-	MEMORY_END
+	public static Memory_WriteAddress sound_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x3fff, MWA_ROM ),	/* Banked ROMs */
+		new Memory_WriteAddress( 0x4000, 0x4000, YM2151_register_port_0_w ),
+		new Memory_WriteAddress( 0x4001, 0x4001, YM2151_data_port_0_w ),
+		new Memory_WriteAddress( 0x5000, 0x50ff, namcos1_wavedata_w,&namco_wavedata ), /* PSG ( Shared ) */
+		new Memory_WriteAddress( 0x5100, 0x513f, namcos1_sound_w,&namco_soundregs ),	/* PSG ( Shared ) */
+		new Memory_WriteAddress( 0x5140, 0x54ff, MWA_RAM ),	/* Sound RAM 1 - ( Shared ) */
+		new Memory_WriteAddress( 0x7000, 0x77ff, MWA_BANK2 ),	/* Sound RAM 2 - ( Shared ) */
+		new Memory_WriteAddress( 0x8000, 0x9fff, MWA_RAM ),	/* Sound RAM 3 */
+		new Memory_WriteAddress( 0xc000, 0xc001, namcos1_sound_bankswitch_w ), /* bank selector */
+		new Memory_WriteAddress( 0xd001, 0xd001, MWA_NOP ),	/* watchdog? */
+		new Memory_WriteAddress( 0xe000, 0xe000, MWA_NOP ),	/* IRQ clear ? */
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static ReadHandlerPtr dsw_r  = new ReadHandlerPtr() { public int handler(int offset)
 	{
@@ -370,18 +376,20 @@ public class namcos1
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( mcu_writemem )
-		{ 0x0000, 0x001f, hd63701_internal_registers_w },
-		{ 0x0080, 0x00ff, MWA_RAM }, /* built in RAM */
-		{ 0x4000, 0xbfff, MWA_ROM },
-		{ 0xc000, 0xc000, namcos1_mcu_patch_w },
-		{ 0xc000, 0xc7ff, MWA_BANK3 },
-		{ 0xc800, 0xcfff, MWA_RAM, &nvram, &nvram_size }, /* EEPROM */
-		{ 0xd000, 0xd000, namcos1_dac0_w },
-		{ 0xd400, 0xd400, namcos1_dac1_w },
-		{ 0xd800, 0xd800, namcos1_mcu_bankswitch_w }, /* BANK selector */
-		{ 0xf000, 0xf000, MWA_NOP }, /* IRQ clear ? */
-	MEMORY_END
+	public static Memory_WriteAddress mcu_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x001f, hd63701_internal_registers_w ),
+		new Memory_WriteAddress( 0x0080, 0x00ff, MWA_RAM ), /* built in RAM */
+		new Memory_WriteAddress( 0x4000, 0xbfff, MWA_ROM ),
+		new Memory_WriteAddress( 0xc000, 0xc000, namcos1_mcu_patch_w ),
+		new Memory_WriteAddress( 0xc000, 0xc7ff, MWA_BANK3 ),
+		new Memory_WriteAddress( 0xc800, 0xcfff, MWA_RAM, &nvram, &nvram_size ), /* EEPROM */
+		new Memory_WriteAddress( 0xd000, 0xd000, namcos1_dac0_w ),
+		new Memory_WriteAddress( 0xd400, 0xd400, namcos1_dac1_w ),
+		new Memory_WriteAddress( 0xd800, 0xd800, namcos1_mcu_bankswitch_w ), /* BANK selector */
+		new Memory_WriteAddress( 0xf000, 0xf000, MWA_NOP ), /* IRQ clear ? */
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress quester_mcu_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),

@@ -120,29 +120,31 @@ public class tsamurai
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem )
-		{ 0x0000, 0xbfff, MWA_ROM },
-		{ 0xc000, 0xcfff, MWA_RAM },
+	public static Memory_WriteAddress writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0xbfff, MWA_ROM ),
+		new Memory_WriteAddress( 0xc000, 0xcfff, MWA_RAM ),
 	
-		{ 0xe000, 0xe3ff, tsamurai_fg_videoram_w, &videoram },
-		{ 0xe400, 0xe43f, tsamurai_fg_colorram_w, &colorram },    // nogi
-		{ 0xe440, 0xe7ff, MWA_RAM },
-		{ 0xe800, 0xefff, tsamurai_bg_videoram_w, &tsamurai_videoram },
-		{ 0xf000, 0xf3ff, MWA_RAM, &spriteram },
+		new Memory_WriteAddress( 0xe000, 0xe3ff, tsamurai_fg_videoram_w, &videoram ),
+		new Memory_WriteAddress( 0xe400, 0xe43f, tsamurai_fg_colorram_w, &colorram ),    // nogi
+		new Memory_WriteAddress( 0xe440, 0xe7ff, MWA_RAM ),
+		new Memory_WriteAddress( 0xe800, 0xefff, tsamurai_bg_videoram_w, &tsamurai_videoram ),
+		new Memory_WriteAddress( 0xf000, 0xf3ff, MWA_RAM, &spriteram ),
 	
-		{ 0xf400, 0xf400, MWA_NOP },
-		{ 0xf401, 0xf401, sound_command1_w },
-		{ 0xf402, 0xf402, sound_command2_w },
+		new Memory_WriteAddress( 0xf400, 0xf400, MWA_NOP ),
+		new Memory_WriteAddress( 0xf401, 0xf401, sound_command1_w ),
+		new Memory_WriteAddress( 0xf402, 0xf402, sound_command2_w ),
 	
-		{ 0xf801, 0xf801, tsamurai_bgcolor_w },
-		{ 0xf802, 0xf802, tsamurai_scrolly_w },
-		{ 0xf803, 0xf803, tsamurai_scrollx_w },
+		new Memory_WriteAddress( 0xf801, 0xf801, tsamurai_bgcolor_w ),
+		new Memory_WriteAddress( 0xf802, 0xf802, tsamurai_scrolly_w ),
+		new Memory_WriteAddress( 0xf803, 0xf803, tsamurai_scrollx_w ),
 	
-		{ 0xfc00, 0xfc00, flip_screen_w },
-		{ 0xfc01, 0xfc01, nmi_enable_w },
-		{ 0xfc02, 0xfc02, tsamurai_textbank_w },
-		{ 0xfc03, 0xfc04, tsamurai_coin_counter_w },
-	MEMORY_END
+		new Memory_WriteAddress( 0xfc00, 0xfc00, flip_screen_w ),
+		new Memory_WriteAddress( 0xfc01, 0xfc01, nmi_enable_w ),
+		new Memory_WriteAddress( 0xfc02, 0xfc02, tsamurai_textbank_w ),
+		new Memory_WriteAddress( 0xfc03, 0xfc04, tsamurai_coin_counter_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static PORT_WRITE_START( z80_writeport )
 		{ 0x00, 0x00, AY8910_control_port_0_w },
@@ -170,12 +172,14 @@ public class tsamurai
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem_sound1 )
-		{ 0x0000, 0x3fff, MWA_ROM },
-		{ 0x6001, 0x6001, MWA_NOP }, /* ? */
-		{ 0x6002, 0x6002, sound_out1_w },
-		{ 0x7f00, 0x7fff, MWA_RAM },
-	MEMORY_END
+	public static Memory_WriteAddress writemem_sound1[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x3fff, MWA_ROM ),
+		new Memory_WriteAddress( 0x6001, 0x6001, MWA_NOP ), /* ? */
+		new Memory_WriteAddress( 0x6002, 0x6002, sound_out1_w ),
+		new Memory_WriteAddress( 0x7f00, 0x7fff, MWA_RAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/*******************************************************************************/
 	public static ReadHandlerPtr sound_command2_r  = new ReadHandlerPtr() { public int handler(int offset){
 		return sound_command2;
@@ -193,12 +197,14 @@ public class tsamurai
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem_sound2 )
-		{ 0x0000, 0x3fff, MWA_ROM },
-		{ 0x6001, 0x6001, MWA_NOP }, /* ? */
-		{ 0x6002, 0x6002, sound_out2_w },
-		{ 0x7f00, 0x7fff, MWA_RAM },
-	MEMORY_END
+	public static Memory_WriteAddress writemem_sound2[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x3fff, MWA_ROM ),
+		new Memory_WriteAddress( 0x6001, 0x6001, MWA_NOP ), /* ? */
+		new Memory_WriteAddress( 0x6002, 0x6002, sound_out2_w ),
+		new Memory_WriteAddress( 0x7f00, 0x7fff, MWA_RAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/*******************************************************************************/
 	

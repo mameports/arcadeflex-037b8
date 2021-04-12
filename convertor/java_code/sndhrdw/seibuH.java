@@ -40,18 +40,20 @@ public static Memory_ReadAddress sound_readmem[]={
 	new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};														\
 				  													\
-static MEMORY_WRITE_START( sound_writemem )							\
-	{ 0x0000, 0x1fff, MWA_ROM },									\
-	{ 0x2000, 0x27ff, MWA_RAM },									\
-	{ 0x4000, 0x4000, seibu_soundclear_w },							\
-	{ 0x4002, 0x4002, seibu_rst10_ack_w }, 							\
-	{ 0x4003, 0x4003, seibu_rst18_ack_w }, 							\
-	{ 0x4007, 0x4007, seibu_bank_w },								\
-	{ 0x4008, 0x4008, YM3812_control_port_0_w },					\
-	{ 0x4009, 0x4009, YM3812_write_port_0_w },						\
-	{ 0x4018, 0x401f, seibu_main_data_w },							\
-	{ 0x6000, 0x6000, OKIM6295_data_0_w },							\
-MEMORY_END
+public static Memory_WriteAddress sound_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),						\
+	new Memory_WriteAddress( 0x0000, 0x1fff, MWA_ROM ),									\
+	new Memory_WriteAddress( 0x2000, 0x27ff, MWA_RAM ),									\
+	new Memory_WriteAddress( 0x4000, 0x4000, seibu_soundclear_w ),							\
+	new Memory_WriteAddress( 0x4002, 0x4002, seibu_rst10_ack_w ), 							\
+	new Memory_WriteAddress( 0x4003, 0x4003, seibu_rst18_ack_w ), 							\
+	new Memory_WriteAddress( 0x4007, 0x4007, seibu_bank_w ),								\
+	new Memory_WriteAddress( 0x4008, 0x4008, YM3812_control_port_0_w ),					\
+	new Memory_WriteAddress( 0x4009, 0x4009, YM3812_write_port_0_w ),						\
+	new Memory_WriteAddress( 0x4018, 0x401f, seibu_main_data_w ),							\
+	new Memory_WriteAddress( 0x6000, 0x6000, OKIM6295_data_0_w ),							\
+	new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 
 
 

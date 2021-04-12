@@ -81,17 +81,19 @@ public class popeye
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem )
-		{ 0x0000, 0x7fff, MWA_ROM },
-		{ 0x8000, 0x87ff, MWA_RAM },
-		{ 0x8c04, 0x8e7f, MWA_RAM, &spriteram, &spriteram_size },
-		{ 0x8f00, 0x8fff, MWA_RAM },
-		{ 0xa000, 0xa3ff, videoram_w, &videoram, &videoram_size },
-		{ 0xa400, 0xa7ff, colorram_w, &colorram },
-		{ 0xc000, 0xcfff, popeye_videoram_w, &popeye_videoram, &popeye_videoram_size },
-		{ 0x8c00, 0x8c01, MWA_RAM, &popeye_background_pos },
-		{ 0x8c03, 0x8c03, popeye_palettebank_w, &popeye_palette_bank },
-	MEMORY_END
+	public static Memory_WriteAddress writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x7fff, MWA_ROM ),
+		new Memory_WriteAddress( 0x8000, 0x87ff, MWA_RAM ),
+		new Memory_WriteAddress( 0x8c04, 0x8e7f, MWA_RAM, &spriteram, &spriteram_size ),
+		new Memory_WriteAddress( 0x8f00, 0x8fff, MWA_RAM ),
+		new Memory_WriteAddress( 0xa000, 0xa3ff, videoram_w, &videoram, &videoram_size ),
+		new Memory_WriteAddress( 0xa400, 0xa7ff, colorram_w, &colorram ),
+		new Memory_WriteAddress( 0xc000, 0xcfff, popeye_videoram_w, &popeye_videoram, &popeye_videoram_size ),
+		new Memory_WriteAddress( 0x8c00, 0x8c01, MWA_RAM, &popeye_background_pos ),
+		new Memory_WriteAddress( 0x8c03, 0x8c03, popeye_palettebank_w, &popeye_palette_bank ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	

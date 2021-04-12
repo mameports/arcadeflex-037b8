@@ -325,16 +325,18 @@ public class twin16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem_sound )
-		{ 0x0000, 0x7fff, MWA_ROM },
-		{ 0x8000, 0x8fff, MWA_RAM },
-		{ 0x9000, 0x9000, twin16_sres_w },
-		{ 0xb000, 0xb00d, K007232_write_port_0_w  },
-		{ 0xc000, 0xc000, YM2151_register_port_0_w },
-		{ 0xc001, 0xc001, YM2151_data_port_0_w },
-		{ 0xd000, 0xd000, UPD7759_0_message_w },
-		{ 0xe000, 0xe000, twin16_UPD7759_start_w },	// Changed by Takahiro Nogi. (1999/10/27)
-	MEMORY_END
+	public static Memory_WriteAddress writemem_sound[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x7fff, MWA_ROM ),
+		new Memory_WriteAddress( 0x8000, 0x8fff, MWA_RAM ),
+		new Memory_WriteAddress( 0x9000, 0x9000, twin16_sres_w ),
+		new Memory_WriteAddress( 0xb000, 0xb00d, K007232_write_port_0_w  ),
+		new Memory_WriteAddress( 0xc000, 0xc000, YM2151_register_port_0_w ),
+		new Memory_WriteAddress( 0xc001, 0xc001, YM2151_data_port_0_w ),
+		new Memory_WriteAddress( 0xd000, 0xd000, UPD7759_0_message_w ),
+		new Memory_WriteAddress( 0xe000, 0xe000, twin16_UPD7759_start_w ),	// Changed by Takahiro Nogi. (1999/10/27)
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/******************************************************************************************/
 	
@@ -353,21 +355,23 @@ public class twin16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x040000, 0x043fff, COMRAM_w },
-		{ 0x060000, 0x063fff, WORKRAM_CPUA_w },
-		{ 0x080000, 0x080fff, twin16_paletteram_w, &paletteram },
-		{ 0x081000, 0x081fff, MWA_NOP },
-		{ 0x0a0000, 0x0a0001, twin16_CPUA_register_w },
-		{ 0x0a0008, 0x0a0009, sound_command_w },
-		{ 0x0a0010, 0x0a0011, MWA_NOP }, /* watchdog */
-		{ 0x0b0000, 0x0b3fff, battery_backed_ram_w, &battery_backed_ram }, /* cuebrick only */
-		{ 0x0c0000, 0x0c000f, twin16_video_register_w },
-		{ 0x100000, 0x103fff, FIXRAM_w },
-		{ 0x120000, 0x123fff, VIDRAM_w, &videoram },
-		{ 0x140000, 0x143fff, OBJRAM_w, &spriteram },
-	MEMORY_END
+	public static Memory_WriteAddress writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x040000, 0x043fff, COMRAM_w ),
+		new Memory_WriteAddress( 0x060000, 0x063fff, WORKRAM_CPUA_w ),
+		new Memory_WriteAddress( 0x080000, 0x080fff, twin16_paletteram_w, &paletteram ),
+		new Memory_WriteAddress( 0x081000, 0x081fff, MWA_NOP ),
+		new Memory_WriteAddress( 0x0a0000, 0x0a0001, twin16_CPUA_register_w ),
+		new Memory_WriteAddress( 0x0a0008, 0x0a0009, sound_command_w ),
+		new Memory_WriteAddress( 0x0a0010, 0x0a0011, MWA_NOP ), /* watchdog */
+		new Memory_WriteAddress( 0x0b0000, 0x0b3fff, battery_backed_ram_w, &battery_backed_ram ), /* cuebrick only */
+		new Memory_WriteAddress( 0x0c0000, 0x0c000f, twin16_video_register_w ),
+		new Memory_WriteAddress( 0x100000, 0x103fff, FIXRAM_w ),
+		new Memory_WriteAddress( 0x120000, 0x123fff, VIDRAM_w, &videoram ),
+		new Memory_WriteAddress( 0x140000, 0x143fff, OBJRAM_w, &spriteram ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress readmem_sub[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -384,16 +388,18 @@ public class twin16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem_sub )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x040000, 0x043fff, COMRAM_w },
-		{ 0x060000, 0x063fff, WORKRAM_CPUB_w },
-		{ 0x0a0000, 0x0a0001, twin16_CPUB_register_w },
-		{ 0x400000, 0x403fff, OBJRAM_w },
-		{ 0x480000, 0x483fff, VIDRAM_w },
-		{ 0x500000, 0x53ffff, twin16_tile_gfx_ram_w },
-		{ 0x780000, 0x79ffff, twin16_sprite_gfx_ram_w },
-	MEMORY_END
+	public static Memory_WriteAddress writemem_sub[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x040000, 0x043fff, COMRAM_w ),
+		new Memory_WriteAddress( 0x060000, 0x063fff, WORKRAM_CPUB_w ),
+		new Memory_WriteAddress( 0x0a0000, 0x0a0001, twin16_CPUB_register_w ),
+		new Memory_WriteAddress( 0x400000, 0x403fff, OBJRAM_w ),
+		new Memory_WriteAddress( 0x480000, 0x483fff, VIDRAM_w ),
+		new Memory_WriteAddress( 0x500000, 0x53ffff, twin16_tile_gfx_ram_w ),
+		new Memory_WriteAddress( 0x780000, 0x79ffff, twin16_sprite_gfx_ram_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/******************************************************************************************/
 	
@@ -412,20 +418,22 @@ public class twin16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( fround_writemem )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x040000, 0x043fff, COMRAM_w },
-		{ 0x060000, 0x063fff, WORKRAM_CPUA_w },
-		{ 0x080000, 0x080fff, twin16_paletteram_w, &paletteram },
-		{ 0x0a0000, 0x0a0001, fround_CPU_register_w },
-		{ 0x0a0008, 0x0a0009, sound_command_w },
-		{ 0x0a0010, 0x0a0011, MWA_NOP }, /* watchdog */
-		{ 0x0c0000, 0x0c000f, twin16_video_register_w },
-		{ 0x0e0000, 0x0e0001, fround_gfx_bank_w },
-		{ 0x100000, 0x103fff, FIXRAM_w },
-		{ 0x120000, 0x123fff, VIDRAM_w, &videoram },
-		{ 0x140000, 0x143fff, OBJRAM_w, &spriteram },
-	MEMORY_END
+	public static Memory_WriteAddress fround_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x040000, 0x043fff, COMRAM_w ),
+		new Memory_WriteAddress( 0x060000, 0x063fff, WORKRAM_CPUA_w ),
+		new Memory_WriteAddress( 0x080000, 0x080fff, twin16_paletteram_w, &paletteram ),
+		new Memory_WriteAddress( 0x0a0000, 0x0a0001, fround_CPU_register_w ),
+		new Memory_WriteAddress( 0x0a0008, 0x0a0009, sound_command_w ),
+		new Memory_WriteAddress( 0x0a0010, 0x0a0011, MWA_NOP ), /* watchdog */
+		new Memory_WriteAddress( 0x0c0000, 0x0c000f, twin16_video_register_w ),
+		new Memory_WriteAddress( 0x0e0000, 0x0e0001, fround_gfx_bank_w ),
+		new Memory_WriteAddress( 0x100000, 0x103fff, FIXRAM_w ),
+		new Memory_WriteAddress( 0x120000, 0x123fff, VIDRAM_w, &videoram ),
+		new Memory_WriteAddress( 0x140000, 0x143fff, OBJRAM_w, &spriteram ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/******************************************************************************************/
 	

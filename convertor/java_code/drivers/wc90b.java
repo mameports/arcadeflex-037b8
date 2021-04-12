@@ -153,40 +153,44 @@ public class wc90b
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( wc90b_writemem1 )
-		{ 0x0000, 0x7fff, MWA_ROM },
-		{ 0x8000, 0x8075, MWA_RAM },
-		{ 0x8076, 0x8076, MWA_RAM, &wc90b_scroll1xlo },
-		{ 0x8077, 0x8077, MWA_RAM, &wc90b_scroll1xhi },
-		{ 0x8078, 0x8078, MWA_RAM, &wc90b_scroll1ylo },
-		{ 0x8079, 0x8079, MWA_RAM, &wc90b_scroll1yhi },
-		{ 0x807a, 0x807a, MWA_RAM, &wc90b_scroll2xlo },
-		{ 0x807b, 0x807b, MWA_RAM, &wc90b_scroll2xhi },
-		{ 0x807c, 0x807c, MWA_RAM, &wc90b_scroll2ylo },
-		{ 0x807d, 0x807d, MWA_RAM, &wc90b_scroll2yhi },
-		{ 0x807e, 0x9fff, MWA_RAM },
-		{ 0xa000, 0xa7ff, wc90b_tile_colorram_w, &wc90b_tile_colorram },
-		{ 0xa800, 0xafff, wc90b_tile_videoram_w, &wc90b_tile_videoram, &wc90b_tile_videoram_size },
-		{ 0xc000, 0xc7ff, wc90b_tile_colorram2_w, &wc90b_tile_colorram2 },
-		{ 0xc800, 0xcfff, wc90b_tile_videoram2_w, &wc90b_tile_videoram2, &wc90b_tile_videoram_size2 },
-		{ 0xe000, 0xe7ff, colorram_w, &colorram },
-		{ 0xe800, 0xefff, videoram_w, &videoram, &videoram_size },
-		{ 0xf000, 0xf7ff, MWA_ROM },
-		{ 0xf800, 0xfbff, wc90b_shared_w, &wc90b_shared },
-		{ 0xfc00, 0xfc00, wc90b_bankswitch_w },
-		{ 0xfd00, 0xfd00, wc90b_sound_command_w },
+	public static Memory_WriteAddress wc90b_writemem1[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x7fff, MWA_ROM ),
+		new Memory_WriteAddress( 0x8000, 0x8075, MWA_RAM ),
+		new Memory_WriteAddress( 0x8076, 0x8076, MWA_RAM, &wc90b_scroll1xlo ),
+		new Memory_WriteAddress( 0x8077, 0x8077, MWA_RAM, &wc90b_scroll1xhi ),
+		new Memory_WriteAddress( 0x8078, 0x8078, MWA_RAM, &wc90b_scroll1ylo ),
+		new Memory_WriteAddress( 0x8079, 0x8079, MWA_RAM, &wc90b_scroll1yhi ),
+		new Memory_WriteAddress( 0x807a, 0x807a, MWA_RAM, &wc90b_scroll2xlo ),
+		new Memory_WriteAddress( 0x807b, 0x807b, MWA_RAM, &wc90b_scroll2xhi ),
+		new Memory_WriteAddress( 0x807c, 0x807c, MWA_RAM, &wc90b_scroll2ylo ),
+		new Memory_WriteAddress( 0x807d, 0x807d, MWA_RAM, &wc90b_scroll2yhi ),
+		new Memory_WriteAddress( 0x807e, 0x9fff, MWA_RAM ),
+		new Memory_WriteAddress( 0xa000, 0xa7ff, wc90b_tile_colorram_w, &wc90b_tile_colorram ),
+		new Memory_WriteAddress( 0xa800, 0xafff, wc90b_tile_videoram_w, &wc90b_tile_videoram, &wc90b_tile_videoram_size ),
+		new Memory_WriteAddress( 0xc000, 0xc7ff, wc90b_tile_colorram2_w, &wc90b_tile_colorram2 ),
+		new Memory_WriteAddress( 0xc800, 0xcfff, wc90b_tile_videoram2_w, &wc90b_tile_videoram2, &wc90b_tile_videoram_size2 ),
+		new Memory_WriteAddress( 0xe000, 0xe7ff, colorram_w, &colorram ),
+		new Memory_WriteAddress( 0xe800, 0xefff, videoram_w, &videoram, &videoram_size ),
+		new Memory_WriteAddress( 0xf000, 0xf7ff, MWA_ROM ),
+		new Memory_WriteAddress( 0xf800, 0xfbff, wc90b_shared_w, &wc90b_shared ),
+		new Memory_WriteAddress( 0xfc00, 0xfc00, wc90b_bankswitch_w ),
+		new Memory_WriteAddress( 0xfd00, 0xfd00, wc90b_sound_command_w ),
 		/*  */
-	MEMORY_END
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
-	static MEMORY_WRITE_START( wc90b_writemem2 )
-		{ 0x0000, 0xbfff, MWA_ROM },
-		{ 0xc000, 0xcfff, MWA_RAM },
-		{ 0xd000, 0xd7ff, MWA_RAM, &spriteram, &spriteram_size },
-		{ 0xe000, 0xe7ff, paletteram_xxxxBBBBGGGGRRRR_swap_w, &paletteram },
-		{ 0xf000, 0xf7ff, MWA_ROM },
-		{ 0xf800, 0xfbff, wc90b_shared_w },
-		{ 0xfc00, 0xfc00, wc90b_bankswitch1_w },
-	MEMORY_END
+	public static Memory_WriteAddress wc90b_writemem2[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0xbfff, MWA_ROM ),
+		new Memory_WriteAddress( 0xc000, 0xcfff, MWA_RAM ),
+		new Memory_WriteAddress( 0xd000, 0xd7ff, MWA_RAM, &spriteram, &spriteram_size ),
+		new Memory_WriteAddress( 0xe000, 0xe7ff, paletteram_xxxxBBBBGGGGRRRR_swap_w, &paletteram ),
+		new Memory_WriteAddress( 0xf000, 0xf7ff, MWA_ROM ),
+		new Memory_WriteAddress( 0xf800, 0xfbff, wc90b_shared_w ),
+		new Memory_WriteAddress( 0xfc00, 0xfc00, wc90b_bankswitch1_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress sound_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -200,14 +204,16 @@ public class wc90b
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( sound_writemem )
-		{ 0x0000, 0xbfff, MWA_ROM },
-		{ 0xf000, 0xf7ff, MWA_RAM },
-		{ 0xe800, 0xe800, YM2203_control_port_0_w },
-		{ 0xe801, 0xe801, YM2203_write_port_0_w },
-		{ 0xec00, 0xec00, YM2203_control_port_1_w },
-		{ 0xec01, 0xec01, YM2203_write_port_1_w },
-	MEMORY_END
+	public static Memory_WriteAddress sound_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0xbfff, MWA_ROM ),
+		new Memory_WriteAddress( 0xf000, 0xf7ff, MWA_RAM ),
+		new Memory_WriteAddress( 0xe800, 0xe800, YM2203_control_port_0_w ),
+		new Memory_WriteAddress( 0xe801, 0xe801, YM2203_write_port_0_w ),
+		new Memory_WriteAddress( 0xec00, 0xec00, YM2203_control_port_1_w ),
+		new Memory_WriteAddress( 0xec01, 0xec01, YM2203_write_port_1_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static InputPortPtr input_ports_wc90b = new InputPortPtr(){ public void handler() { 
 		PORT_START(); 	/* IN0 bit 0-5 */

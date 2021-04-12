@@ -71,19 +71,21 @@ public class atetris
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem )
-		{ 0x0000, 0x0fff, MWA_RAM },
-		{ 0x1000, 0x1fff, videoram_w, &videoram, &videoram_size },
-		{ 0x2000, 0x20ff, paletteram_RRRGGGBB_w, &paletteram },
-		{ 0x2400, 0x25ff, MWA_RAM, &nvram, &nvram_size },
-		{ 0x2800, 0x280f, pokey1_w },
-		{ 0x2810, 0x281f, pokey2_w },
-		{ 0x3000, 0x3000, watchdog_reset_w },
-		{ 0x3400, 0x3400, MWA_NOP },  // EEPROM enable
-		{ 0x3800, 0x3800, MWA_NOP },  // ???
-		{ 0x3c00, 0x3c00, MWA_NOP },  // ???
-		{ 0x4000, 0xffff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x0fff, MWA_RAM ),
+		new Memory_WriteAddress( 0x1000, 0x1fff, videoram_w, &videoram, &videoram_size ),
+		new Memory_WriteAddress( 0x2000, 0x20ff, paletteram_RRRGGGBB_w, &paletteram ),
+		new Memory_WriteAddress( 0x2400, 0x25ff, MWA_RAM, &nvram, &nvram_size ),
+		new Memory_WriteAddress( 0x2800, 0x280f, pokey1_w ),
+		new Memory_WriteAddress( 0x2810, 0x281f, pokey2_w ),
+		new Memory_WriteAddress( 0x3000, 0x3000, watchdog_reset_w ),
+		new Memory_WriteAddress( 0x3400, 0x3400, MWA_NOP ),  // EEPROM enable
+		new Memory_WriteAddress( 0x3800, 0x3800, MWA_NOP ),  // ???
+		new Memory_WriteAddress( 0x3c00, 0x3c00, MWA_NOP ),  // ???
+		new Memory_WriteAddress( 0x4000, 0xffff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	static InputPortPtr input_ports_atetris = new InputPortPtr(){ public void handler() { 

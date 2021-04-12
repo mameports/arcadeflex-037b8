@@ -103,17 +103,19 @@ public class appoooh
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem )
-		{ 0x0000, 0xdfff, MWA_ROM },
-		{ 0xe000, 0xe7ff, MWA_RAM },
-		{ 0xe800, 0xefff, MWA_RAM }, /* RAM ? */
-		{ 0xf000, 0xf01f, MWA_RAM, &spriteram, &spriteram_size },
-		{ 0xf020, 0xf3ff, videoram_w, &videoram, &videoram_size },
-		{ 0xf420, 0xf7ff, colorram_w, &colorram },
-		{ 0xf800, 0xf81f, MWA_RAM, &appoooh_spriteram2 },
-		{ 0xf820, 0xfbff, appoooh_videoram2_w, &appoooh_videoram2 },
-		{ 0xfc20, 0xffff, appoooh_colorram2_w, &appoooh_colorram2 },
-	MEMORY_END
+	public static Memory_WriteAddress writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0xdfff, MWA_ROM ),
+		new Memory_WriteAddress( 0xe000, 0xe7ff, MWA_RAM ),
+		new Memory_WriteAddress( 0xe800, 0xefff, MWA_RAM ), /* RAM ? */
+		new Memory_WriteAddress( 0xf000, 0xf01f, MWA_RAM, &spriteram, &spriteram_size ),
+		new Memory_WriteAddress( 0xf020, 0xf3ff, videoram_w, &videoram, &videoram_size ),
+		new Memory_WriteAddress( 0xf420, 0xf7ff, colorram_w, &colorram ),
+		new Memory_WriteAddress( 0xf800, 0xf81f, MWA_RAM, &appoooh_spriteram2 ),
+		new Memory_WriteAddress( 0xf820, 0xfbff, appoooh_videoram2_w, &appoooh_videoram2 ),
+		new Memory_WriteAddress( 0xfc20, 0xffff, appoooh_colorram2_w, &appoooh_colorram2 ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static PORT_READ_START( readport )
 		{ 0x00, 0x00, input_port_0_r },	/* IN0 */

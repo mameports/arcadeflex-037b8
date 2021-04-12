@@ -80,14 +80,16 @@ public class m107
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem )
-		{ 0x00000, 0xbffff, MWA_ROM },
-		{ 0xd0000, 0xdffff, m107_vram_w, &m107_vram_data },
-		{ 0xe0000, 0xeffff, MWA_RAM, &m107_ram }, /* System ram */
-		{ 0xf8000, 0xf8fff, MWA_RAM, &spriteram },
-		{ 0xf9000, 0xf9fff, paletteram_xBBBBBGGGGGRRRRR_w, &paletteram },
-		{ 0xffff0, 0xfffff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x00000, 0xbffff, MWA_ROM ),
+		new Memory_WriteAddress( 0xd0000, 0xdffff, m107_vram_w, &m107_vram_data ),
+		new Memory_WriteAddress( 0xe0000, 0xeffff, MWA_RAM, &m107_ram ), /* System ram */
+		new Memory_WriteAddress( 0xf8000, 0xf8fff, MWA_RAM, &spriteram ),
+		new Memory_WriteAddress( 0xf9000, 0xf9fff, paletteram_xBBBBBGGGGGRRRRR_w, &paletteram ),
+		new Memory_WriteAddress( 0xffff0, 0xfffff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static PORT_READ_START( readport )
 		{ 0x00, 0x00, input_port_0_r }, /* Player 1 */
@@ -119,10 +121,12 @@ public class m107
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( sound_writemem )
-		{ 0x00000, 0x1ffff, MWA_ROM },
-		{ 0xffff0, 0xfffff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress sound_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x00000, 0x1ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0xffff0, 0xfffff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	#endif
 	
 	/******************************************************************************/

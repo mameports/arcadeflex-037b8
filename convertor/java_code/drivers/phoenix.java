@@ -72,14 +72,16 @@ public class phoenix
 	
 	#define WRITEMEM(GAMENAME)										\
 																	\
-	static MEMORY_WRITE_START( GAMENAME##_writemem )				\
-		{ 0x0000, 0x3fff, MWA_ROM },								\
-		{ 0x4000, 0x4fff, phoenix_paged_ram_w },  /* 2 pages selected by Bit 0 of the video register */ \
-		{ 0x5000, 0x53ff, phoenix_videoreg_w }, 					\
-		{ 0x5800, 0x5bff, phoenix_scroll_w },	/* the game sometimes writes at mirror addresses */ 	\
-		{ 0x6000, 0x63ff, GAMENAME##_sound_control_a_w },			\
-		{ 0x6800, 0x6bff, GAMENAME##_sound_control_b_w },			\
-	MEMORY_END
+	public static Memory_WriteAddress GAMENAME##_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),			\
+		new Memory_WriteAddress( 0x0000, 0x3fff, MWA_ROM ),								\
+		new Memory_WriteAddress( 0x4000, 0x4fff, phoenix_paged_ram_w ),  /* 2 pages selected by Bit 0 of the video register */ \
+		new Memory_WriteAddress( 0x5000, 0x53ff, phoenix_videoreg_w ), 					\
+		new Memory_WriteAddress( 0x5800, 0x5bff, phoenix_scroll_w ),	/* the game sometimes writes at mirror addresses */ 	\
+		new Memory_WriteAddress( 0x6000, 0x63ff, GAMENAME##_sound_control_a_w ),			\
+		new Memory_WriteAddress( 0x6800, 0x6bff, GAMENAME##_sound_control_b_w ),			\
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	WRITEMEM(phoenix)
 	WRITEMEM(pleiads)

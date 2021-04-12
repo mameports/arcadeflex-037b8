@@ -488,10 +488,12 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( sound_writemem )
-		{ 0x0000, 0x7fff, MWA_ROM },
-		{ 0xf800, 0xffff, MWA_RAM },
-	MEMORY_END
+	public static Memory_WriteAddress sound_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x7fff, MWA_ROM ),
+		new Memory_WriteAddress( 0xf800, 0xffff, MWA_RAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static PORT_READ_START( sound_readport )
 		{ 0x01, 0x01, YM2151_status_port_0_r },
@@ -535,9 +537,11 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem_7751 )
-		{ 0x0000, 0x03ff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress writemem_7751[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x03ff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static PORT_READ_START( readport_7751 )
 		{ I8039_t1,  I8039_t1,  sys16_7751_sh_t1_r },
@@ -619,13 +623,15 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( sound_writemem_18 )
-		{ 0x0000, 0xbfff, MWA_ROM },
+	public static Memory_WriteAddress sound_writemem_18[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0xbfff, MWA_ROM ),
 		/**** D/A register ****/
-		{ 0xc000, 0xc008, RF5C68_reg_w },
-		{ 0xd000, 0xdfff, RF5C68_w },
-		{ 0xe000, 0xffff, MWA_RAM },	//??
-	MEMORY_END
+		new Memory_WriteAddress( 0xc000, 0xc008, RF5C68_reg_w ),
+		new Memory_WriteAddress( 0xd000, 0xdfff, RF5C68_w ),
+		new Memory_WriteAddress( 0xe000, 0xffff, MWA_RAM ),	//??
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static RF5C68interface rf5c68_interface = new RF5C68interface(
 	  //3580000 * 2,
@@ -1471,16 +1477,18 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( alexkidd_writemem )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc40000, 0xc40001, sound_command_nmi_w },
-		{ 0xc40002, 0xc40005, MWA_NOP },		//??
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress alexkidd_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sound_command_nmi_w ),
+		new Memory_WriteAddress( 0xc40002, 0xc40005, MWA_NOP ),		//??
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void alexkidd_update_proc( void ){
@@ -1698,16 +1706,18 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( aliensyn_writemem )
-		{ 0x000000, 0x02ffff, MWA_ROM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc00006, 0xc00007, sound_command_w },
-		{ 0xc40000, 0xc40001, sys16_coinctrl_w },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress aliensyn_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x02ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc00006, 0xc00007, sound_command_w ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sys16_coinctrl_w ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/***************************************************************************/
 	
@@ -1923,16 +1933,18 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( altbeast_writemem )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc40000, 0xc40001, sys16_coinctrl_w },
-		{ 0xfe0006, 0xfe0007, sound_command_w },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress altbeast_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sys16_coinctrl_w ),
+		new Memory_WriteAddress( 0xfe0006, 0xfe0007, sound_command_w ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/***************************************************************************/
 	
@@ -2110,19 +2122,21 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( astorm_writemem )
-		{ 0x000000, 0x07ffff, MWA_ROM },
-		{ 0x100000, 0x10ffff, MWA_TILERAM },
-		{ 0x110000, 0x110fff, MWA_TEXTRAM },
-		{ 0x140000, 0x140fff, MWA_PALETTERAM },
-		{ 0x200000, 0x200fff, MWA_SPRITERAM },
-		{ 0xa00006, 0xa00007, sound_command_nmi_w },
-		{ 0xa00000, 0xa0ffff, MWA_EXTRAM2 },
-		{ 0xc00000, 0xc0ffff, MWA_EXTRAM },
-		{ 0xc46600, 0xc46601, sys18_refreshenable_w },
-		{ 0xfe0020, 0xfe003f, MWA_NOP },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress astorm_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x07ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x100000, 0x10ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x110000, 0x110fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x140000, 0x140fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0x200000, 0x200fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0xa00006, 0xa00007, sound_command_nmi_w ),
+		new Memory_WriteAddress( 0xa00000, 0xa0ffff, MWA_EXTRAM2 ),
+		new Memory_WriteAddress( 0xc00000, 0xc0ffff, MWA_EXTRAM ),
+		new Memory_WriteAddress( 0xc46600, 0xc46601, sys18_refreshenable_w ),
+		new Memory_WriteAddress( 0xfe0020, 0xfe003f, MWA_NOP ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void astorm_update_proc( void ){
@@ -2372,17 +2386,19 @@ public class system16
 			YM2413_data_port_0_w(0,(data>>8)&0xff);
 	} };
 	
-	static MEMORY_WRITE_START( atomicp_writemem )
-		{ 0x000000, 0x01ffff, MWA_ROM },
-		{ 0x080000, 0x080003, atomicp_sound_w },
-		{ 0x3f0000, 0x3f0003, MWA_NOP },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x44ffff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc40000, 0xc40001, MWA_EXTRAM2 },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress atomicp_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x01ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x080000, 0x080003, atomicp_sound_w ),
+		new Memory_WriteAddress( 0x3f0000, 0x3f0003, MWA_NOP ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x44ffff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, MWA_EXTRAM2 ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	//	{ 0x0a, 0x0a, YM2413_register_port_0_w },
 	//	{ 0x0b, 0x0b, YM2413_data_port_0_w },
@@ -2641,18 +2657,20 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( aurail_writemem )
-		{ 0x000000, 0x0bffff, MWA_ROM },
-		{ 0x3f0000, 0x3fffff, MWA_EXTRAM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc40000, 0xc40001, sys16_coinctrl_w },
-		{ 0xfc0000, 0xfc0fff, MWA_EXTRAM3 },
-		{ 0xfe0006, 0xfe0007, sound_command_w },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress aurail_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x0bffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x3f0000, 0x3fffff, MWA_EXTRAM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sys16_coinctrl_w ),
+		new Memory_WriteAddress( 0xfc0000, 0xfc0fff, MWA_EXTRAM3 ),
+		new Memory_WriteAddress( 0xfe0006, 0xfe0007, sound_command_w ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void aurail_update_proc (void)
@@ -2876,17 +2894,19 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( bayroute_writemem )
-		{ 0x000000, 0x0bffff, MWA_ROM },
-		{ 0x500000, 0x503fff, MWA_EXTRAM3 },
-		{ 0x600000, 0x600fff, MWA_SPRITERAM },
-		{ 0x700000, 0x70ffff, MWA_TILERAM },
-		{ 0x710000, 0x710fff, MWA_TEXTRAM },
-		{ 0x800000, 0x800fff, MWA_PALETTERAM },
-		{ 0x900000, 0x900001, sys16_coinctrl_w },
-		{ 0xff0006, 0xff0007, sound_command_w },
+	public static Memory_WriteAddress bayroute_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x0bffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x500000, 0x503fff, MWA_EXTRAM3 ),
+		new Memory_WriteAddress( 0x600000, 0x600fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x700000, 0x70ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x710000, 0x710fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x800000, 0x800fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0x900000, 0x900001, sys16_coinctrl_w ),
+		new Memory_WriteAddress( 0xff0006, 0xff0007, sound_command_w ),
 	
-	MEMORY_END
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/***************************************************************************/
 	
@@ -3074,16 +3094,18 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( bodyslam_writemem )
-		{ 0x000000, 0x02ffff, MWA_ROM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc40000, 0xc40001, sound_command_nmi_w },
-		{ 0xc40002, 0xc40003, sys16_3d_coinctrl_w },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress bodyslam_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x02ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sound_command_nmi_w ),
+		new Memory_WriteAddress( 0xc40002, 0xc40003, sys16_3d_coinctrl_w ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void bodyslam_update_proc (void)
@@ -3263,17 +3285,19 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( dduxbl_writemem )
-		{ 0x000000, 0x0bffff, MWA_ROM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc40000, 0xc40001, sys16_coinctrl_w },
-		{ 0xc40006, 0xc40007, sound_command_w },
-		{ 0xc46000, 0xc4603f, MWA_EXTRAM2 },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress dduxbl_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x0bffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sys16_coinctrl_w ),
+		new Memory_WriteAddress( 0xc40006, 0xc40007, sound_command_w ),
+		new Memory_WriteAddress( 0xc46000, 0xc4603f, MWA_EXTRAM2 ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void dduxbl_update_proc( void ){
@@ -3462,18 +3486,20 @@ public class system16
 		eswat_tilebank0 = data;
 	} };
 	
-	static MEMORY_WRITE_START( eswat_writemem )
-		{ 0x000000, 0x07ffff, MWA_ROM },
-		{ 0x3e2000, 0x3e2001, eswat_tilebank0_w },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x418fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc42006, 0xc42007, sound_command_w },
-		{ 0xc40000, 0xc40001, sys16_coinctrl_w },
-		{ 0xc80000, 0xc80001, MWA_NOP },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress eswat_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x07ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x3e2000, 0x3e2001, eswat_tilebank0_w ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x418fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc42006, 0xc42007, sound_command_w ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sys16_coinctrl_w ),
+		new Memory_WriteAddress( 0xc80000, 0xc80001, MWA_NOP ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void eswat_update_proc( void ){
@@ -3620,17 +3646,19 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( fantzono_writemem )
-		{ 0x000000, 0x02ffff, MWA_ROM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc40000, 0xc40001, sound_command_nmi_w },
-		{ 0xc40000, 0xc40003, MWA_EXTRAM2 },
-		{ 0xc60000, 0xc60003, MWA_NOP },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress fantzono_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x02ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sound_command_nmi_w ),
+		new Memory_WriteAddress( 0xc40000, 0xc40003, MWA_EXTRAM2 ),
+		new Memory_WriteAddress( 0xc60000, 0xc60003, MWA_NOP ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress fantzone_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -3648,17 +3676,19 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( fantzone_writemem )
-		{ 0x000000, 0x02ffff, MWA_ROM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc40000, 0xc40001, sound_command_nmi_w },
-		{ 0xc40002, 0xc40003, sys16_3d_coinctrl_w },
-		{ 0xc60000, 0xc60003, MWA_NOP },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress fantzone_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x02ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sound_command_nmi_w ),
+		new Memory_WriteAddress( 0xc40002, 0xc40003, sys16_3d_coinctrl_w ),
+		new Memory_WriteAddress( 0xc60000, 0xc60003, MWA_NOP ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/***************************************************************************/
 	
@@ -3837,15 +3867,17 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( fpoint_writemem )
-		{ 0x000000, 0x01ffff, MWA_ROM },
-		{ 0x600006, 0x600007, sound_command_w },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress fpoint_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x01ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x600006, 0x600007, sound_command_w ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void fpoint_update_proc( void ){
@@ -4096,18 +4128,20 @@ public class system16
 		COMBINE_WORD_MEM(&sys16_workingram[0x2cfc],data);
 	} };
 	
-	static MEMORY_WRITE_START( goldnaxe_writemem )
-		{ 0x000000, 0x0bffff, MWA_ROM },
-		{ 0x100000, 0x10ffff, MWA_TILERAM },
-		{ 0x110000, 0x110fff, MWA_TEXTRAM },
-		{ 0x140000, 0x140fff, MWA_PALETTERAM },
-		{ 0x1f0000, 0x1f0003, MWA_EXTRAM },
-		{ 0x200000, 0x200fff, MWA_SPRITERAM },
-		{ 0xc40000, 0xc40001, sys16_coinctrl_w },
-		{ 0xc43000, 0xc43001, MWA_NOP },
-		{ 0xffecfc, 0xffecfd, ga_sound_command_w },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress goldnaxe_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x0bffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x100000, 0x10ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x110000, 0x110fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x140000, 0x140fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0x1f0000, 0x1f0003, MWA_EXTRAM ),
+		new Memory_WriteAddress( 0x200000, 0x200fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sys16_coinctrl_w ),
+		new Memory_WriteAddress( 0xc43000, 0xc43001, MWA_NOP ),
+		new Memory_WriteAddress( 0xffecfc, 0xffecfd, ga_sound_command_w ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void goldnaxe_update_proc( void ){
@@ -4326,20 +4360,22 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( goldnaxa_writemem )
-		{ 0x000000, 0x07ffff, MWA_ROM },
-		{ 0x100000, 0x10ffff, MWA_TILERAM },
-		{ 0x110000, 0x110fff, MWA_TEXTRAM },
-		{ 0x140000, 0x140fff, MWA_PALETTERAM },
-		{ 0x1e0000, 0x1e0009, ga_hardware_collision_w },
-		{ 0x1f0000, 0x1f0003, ga_hardware_multiplier_w },
-		{ 0x1f1000, 0x1f1009, ga_hardware_collision_w },
-		{ 0x1f2000, 0x1f2003, MWA_EXTRAM },
-		{ 0x200000, 0x200fff, MWA_SPRITERAM },
-		{ 0xc40000, 0xc40001, sys16_coinctrl_w },
-		{ 0xffecfc, 0xffecfd, ga_sound_command_w },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress goldnaxa_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x07ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x100000, 0x10ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x110000, 0x110fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x140000, 0x140fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0x1e0000, 0x1e0009, ga_hardware_collision_w ),
+		new Memory_WriteAddress( 0x1f0000, 0x1f0003, ga_hardware_multiplier_w ),
+		new Memory_WriteAddress( 0x1f1000, 0x1f1009, ga_hardware_collision_w ),
+		new Memory_WriteAddress( 0x1f2000, 0x1f2003, MWA_EXTRAM ),
+		new Memory_WriteAddress( 0x200000, 0x200fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sys16_coinctrl_w ),
+		new Memory_WriteAddress( 0xffecfc, 0xffecfd, ga_sound_command_w ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void goldnaxa_update_proc( void ){
@@ -4507,19 +4543,21 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( hwchamp_writemem )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x3f0000, 0x3fffff, MWA_EXTRAM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc40000, 0xc40001, hwc_ctrl1_w },
-		{ 0xc43020, 0xc43025, hwc_io_handles_w },
-		{ 0xc43034, 0xc43035, hwc_ctrl2_w },
-		{ 0xfe0006, 0xfe0007, sound_command_w },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress hwchamp_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x3f0000, 0x3fffff, MWA_EXTRAM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, hwc_ctrl1_w ),
+		new Memory_WriteAddress( 0xc43020, 0xc43025, hwc_io_handles_w ),
+		new Memory_WriteAddress( 0xc43034, 0xc43035, hwc_ctrl2_w ),
+		new Memory_WriteAddress( 0xfe0006, 0xfe0007, sound_command_w ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void hwchamp_update_proc( void ){
@@ -4726,16 +4764,18 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( mjleague_writemem )
-		{ 0x000000, 0x02ffff, MWA_ROM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc40000, 0xc40001, sound_command_nmi_w },
-		{ 0xc40002, 0xc40003, sys16_3d_coinctrl_w },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress mjleague_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x02ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sound_command_nmi_w ),
+		new Memory_WriteAddress( 0xc40002, 0xc40003, sys16_3d_coinctrl_w ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void mjleague_update_proc( void ){
@@ -4956,20 +4996,22 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( moonwalk_writemem )
-		{ 0x000000, 0x07ffff, MWA_ROM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc00000, 0xc0ffff, MWA_EXTRAM },
-		{ 0xc40006, 0xc40007, sound_command_nmi_w },
-		{ 0xc46600, 0xc46601, sys18_refreshenable_w },
-		{ 0xc46800, 0xc46801, MWA_EXTRAM3 },
-		{ 0xe40000, 0xe4ffff, MWA_EXTRAM2 },
-		{ 0xfe0000, 0xfeffff, MWA_EXTRAM4 },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress moonwalk_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x07ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc00000, 0xc0ffff, MWA_EXTRAM ),
+		new Memory_WriteAddress( 0xc40006, 0xc40007, sound_command_nmi_w ),
+		new Memory_WriteAddress( 0xc46600, 0xc46601, sys18_refreshenable_w ),
+		new Memory_WriteAddress( 0xc46800, 0xc46801, MWA_EXTRAM3 ),
+		new Memory_WriteAddress( 0xe40000, 0xe4ffff, MWA_EXTRAM2 ),
+		new Memory_WriteAddress( 0xfe0000, 0xfeffff, MWA_EXTRAM4 ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void moonwalk_update_proc( void ){
@@ -5233,16 +5275,18 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( passsht_writemem )
-		{ 0x000000, 0x01ffff, MWA_ROM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc42006, 0xc42007, sound_command_w },
-		{ 0xc40000, 0xc40001, sys16_coinctrl_w },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress passsht_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x01ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc42006, 0xc42007, sound_command_w ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sys16_coinctrl_w ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static int passht4b_io1_val;
 	static int passht4b_io2_val;
@@ -5312,16 +5356,18 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( passht4b_writemem )
-		{ 0x000000, 0x01ffff, MWA_ROM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc42006, 0xc42007, sound_command_w },
-		{ 0xc4600a, 0xc4600b, sys16_coinctrl_w },	/* coin counter doesn't work */
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress passht4b_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x01ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc42006, 0xc42007, sound_command_w ),
+		new Memory_WriteAddress( 0xc4600a, 0xc4600b, sys16_coinctrl_w ),	/* coin counter doesn't work */
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/***************************************************************************/
 	
@@ -5635,16 +5681,18 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( quartet_writemem )
-		{ 0x000000, 0x02ffff, MWA_ROM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc40000, 0xc40001, sound_command_nmi_w },
-		{ 0xc40002, 0xc40003, sys16_3d_coinctrl_w },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress quartet_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x02ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sound_command_nmi_w ),
+		new Memory_WriteAddress( 0xc40002, 0xc40003, sys16_3d_coinctrl_w ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void quartet_update_proc( void ){
@@ -5816,16 +5864,18 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( quartet2_writemem )
-		{ 0x000000, 0x02ffff, MWA_ROM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc40000, 0xc40001, sound_command_nmi_w },
-		{ 0xc40002, 0xc40003, sys16_3d_coinctrl_w },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress quartet2_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x02ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sound_command_nmi_w ),
+		new Memory_WriteAddress( 0xc40002, 0xc40003, sys16_3d_coinctrl_w ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void quartet2_update_proc( void ){
@@ -5953,18 +6003,20 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( riotcity_writemem )
-		{ 0x000000, 0x0bffff, MWA_ROM },
-		{ 0x3f0000, 0x3fffff, MWA_EXTRAM },
-		{ 0xf00006, 0xf00007, sound_command_w },
-		{ 0xf20000, 0xf20fff, MWA_EXTRAM3 },
-		{ 0xf40000, 0xf40fff, MWA_SPRITERAM },
-		{ 0xf60000, 0xf60fff, MWA_PALETTERAM },
-		{ 0xf80000, 0xf80001, sys16_coinctrl_w },
-		{ 0xfa0000, 0xfaffff, MWA_TILERAM },
-		{ 0xfb0000, 0xfb0fff, MWA_TEXTRAM },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress riotcity_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x0bffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x3f0000, 0x3fffff, MWA_EXTRAM ),
+		new Memory_WriteAddress( 0xf00006, 0xf00007, sound_command_w ),
+		new Memory_WriteAddress( 0xf20000, 0xf20fff, MWA_EXTRAM3 ),
+		new Memory_WriteAddress( 0xf40000, 0xf40fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0xf60000, 0xf60fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xf80000, 0xf80001, sys16_coinctrl_w ),
+		new Memory_WriteAddress( 0xfa0000, 0xfaffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0xfb0000, 0xfb0fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void riotcity_update_proc (void)
@@ -6124,16 +6176,18 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( sdi_writemem )
-		{ 0x000000, 0x02ffff, MWA_ROM },
-		{ 0x123406, 0x123407, sound_command_w },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc40000, 0xc40001, sys16_coinctrl_w },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress sdi_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x02ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x123406, 0x123407, sound_command_w ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sys16_coinctrl_w ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void sdi_update_proc( void ){
@@ -6287,18 +6341,20 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( shdancer_writemem )
-		{ 0x000000, 0x07ffff, MWA_ROM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc00000, 0xc00007, MWA_EXTRAM },
-		{ 0xe4001c, 0xe4001d, sys18_refreshenable_w },
-		{ 0xe43034, 0xe43035, MWA_NOP },
-		{ 0xfe0006, 0xfe0007, sound_command_nmi_w },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress shdancer_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x07ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc00000, 0xc00007, MWA_EXTRAM ),
+		new Memory_WriteAddress( 0xe4001c, 0xe4001d, sys18_refreshenable_w ),
+		new Memory_WriteAddress( 0xe43034, 0xe43035, MWA_NOP ),
+		new Memory_WriteAddress( 0xfe0006, 0xfe0007, sound_command_nmi_w ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void shdancer_update_proc( void ){
@@ -6487,19 +6543,21 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( shdancbl_writemem )
-		{ 0x000000, 0x07ffff, MWA_ROM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc00000, 0xc00007, MWA_EXTRAM },
-	//	{ 0xc40000, 0xc4ffff, MWA_EXTRAM3 },
-		{ 0xe4001c, 0xe4001d, sys18_refreshenable_w },
-		{ 0xe43034, 0xe43035, MWA_NOP },
-		{ 0xfe0006, 0xfe0007, sound_command_nmi_w },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress shdancbl_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x07ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc00000, 0xc00007, MWA_EXTRAM ),
+	//	new Memory_WriteAddress( 0xc40000, 0xc4ffff, MWA_EXTRAM3 ),
+		new Memory_WriteAddress( 0xe4001c, 0xe4001d, sys18_refreshenable_w ),
+		new Memory_WriteAddress( 0xe43034, 0xe43035, MWA_NOP ),
+		new Memory_WriteAddress( 0xfe0006, 0xfe0007, sound_command_nmi_w ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void shdancbl_update_proc( void ){
@@ -6697,17 +6755,19 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( shinobi_writemem )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc40000, 0xc40001, sys16_coinctrl_w },
-		{ 0xc43000, 0xc43001, MWA_NOP },
-		{ 0xfe0006, 0xfe0007, sound_command_w },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress shinobi_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sys16_coinctrl_w ),
+		new Memory_WriteAddress( 0xc43000, 0xc43001, MWA_NOP ),
+		new Memory_WriteAddress( 0xfe0006, 0xfe0007, sound_command_w ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/***************************************************************************/
 	
@@ -6867,16 +6927,18 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( shinobl_writemem )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc40000, 0xc40001, sound_command_nmi_w },
-		{ 0xc40002, 0xc40003, sys16_3d_coinctrl_w },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress shinobl_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sound_command_nmi_w ),
+		new Memory_WriteAddress( 0xc40002, 0xc40003, sys16_3d_coinctrl_w ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/***************************************************************************/
 	
@@ -6991,19 +7053,21 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( tetris_writemem )
-		{ 0x000000, 0x01ffff, MWA_ROM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x418000, 0x41803f, MWA_EXTRAM2 },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc40000, 0xc40001, sys16_coinctrl_w },
-		{ 0xc42006, 0xc42007, sound_command_w },
-		{ 0xc43034, 0xc43035, MWA_NOP },
-		{ 0xc80000, 0xc80001, MWA_NOP },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress tetris_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x01ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x418000, 0x41803f, MWA_EXTRAM2 ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sys16_coinctrl_w ),
+		new Memory_WriteAddress( 0xc42006, 0xc42007, sound_command_w ),
+		new Memory_WriteAddress( 0xc43034, 0xc43035, MWA_NOP ),
+		new Memory_WriteAddress( 0xc80000, 0xc80001, MWA_NOP ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void tetris_update_proc( void ){
@@ -7127,16 +7191,18 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( timscanr_writemem )
-		{ 0x000000, 0x02ffff, MWA_ROM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc40000, 0xc40001, sys16_coinctrl_w },
-		{ 0xfe0006, 0xfe0007, sound_command_w },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress timscanr_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x02ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sys16_coinctrl_w ),
+		new Memory_WriteAddress( 0xfe0006, 0xfe0007, sound_command_w ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void timscanr_update_proc( void ){
@@ -7284,17 +7350,19 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( toryumon_writemem )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x3e2000, 0x3e2003, MWA_EXTRAM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xe40000, 0xe40001, sys16_coinctrl_w },
-		{ 0xfe0006, 0xfe0007, sound_command_w },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress toryumon_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x3e2000, 0x3e2003, MWA_EXTRAM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xe40000, 0xe40001, sys16_coinctrl_w ),
+		new Memory_WriteAddress( 0xfe0006, 0xfe0007, sound_command_w ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void toryumon_update_proc( void ){
@@ -7446,16 +7514,18 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( tturf_writemem )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x200000, 0x203fff, MWA_EXTRAM },
-		{ 0x300000, 0x300fff, MWA_SPRITERAM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x500000, 0x500fff, MWA_PALETTERAM },
-		{ 0x600000, 0x600001, sys16_coinctrl_w },
-	//	{ 0x600006, 0x600007, sound_command_w },
-	MEMORY_END
+	public static Memory_WriteAddress tturf_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x200000, 0x203fff, MWA_EXTRAM ),
+		new Memory_WriteAddress( 0x300000, 0x300fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x500000, 0x500fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0x600000, 0x600001, sys16_coinctrl_w ),
+	//	new Memory_WriteAddress( 0x600006, 0x600007, sound_command_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	static void tturf_update_proc( void ){
 		sys16_fg_scrollx = READ_WORD( &sys16_textram[0x0e98] );
@@ -7582,18 +7652,20 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( tturfbl_writemem )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x200000, 0x203fff, MWA_EXTRAM },
-		{ 0x300000, 0x300fff, MWA_SPRITERAM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x500000, 0x500fff, MWA_PALETTERAM },
-		{ 0x600000, 0x600001, sys16_coinctrl_w },
-		{ 0x600006, 0x600007, sound_command_w },
-		{ 0xc44000, 0xc44001, MWA_NOP },
-		{ 0xc46000, 0xc4601f, MWA_EXTRAM3 },
-	MEMORY_END
+	public static Memory_WriteAddress tturfbl_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x200000, 0x203fff, MWA_EXTRAM ),
+		new Memory_WriteAddress( 0x300000, 0x300fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x500000, 0x500fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0x600000, 0x600001, sys16_coinctrl_w ),
+		new Memory_WriteAddress( 0x600006, 0x600007, sound_command_w ),
+		new Memory_WriteAddress( 0xc44000, 0xc44001, MWA_NOP ),
+		new Memory_WriteAddress( 0xc46000, 0xc4601f, MWA_EXTRAM3 ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/***************************************************************************/
 	
@@ -7723,17 +7795,19 @@ public class system16
 			sound_command_w(offset,data>>8);
 	} };
 	
-	static MEMORY_WRITE_START( wb3_writemem )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x3f0000, 0x3f0003, MWA_NOP },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc40000, 0xc40001, sys16_coinctrl_w },
-		{ 0xffc008, 0xffc009, wb3_sound_command_w },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress wb3_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x3f0000, 0x3f0003, MWA_NOP ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sys16_coinctrl_w ),
+		new Memory_WriteAddress( 0xffc008, 0xffc009, wb3_sound_command_w ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void wb3_update_proc( void ){
@@ -7848,19 +7922,21 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( wb3bl_writemem )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x3f0000, 0x3f0003, MWA_NOP },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x440000, 0x440fff, MWA_SPRITERAM },
-		{ 0x840000, 0x840fff, MWA_PALETTERAM },
-		{ 0xc42006, 0xc42007, sound_command_w },
-		{ 0xc40000, 0xc40001, sys16_coinctrl_w },
-		{ 0xc44000, 0xc44001, MWA_NOP },
-		{ 0xc46000, 0xc4601f, MWA_EXTRAM3 },
-		{ 0xff0000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress wb3bl_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x3f0000, 0x3f0003, MWA_NOP ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x440000, 0x440fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x840000, 0x840fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc42006, 0xc42007, sound_command_w ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sys16_coinctrl_w ),
+		new Memory_WriteAddress( 0xc44000, 0xc44001, MWA_NOP ),
+		new Memory_WriteAddress( 0xc46000, 0xc4601f, MWA_EXTRAM3 ),
+		new Memory_WriteAddress( 0xff0000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/***************************************************************************/
 	
@@ -7981,18 +8057,20 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( wrestwar_writemem )
-		{ 0x000000, 0x0bffff, MWA_ROM },
-		{ 0x100000, 0x10ffff, MWA_TILERAM },
-		{ 0x110000, 0x110fff, MWA_TEXTRAM },
-		{ 0x200000, 0x200fff, MWA_SPRITERAM },
-		{ 0x300000, 0x300fff, MWA_PALETTERAM },
-		{ 0x400000, 0x400003, MWA_EXTRAM },
-		{ 0xc40000, 0xc40001, sys16_coinctrl_w },
-		{ 0xc43034, 0xc43035, MWA_NOP },
-		{ 0xffe08e, 0xffe08f, sound_command_w },
-		{ 0xffc000, 0xffffff, MWA_WORKINGRAM },
-	MEMORY_END
+	public static Memory_WriteAddress wrestwar_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x0bffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x100000, 0x10ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x110000, 0x110fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x200000, 0x200fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x300000, 0x300fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0x400000, 0x400003, MWA_EXTRAM ),
+		new Memory_WriteAddress( 0xc40000, 0xc40001, sys16_coinctrl_w ),
+		new Memory_WriteAddress( 0xc43034, 0xc43035, MWA_NOP ),
+		new Memory_WriteAddress( 0xffe08e, 0xffe08f, sound_command_w ),
+		new Memory_WriteAddress( 0xffc000, 0xffffff, MWA_WORKINGRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	/***************************************************************************/
 	
 	static void wrestwar_update_proc( void ){
@@ -8177,18 +8255,20 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( hangon_writemem )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x20c000, 0x20ffff, MWA_EXTRAM },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x600000, 0x600fff, MWA_SPRITERAM },
-		{ 0xa00000, 0xa00fff, MWA_PALETTERAM },
-		{ 0xc68000, 0xc68fff, MWA_EXTRAM2 },
-		{ 0xc7e000, 0xc7ffff, MWA_EXTRAM3 },
-		{ 0xe00000, 0xe00001, sound_command_nmi_w },
-		{ 0xe00002, 0xe00003, sys16_3d_coinctrl_w },
-	MEMORY_END
+	public static Memory_WriteAddress hangon_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x20c000, 0x20ffff, MWA_EXTRAM ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x600000, 0x600fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0xa00000, 0xa00fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc68000, 0xc68fff, MWA_EXTRAM2 ),
+		new Memory_WriteAddress( 0xc7e000, 0xc7ffff, MWA_EXTRAM3 ),
+		new Memory_WriteAddress( 0xe00000, 0xe00001, sound_command_nmi_w ),
+		new Memory_WriteAddress( 0xe00002, 0xe00003, sys16_3d_coinctrl_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress hangon_readmem2[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -8198,11 +8278,13 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( hangon_writemem2 )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0xc68000, 0xc68fff, MWA_EXTRAM2 },
-		{ 0xc7e000, 0xc7ffff, MWA_EXTRAM3 },
-	MEMORY_END
+	public static Memory_WriteAddress hangon_writemem2[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0xc68000, 0xc68fff, MWA_EXTRAM2 ),
+		new Memory_WriteAddress( 0xc7e000, 0xc7ffff, MWA_EXTRAM3 ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	public static Memory_ReadAddress hangon_sound_readmem[]={
@@ -8215,14 +8297,16 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( hangon_sound_writemem )
-		{ 0x0000, 0x7fff, MWA_ROM },
-		{ 0xc000, 0xc7ff, MWA_RAM },
-		{ 0xd000, 0xd000, YM2203_control_port_0_w },
-		{ 0xd001, 0xd001, YM2203_write_port_0_w },
-		{ 0xe000, 0xe7ff, SegaPCM_w },
-		{ 0xf800, 0xffff, MWA_RAM },
-	MEMORY_END
+	public static Memory_WriteAddress hangon_sound_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x7fff, MWA_ROM ),
+		new Memory_WriteAddress( 0xc000, 0xc7ff, MWA_RAM ),
+		new Memory_WriteAddress( 0xd000, 0xd000, YM2203_control_port_0_w ),
+		new Memory_WriteAddress( 0xd001, 0xd001, YM2203_write_port_0_w ),
+		new Memory_WriteAddress( 0xe000, 0xe7ff, SegaPCM_w ),
+		new Memory_WriteAddress( 0xf800, 0xffff, MWA_RAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static PORT_READ_START( hangon_sound_readport )
 		{ 0x40, 0x40, soundlatch_r },
@@ -8487,19 +8571,21 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( harrier_writemem )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x040000, 0x043fff, MWA_EXTRAM },
-		{ 0x100000, 0x107fff, MWA_TILERAM },
-		{ 0x108000, 0x108fff, MWA_TEXTRAM },
-		{ 0x110000, 0x110fff, MWA_PALETTERAM },
-		{ 0x124000, 0x127fff, shared_ram_w, &shared_ram },
-		{ 0x130000, 0x130fff, MWA_SPRITERAM },
-		{ 0x140000, 0x140001, sound_command_nmi_w },
-		{ 0x140002, 0x140003, sys16_3d_coinctrl_w },
-		{ 0xc68000, 0xc68fff, MWA_EXTRAM2 },
+	public static Memory_WriteAddress harrier_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x040000, 0x043fff, MWA_EXTRAM ),
+		new Memory_WriteAddress( 0x100000, 0x107fff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x108000, 0x108fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x110000, 0x110fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0x124000, 0x127fff, shared_ram_w, &shared_ram ),
+		new Memory_WriteAddress( 0x130000, 0x130fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x140000, 0x140001, sound_command_nmi_w ),
+		new Memory_WriteAddress( 0x140002, 0x140003, sys16_3d_coinctrl_w ),
+		new Memory_WriteAddress( 0xc68000, 0xc68fff, MWA_EXTRAM2 ),
 	
-	MEMORY_END
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress harrier_readmem2[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -8509,11 +8595,13 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( harrier_writemem2 )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0xc68000, 0xc68fff, MWA_EXTRAM2 },
-		{ 0xc7c000, 0xc7ffff, shared_ram_w, &shared_ram },
-	MEMORY_END
+	public static Memory_WriteAddress harrier_writemem2[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0xc68000, 0xc68fff, MWA_EXTRAM2 ),
+		new Memory_WriteAddress( 0xc7c000, 0xc7ffff, shared_ram_w, &shared_ram ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress harrier_sound_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -8524,13 +8612,15 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( harrier_sound_writemem )
-		{ 0x0000, 0x7fff, MWA_ROM },
-		{ 0xd000, 0xd000, YM2203_control_port_0_w },
-		{ 0xd001, 0xd001, YM2203_write_port_0_w },
-		{ 0xe000, 0xe0ff, SegaPCM_w },
-		{ 0x8000, 0xffff, MWA_RAM },
-	MEMORY_END
+	public static Memory_WriteAddress harrier_sound_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x7fff, MWA_ROM ),
+		new Memory_WriteAddress( 0xd000, 0xd000, YM2203_control_port_0_w ),
+		new Memory_WriteAddress( 0xd001, 0xd001, YM2203_write_port_0_w ),
+		new Memory_WriteAddress( 0xe000, 0xe0ff, SegaPCM_w ),
+		new Memory_WriteAddress( 0x8000, 0xffff, MWA_RAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static PORT_READ_START( harrier_sound_readport )
 		{ 0x40, 0x40, soundlatch_r },
@@ -8865,18 +8955,20 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( shangon_writemem )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x20c640, 0x20c647, sound_shared_ram_w },
-		{ 0x20c000, 0x20ffff, MWA_EXTRAM2 },
-		{ 0x400000, 0x40ffff, MWA_TILERAM },
-		{ 0x410000, 0x410fff, MWA_TEXTRAM },
-		{ 0x600000, 0x600fff, MWA_SPRITERAM },
-		{ 0xa00000, 0xa00fff, MWA_PALETTERAM },
-		{ 0xc68000, 0xc68fff, shared_ram_w, &shared_ram },
-		{ 0xc7c000, 0xc7ffff, shared_ram2_w, &shared_ram2 },
-		{ 0xe00002, 0xe00003, sys16_3d_coinctrl_w },
-	MEMORY_END
+	public static Memory_WriteAddress shangon_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x20c640, 0x20c647, sound_shared_ram_w ),
+		new Memory_WriteAddress( 0x20c000, 0x20ffff, MWA_EXTRAM2 ),
+		new Memory_WriteAddress( 0x400000, 0x40ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x410000, 0x410fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x600000, 0x600fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0xa00000, 0xa00fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0xc68000, 0xc68fff, shared_ram_w, &shared_ram ),
+		new Memory_WriteAddress( 0xc7c000, 0xc7ffff, shared_ram2_w, &shared_ram2 ),
+		new Memory_WriteAddress( 0xe00002, 0xe00003, sys16_3d_coinctrl_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress shangon_readmem2[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -8888,13 +8980,15 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( shangon_writemem2 )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x454000, 0x45401f, MWA_EXTRAM3 },
-		{ 0x7e8000, 0x7e8fff, shared_ram_w },
-		{ 0x7fc000, 0x7ffbff, shared_ram2_w },
-		{ 0x7ffc00, 0x7fffff, MWA_EXTRAM },
-	MEMORY_END
+	public static Memory_WriteAddress shangon_writemem2[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x454000, 0x45401f, MWA_EXTRAM3 ),
+		new Memory_WriteAddress( 0x7e8000, 0x7e8fff, shared_ram_w ),
+		new Memory_WriteAddress( 0x7fc000, 0x7ffbff, shared_ram2_w ),
+		new Memory_WriteAddress( 0x7ffc00, 0x7fffff, MWA_EXTRAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress shangon_sound_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -8905,12 +8999,14 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( shangon_sound_writemem )
-		{ 0x0000, 0x7fff, MWA_ROM },
-		{ 0xf000, 0xf7ff, SegaPCM_w },
-		{ 0xf800, 0xf807, sound2_shared_ram_w,&sound_shared_ram },
-		{ 0xf808, 0xffff, MWA_RAM },
-	MEMORY_END
+	public static Memory_WriteAddress shangon_sound_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x7fff, MWA_ROM ),
+		new Memory_WriteAddress( 0xf000, 0xf7ff, SegaPCM_w ),
+		new Memory_WriteAddress( 0xf800, 0xf807, sound2_shared_ram_w,&sound_shared_ram ),
+		new Memory_WriteAddress( 0xf808, 0xffff, MWA_RAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/***************************************************************************/
 	
@@ -9396,25 +9492,27 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( outrun_writemem )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x060900, 0x060907, sound_shared_ram_w },		//???
-		{ 0x060000, 0x067fff, MWA_EXTRAM2 },
+	public static Memory_WriteAddress outrun_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x060900, 0x060907, sound_shared_ram_w ),		//???
+		new Memory_WriteAddress( 0x060000, 0x067fff, MWA_EXTRAM2 ),
 	
-		{ 0x100000, 0x10ffff, MWA_TILERAM },
-		{ 0x110000, 0x110fff, MWA_TEXTRAM },
+		new Memory_WriteAddress( 0x100000, 0x10ffff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x110000, 0x110fff, MWA_TEXTRAM ),
 	
-		{ 0x130000, 0x130fff, MWA_SPRITERAM },
-		{ 0x120000, 0x121fff, MWA_PALETTERAM },
+		new Memory_WriteAddress( 0x130000, 0x130fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x120000, 0x121fff, MWA_PALETTERAM ),
 	
-		{ 0x140004, 0x140005, outrun_ctrl1_w },
-		{ 0x140020, 0x140021, outrun_ctrl2_w },
-		{ 0x140030, 0x140031, outrun_analog_select_w },
+		new Memory_WriteAddress( 0x140004, 0x140005, outrun_ctrl1_w ),
+		new Memory_WriteAddress( 0x140020, 0x140021, outrun_ctrl2_w ),
+		new Memory_WriteAddress( 0x140030, 0x140031, outrun_analog_select_w ),
 	
-		{ 0x200000, 0x23ffff, MWA_BANK8 },
-		{ 0x260000, 0x267fff, shared_ram_w, &shared_ram },
-		{ 0xffff06, 0xffff07, outrun_sound_write_w },
-	MEMORY_END
+		new Memory_WriteAddress( 0x200000, 0x23ffff, MWA_BANK8 ),
+		new Memory_WriteAddress( 0x260000, 0x267fff, shared_ram_w, &shared_ram ),
+		new Memory_WriteAddress( 0xffff06, 0xffff07, outrun_sound_write_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress outrun_readmem2[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -9424,11 +9522,13 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( outrun_writemem2 )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x060000, 0x067fff, shared_ram_w },
-		{ 0x080000, 0x09ffff, MWA_EXTRAM },		// gr
-	MEMORY_END
+	public static Memory_WriteAddress outrun_writemem2[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x060000, 0x067fff, shared_ram_w ),
+		new Memory_WriteAddress( 0x080000, 0x09ffff, MWA_EXTRAM ),		// gr
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	// Outrun
 	
@@ -9442,13 +9542,15 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( outrun_sound_writemem )
-		{ 0x0000, 0x7fff, MWA_ROM },
-		{ 0xf000, 0xf0ff, SegaPCM_w },
-		{ 0xf100, 0xf7ff, MWA_NOP },
-		{ 0xf800, 0xf807, sound2_shared_ram_w,&sound_shared_ram },
-		{ 0xf808, 0xffff, MWA_RAM },
-	MEMORY_END
+	public static Memory_WriteAddress outrun_sound_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x7fff, MWA_ROM ),
+		new Memory_WriteAddress( 0xf000, 0xf0ff, SegaPCM_w ),
+		new Memory_WriteAddress( 0xf100, 0xf7ff, MWA_NOP ),
+		new Memory_WriteAddress( 0xf800, 0xf807, sound2_shared_ram_w,&sound_shared_ram ),
+		new Memory_WriteAddress( 0xf808, 0xffff, MWA_RAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/***************************************************************************/
 	
@@ -10064,17 +10166,19 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( enduror_writemem )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x040000, 0x043fff, MWA_EXTRAM },
-		{ 0x100000, 0x107fff, MWA_TILERAM },
-		{ 0x108000, 0x108fff, MWA_TEXTRAM },
-		{ 0x110000, 0x110fff, MWA_PALETTERAM },
-		{ 0x124000, 0x127fff, shared_ram_w, &shared_ram },
-		{ 0x130000, 0x130fff, MWA_SPRITERAM },
-		{ 0x140000, 0x140001, sound_command_nmi_w },
-		{ 0x140002, 0x140003, sys16_3d_coinctrl_w },
-	MEMORY_END
+	public static Memory_WriteAddress enduror_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x040000, 0x043fff, MWA_EXTRAM ),
+		new Memory_WriteAddress( 0x100000, 0x107fff, MWA_TILERAM ),
+		new Memory_WriteAddress( 0x108000, 0x108fff, MWA_TEXTRAM ),
+		new Memory_WriteAddress( 0x110000, 0x110fff, MWA_PALETTERAM ),
+		new Memory_WriteAddress( 0x124000, 0x127fff, shared_ram_w, &shared_ram ),
+		new Memory_WriteAddress( 0x130000, 0x130fff, MWA_SPRITERAM ),
+		new Memory_WriteAddress( 0x140000, 0x140001, sound_command_nmi_w ),
+		new Memory_WriteAddress( 0x140002, 0x140003, sys16_3d_coinctrl_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	public static Memory_ReadAddress enduror_readmem2[]={
@@ -10085,11 +10189,13 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( enduror_writemem2 )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0xc68000, 0xc68fff, MWA_EXTRAM2 },
-		{ 0xc7c000, 0xc7ffff, shared_ram_w, &shared_ram },
-	MEMORY_END
+	public static Memory_WriteAddress enduror_writemem2[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0xc68000, 0xc68fff, MWA_EXTRAM2 ),
+		new Memory_WriteAddress( 0xc7c000, 0xc7ffff, shared_ram_w, &shared_ram ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress enduror_sound_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -10100,13 +10206,15 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( enduror_sound_writemem )
-		{ 0x0000, 0x7fff, MWA_ROM },
-		{ 0xc000, 0xc7ff, MWA_RAM },
-		{ 0xd000, 0xd000, YM2203_control_port_0_w },
-		{ 0xd001, 0xd001, YM2203_write_port_0_w },
-		{ 0xe000, 0xe7ff, SegaPCM_w },
-	MEMORY_END
+	public static Memory_WriteAddress enduror_sound_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x7fff, MWA_ROM ),
+		new Memory_WriteAddress( 0xc000, 0xc7ff, MWA_RAM ),
+		new Memory_WriteAddress( 0xd000, 0xd000, YM2203_control_port_0_w ),
+		new Memory_WriteAddress( 0xd001, 0xd001, YM2203_write_port_0_w ),
+		new Memory_WriteAddress( 0xe000, 0xe7ff, SegaPCM_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static PORT_READ_START( enduror_sound_readport )
 		{ 0x40, 0x40, soundlatch_r },
@@ -10122,12 +10230,14 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( enduror_b2_sound_writemem )
-		{ 0x0000, 0x7fff, MWA_ROM },
-	//	{ 0xc000, 0xc7ff, MWA_RAM },
-		{ 0xf000, 0xf7ff, SegaPCM_w },
-		{ 0xf800, 0xffff, MWA_RAM },
-	MEMORY_END
+	public static Memory_WriteAddress enduror_b2_sound_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x7fff, MWA_ROM ),
+	//	new Memory_WriteAddress( 0xc000, 0xc7ff, MWA_RAM ),
+		new Memory_WriteAddress( 0xf000, 0xf7ff, SegaPCM_w ),
+		new Memory_WriteAddress( 0xf800, 0xffff, MWA_RAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static PORT_READ_START( enduror_b2_sound_readport )
 		{ 0x00, 0x00, YM2203_status_port_0_r },
@@ -10446,11 +10556,13 @@ public class system16
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( sys16_dummy_writemem )
-		{ 0x000000, 0x0fffff, MWA_ROM },
-		{ 0xff0000, 0xffffff, MWA_WORKINGRAM },
+	public static Memory_WriteAddress sys16_dummy_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x0fffff, MWA_ROM ),
+		new Memory_WriteAddress( 0xff0000, 0xffffff, MWA_WORKINGRAM ),
 	
-	MEMORY_END
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static public static InitMachinePtr sys16_dummy_init_machine = new InitMachinePtr() { public void handler() {
 		static int bank[16] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};

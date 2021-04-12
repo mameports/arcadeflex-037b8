@@ -40,20 +40,22 @@ public class pingpong
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem )
-		{ 0x0000, 0x7FFF, MWA_ROM },
-		{ 0x8000, 0x83FF, colorram_w, &colorram },
-		{ 0x8400, 0x87FF, videoram_w, &videoram, &videoram_size },
-		{ 0x9000, 0x9002, MWA_RAM },
-		{ 0x9003, 0x9052, MWA_RAM, &spriteram, &spriteram_size },
-		{ 0x9053, 0x97FF, MWA_RAM },
-		{ 0xA000, 0xA000, MWA_RAM, &intenable },	/* bit 2 = irq enable, bit 3 = nmi enable */
+	public static Memory_WriteAddress writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x7FFF, MWA_ROM ),
+		new Memory_WriteAddress( 0x8000, 0x83FF, colorram_w, &colorram ),
+		new Memory_WriteAddress( 0x8400, 0x87FF, videoram_w, &videoram, &videoram_size ),
+		new Memory_WriteAddress( 0x9000, 0x9002, MWA_RAM ),
+		new Memory_WriteAddress( 0x9003, 0x9052, MWA_RAM, &spriteram, &spriteram_size ),
+		new Memory_WriteAddress( 0x9053, 0x97FF, MWA_RAM ),
+		new Memory_WriteAddress( 0xA000, 0xA000, MWA_RAM, &intenable ),	/* bit 2 = irq enable, bit 3 = nmi enable */
 													/* bit 0/1 = coin counters */
 													/* other bits unknown */
-		{ 0xA200, 0xA200, MWA_NOP },		/* SN76496 data latch */
-		{ 0xA400, 0xA400, SN76496_0_w },	/* trigger read */
-		{ 0xA600, 0xA600, watchdog_reset_w },
-	MEMORY_END
+		new Memory_WriteAddress( 0xA200, 0xA200, MWA_NOP ),		/* SN76496 data latch */
+		new Memory_WriteAddress( 0xA400, 0xA400, SN76496_0_w ),	/* trigger read */
+		new Memory_WriteAddress( 0xA600, 0xA600, watchdog_reset_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	

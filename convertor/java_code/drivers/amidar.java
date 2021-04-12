@@ -100,21 +100,23 @@ public class amidar
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem )
-		{ 0x0000, 0x4fff, MWA_ROM },
-		{ 0x8000, 0x87ff, MWA_RAM },
-		{ 0x9000, 0x93ff, videoram_w, &videoram, &videoram_size },
-		{ 0x9800, 0x983f, amidar_attributes_w, &amidar_attributesram },
-		{ 0x9840, 0x985f, MWA_RAM, &spriteram, &spriteram_size },
-		{ 0x9860, 0x987f, MWA_NOP },
-		{ 0xa008, 0xa008, interrupt_enable_w },
-		{ 0xa010, 0xa010, flip_screen_x_w },
-		{ 0xa018, 0xa018, flip_screen_y_w },
-		{ 0xa030, 0xa030, amidar_coina_w },
-		{ 0xa038, 0xa038, amidar_coinb_w },
-		{ 0xb800, 0xb800, soundlatch_w },
-		{ 0xb810, 0xb810, scramble_sh_irqtrigger_w },
-	MEMORY_END
+	public static Memory_WriteAddress writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x4fff, MWA_ROM ),
+		new Memory_WriteAddress( 0x8000, 0x87ff, MWA_RAM ),
+		new Memory_WriteAddress( 0x9000, 0x93ff, videoram_w, &videoram, &videoram_size ),
+		new Memory_WriteAddress( 0x9800, 0x983f, amidar_attributes_w, &amidar_attributesram ),
+		new Memory_WriteAddress( 0x9840, 0x985f, MWA_RAM, &spriteram, &spriteram_size ),
+		new Memory_WriteAddress( 0x9860, 0x987f, MWA_NOP ),
+		new Memory_WriteAddress( 0xa008, 0xa008, interrupt_enable_w ),
+		new Memory_WriteAddress( 0xa010, 0xa010, flip_screen_x_w ),
+		new Memory_WriteAddress( 0xa018, 0xa018, flip_screen_y_w ),
+		new Memory_WriteAddress( 0xa030, 0xa030, amidar_coina_w ),
+		new Memory_WriteAddress( 0xa038, 0xa038, amidar_coinb_w ),
+		new Memory_WriteAddress( 0xb800, 0xb800, soundlatch_w ),
+		new Memory_WriteAddress( 0xb810, 0xb810, scramble_sh_irqtrigger_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	
@@ -125,12 +127,14 @@ public class amidar
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( sound_writemem )
-		{ 0x0000, 0x1fff, MWA_ROM },
-		{ 0x8000, 0x83ff, MWA_RAM },
-	//	{ 0x9000, 0x9000, MWA_NOP },
-	//	{ 0x9080, 0x9080, MWA_NOP },
-	MEMORY_END
+	public static Memory_WriteAddress sound_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x1fff, MWA_ROM ),
+		new Memory_WriteAddress( 0x8000, 0x83ff, MWA_RAM ),
+	//	new Memory_WriteAddress( 0x9000, 0x9000, MWA_NOP ),
+	//	new Memory_WriteAddress( 0x9080, 0x9080, MWA_NOP ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	

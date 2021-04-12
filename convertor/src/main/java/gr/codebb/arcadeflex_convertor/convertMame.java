@@ -72,6 +72,7 @@ public class convertMame {
     static final int K051960 = 55;
     static final int TILEINFO = 56;
     static final int MEMORY_READ8 = 57;
+    static final int MEMORY_WRITE8 = 58;
 
     //type2 fields
     static final int NEWINPUT = 130;
@@ -574,6 +575,18 @@ public class convertMame {
                             if (sUtil.getToken(")")) {
                                 sUtil.putString("public static Memory_ReadAddress " + Convertor.token[0] + "[]={\n\t\tnew Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),");
                                 type = MEMORY_READ8;
+                                i3 = 1;
+                                Convertor.inpos += 1;
+                                continue;
+                            }
+                        }
+                        else if (sUtil.getToken("MEMORY_WRITE_START(")) {
+                            sUtil.skipSpace();
+                            Convertor.token[0] = sUtil.parseToken();
+                            sUtil.skipSpace();
+                            if (sUtil.getToken(")")) {
+                                sUtil.putString("public static Memory_WriteAddress " + Convertor.token[0] + "[]={\n\t\tnew Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),");
+                                type = MEMORY_WRITE8;
                                 i3 = 1;
                                 Convertor.inpos += 1;
                                 continue;
@@ -1684,7 +1697,17 @@ public class convertMame {
                             Convertor.inpos += 1;
                             continue;
                         }
-                    } else if (type == MEMORYREAD) {
+                    } 
+                    if (type == MEMORY_WRITE8) {
+                        i3++;
+                        insideagk[i3] = 0;
+                        if (i3 == 2) {
+                            sUtil.putString("new Memory_WriteAddress(");
+                            Convertor.inpos += 1;
+                            continue;
+                        }
+                    }
+                    else if (type == MEMORYREAD) {
                         i3++;
                         insideagk[i3] = 0;
                         if (i3 == 1) {
@@ -2369,7 +2392,7 @@ public class convertMame {
                 }
                 break;
                 case '}': {
-                    if ((type == MEMORY_READ8)) {
+                    if ((type == MEMORY_READ8|| type == MEMORY_WRITE8)) {
                         i3--;
                         if (i3 == 0) {
                             type = -1;
@@ -2857,7 +2880,14 @@ public class convertMame {
                         type = -1;
                         Convertor.inpos += 1;
                         continue;
-                    } else {
+                    } 
+                    else if(type == MEMORY_WRITE8) {
+                        sUtil.putString("\tnew Memory_WriteAddress(MEMPORT_MARKER, 0)\n\t};");
+                        type = -1;
+                        Convertor.inpos += 1;
+                        continue;
+                    }
+                    else {
                         Convertor.inpos = i;
                         break;
                     }

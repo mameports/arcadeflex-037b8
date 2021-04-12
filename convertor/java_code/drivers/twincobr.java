@@ -233,26 +233,28 @@ public class twincobr
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem )
-		{ 0x000000, 0x02ffff, MWA_ROM },
-		{ 0x030000, 0x033fff, twincobr_68k_dsp_w, &twincobr_68k_dsp_ram },	/* 68K and DSP shared RAM */
-		{ 0x040000, 0x040fff, MWA_BANK1, &spriteram, &spriteram_size },		/* sprite ram data */
-		{ 0x050000, 0x050dff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram },
-		{ 0x060000, 0x060003, twincobr_crtc_w },		/* 6845 CRT controller */
-		{ 0x070000, 0x070003, twincobr_txscroll_w },	/* text layer scroll */
-		{ 0x070004, 0x070005, twincobr_txoffs_w },		/* offset in text video RAM */
-		{ 0x072000, 0x072003, twincobr_bgscroll_w },	/* bg layer scroll */
-		{ 0x072004, 0x072005, twincobr_bgoffs_w },		/* offset in bg video RAM */
-		{ 0x074000, 0x074003, twincobr_fgscroll_w },	/* fg layer scroll */
-		{ 0x074004, 0x074005, twincobr_fgoffs_w },		/* offset in fg video RAM */
-		{ 0x076000, 0x076003, twincobr_exscroll_w },	/* Spare layer scroll */
-		{ 0x07800a, 0x07800b, fshark_coin_dsp_w },		/* Flying Shark DSP Comms & coin stuff */
-		{ 0x07800c, 0x07800d, twincobr_7800c_w },		/* Twin Cobra DSP Comms & system control */
-		{ 0x07a000, 0x07afff, twincobr_sharedram_w },	/* 16-bit on 68000 side, 8-bit on Z80 side */
-		{ 0x07e000, 0x07e001, twincobr_txram_w },		/* data for text video RAM */
-		{ 0x07e002, 0x07e003, twincobr_bgram_w },		/* data for bg video RAM */
-		{ 0x07e004, 0x07e005, twincobr_fgram_w },		/* data for fg video RAM */
-	MEMORY_END
+	public static Memory_WriteAddress writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x02ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x030000, 0x033fff, twincobr_68k_dsp_w, &twincobr_68k_dsp_ram ),	/* 68K and DSP shared RAM */
+		new Memory_WriteAddress( 0x040000, 0x040fff, MWA_BANK1, &spriteram, &spriteram_size ),		/* sprite ram data */
+		new Memory_WriteAddress( 0x050000, 0x050dff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram ),
+		new Memory_WriteAddress( 0x060000, 0x060003, twincobr_crtc_w ),		/* 6845 CRT controller */
+		new Memory_WriteAddress( 0x070000, 0x070003, twincobr_txscroll_w ),	/* text layer scroll */
+		new Memory_WriteAddress( 0x070004, 0x070005, twincobr_txoffs_w ),		/* offset in text video RAM */
+		new Memory_WriteAddress( 0x072000, 0x072003, twincobr_bgscroll_w ),	/* bg layer scroll */
+		new Memory_WriteAddress( 0x072004, 0x072005, twincobr_bgoffs_w ),		/* offset in bg video RAM */
+		new Memory_WriteAddress( 0x074000, 0x074003, twincobr_fgscroll_w ),	/* fg layer scroll */
+		new Memory_WriteAddress( 0x074004, 0x074005, twincobr_fgoffs_w ),		/* offset in fg video RAM */
+		new Memory_WriteAddress( 0x076000, 0x076003, twincobr_exscroll_w ),	/* Spare layer scroll */
+		new Memory_WriteAddress( 0x07800a, 0x07800b, fshark_coin_dsp_w ),		/* Flying Shark DSP Comms & coin stuff */
+		new Memory_WriteAddress( 0x07800c, 0x07800d, twincobr_7800c_w ),		/* Twin Cobra DSP Comms & system control */
+		new Memory_WriteAddress( 0x07a000, 0x07afff, twincobr_sharedram_w ),	/* 16-bit on 68000 side, 8-bit on Z80 side */
+		new Memory_WriteAddress( 0x07e000, 0x07e001, twincobr_txram_w ),		/* data for text video RAM */
+		new Memory_WriteAddress( 0x07e002, 0x07e003, twincobr_bgram_w ),		/* data for bg video RAM */
+		new Memory_WriteAddress( 0x07e004, 0x07e005, twincobr_fgram_w ),		/* data for fg video RAM */
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress sound_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -261,10 +263,12 @@ public class twincobr
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( sound_writemem )
-		{ 0x0000, 0x7fff, MWA_ROM },
-		{ 0x8000, 0x87ff, MWA_RAM, &twincobr_sharedram },
-	MEMORY_END
+	public static Memory_WriteAddress sound_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x7fff, MWA_ROM ),
+		new Memory_WriteAddress( 0x8000, 0x87ff, MWA_RAM, &twincobr_sharedram ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static PORT_READ_START( sound_readport )
 		{ 0x00, 0x00, YM3812_status_port_0_r },
@@ -288,10 +292,12 @@ public class twincobr
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( DSP_writemem )
-		{ 0x0000, 0x011f, MWA_RAM },
-		{ 0x8000, 0x8fff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress DSP_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x011f, MWA_RAM ),
+		new Memory_WriteAddress( 0x8000, 0x8fff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static PORT_READ_START( DSP_readport )
 		{ 0x01, 0x01, twincobr_dsp_r },

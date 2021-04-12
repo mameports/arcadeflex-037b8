@@ -607,18 +607,20 @@ public class toaplan2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( tekipaki_writemem )
-		{ 0x000000, 0x01ffff, MWA_ROM },
-		{ 0x020000, 0x03ffff, MWA_ROM },				/* extra for Whoopee */
-		{ 0x080000, 0x082fff, MWA_BANK1 },
-		{ 0x0c0000, 0x0c0fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram },
-		{ 0x140000, 0x140001, toaplan2_0_voffs_w },
-		{ 0x140004, 0x140007, toaplan2_0_videoram_w },	/* Tile/Sprite VideoRAM */
-		{ 0x140008, 0x140009, toaplan2_0_scroll_reg_select_w },
-		{ 0x14000c, 0x14000d, toaplan2_0_scroll_reg_data_w },
-		{ 0x180040, 0x180041, toaplan2_coin_w },		/* Coin count/lock */
-		{ 0x180070, 0x180071, toaplan2_hd647180_cpu_w },
-	MEMORY_END
+	public static Memory_WriteAddress tekipaki_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x01ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x020000, 0x03ffff, MWA_ROM ),				/* extra for Whoopee */
+		new Memory_WriteAddress( 0x080000, 0x082fff, MWA_BANK1 ),
+		new Memory_WriteAddress( 0x0c0000, 0x0c0fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram ),
+		new Memory_WriteAddress( 0x140000, 0x140001, toaplan2_0_voffs_w ),
+		new Memory_WriteAddress( 0x140004, 0x140007, toaplan2_0_videoram_w ),	/* Tile/Sprite VideoRAM */
+		new Memory_WriteAddress( 0x140008, 0x140009, toaplan2_0_scroll_reg_select_w ),
+		new Memory_WriteAddress( 0x14000c, 0x14000d, toaplan2_0_scroll_reg_data_w ),
+		new Memory_WriteAddress( 0x180040, 0x180041, toaplan2_coin_w ),		/* Coin count/lock */
+		new Memory_WriteAddress( 0x180070, 0x180071, toaplan2_hd647180_cpu_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress ghox_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -642,18 +644,20 @@ public class toaplan2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( ghox_writemem )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x080000, 0x083fff, MWA_BANK1 },
-		{ 0x0c0000, 0x0c0fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram },
-		{ 0x140000, 0x140001, toaplan2_0_voffs_w },
-		{ 0x140004, 0x140007, toaplan2_0_videoram_w },	/* Tile/Sprite VideoRAM */
-		{ 0x140008, 0x140009, toaplan2_0_scroll_reg_select_w },
-		{ 0x14000c, 0x14000d, toaplan2_0_scroll_reg_data_w },
-		{ 0x180000, 0x180001, ghox_mcu_w },				/* really part of shared RAM */
-		{ 0x180500, 0x180fff, ghox_shared_ram_w, &toaplan2_shared_ram },
-		{ 0x181000, 0x181001, toaplan2_coin_w },
-	MEMORY_END
+	public static Memory_WriteAddress ghox_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x080000, 0x083fff, MWA_BANK1 ),
+		new Memory_WriteAddress( 0x0c0000, 0x0c0fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram ),
+		new Memory_WriteAddress( 0x140000, 0x140001, toaplan2_0_voffs_w ),
+		new Memory_WriteAddress( 0x140004, 0x140007, toaplan2_0_videoram_w ),	/* Tile/Sprite VideoRAM */
+		new Memory_WriteAddress( 0x140008, 0x140009, toaplan2_0_scroll_reg_select_w ),
+		new Memory_WriteAddress( 0x14000c, 0x14000d, toaplan2_0_scroll_reg_data_w ),
+		new Memory_WriteAddress( 0x180000, 0x180001, ghox_mcu_w ),				/* really part of shared RAM */
+		new Memory_WriteAddress( 0x180500, 0x180fff, ghox_shared_ram_w, &toaplan2_shared_ram ),
+		new Memory_WriteAddress( 0x181000, 0x181001, toaplan2_coin_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress dogyuun_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -683,31 +687,33 @@ public class toaplan2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( dogyuun_writemem )
-		{ 0x000000, 0x07ffff, MWA_ROM },
-		{ 0x100000, 0x103fff, MWA_BANK1 },
-		{ 0x200008, 0x200009, OKIM6295_data_0_w },
-		{ 0x20001c, 0x20001d, toaplan2_coin_w },
+	public static Memory_WriteAddress dogyuun_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x07ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x100000, 0x103fff, MWA_BANK1 ),
+		new Memory_WriteAddress( 0x200008, 0x200009, OKIM6295_data_0_w ),
+		new Memory_WriteAddress( 0x20001c, 0x20001d, toaplan2_coin_w ),
 	#if Zx80
-		{ 0x21e000, 0x21fbff, shared_ram_w, &toaplan2_shared_ram },	/* $21F000 */
-		{ 0x21fc00, 0x21ffff, Zx80_sharedram_w, &Zx80_shared_ram },	/* 16-bit on 68000 side, 8-bit on Zx80 side */
+		new Memory_WriteAddress( 0x21e000, 0x21fbff, shared_ram_w, &toaplan2_shared_ram ),	/* $21F000 */
+		new Memory_WriteAddress( 0x21fc00, 0x21ffff, Zx80_sharedram_w, &Zx80_shared_ram ),	/* 16-bit on 68000 side, 8-bit on Zx80 side */
 	#else
-		{ 0x21e000, 0x21efff, shared_ram_w, &toaplan2_shared_ram },
-		{ 0x21f000, 0x21f001, Zx80_command_port_w },	/* Zx80 command port */
-		{ 0x21fc00, 0x21ffff, Zx80_sharedram_w, &Zx80_shared_ram },	/* 16-bit on 68000 side, 8-bit on Zx80 side */
+		new Memory_WriteAddress( 0x21e000, 0x21efff, shared_ram_w, &toaplan2_shared_ram ),
+		new Memory_WriteAddress( 0x21f000, 0x21f001, Zx80_command_port_w ),	/* Zx80 command port */
+		new Memory_WriteAddress( 0x21fc00, 0x21ffff, Zx80_sharedram_w, &Zx80_shared_ram ),	/* 16-bit on 68000 side, 8-bit on Zx80 side */
 	#endif
 		/***** The following in 0x30000x are for video controller 1 ******/
-		{ 0x300000, 0x300001, toaplan2_0_voffs_w },		/* VideoRAM selector/offset */
-		{ 0x300004, 0x300007, toaplan2_0_videoram_w },	/* Tile/Sprite VideoRAM */
-		{ 0x300008, 0x300009, toaplan2_0_scroll_reg_select_w },
-		{ 0x30000c, 0x30000d, toaplan2_0_scroll_reg_data_w },
-		{ 0x400000, 0x400fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram },
+		new Memory_WriteAddress( 0x300000, 0x300001, toaplan2_0_voffs_w ),		/* VideoRAM selector/offset */
+		new Memory_WriteAddress( 0x300004, 0x300007, toaplan2_0_videoram_w ),	/* Tile/Sprite VideoRAM */
+		new Memory_WriteAddress( 0x300008, 0x300009, toaplan2_0_scroll_reg_select_w ),
+		new Memory_WriteAddress( 0x30000c, 0x30000d, toaplan2_0_scroll_reg_data_w ),
+		new Memory_WriteAddress( 0x400000, 0x400fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram ),
 		/***** The following in 0x50000x are for video controller 2 ******/
-		{ 0x500000, 0x500001, toaplan2_1_voffs_w },		/* VideoRAM selector/offset */
-		{ 0x500004, 0x500007, toaplan2_1_videoram_w },	/* Tile/Sprite VideoRAM */
-		{ 0x500008, 0x500009, toaplan2_1_scroll_reg_select_w },
-		{ 0x50000c, 0x50000d, toaplan2_1_scroll_reg_data_w },
-	MEMORY_END
+		new Memory_WriteAddress( 0x500000, 0x500001, toaplan2_1_voffs_w ),		/* VideoRAM selector/offset */
+		new Memory_WriteAddress( 0x500004, 0x500007, toaplan2_1_videoram_w ),	/* Tile/Sprite VideoRAM */
+		new Memory_WriteAddress( 0x500008, 0x500009, toaplan2_1_scroll_reg_select_w ),
+		new Memory_WriteAddress( 0x50000c, 0x50000d, toaplan2_1_scroll_reg_data_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress kbash_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -727,18 +733,20 @@ public class toaplan2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( kbash_writemem )
-		{ 0x000000, 0x07ffff, MWA_ROM },
-		{ 0x100000, 0x103fff, MWA_BANK1 },
-		{ 0x200000, 0x200003, kbash_sub_cpu_w },		/* sound number to play */
-	//	{ 0x200002, 0x200003, kbash_sub_cpu_w2 },		/* ??? */
-		{ 0x20801c, 0x20801d, toaplan2_coin_w },
-		{ 0x300000, 0x300001, toaplan2_0_voffs_w },
-		{ 0x300004, 0x300007, toaplan2_0_videoram_w },
-		{ 0x300008, 0x300009, toaplan2_0_scroll_reg_select_w },
-		{ 0x30000c, 0x30000d, toaplan2_0_scroll_reg_data_w },
-		{ 0x400000, 0x400fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram },
-	MEMORY_END
+	public static Memory_WriteAddress kbash_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x07ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x100000, 0x103fff, MWA_BANK1 ),
+		new Memory_WriteAddress( 0x200000, 0x200003, kbash_sub_cpu_w ),		/* sound number to play */
+	//	new Memory_WriteAddress( 0x200002, 0x200003, kbash_sub_cpu_w2 ),		/* ??? */
+		new Memory_WriteAddress( 0x20801c, 0x20801d, toaplan2_coin_w ),
+		new Memory_WriteAddress( 0x300000, 0x300001, toaplan2_0_voffs_w ),
+		new Memory_WriteAddress( 0x300004, 0x300007, toaplan2_0_videoram_w ),
+		new Memory_WriteAddress( 0x300008, 0x300009, toaplan2_0_scroll_reg_select_w ),
+		new Memory_WriteAddress( 0x30000c, 0x30000d, toaplan2_0_scroll_reg_data_w ),
+		new Memory_WriteAddress( 0x400000, 0x400fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/* Fixed by Yochizo 2000/08/16 */
 	public static Memory_ReadAddress tatsujn2_readmem[]={
@@ -762,22 +770,24 @@ public class toaplan2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( tatsujn2_writemem )
-		{ 0x000000, 0x07ffff, MWA_ROM },
-		{ 0x100000, 0x10ffff, MWA_BANK1 },
-		{ 0x200000, 0x200001, toaplan2_0_voffs_w },		/* VideoRAM selector/offset */
-		{ 0x200004, 0x200007, toaplan2_0_videoram_w },	/* Tile/Sprite VideoRAM */
-		{ 0x200008, 0x200009, toaplan2_0_scroll_reg_select_w },
-		{ 0x20000c, 0x20000d, toaplan2_0_scroll_reg_data_w },
-		{ 0x300000, 0x300fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram },
-	//	{ 0x400000, 0x403fff, MWA_BANK2 },				/* TEXT RAM */
-		{ 0x400000, 0x403fff, raizing_textram_w, &textvideoram },
-		{ 0x500000, 0x50ffff, MWA_BANK3 },
-		{ 0x700010, 0x700011, OKIM6295_data_0_w },
-		{ 0x700014, 0x700015, YM2151_register_port_0_w },
-		{ 0x700016, 0x700017, YM2151_data_port_0_w },
-		{ 0x70001e, 0x70001f, toaplan2_coin_w },		/* Coin count/lock */
-	MEMORY_END
+	public static Memory_WriteAddress tatsujn2_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x07ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x100000, 0x10ffff, MWA_BANK1 ),
+		new Memory_WriteAddress( 0x200000, 0x200001, toaplan2_0_voffs_w ),		/* VideoRAM selector/offset */
+		new Memory_WriteAddress( 0x200004, 0x200007, toaplan2_0_videoram_w ),	/* Tile/Sprite VideoRAM */
+		new Memory_WriteAddress( 0x200008, 0x200009, toaplan2_0_scroll_reg_select_w ),
+		new Memory_WriteAddress( 0x20000c, 0x20000d, toaplan2_0_scroll_reg_data_w ),
+		new Memory_WriteAddress( 0x300000, 0x300fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram ),
+	//	new Memory_WriteAddress( 0x400000, 0x403fff, MWA_BANK2 ),				/* TEXT RAM */
+		new Memory_WriteAddress( 0x400000, 0x403fff, raizing_textram_w, &textvideoram ),
+		new Memory_WriteAddress( 0x500000, 0x50ffff, MWA_BANK3 ),
+		new Memory_WriteAddress( 0x700010, 0x700011, OKIM6295_data_0_w ),
+		new Memory_WriteAddress( 0x700014, 0x700015, YM2151_register_port_0_w ),
+		new Memory_WriteAddress( 0x700016, 0x700017, YM2151_data_port_0_w ),
+		new Memory_WriteAddress( 0x70001e, 0x70001f, toaplan2_coin_w ),		/* Coin count/lock */
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress pipibibs_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -796,17 +806,19 @@ public class toaplan2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( pipibibs_writemem )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x080000, 0x082fff, MWA_BANK1 },
-		{ 0x0c0000, 0x0c0fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram },
-		{ 0x140000, 0x140001, toaplan2_0_voffs_w },
-		{ 0x140004, 0x140007, toaplan2_0_videoram_w },	/* Tile/Sprite VideoRAM */
-		{ 0x140008, 0x140009, toaplan2_0_scroll_reg_select_w },
-		{ 0x14000c, 0x14000d, toaplan2_0_scroll_reg_data_w },
-		{ 0x190000, 0x190fff, toaplan2_shared_w, &toaplan2_shared_ram },
-		{ 0x19c01c, 0x19c01d, toaplan2_coin_w },		/* Coin count/lock */
-	MEMORY_END
+	public static Memory_WriteAddress pipibibs_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x080000, 0x082fff, MWA_BANK1 ),
+		new Memory_WriteAddress( 0x0c0000, 0x0c0fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram ),
+		new Memory_WriteAddress( 0x140000, 0x140001, toaplan2_0_voffs_w ),
+		new Memory_WriteAddress( 0x140004, 0x140007, toaplan2_0_videoram_w ),	/* Tile/Sprite VideoRAM */
+		new Memory_WriteAddress( 0x140008, 0x140009, toaplan2_0_scroll_reg_select_w ),
+		new Memory_WriteAddress( 0x14000c, 0x14000d, toaplan2_0_scroll_reg_data_w ),
+		new Memory_WriteAddress( 0x190000, 0x190fff, toaplan2_shared_w, &toaplan2_shared_ram ),
+		new Memory_WriteAddress( 0x19c01c, 0x19c01d, toaplan2_coin_w ),		/* Coin count/lock */
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress pipibibi_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -827,19 +839,21 @@ public class toaplan2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( pipibibi_writemem )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x080000, 0x082fff, MWA_BANK1 },
-		{ 0x083000, 0x0837ff, pipibibi_spriteram_w },   /* SpriteRAM */
-		{ 0x083800, 0x087fff, MWA_BANK2 },				/* SpriteRAM (unused) */
-		{ 0x0c0000, 0x0c0fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram },
-		{ 0x120000, 0x120fff, MWA_BANK3 },				/* Copy of SpriteRAM ? */
-	//	{ 0x13f000, 0x13f001, MWA_NOP },				/* ??? */
-		{ 0x180000, 0x182fff, pipibibi_videoram_w },	/* TileRAM */
-		{ 0x188000, 0x18800f, pipibibi_scroll_w },
-		{ 0x190010, 0x190011, pipibibi_z80_task_w },	/* Z80 task to perform */
-		{ 0x19c01c, 0x19c01d, toaplan2_coin_w },		/* Coin count/lock */
-	MEMORY_END
+	public static Memory_WriteAddress pipibibi_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x080000, 0x082fff, MWA_BANK1 ),
+		new Memory_WriteAddress( 0x083000, 0x0837ff, pipibibi_spriteram_w ),   /* SpriteRAM */
+		new Memory_WriteAddress( 0x083800, 0x087fff, MWA_BANK2 ),				/* SpriteRAM (unused) */
+		new Memory_WriteAddress( 0x0c0000, 0x0c0fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram ),
+		new Memory_WriteAddress( 0x120000, 0x120fff, MWA_BANK3 ),				/* Copy of SpriteRAM ? */
+	//	new Memory_WriteAddress( 0x13f000, 0x13f001, MWA_NOP ),				/* ??? */
+		new Memory_WriteAddress( 0x180000, 0x182fff, pipibibi_videoram_w ),	/* TileRAM */
+		new Memory_WriteAddress( 0x188000, 0x18800f, pipibibi_scroll_w ),
+		new Memory_WriteAddress( 0x190010, 0x190011, pipibibi_z80_task_w ),	/* Z80 task to perform */
+		new Memory_WriteAddress( 0x19c01c, 0x19c01d, toaplan2_coin_w ),		/* Coin count/lock */
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress fixeight_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -871,30 +885,32 @@ public class toaplan2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( fixeight_writemem )
-		{ 0x000000, 0x07ffff, MWA_ROM },
-		{ 0x100000, 0x103fff, MWA_BANK1 },
-		{ 0x20001c, 0x20001d, toaplan2_coin_w },		/* Coin count/lock */
-		{ 0x280000, 0x28dfff, MWA_BANK2 },				/* part of shared ram ? */
+	public static Memory_WriteAddress fixeight_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x07ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x100000, 0x103fff, MWA_BANK1 ),
+		new Memory_WriteAddress( 0x20001c, 0x20001d, toaplan2_coin_w ),		/* Coin count/lock */
+		new Memory_WriteAddress( 0x280000, 0x28dfff, MWA_BANK2 ),				/* part of shared ram ? */
 	#if Zx80
-		{ 0x28e000, 0x28fbff, shared_ram_w, &toaplan2_shared_ram },	/* $21F000 */
-		{ 0x28fc00, 0x28ffff, Zx80_sharedram_w, &Zx80_shared_ram },	/* 16-bit on 68000 side, 8-bit on Zx80 side */
+		new Memory_WriteAddress( 0x28e000, 0x28fbff, shared_ram_w, &toaplan2_shared_ram ),	/* $21F000 */
+		new Memory_WriteAddress( 0x28fc00, 0x28ffff, Zx80_sharedram_w, &Zx80_shared_ram ),	/* 16-bit on 68000 side, 8-bit on Zx80 side */
 	#else
-		{ 0x28e000, 0x28efff, shared_ram_w, &toaplan2_shared_ram },
-		{ 0x28f000, 0x28f001, Zx80_command_port_w },	/* Zx80 command port */
-		{ 0x28f002, 0x28fbff, MWA_BANK3 },				/* part of shared ram ? */
-		{ 0x28fc00, 0x28ffff, Zx80_sharedram_w, &Zx80_shared_ram },	/* 16-bit on 68000 side, 8-bit on Zx80 side */
+		new Memory_WriteAddress( 0x28e000, 0x28efff, shared_ram_w, &toaplan2_shared_ram ),
+		new Memory_WriteAddress( 0x28f000, 0x28f001, Zx80_command_port_w ),	/* Zx80 command port */
+		new Memory_WriteAddress( 0x28f002, 0x28fbff, MWA_BANK3 ),				/* part of shared ram ? */
+		new Memory_WriteAddress( 0x28fc00, 0x28ffff, Zx80_sharedram_w, &Zx80_shared_ram ),	/* 16-bit on 68000 side, 8-bit on Zx80 side */
 	#endif
-		{ 0x300000, 0x300001, toaplan2_0_voffs_w },		/* VideoRAM selector/offset */
-		{ 0x300004, 0x300007, toaplan2_0_videoram_w },	/* Tile/Sprite VideoRAM */
-		{ 0x300008, 0x300009, toaplan2_0_scroll_reg_select_w },
-		{ 0x30000c, 0x30000d, toaplan2_0_scroll_reg_data_w },
-		{ 0x400000, 0x400fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram },
-		{ 0x500000, 0x501fff, MWA_BANK4 },
-		{ 0x502000, 0x5021ff, MWA_BANK5 },
-		{ 0x503000, 0x5031ff, MWA_BANK6 },
-		{ 0x600000, 0x60ffff, MWA_BANK7 },
-	MEMORY_END
+		new Memory_WriteAddress( 0x300000, 0x300001, toaplan2_0_voffs_w ),		/* VideoRAM selector/offset */
+		new Memory_WriteAddress( 0x300004, 0x300007, toaplan2_0_videoram_w ),	/* Tile/Sprite VideoRAM */
+		new Memory_WriteAddress( 0x300008, 0x300009, toaplan2_0_scroll_reg_select_w ),
+		new Memory_WriteAddress( 0x30000c, 0x30000d, toaplan2_0_scroll_reg_data_w ),
+		new Memory_WriteAddress( 0x400000, 0x400fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram ),
+		new Memory_WriteAddress( 0x500000, 0x501fff, MWA_BANK4 ),
+		new Memory_WriteAddress( 0x502000, 0x5021ff, MWA_BANK5 ),
+		new Memory_WriteAddress( 0x503000, 0x5031ff, MWA_BANK6 ),
+		new Memory_WriteAddress( 0x600000, 0x60ffff, MWA_BANK7 ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress vfive_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -922,25 +938,27 @@ public class toaplan2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( vfive_writemem )
-		{ 0x000000, 0x07ffff, MWA_ROM },
-		{ 0x100000, 0x103fff, MWA_BANK1 },
-	//	{ 0x200000, 0x20ffff, MWA_ROM },				/* Sound ROM is here ??? */
-		{ 0x20001c, 0x20001d, toaplan2_coin_w },		/* Coin count/lock */
+	public static Memory_WriteAddress vfive_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x07ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x100000, 0x103fff, MWA_BANK1 ),
+	//	new Memory_WriteAddress( 0x200000, 0x20ffff, MWA_ROM ),				/* Sound ROM is here ??? */
+		new Memory_WriteAddress( 0x20001c, 0x20001d, toaplan2_coin_w ),		/* Coin count/lock */
 	#if Zx80
-		{ 0x21e000, 0x21fbff, shared_ram_w, &toaplan2_shared_ram },	/* $21F000 */
-		{ 0x21fc00, 0x21ffff, Zx80_sharedram_w, &Zx80_shared_ram },	/* 16-bit on 68000 side, 8-bit on Zx80 side */
+		new Memory_WriteAddress( 0x21e000, 0x21fbff, shared_ram_w, &toaplan2_shared_ram ),	/* $21F000 */
+		new Memory_WriteAddress( 0x21fc00, 0x21ffff, Zx80_sharedram_w, &Zx80_shared_ram ),	/* 16-bit on 68000 side, 8-bit on Zx80 side */
 	#else
-		{ 0x21e000, 0x21efff, shared_ram_w, &toaplan2_shared_ram },
-		{ 0x21f000, 0x21f001, Zx80_command_port_w },	/* Zx80 command port */
-		{ 0x21fc00, 0x21ffff, Zx80_sharedram_w, &Zx80_shared_ram },	/* 16-bit on 68000 side, 8-bit on Zx80 side */
+		new Memory_WriteAddress( 0x21e000, 0x21efff, shared_ram_w, &toaplan2_shared_ram ),
+		new Memory_WriteAddress( 0x21f000, 0x21f001, Zx80_command_port_w ),	/* Zx80 command port */
+		new Memory_WriteAddress( 0x21fc00, 0x21ffff, Zx80_sharedram_w, &Zx80_shared_ram ),	/* 16-bit on 68000 side, 8-bit on Zx80 side */
 	#endif
-		{ 0x300000, 0x300001, toaplan2_0_voffs_w },		/* VideoRAM selector/offset */
-		{ 0x300004, 0x300007, toaplan2_0_videoram_w },	/* Tile/Sprite VideoRAM */
-		{ 0x300008, 0x300009, toaplan2_0_scroll_reg_select_w },
-		{ 0x30000c, 0x30000d, toaplan2_0_scroll_reg_data_w },
-		{ 0x400000, 0x400fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram },
-	MEMORY_END
+		new Memory_WriteAddress( 0x300000, 0x300001, toaplan2_0_voffs_w ),		/* VideoRAM selector/offset */
+		new Memory_WriteAddress( 0x300004, 0x300007, toaplan2_0_videoram_w ),	/* Tile/Sprite VideoRAM */
+		new Memory_WriteAddress( 0x300008, 0x300009, toaplan2_0_scroll_reg_select_w ),
+		new Memory_WriteAddress( 0x30000c, 0x30000d, toaplan2_0_scroll_reg_data_w ),
+		new Memory_WriteAddress( 0x400000, 0x400fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress batsugun_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -971,31 +989,33 @@ public class toaplan2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( batsugun_writemem )
-		{ 0x000000, 0x07ffff, MWA_ROM },
-		{ 0x100000, 0x10ffff, MWA_BANK1 },
-		{ 0x20001c, 0x20001d, toaplan2_coin_w },		/* Coin count/lock */
-		{ 0x210000, 0x21bbff, MWA_BANK2 },
+	public static Memory_WriteAddress batsugun_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x07ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x100000, 0x10ffff, MWA_BANK1 ),
+		new Memory_WriteAddress( 0x20001c, 0x20001d, toaplan2_coin_w ),		/* Coin count/lock */
+		new Memory_WriteAddress( 0x210000, 0x21bbff, MWA_BANK2 ),
 	#if Zx80
-		{ 0x21e000, 0x21fbff, shared_ram_w, &toaplan2_shared_ram },	/* $21F000 */
-		{ 0x21fc00, 0x21ffff, Zx80_sharedram_w, &Zx80_shared_ram },	/* 16-bit on 68000 side, 8-bit on Zx80 side */
+		new Memory_WriteAddress( 0x21e000, 0x21fbff, shared_ram_w, &toaplan2_shared_ram ),	/* $21F000 */
+		new Memory_WriteAddress( 0x21fc00, 0x21ffff, Zx80_sharedram_w, &Zx80_shared_ram ),	/* 16-bit on 68000 side, 8-bit on Zx80 side */
 	#else
-		{ 0x21e000, 0x21efff, shared_ram_w, &toaplan2_shared_ram },
-		{ 0x21f000, 0x21f001, Zx80_command_port_w },	/* Zx80 command port */
-		{ 0x21fc00, 0x21ffff, Zx80_sharedram_w, &Zx80_shared_ram },	/* 16-bit on 68000 side, 8-bit on Zx80 side */
+		new Memory_WriteAddress( 0x21e000, 0x21efff, shared_ram_w, &toaplan2_shared_ram ),
+		new Memory_WriteAddress( 0x21f000, 0x21f001, Zx80_command_port_w ),	/* Zx80 command port */
+		new Memory_WriteAddress( 0x21fc00, 0x21ffff, Zx80_sharedram_w, &Zx80_shared_ram ),	/* 16-bit on 68000 side, 8-bit on Zx80 side */
 	#endif
 		/***** The following in 0x30000x are for video controller 2 ******/
-		{ 0x300000, 0x300001, toaplan2_1_voffs_w },		/* VideoRAM selector/offset */
-		{ 0x300004, 0x300007, toaplan2_1_videoram_w },	/* Tile/Sprite VideoRAM */
-		{ 0x300008, 0x300009, toaplan2_1_scroll_reg_select_w },
-		{ 0x30000c, 0x30000d, toaplan2_1_scroll_reg_data_w },
-		{ 0x400000, 0x400fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram },
+		new Memory_WriteAddress( 0x300000, 0x300001, toaplan2_1_voffs_w ),		/* VideoRAM selector/offset */
+		new Memory_WriteAddress( 0x300004, 0x300007, toaplan2_1_videoram_w ),	/* Tile/Sprite VideoRAM */
+		new Memory_WriteAddress( 0x300008, 0x300009, toaplan2_1_scroll_reg_select_w ),
+		new Memory_WriteAddress( 0x30000c, 0x30000d, toaplan2_1_scroll_reg_data_w ),
+		new Memory_WriteAddress( 0x400000, 0x400fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram ),
 		/***** The following in 0x50000x are for video controller 1 ******/
-		{ 0x500000, 0x500001, toaplan2_0_voffs_w },		/* VideoRAM selector/offset */
-		{ 0x500004, 0x500007, toaplan2_0_videoram_w },	/* Tile/Sprite VideoRAM */
-		{ 0x500008, 0x500009, toaplan2_0_scroll_reg_select_w },
-		{ 0x50000c, 0x50000d, toaplan2_0_scroll_reg_data_w },
-	MEMORY_END
+		new Memory_WriteAddress( 0x500000, 0x500001, toaplan2_0_voffs_w ),		/* VideoRAM selector/offset */
+		new Memory_WriteAddress( 0x500004, 0x500007, toaplan2_0_videoram_w ),	/* Tile/Sprite VideoRAM */
+		new Memory_WriteAddress( 0x500008, 0x500009, toaplan2_0_scroll_reg_select_w ),
+		new Memory_WriteAddress( 0x50000c, 0x50000d, toaplan2_0_scroll_reg_data_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress snowbro2_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -1017,20 +1037,22 @@ public class toaplan2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( snowbro2_writemem )
-		{ 0x000000, 0x07ffff, MWA_ROM },
-		{ 0x100000, 0x10ffff, MWA_BANK1 },
-		{ 0x300000, 0x300001, toaplan2_0_voffs_w },		/* VideoRAM selector/offset */
-		{ 0x300004, 0x300007, toaplan2_0_videoram_w },	/* Tile/Sprite VideoRAM */
-		{ 0x300008, 0x300009, toaplan2_0_scroll_reg_select_w },
-		{ 0x30000c, 0x30000d, toaplan2_0_scroll_reg_data_w },
-		{ 0x400000, 0x400fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram },
-		{ 0x500000, 0x500001, YM2151_register_port_0_w },
-		{ 0x500002, 0x500003, YM2151_data_port_0_w },
-		{ 0x600000, 0x600001, OKIM6295_data_0_w },
-		{ 0x700030, 0x700031, oki_bankswitch_w },		/* Sample bank switch */
-		{ 0x700034, 0x700035, toaplan2_coin_w },		/* Coin count/lock */
-	MEMORY_END
+	public static Memory_WriteAddress snowbro2_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x07ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x100000, 0x10ffff, MWA_BANK1 ),
+		new Memory_WriteAddress( 0x300000, 0x300001, toaplan2_0_voffs_w ),		/* VideoRAM selector/offset */
+		new Memory_WriteAddress( 0x300004, 0x300007, toaplan2_0_videoram_w ),	/* Tile/Sprite VideoRAM */
+		new Memory_WriteAddress( 0x300008, 0x300009, toaplan2_0_scroll_reg_select_w ),
+		new Memory_WriteAddress( 0x30000c, 0x30000d, toaplan2_0_scroll_reg_data_w ),
+		new Memory_WriteAddress( 0x400000, 0x400fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram ),
+		new Memory_WriteAddress( 0x500000, 0x500001, YM2151_register_port_0_w ),
+		new Memory_WriteAddress( 0x500002, 0x500003, YM2151_data_port_0_w ),
+		new Memory_WriteAddress( 0x600000, 0x600001, OKIM6295_data_0_w ),
+		new Memory_WriteAddress( 0x700030, 0x700031, oki_bankswitch_w ),		/* Sample bank switch */
+		new Memory_WriteAddress( 0x700034, 0x700035, toaplan2_coin_w ),		/* Coin count/lock */
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress mahoudai_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -1053,21 +1075,23 @@ public class toaplan2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( mahoudai_writemem )
-		{ 0x000000, 0x07ffff, MWA_ROM },
-		{ 0x100000, 0x10ffff, MWA_BANK1 },
-		{ 0x218000, 0x21bfff, raizing_shared_ram_w, &raizing_shared_ram },
-		{ 0x21c000, 0x21c001, YM2151_register_port_0_w },
-		{ 0x21c004, 0x21c005, YM2151_data_port_0_w },
-		{ 0x21c008, 0x21c009, OKIM6295_data_0_w },
-		{ 0x21c01c, 0x21c01d, toaplan2_coin_w },
-		{ 0x300000, 0x300001, toaplan2_0_voffs_w },		/* VideoRAM selector/offset */
-		{ 0x300004, 0x300007, toaplan2_0_videoram_w },	/* Tile/Sprite VideoRAM */
-		{ 0x300008, 0x300009, toaplan2_0_scroll_reg_select_w },
-		{ 0x30000c, 0x30000d, toaplan2_0_scroll_reg_data_w },
-		{ 0x400000, 0x400fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram },
-		{ 0x500000, 0x503fff, raizing_textram_w, &textvideoram},
-	MEMORY_END
+	public static Memory_WriteAddress mahoudai_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x07ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x100000, 0x10ffff, MWA_BANK1 ),
+		new Memory_WriteAddress( 0x218000, 0x21bfff, raizing_shared_ram_w, &raizing_shared_ram ),
+		new Memory_WriteAddress( 0x21c000, 0x21c001, YM2151_register_port_0_w ),
+		new Memory_WriteAddress( 0x21c004, 0x21c005, YM2151_data_port_0_w ),
+		new Memory_WriteAddress( 0x21c008, 0x21c009, OKIM6295_data_0_w ),
+		new Memory_WriteAddress( 0x21c01c, 0x21c01d, toaplan2_coin_w ),
+		new Memory_WriteAddress( 0x300000, 0x300001, toaplan2_0_voffs_w ),		/* VideoRAM selector/offset */
+		new Memory_WriteAddress( 0x300004, 0x300007, toaplan2_0_videoram_w ),	/* Tile/Sprite VideoRAM */
+		new Memory_WriteAddress( 0x300008, 0x300009, toaplan2_0_scroll_reg_select_w ),
+		new Memory_WriteAddress( 0x30000c, 0x30000d, toaplan2_0_scroll_reg_data_w ),
+		new Memory_WriteAddress( 0x400000, 0x400fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram ),
+		new Memory_WriteAddress( 0x500000, 0x503fff, raizing_textram_w, &textvideoram),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress shippumd_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -1090,21 +1114,23 @@ public class toaplan2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( shippumd_writemem )
-		{ 0x000000, 0x0fffff, MWA_ROM },
-		{ 0x100000, 0x10ffff, MWA_BANK1 },
-		{ 0x218000, 0x21bfff, raizing_shared_ram_w, &raizing_shared_ram },
-		{ 0x21c000, 0x21c001, YM2151_register_port_0_w },
-		{ 0x21c004, 0x21c005, YM2151_data_port_0_w },
-		{ 0x21c008, 0x21c009, OKIM6295_data_0_w },
-		{ 0x21c01c, 0x21c01d, toaplan2_coin_w },
-		{ 0x300000, 0x300001, toaplan2_0_voffs_w },		/* VideoRAM selector/offset */
-		{ 0x300004, 0x300007, toaplan2_0_videoram_w },	/* Tile/Sprite VideoRAM */
-		{ 0x300008, 0x300009, toaplan2_0_scroll_reg_select_w },
-		{ 0x30000c, 0x30000d, toaplan2_0_scroll_reg_data_w },
-		{ 0x400000, 0x400fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram },
-		{ 0x500000, 0x503fff, raizing_textram_w, &textvideoram},
-	MEMORY_END
+	public static Memory_WriteAddress shippumd_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x0fffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x100000, 0x10ffff, MWA_BANK1 ),
+		new Memory_WriteAddress( 0x218000, 0x21bfff, raizing_shared_ram_w, &raizing_shared_ram ),
+		new Memory_WriteAddress( 0x21c000, 0x21c001, YM2151_register_port_0_w ),
+		new Memory_WriteAddress( 0x21c004, 0x21c005, YM2151_data_port_0_w ),
+		new Memory_WriteAddress( 0x21c008, 0x21c009, OKIM6295_data_0_w ),
+		new Memory_WriteAddress( 0x21c01c, 0x21c01d, toaplan2_coin_w ),
+		new Memory_WriteAddress( 0x300000, 0x300001, toaplan2_0_voffs_w ),		/* VideoRAM selector/offset */
+		new Memory_WriteAddress( 0x300004, 0x300007, toaplan2_0_videoram_w ),	/* Tile/Sprite VideoRAM */
+		new Memory_WriteAddress( 0x300008, 0x300009, toaplan2_0_scroll_reg_select_w ),
+		new Memory_WriteAddress( 0x30000c, 0x30000d, toaplan2_0_scroll_reg_data_w ),
+		new Memory_WriteAddress( 0x400000, 0x400fff, paletteram_xBBBBBGGGGGRRRRR_word_w, &paletteram ),
+		new Memory_WriteAddress( 0x500000, 0x503fff, raizing_textram_w, &textvideoram),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	public static Memory_ReadAddress sound_readmem[]={
@@ -1115,12 +1141,14 @@ public class toaplan2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( sound_writemem )
-		{ 0x0000, 0x7fff, MWA_ROM },
-		{ 0x8000, 0x87ff, MWA_RAM, &toaplan2_shared_ram },
-		{ 0xe000, 0xe000, YM3812_control_port_0_w },
-		{ 0xe001, 0xe001, YM3812_write_port_0_w },
-	MEMORY_END
+	public static Memory_WriteAddress sound_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x7fff, MWA_ROM ),
+		new Memory_WriteAddress( 0x8000, 0x87ff, MWA_RAM, &toaplan2_shared_ram ),
+		new Memory_WriteAddress( 0xe000, 0xe000, YM3812_control_port_0_w ),
+		new Memory_WriteAddress( 0xe001, 0xe001, YM3812_write_port_0_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/* Added by Yochizo 2000/08/20 */
 	
@@ -1139,14 +1167,16 @@ public class toaplan2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( raizing_sound_writemem )
-		{ 0x0000, 0xbfff, MWA_ROM },
-		{ 0xc000, 0xdfff, MWA_RAM, &raizing_shared_ram },
-		{ 0xe000, 0xe000, YM2151_register_port_0_w },
-		{ 0xe001, 0xe001, YM2151_data_port_0_w },
-		{ 0xe004, 0xe004, OKIM6295_data_0_w },
-		{ 0xe00e, 0xe00e, toaplan2_coin_w },
-	MEMORY_END
+	public static Memory_WriteAddress raizing_sound_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0xbfff, MWA_ROM ),
+		new Memory_WriteAddress( 0xc000, 0xdfff, MWA_RAM, &raizing_shared_ram ),
+		new Memory_WriteAddress( 0xe000, 0xe000, YM2151_register_port_0_w ),
+		new Memory_WriteAddress( 0xe001, 0xe001, YM2151_data_port_0_w ),
+		new Memory_WriteAddress( 0xe004, 0xe004, OKIM6295_data_0_w ),
+		new Memory_WriteAddress( 0xe00e, 0xe00e, toaplan2_coin_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	#if HD64x180
@@ -1157,10 +1187,12 @@ public class toaplan2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( hd647180_writemem )
-		{ 0x0000, 0x7fff, MWA_ROM },
-		{ 0xfe00, 0xffff, MWA_RAM },			/* Internal 512 bytes of RAM */
-	MEMORY_END
+	public static Memory_WriteAddress hd647180_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x7fff, MWA_ROM ),
+		new Memory_WriteAddress( 0xfe00, 0xffff, MWA_RAM ),			/* Internal 512 bytes of RAM */
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	#endif
 	
 	
@@ -1171,9 +1203,11 @@ public class toaplan2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( Zx80_writemem )
-		{ 0x0000, 0x07fff, MWA_RAM, &Zx80_sharedram },
-	MEMORY_END
+	public static Memory_WriteAddress Zx80_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x07fff, MWA_RAM, &Zx80_sharedram ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	#endif
 	
 	

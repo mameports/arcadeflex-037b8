@@ -163,19 +163,21 @@ public class zaccaria
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem )
-		{ 0x0000, 0x5fff, MWA_ROM },
-		{ 0x6000, 0x63ff, videoram_w, &videoram, &videoram_size },
-		{ 0x6400, 0x67ff, colorram_w, &colorram },
-		{ 0x6800, 0x683f, zaccaria_attributes_w, &zaccaria_attributesram },
-		{ 0x6840, 0x685f, MWA_RAM, &spriteram, &spriteram_size },
-		{ 0x6881, 0x68bc, MWA_RAM, &spriteram_2, &spriteram_2_size },
-	{ 0x6c02, 0x6c02, MWA_NOP },    /* ??? */
-		{ 0x6c07, 0x6c07, interrupt_enable_w },
-		{ 0x7000, 0x77ff, MWA_RAM },
-		{ 0x7802, 0x7802, zaccaria_dsw_sel_w },
-		{ 0x8000, 0xdfff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x5fff, MWA_ROM ),
+		new Memory_WriteAddress( 0x6000, 0x63ff, videoram_w, &videoram, &videoram_size ),
+		new Memory_WriteAddress( 0x6400, 0x67ff, colorram_w, &colorram ),
+		new Memory_WriteAddress( 0x6800, 0x683f, zaccaria_attributes_w, &zaccaria_attributesram ),
+		new Memory_WriteAddress( 0x6840, 0x685f, MWA_RAM, &spriteram, &spriteram_size ),
+		new Memory_WriteAddress( 0x6881, 0x68bc, MWA_RAM, &spriteram_2, &spriteram_2_size ),
+	new Memory_WriteAddress( 0x6c02, 0x6c02, MWA_NOP ),    /* ??? */
+		new Memory_WriteAddress( 0x6c07, 0x6c07, interrupt_enable_w ),
+		new Memory_WriteAddress( 0x7000, 0x77ff, MWA_RAM ),
+		new Memory_WriteAddress( 0x7802, 0x7802, zaccaria_dsw_sel_w ),
+		new Memory_WriteAddress( 0x8000, 0xdfff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress sound_readmem1[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -185,11 +187,13 @@ public class zaccaria
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( sound_writemem1 )
-		{ 0x0000, 0x007f, MWA_RAM },
-		{ 0x500c, 0x500f, pia_0_w },
-		{ 0xf000, 0xffff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress sound_writemem1[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x007f, MWA_RAM ),
+		new Memory_WriteAddress( 0x500c, 0x500f, pia_0_w ),
+		new Memory_WriteAddress( 0xf000, 0xffff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress sound_readmem2[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -199,11 +203,13 @@ public class zaccaria
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( sound_writemem2 )
-		{ 0x0000, 0x007f, MWA_RAM },
-		{ 0x0090, 0x0093, pia_1_w },
-		{ 0xe000, 0xffff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress sound_writemem2[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x007f, MWA_RAM ),
+		new Memory_WriteAddress( 0x0090, 0x0093, pia_1_w ),
+		new Memory_WriteAddress( 0xe000, 0xffff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	

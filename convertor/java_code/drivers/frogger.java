@@ -113,19 +113,21 @@ public class frogger
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem )
-		{ 0x0000, 0x3fff, MWA_ROM },
-		{ 0x8000, 0x87ff, MWA_RAM },
-		{ 0xa800, 0xabff, videoram_w, &videoram, &videoram_size },
-		{ 0xb000, 0xb03f, frogger_attributes_w, &frogger_attributesram },
-		{ 0xb040, 0xb05f, MWA_RAM, &spriteram, &spriteram_size },
-		{ 0xb808, 0xb808, interrupt_enable_w },
-		{ 0xb80c, 0xb80c, frogger_flipscreen_w },
-		{ 0xb818, 0xb818, frogger_coin_counter_0_w },
-		{ 0xb81c, 0xb81c, frogger_coin_counter_1_w },
-		{ 0xd000, 0xd000, soundlatch_w },
-		{ 0xd002, 0xd002, frogger_sh_irqtrigger_w },
-	MEMORY_END
+	public static Memory_WriteAddress writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x3fff, MWA_ROM ),
+		new Memory_WriteAddress( 0x8000, 0x87ff, MWA_RAM ),
+		new Memory_WriteAddress( 0xa800, 0xabff, videoram_w, &videoram, &videoram_size ),
+		new Memory_WriteAddress( 0xb000, 0xb03f, frogger_attributes_w, &frogger_attributesram ),
+		new Memory_WriteAddress( 0xb040, 0xb05f, MWA_RAM, &spriteram, &spriteram_size ),
+		new Memory_WriteAddress( 0xb808, 0xb808, interrupt_enable_w ),
+		new Memory_WriteAddress( 0xb80c, 0xb80c, frogger_flipscreen_w ),
+		new Memory_WriteAddress( 0xb818, 0xb818, frogger_coin_counter_0_w ),
+		new Memory_WriteAddress( 0xb81c, 0xb81c, frogger_coin_counter_1_w ),
+		new Memory_WriteAddress( 0xd000, 0xd000, soundlatch_w ),
+		new Memory_WriteAddress( 0xd002, 0xd002, frogger_sh_irqtrigger_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress froggrmc_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -140,17 +142,19 @@ public class frogger
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( froggrmc_writemem )
-		{ 0x0000, 0x3fff, MWA_ROM },
-		{ 0x8000, 0x87ff, MWA_RAM },
-		{ 0x9000, 0x93ff, videoram_w, &videoram, &videoram_size },
-		{ 0x9800, 0x983f, frogger_attributes_w, &frogger_attributesram },
-		{ 0x9840, 0x985f, MWA_RAM, &spriteram, &spriteram_size },
-		{ 0xa800, 0xa800, soundlatch_w },
-		{ 0xb000, 0xb000, interrupt_enable_w },
-		{ 0xb001, 0xb001, frogger2_sh_irqtrigger_w },
-		{ 0xb006, 0xb006, frogger_flipscreen_w },
-	MEMORY_END
+	public static Memory_WriteAddress froggrmc_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x3fff, MWA_ROM ),
+		new Memory_WriteAddress( 0x8000, 0x87ff, MWA_RAM ),
+		new Memory_WriteAddress( 0x9000, 0x93ff, videoram_w, &videoram, &videoram_size ),
+		new Memory_WriteAddress( 0x9800, 0x983f, frogger_attributes_w, &frogger_attributesram ),
+		new Memory_WriteAddress( 0x9840, 0x985f, MWA_RAM, &spriteram, &spriteram_size ),
+		new Memory_WriteAddress( 0xa800, 0xa800, soundlatch_w ),
+		new Memory_WriteAddress( 0xb000, 0xb000, interrupt_enable_w ),
+		new Memory_WriteAddress( 0xb001, 0xb001, frogger2_sh_irqtrigger_w ),
+		new Memory_WriteAddress( 0xb006, 0xb006, frogger_flipscreen_w ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	
@@ -161,10 +165,12 @@ public class frogger
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( sound_writemem )
-		{ 0x0000, 0x17ff, MWA_ROM },
-		{ 0x4000, 0x43ff, MWA_RAM },
-	MEMORY_END
+	public static Memory_WriteAddress sound_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x17ff, MWA_ROM ),
+		new Memory_WriteAddress( 0x4000, 0x43ff, MWA_RAM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	

@@ -38,20 +38,22 @@ public class scregg
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( eggs_writemem )
-		{ 0x0000, 0x07ff, MWA_RAM },
-		{ 0x1000, 0x13ff, videoram_w, &videoram, &videoram_size },
-		{ 0x1400, 0x17ff, colorram_w, &colorram },
-		{ 0x1800, 0x1bff, btime_mirrorvideoram_w },
-		{ 0x1c00, 0x1fff, btime_mirrorcolorram_w },
-		{ 0x2000, 0x2000, btime_video_control_w },
-		{ 0x2001, 0x2001, MWA_NOP },
-		{ 0x2004, 0x2004, AY8910_control_port_0_w },
-		{ 0x2005, 0x2005, AY8910_write_port_0_w },
-		{ 0x2006, 0x2006, AY8910_control_port_1_w },
-		{ 0x2007, 0x2007, AY8910_write_port_1_w },
-		{ 0x3000, 0x7fff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress eggs_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x07ff, MWA_RAM ),
+		new Memory_WriteAddress( 0x1000, 0x13ff, videoram_w, &videoram, &videoram_size ),
+		new Memory_WriteAddress( 0x1400, 0x17ff, colorram_w, &colorram ),
+		new Memory_WriteAddress( 0x1800, 0x1bff, btime_mirrorvideoram_w ),
+		new Memory_WriteAddress( 0x1c00, 0x1fff, btime_mirrorcolorram_w ),
+		new Memory_WriteAddress( 0x2000, 0x2000, btime_video_control_w ),
+		new Memory_WriteAddress( 0x2001, 0x2001, MWA_NOP ),
+		new Memory_WriteAddress( 0x2004, 0x2004, AY8910_control_port_0_w ),
+		new Memory_WriteAddress( 0x2005, 0x2005, AY8910_write_port_0_w ),
+		new Memory_WriteAddress( 0x2006, 0x2006, AY8910_control_port_1_w ),
+		new Memory_WriteAddress( 0x2007, 0x2007, AY8910_write_port_1_w ),
+		new Memory_WriteAddress( 0x3000, 0x7fff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	

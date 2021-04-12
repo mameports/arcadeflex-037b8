@@ -284,69 +284,81 @@ public class qix
 	};
 	
 	
-	static MEMORY_WRITE_START( writemem )
-		{ 0x8000, 0x83ff, qix_sharedram_w, &qix_sharedram },
-		{ 0x8400, 0x87ff, MWA_RAM },
-		{ 0x8c00, 0x8c00, qix_video_firq_w },
-		{ 0x9000, 0x9003, pia_3_w },
-		{ 0x9400, 0x9403, sdungeon_pia_0_w },
-		{ 0x9900, 0x9903, pia_1_w },
-		{ 0x9c00, 0x9fff, pia_2_w },
-		{ 0xa000, 0xffff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x8000, 0x83ff, qix_sharedram_w, &qix_sharedram ),
+		new Memory_WriteAddress( 0x8400, 0x87ff, MWA_RAM ),
+		new Memory_WriteAddress( 0x8c00, 0x8c00, qix_video_firq_w ),
+		new Memory_WriteAddress( 0x9000, 0x9003, pia_3_w ),
+		new Memory_WriteAddress( 0x9400, 0x9403, sdungeon_pia_0_w ),
+		new Memory_WriteAddress( 0x9900, 0x9903, pia_1_w ),
+		new Memory_WriteAddress( 0x9c00, 0x9fff, pia_2_w ),
+		new Memory_WriteAddress( 0xa000, 0xffff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
-	static MEMORY_WRITE_START( zoo_writemem )
-		{ 0x0000, 0x03ff, qix_sharedram_w, &qix_sharedram },
-		{ 0x0400, 0x07ff, MWA_RAM },
-		{ 0x0c00, 0x0c00, qix_video_firq_w },
-		{ 0x0c01, 0x0c01, MWA_NOP },	/* interrupt acknowledge */
-		{ 0x1000, 0x1003, pia_3_w },	/* Sound PIA */
-		{ 0x1400, 0x1403, sdungeon_pia_0_w },	/* Game PIA 1 */
-		{ 0x1900, 0x1903, pia_1_w },	/* Game PIA 2 */
-		{ 0x1c00, 0x1fff, pia_2_w },    /* Game PIA 3 */
-		{ 0x8000, 0xffff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress zoo_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x03ff, qix_sharedram_w, &qix_sharedram ),
+		new Memory_WriteAddress( 0x0400, 0x07ff, MWA_RAM ),
+		new Memory_WriteAddress( 0x0c00, 0x0c00, qix_video_firq_w ),
+		new Memory_WriteAddress( 0x0c01, 0x0c01, MWA_NOP ),	/* interrupt acknowledge */
+		new Memory_WriteAddress( 0x1000, 0x1003, pia_3_w ),	/* Sound PIA */
+		new Memory_WriteAddress( 0x1400, 0x1403, sdungeon_pia_0_w ),	/* Game PIA 1 */
+		new Memory_WriteAddress( 0x1900, 0x1903, pia_1_w ),	/* Game PIA 2 */
+		new Memory_WriteAddress( 0x1c00, 0x1fff, pia_2_w ),    /* Game PIA 3 */
+		new Memory_WriteAddress( 0x8000, 0xffff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
-	static MEMORY_WRITE_START( writemem_video )
-		{ 0x0000, 0x7fff, qix_videoram_w },
-		{ 0x8000, 0x83ff, qix_sharedram_w },
-		{ 0x8400, 0x87ff, MWA_RAM, &nvram, &nvram_size },
-		{ 0x8800, 0x8800, qix_palettebank_w, &qix_palettebank },
-		{ 0x8c00, 0x8c00, qix_data_firq_w },
-		{ 0x9000, 0x93ff, qix_paletteram_w, &paletteram },
-		{ 0x9400, 0x9400, qix_addresslatch_w },
-		{ 0x9402, 0x9403, MWA_RAM, &qix_videoaddress },
-		{ 0x9c00, 0x9FFF, MWA_RAM }, /* Video controller */
-		{ 0xa000, 0xffff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress writemem_video[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x7fff, qix_videoram_w ),
+		new Memory_WriteAddress( 0x8000, 0x83ff, qix_sharedram_w ),
+		new Memory_WriteAddress( 0x8400, 0x87ff, MWA_RAM, &nvram, &nvram_size ),
+		new Memory_WriteAddress( 0x8800, 0x8800, qix_palettebank_w, &qix_palettebank ),
+		new Memory_WriteAddress( 0x8c00, 0x8c00, qix_data_firq_w ),
+		new Memory_WriteAddress( 0x9000, 0x93ff, qix_paletteram_w, &paletteram ),
+		new Memory_WriteAddress( 0x9400, 0x9400, qix_addresslatch_w ),
+		new Memory_WriteAddress( 0x9402, 0x9403, MWA_RAM, &qix_videoaddress ),
+		new Memory_WriteAddress( 0x9c00, 0x9FFF, MWA_RAM ), /* Video controller */
+		new Memory_WriteAddress( 0xa000, 0xffff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
-	static MEMORY_WRITE_START( zoo_writemem_video )
-		{ 0x0000, 0x7fff, qix_videoram_w },
-		{ 0x8000, 0x83ff, qix_sharedram_w },
-		{ 0x8400, 0x87ff, MWA_RAM, &nvram, &nvram_size },	/////protected when coin door is closed
-		{ 0x8800, 0x8800, qix_palettebank_w, &qix_palettebank },	/* LEDs are upper 6 bits */
-		{ 0x8801, 0x8801, zoo_bankswitch_w },
-		{ 0x8c00, 0x8c00, qix_data_firq_w },
-		{ 0x8c01, 0x8c01, MWA_NOP },	/* interrupt acknowledge */
-		{ 0x9000, 0x93ff, qix_paletteram_w, &paletteram },
-		{ 0x9400, 0x9400, qix_addresslatch_w },
-		{ 0x9402, 0x9403, MWA_RAM, &qix_videoaddress },
-		{ 0xa000, 0xffff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress zoo_writemem_video[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x7fff, qix_videoram_w ),
+		new Memory_WriteAddress( 0x8000, 0x83ff, qix_sharedram_w ),
+		new Memory_WriteAddress( 0x8400, 0x87ff, MWA_RAM, &nvram, &nvram_size ),	/////protected when coin door is closed
+		new Memory_WriteAddress( 0x8800, 0x8800, qix_palettebank_w, &qix_palettebank ),	/* LEDs are upper 6 bits */
+		new Memory_WriteAddress( 0x8801, 0x8801, zoo_bankswitch_w ),
+		new Memory_WriteAddress( 0x8c00, 0x8c00, qix_data_firq_w ),
+		new Memory_WriteAddress( 0x8c01, 0x8c01, MWA_NOP ),	/* interrupt acknowledge */
+		new Memory_WriteAddress( 0x9000, 0x93ff, qix_paletteram_w, &paletteram ),
+		new Memory_WriteAddress( 0x9400, 0x9400, qix_addresslatch_w ),
+		new Memory_WriteAddress( 0x9402, 0x9403, MWA_RAM, &qix_videoaddress ),
+		new Memory_WriteAddress( 0xa000, 0xffff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
-	static MEMORY_WRITE_START( writemem_sound )
-		{ 0x0000, 0x007f, MWA_RAM },
-		{ 0x2000, 0x2003, pia_5_w },
-		{ 0x4000, 0x4003, pia_4_w },
-		{ 0xf000, 0xffff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress writemem_sound[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x007f, MWA_RAM ),
+		new Memory_WriteAddress( 0x2000, 0x2003, pia_5_w ),
+		new Memory_WriteAddress( 0x4000, 0x4003, pia_4_w ),
+		new Memory_WriteAddress( 0xf000, 0xffff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
-	static MEMORY_WRITE_START( zoo_writemem_sound )
-		{ 0x0000, 0x007f, MWA_RAM },
-		{ 0x2000, 0x2003, pia_5_w },
-		{ 0x4000, 0x4003, pia_4_w },
-		{ 0xd000, 0xffff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress zoo_writemem_sound[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x007f, MWA_RAM ),
+		new Memory_WriteAddress( 0x2000, 0x2003, pia_5_w ),
+		new Memory_WriteAddress( 0x4000, 0x4003, pia_4_w ),
+		new Memory_WriteAddress( 0xd000, 0xffff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress mcu_readmem[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -358,16 +370,18 @@ public class qix
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( mcu_writemem )
-		{ 0x0000, 0x0000, sdungeon_68705_portA_w },
-		{ 0x0001, 0x0001, sdungeon_68705_portB_w },
-		{ 0x0002, 0x0002, sdungeon_68705_portC_w },
-		{ 0x0004, 0x0004, sdungeon_68705_ddrA_w },
-		{ 0x0005, 0x0005, sdungeon_68705_ddrB_w },
-		{ 0x0006, 0x0006, sdungeon_68705_ddrC_w },
-		{ 0x0010, 0x007f, MWA_RAM },
-		{ 0x0080, 0x07ff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress mcu_writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x0000, sdungeon_68705_portA_w ),
+		new Memory_WriteAddress( 0x0001, 0x0001, sdungeon_68705_portB_w ),
+		new Memory_WriteAddress( 0x0002, 0x0002, sdungeon_68705_portC_w ),
+		new Memory_WriteAddress( 0x0004, 0x0004, sdungeon_68705_ddrA_w ),
+		new Memory_WriteAddress( 0x0005, 0x0005, sdungeon_68705_ddrB_w ),
+		new Memory_WriteAddress( 0x0006, 0x0006, sdungeon_68705_ddrC_w ),
+		new Memory_WriteAddress( 0x0010, 0x007f, MWA_RAM ),
+		new Memory_WriteAddress( 0x0080, 0x07ff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	

@@ -31,13 +31,15 @@ public class zac2650
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem )
-		{ 0x0000, 0x17FF, MWA_ROM },
-		{ 0x1800, 0x1bff, videoram_w, &videoram, &videoram_size },
-	    { 0x1D00, 0x1dff, MWA_RAM },
-	    { 0x1E80, 0x1E80, tinvader_sound_w },
-	    { 0x1F00, 0x1FFF, s2636_w, &s2636ram },
-	MEMORY_END
+	public static Memory_WriteAddress writemem[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x17FF, MWA_ROM ),
+		new Memory_WriteAddress( 0x1800, 0x1bff, videoram_w, &videoram, &videoram_size ),
+	    new Memory_WriteAddress( 0x1D00, 0x1dff, MWA_RAM ),
+	    new Memory_WriteAddress( 0x1E80, 0x1E80, tinvader_sound_w ),
+	    new Memory_WriteAddress( 0x1F00, 0x1FFF, s2636_w, &s2636ram ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	static InputPortPtr input_ports_tinvader = new InputPortPtr(){ public void handler() { 
 	

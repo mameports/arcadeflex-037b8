@@ -541,14 +541,16 @@ public class namcos2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem_master_default )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x100000, 0x10ffff, NAMCOS2_68K_MASTER_RAM_W },
-		{ 0x180000, 0x183fff, NAMCOS2_68K_EEPROM_W },
-		{ 0x1c0000, 0x1fffff, namcos2_68k_master_C148_w },
+	public static Memory_WriteAddress writemem_master_default[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x100000, 0x10ffff, NAMCOS2_68K_MASTER_RAM_W ),
+		new Memory_WriteAddress( 0x180000, 0x183fff, NAMCOS2_68K_EEPROM_W ),
+		new Memory_WriteAddress( 0x1c0000, 0x1fffff, namcos2_68k_master_C148_w ),
 		NAMCOS2_68K_DEFAULT_CPU_BOARD_WRITE
 		NAMCOS2_68K_DEFAULT_GFX_BOARD_WRITE
-	MEMORY_END
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress readmem_master_finallap[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -561,14 +563,16 @@ public class namcos2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem_master_finallap )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x100000, 0x10ffff, NAMCOS2_68K_MASTER_RAM_W },
-		{ 0x180000, 0x183fff, NAMCOS2_68K_EEPROM_W },
-		{ 0x1c0000, 0x1fffff, namcos2_68k_master_C148_w },
+	public static Memory_WriteAddress writemem_master_finallap[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x100000, 0x10ffff, NAMCOS2_68K_MASTER_RAM_W ),
+		new Memory_WriteAddress( 0x180000, 0x183fff, NAMCOS2_68K_EEPROM_W ),
+		new Memory_WriteAddress( 0x1c0000, 0x1fffff, namcos2_68k_master_C148_w ),
 		NAMCOS2_68K_DEFAULT_CPU_BOARD_WRITE
 		NAMCOS2_68K_FINALLAP_GFX_BOARD_WRITE
-	MEMORY_END
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress readmem_master_metlhawk[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -581,14 +585,16 @@ public class namcos2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem_master_metlhawk )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x100000, 0x10ffff, NAMCOS2_68K_MASTER_RAM_W },
-		{ 0x180000, 0x183fff, NAMCOS2_68K_EEPROM_W },
-		{ 0x1c0000, 0x1fffff, namcos2_68k_master_C148_w },
+	public static Memory_WriteAddress writemem_master_metlhawk[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x100000, 0x10ffff, NAMCOS2_68K_MASTER_RAM_W ),
+		new Memory_WriteAddress( 0x180000, 0x183fff, NAMCOS2_68K_EEPROM_W ),
+		new Memory_WriteAddress( 0x1c0000, 0x1fffff, namcos2_68k_master_C148_w ),
 		NAMCOS2_68K_DEFAULT_CPU_BOARD_WRITE
 		NAMCOS2_68K_METLHAWK_GFX_BOARD_WRITE
-	MEMORY_END
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	/*************************************************************/
 	/* SLAVE 68000 CPU Memory declarations						 */
@@ -604,13 +610,15 @@ public class namcos2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem_slave_default )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x100000, 0x13ffff, NAMCOS2_68K_SLAVE_RAM_W },
-		{ 0x1c0000, 0x1fffff, namcos2_68k_slave_C148_w },
+	public static Memory_WriteAddress writemem_slave_default[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x100000, 0x13ffff, NAMCOS2_68K_SLAVE_RAM_W ),
+		new Memory_WriteAddress( 0x1c0000, 0x1fffff, namcos2_68k_slave_C148_w ),
 		NAMCOS2_68K_DEFAULT_CPU_BOARD_WRITE
 		NAMCOS2_68K_DEFAULT_GFX_BOARD_WRITE
-	MEMORY_END
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress readmem_slave_finallap[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -622,13 +630,15 @@ public class namcos2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem_slave_finallap )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x100000, 0x13ffff, NAMCOS2_68K_SLAVE_RAM_W },
-		{ 0x1c0000, 0x1fffff, namcos2_68k_slave_C148_w },
+	public static Memory_WriteAddress writemem_slave_finallap[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x100000, 0x13ffff, NAMCOS2_68K_SLAVE_RAM_W ),
+		new Memory_WriteAddress( 0x1c0000, 0x1fffff, namcos2_68k_slave_C148_w ),
 		NAMCOS2_68K_DEFAULT_CPU_BOARD_WRITE
 		NAMCOS2_68K_FINALLAP_GFX_BOARD_WRITE
-	MEMORY_END
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	public static Memory_ReadAddress readmem_slave_metlhawk[]={
 		new Memory_ReadAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_READ | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
@@ -640,13 +650,15 @@ public class namcos2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem_slave_metlhawk )
-		{ 0x000000, 0x03ffff, MWA_ROM },
-		{ 0x100000, 0x13ffff, NAMCOS2_68K_SLAVE_RAM_W },
-		{ 0x1c0000, 0x1fffff, namcos2_68k_slave_C148_w },
+	public static Memory_WriteAddress writemem_slave_metlhawk[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x000000, 0x03ffff, MWA_ROM ),
+		new Memory_WriteAddress( 0x100000, 0x13ffff, NAMCOS2_68K_SLAVE_RAM_W ),
+		new Memory_WriteAddress( 0x1c0000, 0x1fffff, namcos2_68k_slave_C148_w ),
 		NAMCOS2_68K_DEFAULT_CPU_BOARD_WRITE
 		NAMCOS2_68K_METLHAWK_GFX_BOARD_WRITE
-	MEMORY_END
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	/*************************************************************/
@@ -664,18 +676,20 @@ public class namcos2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem_sound )
-		{ 0x0000, 0x3fff, MWA_ROM },
-		{ 0x4000, 0x4000, YM2151_register_port_0_w },
-		{ 0x4001, 0x4001, YM2151_data_port_0_w },
-		{ 0x5000, 0x6fff, C140_w },
-		{ 0x7000, 0x7fff, namcos2_dpram_byte_w },		/* 991112.CAB ($5800-5fff=image of $5000-$57ff) */
-		{ 0x8000, 0x9fff, MWA_RAM },
-		{ 0xa000, 0xbfff, MWA_NOP },					/* Amplifier enable on 1st write */
-		{ 0xc000, 0xc001, namcos2_sound_bankselect_w },
-		{ 0xd001, 0xd001, MWA_NOP },					/* Watchdog */
-		{ 0xc000, 0xffff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress writemem_sound[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0000, 0x3fff, MWA_ROM ),
+		new Memory_WriteAddress( 0x4000, 0x4000, YM2151_register_port_0_w ),
+		new Memory_WriteAddress( 0x4001, 0x4001, YM2151_data_port_0_w ),
+		new Memory_WriteAddress( 0x5000, 0x6fff, C140_w ),
+		new Memory_WriteAddress( 0x7000, 0x7fff, namcos2_dpram_byte_w ),		/* 991112.CAB ($5800-5fff=image of $5000-$57ff) */
+		new Memory_WriteAddress( 0x8000, 0x9fff, MWA_RAM ),
+		new Memory_WriteAddress( 0xa000, 0xbfff, MWA_NOP ),					/* Amplifier enable on 1st write */
+		new Memory_WriteAddress( 0xc000, 0xc001, namcos2_sound_bankselect_w ),
+		new Memory_WriteAddress( 0xd001, 0xd001, MWA_NOP ),					/* Watchdog */
+		new Memory_WriteAddress( 0xc000, 0xffff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	/*************************************************************/
@@ -707,16 +721,18 @@ public class namcos2
 		new Memory_ReadAddress(MEMPORT_MARKER, 0)
 	};
 	
-	static MEMORY_WRITE_START( writemem_mcu )
-		{ 0x0003, 0x0003, namcos2_mcu_port_d_w },
-		{ 0x0010, 0x0010, namcos2_mcu_analog_ctrl_w },
-		{ 0x0011, 0x0011, namcos2_mcu_analog_port_w },
-		{ 0x0000, 0x003f, MWA_RAM },			// Fill in register to stop logging
-		{ 0x0040, 0x01bf, MWA_RAM },
-		{ 0x01c0, 0x1fff, MWA_ROM },
-		{ 0x5000, 0x57ff, namcos2_dpram_byte_w },
-		{ 0x8000, 0xffff, MWA_ROM },
-	MEMORY_END
+	public static Memory_WriteAddress writemem_mcu[]={
+		new Memory_WriteAddress(MEMPORT_MARKER, MEMPORT_DIRECTION_WRITE | MEMPORT_TYPE_MEM | MEMPORT_WIDTH_8),
+		new Memory_WriteAddress( 0x0003, 0x0003, namcos2_mcu_port_d_w ),
+		new Memory_WriteAddress( 0x0010, 0x0010, namcos2_mcu_analog_ctrl_w ),
+		new Memory_WriteAddress( 0x0011, 0x0011, namcos2_mcu_analog_port_w ),
+		new Memory_WriteAddress( 0x0000, 0x003f, MWA_RAM ),			// Fill in register to stop logging
+		new Memory_WriteAddress( 0x0040, 0x01bf, MWA_RAM ),
+		new Memory_WriteAddress( 0x01c0, 0x1fff, MWA_ROM ),
+		new Memory_WriteAddress( 0x5000, 0x57ff, namcos2_dpram_byte_w ),
+		new Memory_WriteAddress( 0x8000, 0xffff, MWA_ROM ),
+		new Memory_WriteAddress(MEMPORT_MARKER, 0)
+	};
 	
 	
 	
