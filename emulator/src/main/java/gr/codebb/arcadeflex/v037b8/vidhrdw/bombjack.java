@@ -7,7 +7,7 @@ package gr.codebb.arcadeflex.v037b8.vidhrdw;
 
 import static gr.codebb.arcadeflex.common.libc.cstring.*;
 import static gr.codebb.arcadeflex.common.libc.expressions.*;
-import static gr.codebb.arcadeflex.WIP.v037b7.mame.osdependH.osd_bitmap;
+import static gr.codebb.arcadeflex.v037b8.mame.osdependH.osd_bitmap;
 import static gr.codebb.arcadeflex.WIP.v037b7.mame.palette.palette_recalc;
 import static gr.codebb.arcadeflex.old.mame.common.memory_region;
 import static gr.codebb.arcadeflex.old.mame.drawgfx.*;

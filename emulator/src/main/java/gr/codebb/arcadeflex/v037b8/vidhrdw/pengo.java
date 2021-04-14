@@ -6,7 +6,7 @@ package gr.codebb.arcadeflex.v037b8.vidhrdw;
 
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.common.libc.cstring.*;
-import static gr.codebb.arcadeflex.WIP.v037b7.mame.osdependH.osd_bitmap;
+import static gr.codebb.arcadeflex.v037b8.mame.osdependH.osd_bitmap;
 import static gr.codebb.arcadeflex.old.mame.drawgfx.copybitmap;
 import static gr.codebb.arcadeflex.old.mame.drawgfx.drawgfx;
 import static gr.codebb.arcadeflex.WIP.v037b7.mame.mame.Machine;

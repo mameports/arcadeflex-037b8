@@ -12,7 +12,7 @@ import static gr.codebb.arcadeflex.WIP.v037b7.vidhrdw.generic.colorram;
 import static gr.codebb.arcadeflex.WIP.v037b7.vidhrdw.generic.videoram;
 import static gr.codebb.arcadeflex.WIP.v037b7.vidhrdw.generic.videoram_size;
 
-import gr.codebb.arcadeflex.WIP.v037b7.mame.osdependH.osd_bitmap;
+import gr.codebb.arcadeflex.v037b8.mame.osdependH.osd_bitmap;
 import gr.codebb.arcadeflex.v037b7.common.fucPtr.ReadHandlerPtr;
 import gr.codebb.arcadeflex.v037b7.common.fucPtr.VhUpdatePtr;
 import gr.codebb.arcadeflex.v037b7.common.fucPtr.WriteHandlerPtr;
