@@ -4,28 +4,78 @@
 package gr.codebb.arcadeflex.v037b8.mame;
 
 import static gr.codebb.arcadeflex.old.mame.cpuintrf.cpu_get_reg;
+import static gr.codebb.arcadeflex.v037b7.common.fucPtr.*;
 
 public class cpuintrfH {
 
-    /*TODO*///struct MachineCPU
-/*TODO*///{
-/*TODO*///	int cpu_type;	/* see #defines below. */
-/*TODO*///	int cpu_clock;	/* in Hertz */
-/*TODO*///	const void *memory_read;	/* struct Memory_ReadAddress */
-/*TODO*///	const void *memory_write;	/* struct Memory_WriteAddress */
-/*TODO*///	const struct IO_ReadPort *port_read;
-/*TODO*///	const struct IO_WritePort *port_write;
-/*TODO*///	int (*vblank_interrupt)(void);
-/*TODO*///    int vblank_interrupts_per_frame;    /* usually 1 */
-/*TODO*////* use this for interrupts which are not tied to vblank 	*/
-/*TODO*////* usually frequency in Hz, but if you need 				*/
-/*TODO*////* greater precision you can give the period in nanoseconds */
-/*TODO*///	int (*timed_interrupt)(void);
-/*TODO*///	int timed_interrupts_per_second;
-/*TODO*////* pointer to a parameter to pass to the CPU cores reset function */
-/*TODO*///	void *reset_param;
-/*TODO*///};
-/*TODO*///
+    public static class MachineCPU {
+
+        public MachineCPU(int cpu_type, int cpu_clock, Object memory_read, Object memory_write, Object port_read, Object port_write, InterruptPtr vblank_interrupt, int vblank_interrupts_per_frame, InterruptPtr timed_interrupt, int timed_interrupts_per_second, Object reset_param) {
+            this.cpu_type = cpu_type;
+            this.cpu_clock = cpu_clock;
+            this.memory_read = memory_read;
+            this.memory_write = memory_write;
+            this.port_read = port_read;
+            this.port_write = port_write;
+            this.vblank_interrupt = vblank_interrupt;
+            this.vblank_interrupts_per_frame = vblank_interrupts_per_frame;
+            this.timed_interrupt = timed_interrupt;
+            this.timed_interrupts_per_second = timed_interrupts_per_second;
+            this.reset_param = reset_param;
+        }
+
+        public MachineCPU(int cpu_type, int cpu_clock, Object memory_read, Object memory_write, Object port_read, Object port_write, InterruptPtr vblank_interrupt, int vblank_interrupts_per_frame, InterruptPtr timed_interrupt, int timed_interrupts_per_second) {
+            this.cpu_type = cpu_type;
+            this.cpu_clock = cpu_clock;
+            this.memory_read = memory_read;
+            this.memory_write = memory_write;
+            this.port_read = port_read;
+            this.port_write = port_write;
+            this.vblank_interrupt = vblank_interrupt;
+            this.vblank_interrupts_per_frame = vblank_interrupts_per_frame;
+            this.timed_interrupt = timed_interrupt;
+            this.timed_interrupts_per_second = timed_interrupts_per_second;
+            this.reset_param = null;
+        }
+
+        public MachineCPU(int cpu_type, int cpu_clock, Object memory_read, Object memory_write, Object port_read, Object port_write, InterruptPtr vblank_interrupt, int vblank_interrupts_per_frame) {
+            this.cpu_type = cpu_type;
+            this.cpu_clock = cpu_clock;
+            this.memory_read = memory_read;
+            this.memory_write = memory_write;
+            this.port_read = port_read;
+            this.port_write = port_write;
+            this.vblank_interrupt = vblank_interrupt;
+            this.vblank_interrupts_per_frame = vblank_interrupts_per_frame;
+            this.timed_interrupt = null;
+            this.timed_interrupts_per_second = 0;
+            this.reset_param = null;
+        }
+
+        public MachineCPU() {
+            this(0, 0, null, null, null, null, null, 0, null, 0, null);
+        }
+
+        public static MachineCPU[] create(int n) {
+            MachineCPU[] a = new MachineCPU[n];
+            for (int k = 0; k < n; k++) {
+                a[k] = new MachineCPU();
+            }
+            return a;
+        }
+        public int cpu_type;/* see #defines below. */
+        public int cpu_clock;/* in Hertz */
+        public Object memory_read;/* struct Memory_ReadAddress */
+        public Object memory_write;/* struct Memory_WriteAddress */
+        public Object port_read;
+        public Object port_write;
+        public InterruptPtr vblank_interrupt;/* for interrupts tied to VBLANK */
+        public int vblank_interrupts_per_frame;/* usually 1 */
+        public InterruptPtr timed_interrupt;/* for interrupts not tied to VBLANK */
+        public int timed_interrupts_per_second;
+        public Object reset_param;/* parameter for cpu_reset */
+    }
+
     public static final int CPU_DUMMY = 0;
     public static final int CPU_Z80 = 1;
     public static final int CPU_Z80GB = 2;
