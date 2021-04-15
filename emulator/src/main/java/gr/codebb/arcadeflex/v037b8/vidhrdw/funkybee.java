@@ -5,9 +5,12 @@
  */
 package gr.codebb.arcadeflex.v037b8.vidhrdw;
 
+//mame package imports
+import static gr.codebb.arcadeflex.v037b8.mame.osdependH.*;
+
+//to be organized
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.common.libc.cstring.*;
-import static gr.codebb.arcadeflex.v037b8.mame.osdependH.*;
 import static gr.codebb.arcadeflex.old.mame.drawgfx.drawgfx;
 import static gr.codebb.arcadeflex.WIP.v037b7.mame.drawgfx.*;
 import static gr.codebb.arcadeflex.WIP.v037b7.mame.mame.*;

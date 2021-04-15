@@ -4,6 +4,10 @@
  */
 package gr.codebb.arcadeflex.v037b8.vidhrdw;
 
+//mame package imports
+import static gr.codebb.arcadeflex.v037b8.mame.osdependH.*;
+
+//to be organized
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.old.mame.drawgfx.plot_pixel;
 import static gr.codebb.arcadeflex.WIP.v037b7.mame.mame.Machine;
@@ -11,8 +15,6 @@ import static gr.codebb.arcadeflex.v037b8.machine.berzerk.berzerk_irq_end_of_scr
 import static gr.codebb.arcadeflex.WIP.v037b7.vidhrdw.generic.colorram;
 import static gr.codebb.arcadeflex.WIP.v037b7.vidhrdw.generic.videoram;
 import static gr.codebb.arcadeflex.WIP.v037b7.vidhrdw.generic.videoram_size;
-
-import gr.codebb.arcadeflex.v037b8.mame.osdependH.osd_bitmap;
 import gr.codebb.arcadeflex.v037b7.common.fucPtr.ReadHandlerPtr;
 import gr.codebb.arcadeflex.v037b7.common.fucPtr.VhUpdatePtr;
 import gr.codebb.arcadeflex.v037b7.common.fucPtr.WriteHandlerPtr;

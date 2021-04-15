@@ -4,19 +4,21 @@
  */
 package gr.codebb.arcadeflex.v037b8.vidhrdw;
 
+//mame package imports
+import static gr.codebb.arcadeflex.v037b8.mame.common.*;
+import static gr.codebb.arcadeflex.v037b8.mame.osdependH.*;
+
+//to be organized
 import static gr.codebb.arcadeflex.WIP.v037b7.mame.drawgfx.copyscrollbitmap;
 import static gr.codebb.arcadeflex.common.libc.cstring.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.common.libc.expressions.*;
-import static gr.codebb.arcadeflex.v037b8.mame.osdependH.osd_bitmap;
 import static gr.codebb.arcadeflex.old.mame.drawgfx.*;
 import static gr.codebb.arcadeflex.WIP.v037b7.mame.common.*;
 import static gr.codebb.arcadeflex.WIP.v037b7.mame.mame.Machine;
 import static gr.codebb.arcadeflex.v037b7.common.fucPtr.*;
 import static gr.codebb.arcadeflex.WIP.v037b7.mame.drawgfxH.*;
 import static gr.codebb.arcadeflex.WIP.v037b7.vidhrdw.generic.*;
-import static gr.codebb.arcadeflex.v037b8.mame.common.flip_screen_x_set;
-import static gr.codebb.arcadeflex.v037b8.mame.common.flip_screen_y_set;
 
 public class marineb {
 

@@ -4,9 +4,12 @@
  */
 package gr.codebb.arcadeflex.v037b8.vidhrdw;
 
+//mame package imports
+import static gr.codebb.arcadeflex.v037b8.mame.osdependH.*;
+
+//to be organized
 import static gr.codebb.arcadeflex.common.libc.cstring.*;
 import static gr.codebb.arcadeflex.common.libc.expressions.*;
-import static gr.codebb.arcadeflex.v037b8.mame.osdependH.osd_bitmap;
 import static gr.codebb.arcadeflex.old.arcadeflex.osdepend.logerror;
 import static gr.codebb.arcadeflex.old.mame.drawgfx.copybitmap;
 import static gr.codebb.arcadeflex.old.mame.drawgfx.drawgfx;
